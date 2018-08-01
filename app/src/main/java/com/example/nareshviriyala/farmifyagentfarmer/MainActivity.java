@@ -39,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new FragmentIndividual(), "Individual");
         adapter.addFragment(new FragmentBank(), "Bank");
         adapter.addFragment(new FragmentSocial(), "Social");
+        adapter.addFragment(new FragmentEcommerce(), "E-Commerce");
+        adapter.addFragment(new FragmentAgronomics(), "Agronomics");
+        adapter.addFragment(new FragmentEnvironmental(), "Environmental");
+        adapter.addFragment(new FragmentSatellite(), "Satellite");
         viewPager.setAdapter(adapter);
     }
 
