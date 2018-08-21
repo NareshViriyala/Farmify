@@ -1,2 +1,4 @@
 activity_boot.xml - put image to exact center
 https://medium.com/@vpaliy/do-you-dare-me-to-implement-this-login-screen-bf29b72d9e39
+https://www.codeproject.com/Articles/1183150/Securing-ASP-NET-Web-API-using-Custom-Token-Based
+http://bitoftech.net/2014/06/01/token-based-authentication-asp-net-web-api-2-owin-asp-net-identity/
