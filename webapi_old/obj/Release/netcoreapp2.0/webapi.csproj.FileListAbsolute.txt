@@ -1,0 +1,21 @@
+C:\Naresh\Github\Website\webapi\bin\Release\netcoreapp2.0\webapi.deps.json
+C:\Naresh\Github\Website\webapi\bin\Release\netcoreapp2.0\webapi.runtimeconfig.json
+C:\Naresh\Github\Website\webapi\bin\Release\netcoreapp2.0\webapi.runtimeconfig.dev.json
+C:\Naresh\Github\Website\webapi\bin\Release\netcoreapp2.0\webapi.dll
+C:\Naresh\Github\Website\webapi\bin\Release\netcoreapp2.0\webapi.pdb
+C:\Naresh\Github\Website\webapi\obj\Release\netcoreapp2.0\webapi.csproj.CoreCompileInputs.cache
+C:\Naresh\Github\Website\webapi\obj\Release\netcoreapp2.0\webapi.AssemblyInfoInputs.cache
+C:\Naresh\Github\Website\webapi\obj\Release\netcoreapp2.0\webapi.AssemblyInfo.cs
+C:\Naresh\Github\Website\webapi\obj\Release\netcoreapp2.0\webapi.dll
+C:\Naresh\Github\Website\webapi\obj\Release\netcoreapp2.0\webapi.pdb
+C:\Users\naresh.viriyala\OneDrive - Cotiviti\Farmify\webapi\bin\Release\netcoreapp2.0\webapi.deps.json
+C:\Users\naresh.viriyala\OneDrive - Cotiviti\Farmify\webapi\bin\Release\netcoreapp2.0\webapi.runtimeconfig.json
+C:\Users\naresh.viriyala\OneDrive - Cotiviti\Farmify\webapi\bin\Release\netcoreapp2.0\webapi.runtimeconfig.dev.json
+C:\Users\naresh.viriyala\OneDrive - Cotiviti\Farmify\webapi\bin\Release\netcoreapp2.0\webapi.dll
+C:\Users\naresh.viriyala\OneDrive - Cotiviti\Farmify\webapi\bin\Release\netcoreapp2.0\webapi.pdb
+C:\Users\naresh.viriyala\OneDrive - Cotiviti\Farmify\webapi\obj\Release\netcoreapp2.0\webapi.csprojAssemblyReference.cache
+C:\Users\naresh.viriyala\OneDrive - Cotiviti\Farmify\webapi\obj\Release\netcoreapp2.0\webapi.csproj.CoreCompileInputs.cache
+C:\Users\naresh.viriyala\OneDrive - Cotiviti\Farmify\webapi\obj\Release\netcoreapp2.0\webapi.AssemblyInfoInputs.cache
+C:\Users\naresh.viriyala\OneDrive - Cotiviti\Farmify\webapi\obj\Release\netcoreapp2.0\webapi.AssemblyInfo.cs
+C:\Users\naresh.viriyala\OneDrive - Cotiviti\Farmify\webapi\obj\Release\netcoreapp2.0\webapi.dll
+C:\Users\naresh.viriyala\OneDrive - Cotiviti\Farmify\webapi\obj\Release\netcoreapp2.0\webapi.pdb

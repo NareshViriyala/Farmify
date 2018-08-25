@@ -49,9 +49,18 @@ public class BootActivity extends AppCompatActivity {
                 InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 Toast.makeText(getApplicationContext(), "Thank You!", Toast.LENGTH_SHORT).show();
+                goToMainPage();
             }
         });
 
+    }
+
+    public  void goToMainPage()
+    {
+        Intent Intent = new Intent(this, MainActivity.class);
+        startActivity(Intent);
+        this.overridePendingTransition(R.anim.slideinleft,R.anim.slideoutleft);
+        this.finish();
     }
 
     public void goToRegisterPage(View view){
