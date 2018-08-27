@@ -29,6 +29,10 @@ namespace webapi.Dtos
         [Display(Name = "Password")]
         public string Password { get; set; }
 
+        public int UserType { get; set; }
+
+        public int OTP {get; set;}
+
         //[Required]
         //[DataType(DataType.Password)]
         //[Display(Name = "Confirm password")]

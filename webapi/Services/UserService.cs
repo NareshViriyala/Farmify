@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using webapi.Entities;
 using webapi.Helpers;
 
@@ -12,6 +13,9 @@ namespace webapi.Services
         IEnumerable<User> GetAll();
         User GetByID(int id);
         User Create(User user, string password);
+       
+        User ValidateOTP(User user);
+
         void Update(User user, string password = null);
         void Delete(int id);
     }
@@ -34,6 +38,10 @@ namespace webapi.Services
             //check if the username exists
             if(user == null)
                 throw new AppException("Phone number not registered");
+
+            //check if the user has not completed the registration yet
+            if(user.OTP != 0)
+                throw new AppException("Registration pending");
 
             //check if the password is correct
             if(!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
@@ -59,7 +67,7 @@ namespace webapi.Services
             if (string.IsNullOrWhiteSpace(password))
                 throw new AppException("Password is required");
         
-            if(_context.Users.Any(x=> x.Phone == user.Phone))
+            if(_context.Users.Any(x=> x.Phone == user.Phone && x.OTP == 0))
                 throw new AppException("Phone number :"+user.Phone+" is already taken");
 
             byte[] passwordHash, passwordSalt;
@@ -68,9 +76,40 @@ namespace webapi.Services
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
 
-            _context.Users.Add(user);
+            var euser = _context.Users.SingleOrDefault(x => x.Phone == user.Phone && x.OTP != 0);
+
+            //if(_context.Users.Any(x=> x.Phone == user.Phone && x.OTP != 0)) 
+            if(euser != null)//Previous registration pending
+            {
+                euser.FirstName = user.FirstName;
+                euser.LastName = user.LastName;
+                euser.UserType = user.UserType;
+                euser.Email = user.Email;
+                euser.OTP = user.OTP;
+                euser.PasswordHash = user.PasswordHash;
+                euser.PasswordSalt = user.PasswordSalt;
+                _context.Entry(euser).State = EntityState.Modified;
+            }
+            else
+                _context.Users.Add(user);
             _context.SaveChanges();
 
+            return user;
+        }
+
+        public User ValidateOTP(User user)
+        {
+            var euser = _context.Users.SingleOrDefault(x => x.Phone == user.Phone && x.OTP == user.OTP && x.OTP != 0);
+
+            if(euser != null) 
+            {
+                euser.OTP = 0;
+                _context.Entry(euser).State = EntityState.Modified;
+                _context.SaveChanges();
+            }
+            else
+                throw new AppException("Invalid OTP");
+            
             return user;
         }
 

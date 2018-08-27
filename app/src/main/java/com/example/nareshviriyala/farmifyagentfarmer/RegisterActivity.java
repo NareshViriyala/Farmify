@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.nareshviriyala.farmifyagentfarmer.Helpers.Validations;
+
 import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -20,6 +22,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextInputLayout input_layout_first_name, input_layout_last_name, input_layout_email, input_layout_phone, input_layout_password, input_layout_confirm_password;
     private EditText input_first_name, input_last_name, input_email, input_phone, input_password, input_confirm_password;
     private Button btn_register;
+    public Validations validations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_register);
 
+        validations = new Validations();
         input_layout_first_name = (TextInputLayout)findViewById(R.id.input_layout_first_name);
         input_layout_last_name = (TextInputLayout)findViewById(R.id.input_layout_last_name);
         input_layout_email = (TextInputLayout)findViewById(R.id.input_layout_email);
@@ -80,8 +84,9 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private boolean validateFirstName() {
-        if (input_first_name.getText().toString().trim().isEmpty()) {
-            input_layout_first_name.setError("Please provide first name");
+        String val = validations.validateName(input_first_name.getText().toString().trim());
+        if (val != null) {
+            input_layout_first_name.setError(val);
             requestFocus(input_first_name);
             return false;
         } else {
@@ -91,8 +96,9 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private boolean validateLastName() {
-        if (input_last_name.getText().toString().trim().isEmpty()) {
-            input_layout_last_name.setError("Please provide last name");
+        String val = validations.validateName(input_last_name.getText().toString().trim());
+        if (val != null) {
+            input_layout_last_name.setError(val);
             requestFocus(input_last_name);
             return false;
         } else {
@@ -102,17 +108,9 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private boolean validateEmail() {
-        if (input_email.getText().toString().trim().isEmpty()) {
-            input_layout_email.setError("Please provide last name");
-            requestFocus(input_email);
-            return false;
-        } else if(!Pattern.compile("^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
-                + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
-                + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
-                + "([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
-                + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
-                + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$").matcher(input_email.getText().toString().trim()).matches()){
-            input_layout_email.setError("Not a valid email address");
+        String val = validations.validateEmail(input_email.getText().toString().trim());
+        if (val != null) {
+            input_layout_email.setError(val);
             requestFocus(input_email);
             return false;
         }else {
@@ -121,13 +119,11 @@ public class RegisterActivity extends AppCompatActivity {
         return true;
     }
 
+
     private boolean validatePhone() {
-        if (input_phone.getText().toString().trim().isEmpty()) {
-            input_layout_phone.setError("Please provide phone number");
-            requestFocus(input_phone);
-            return false;
-        } else if (input_phone.getText().toString().trim().length() < 10){
-            input_phone.setError("Invalid phone number");
+        String val = validations.validatePhone(input_phone.getText().toString().trim());
+        if (val != null) {
+            input_layout_phone.setError(val);
             requestFocus(input_phone);
             return false;
         } else {
@@ -137,12 +133,9 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private boolean validatePassword() {
-        if (input_password.getText().toString().trim().isEmpty()) {
-            input_layout_password.setError("Please provide password");
-            requestFocus(input_password);
-            return false;
-        } else if (input_password.getText().toString().trim().length() < 6){
-            input_layout_password.setError("Invalid password length");
+        String val = validations.validatePassword(input_password.getText().toString().trim());
+        if (val != null) {
+            input_layout_password.setError(val);
             requestFocus(input_password);
             return false;
         } else {
@@ -152,8 +145,9 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private boolean validateConfirmPassword() {
-        if (!input_confirm_password.getText().toString().trim().equals(input_password.getText().toString().trim())) {
-            input_layout_confirm_password.setError("Passwords do not match");
+        String val = validations.validateConfirmPassword(input_confirm_password.getText().toString().trim(), input_password.getText().toString().trim());
+        if (val != null) {
+            input_layout_confirm_password.setError(val);
             requestFocus(input_confirm_password);
             return false;
         } else {

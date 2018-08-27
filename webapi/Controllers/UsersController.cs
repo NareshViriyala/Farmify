@@ -11,6 +11,7 @@ using System.Security.Claims;
 using System;
 using webapi.Entities;
 using System.Collections.Generic;
+using System.Net.Http;
 
 namespace webapi.Controllers
 {
@@ -63,6 +64,7 @@ namespace webapi.Controllers
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Email = user.Email,
+                    UserType = user.UserType,
                     Token = tokenString
                 });
             }
@@ -82,10 +84,38 @@ namespace webapi.Controllers
         public IActionResult Register([FromBody]UserDto userDto)
         {
             //map dto to entity
+            userDto.OTP = new Random().Next(1000, 9999);
             var user = _mapper.Map<User>(userDto);
 
             try{
                 _userService.Create(user, userDto.Password);
+                HttpClient optapi = new HttpClient();
+                string urlParameters = _appSettings.OtpDefaultParam;
+                urlParameters = urlParameters+"&mobiles=+91"+user.Phone;
+                urlParameters = urlParameters+"&authkey="+_appSettings.OtpAuthKey;
+                urlParameters = urlParameters+"&message="+_appSettings.OtpMessage+user.OTP;
+                optapi.BaseAddress = new Uri(_appSettings.OtpApi);  
+                HttpResponseMessage response = optapi.GetAsync(urlParameters).Result;
+                optapi.Dispose();
+                return Ok("Pending OTP confirmation");
+            }
+            catch (AppException ex)
+            {
+                return Ok(ex.Message);
+            }
+            catch (Exception e){
+                return BadRequest(e.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("otp")]
+        public IActionResult Otp([FromBody]UserDto userDto)
+        {
+            var user = _mapper.Map<User>(userDto);
+
+            try{
+                _userService.ValidateOTP(user);
                 return Ok("Resigtration successful");
             }
             catch (AppException ex)
@@ -95,7 +125,6 @@ namespace webapi.Controllers
             catch (Exception e){
                 return BadRequest(e.Message);
             }
-
         }
 
         // [HttpGet]

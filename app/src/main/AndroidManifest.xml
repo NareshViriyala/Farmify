@@ -3,6 +3,7 @@
     package="com.example.nareshviriyala.farmifyagentfarmer">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"

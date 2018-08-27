@@ -11,6 +11,11 @@ namespace webapi.Entities
         //[Required]
         //[StringLength(50, ErrorMessage = "PHONE_MIN_LENGTH", MinimumLength = 10)]
         public string Phone { get; set; }
+
+        public int UserType {get; set;}
+
+        public int OTP {get; set;}
+
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
     }
