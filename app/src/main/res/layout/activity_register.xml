@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".RegisterActivity">
+    tools:context=".Activities.RegisterActivity">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -20,6 +20,22 @@
         android:layout_marginBottom="10dp"
         android:contentDescription="Logo"
         android:id="@+id/img_logo"/>
+
+    <TextView
+        android:id="@+id/tv_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/error"
+        android:textAlignment="center"
+        android:text="Testing"
+        android:layout_marginBottom="10dp"
+        android:visibility="invisible"
+        android:layout_gravity="start"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -125,13 +141,34 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <Button android:id="@+id/btn_register"
-                android:layout_width="fill_parent"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Register"
-                android:background="@color/colorPrimary"
                 android:layout_marginTop="40dp"
-                android:textColor="@android:color/white"/>
+                android:layout_gravity="center_horizontal">
+
+
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pb_loading"
+                    android:layout_centerInParent="true"
+                    android:indeterminateTint="@color/white"
+                    android:visibility="invisible"
+                    android:translationZ="3dp"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Register"
+                    android:textColor="@color/white"
+                    android:id="@+id/btn_register"
+                    android:background="@color/colorPrimary"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false" />
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/lnk_register"

@@ -7,584 +7,155 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f7f5dc4-f0f7-47cc-a345-10010909c04f" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Helpers/LogErrors.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Helpers/Validations.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Helpers/WebServiceOperation.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_media_compat_28_0_0_rc02.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_v4_28_0_0_rc02.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Activities/HomeActivity.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Helpers/CircleTransform.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_circle.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/app_bar_main.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/menu_dot.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/nav_header_main.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/menu/activity_main_drawer.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/menu/main.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/menu/notifications.xml" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/resourceHashesCache.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/resourceHashesCache.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/jarAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/jarAnalysis.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/javaCompile.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/javaCompile.lock" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskHistory.bin" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskJars.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskJars.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_animated_vector_drawable_28_0_0_rc01.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_animated_vector_drawable_28_0_0_rc02.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_appcompat_v7_28_0_0_rc01.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_appcompat_v7_28_0_0_rc02.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_asynclayoutinflater_28_0_0_rc01.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_asynclayoutinflater_28_0_0_rc02.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_collections_28_0_0_rc01_jar.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_collections_28_0_0_rc02_jar.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_coordinatorlayout_28_0_0_rc01.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_coordinatorlayout_28_0_0_rc02.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_cursoradapter_28_0_0_rc01.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_cursoradapter_28_0_0_rc02.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_customview_28_0_0_rc01.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_customview_28_0_0_rc02.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_documentfile_28_0_0_rc01.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_documentfile_28_0_0_rc02.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_drawerlayout_28_0_0_rc01.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_drawerlayout_28_0_0_rc02.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_interpolator_28_0_0_rc01.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_interpolator_28_0_0_rc02.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_loader_28_0_0_rc01.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_loader_28_0_0_rc02.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_localbroadcastmanager_28_0_0_rc01.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_localbroadcastmanager_28_0_0_rc02.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_print_28_0_0_rc01.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_print_28_0_0_rc02.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_slidingpanelayout_28_0_0_rc01.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_slidingpanelayout_28_0_0_rc02.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_annotations_28_0_0_rc01_jar.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_annotations_28_0_0_rc02_jar.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_compat_28_0_0_rc01.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_compat_28_0_0_rc02.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_core_ui_28_0_0_rc01.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_core_ui_28_0_0_rc02.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_core_utils_28_0_0_rc01.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_core_utils_28_0_0_rc02.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_fragment_28_0_0_rc01.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_fragment_28_0_0_rc02.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_vector_drawable_28_0_0_rc01.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_vector_drawable_28_0_0_rc02.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_swiperefreshlayout_28_0_0_rc01.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_swiperefreshlayout_28_0_0_rc02.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_versionedparcelable_28_0_0_rc01.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_versionedparcelable_28_0_0_rc02.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_viewpager_28_0_0_rc01.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_viewpager_28_0_0_rc02.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/PitchDeck.pptx" afterPath="$PROJECT_DIR$/PitchDeck.pptx" />
-      <change beforePath="$PROJECT_DIR$/Todo.txt" afterPath="$PROJECT_DIR$/Todo.txt" />
+      <change beforePath="$PROJECT_DIR$/AAE_V11_Sandbox.pem" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Agent app for farmify.pdf" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Farmify-Pitch.pdf" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Images/Logo.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Images/bank.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Images/card.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Images/cash.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Images/collateralloan.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Images/farmer.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Images/fertilizres.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Images/financial-assistance.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Images/highloan.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Images/investor.gif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Images/partner.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Images/produce.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Images/realfarmer.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Images/realfarmer.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Images/repayment.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Images/share.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/PitchDeck.pptx" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Todo.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/BootActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/BootActivity.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/RegisterActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/RegisterActivity.java" />
-      <change beforePath="$PROJECT_DIR$/webapi/Controllers/UsersController.cs" afterPath="$PROJECT_DIR$/webapi/Controllers/UsersController.cs" />
-      <change beforePath="$PROJECT_DIR$/webapi/Dtos/UserDto.cs" afterPath="$PROJECT_DIR$/webapi/Dtos/UserDto.cs" />
-      <change beforePath="$PROJECT_DIR$/webapi/Entities/User.cs" afterPath="$PROJECT_DIR$/webapi/Entities/User.cs" />
-      <change beforePath="$PROJECT_DIR$/webapi/Helpers/AppSettings.cs" afterPath="$PROJECT_DIR$/webapi/Helpers/AppSettings.cs" />
-      <change beforePath="$PROJECT_DIR$/webapi/Services/UserService.cs" afterPath="$PROJECT_DIR$/webapi/Services/UserService.cs" />
-      <change beforePath="$PROJECT_DIR$/webapi/appsettings.json" afterPath="$PROJECT_DIR$/webapi/appsettings.json" />
-      <change beforePath="$PROJECT_DIR$/webapi/bin/Debug/netcoreapp2.1/publish/appsettings.json" afterPath="$PROJECT_DIR$/webapi/bin/Debug/netcoreapp2.1/publish/appsettings.json" />
-      <change beforePath="$PROJECT_DIR$/webapi/bin/Debug/netcoreapp2.1/publish/webapi.dll" afterPath="$PROJECT_DIR$/webapi/bin/Debug/netcoreapp2.1/publish/webapi.dll" />
-      <change beforePath="$PROJECT_DIR$/webapi/bin/Debug/netcoreapp2.1/publish/webapi.pdb" afterPath="$PROJECT_DIR$/webapi/bin/Debug/netcoreapp2.1/publish/webapi.pdb" />
-      <change beforePath="$PROJECT_DIR$/webapi/bin/Debug/netcoreapp2.1/webapi.dll" afterPath="$PROJECT_DIR$/webapi/bin/Debug/netcoreapp2.1/webapi.dll" />
-      <change beforePath="$PROJECT_DIR$/webapi/bin/Debug/netcoreapp2.1/webapi.pdb" afterPath="$PROJECT_DIR$/webapi/bin/Debug/netcoreapp2.1/webapi.pdb" />
-      <change beforePath="$PROJECT_DIR$/webapi/obj/Debug/netcoreapp2.1/webapi.dll" afterPath="$PROJECT_DIR$/webapi/obj/Debug/netcoreapp2.1/webapi.dll" />
-      <change beforePath="$PROJECT_DIR$/webapi/obj/Debug/netcoreapp2.1/webapi.pdb" afterPath="$PROJECT_DIR$/webapi/obj/Debug/netcoreapp2.1/webapi.pdb" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/.vs/config/applicationhost.config" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/.vs/webapi/DesignTimeBuild/.dtbcache" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/.vs/webapi/v15/.suo" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/.vs/webapi/v15/Server/sqlite3/db.lock" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/.vs/webapi/v15/Server/sqlite3/storage.ide" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/.vs/webapi/v15/Server/sqlite3/storage.ide-shm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/.vs/webapi/v15/Server/sqlite3/storage.ide-wal" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/.vscode/launch.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/.vscode/tasks.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/Controllers/AppointmentController.cs" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/Controllers/DoctorController.cs" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/Controllers/HospitalController.cs" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/Controllers/SearchController.cs" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/Controllers/UsersController.cs" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/Controllers/ValuesController.cs" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/Dtos/UserDto.cs" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/Entities/User.cs" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/Helpers/AppException.cs" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/Helpers/AppSettings.cs" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/Helpers/AutoMapperProfile.cs" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/Helpers/DataContext.cs" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/Program.cs" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/Properties/PublishProfiles/FolderProfile.pubxml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/Properties/PublishProfiles/FolderProfile.pubxml.user" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/Properties/launchSettings.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/Services/UserService.cs" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/Startup.cs" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/appsettings.Development.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/appsettings.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Debug/netcoreapp2.0/webapi.deps.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Debug/netcoreapp2.0/webapi.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Debug/netcoreapp2.0/webapi.pdb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Debug/netcoreapp2.0/webapi.runtimeconfig.dev.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Debug/netcoreapp2.0/webapi.runtimeconfig.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/AutoMapper.Extensions.Microsoft.DependencyInjection.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/AutoMapper.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AI.DependencyCollector.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.ApplicationInsights.AspNetCore.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.ApplicationInsights.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Antiforgery.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.ApplicationInsights.HostingStartup.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Authentication.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Authentication.Cookies.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Authentication.Core.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Authentication.Facebook.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Authentication.Google.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Authentication.JwtBearer.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Authentication.MicrosoftAccount.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Authentication.OAuth.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Authentication.Twitter.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Authentication.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Authorization.Policy.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Authorization.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.AzureAppServices.HostingStartup.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.AzureAppServicesIntegration.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Connections.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.CookiePolicy.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Cors.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Cryptography.Internal.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.DataProtection.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.DataProtection.AzureStorage.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.DataProtection.Extensions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.DataProtection.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Diagnostics.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Diagnostics.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.HostFiltering.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Hosting.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Hosting.Server.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Hosting.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Html.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Http.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Http.Extensions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Http.Features.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Http.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.HttpOverrides.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Identity.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.JsonPatch.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Localization.Routing.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Localization.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.MiddlewareAnalysis.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Mvc.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Mvc.ApiExplorer.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Mvc.Core.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Mvc.Cors.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Mvc.DataAnnotations.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Mvc.Formatters.Json.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Mvc.Formatters.Xml.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Mvc.Localization.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Mvc.Razor.Extensions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Mvc.Razor.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Mvc.RazorPages.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Mvc.TagHelpers.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Mvc.ViewFeatures.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Mvc.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.NodeServices.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Owin.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Razor.Language.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Razor.Runtime.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Razor.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.ResponseCaching.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.ResponseCaching.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.ResponseCompression.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Rewrite.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Routing.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Routing.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Server.HttpSys.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Server.IISIntegration.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Server.Kestrel.Core.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Server.Kestrel.Https.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Server.Kestrel.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.Session.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.SpaServices.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.StaticFiles.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.WebSockets.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.WebUtilities.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.AspNetCore.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Azure.KeyVault.WebKey.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Azure.KeyVault.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.CodeAnalysis.CSharp.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.CodeAnalysis.Razor.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.CodeAnalysis.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Data.Edm.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Data.OData.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Data.Sqlite.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.DotNet.PlatformAbstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.EntityFrameworkCore.Design.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.EntityFrameworkCore.InMemory.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.EntityFrameworkCore.Relational.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.EntityFrameworkCore.SqlServer.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.EntityFrameworkCore.Sqlite.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.EntityFrameworkCore.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Caching.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Caching.Memory.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Caching.Redis.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Caching.SqlServer.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Configuration.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Configuration.AzureKeyVault.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Configuration.Binder.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Configuration.CommandLine.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Configuration.EnvironmentVariables.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Configuration.FileExtensions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Configuration.Ini.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Configuration.Json.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Configuration.UserSecrets.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Configuration.Xml.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Configuration.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.DependencyInjection.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.DependencyInjection.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.DependencyModel.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.DiagnosticAdapter.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.FileProviders.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.FileProviders.Composite.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.FileProviders.Embedded.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.FileProviders.Physical.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.FileSystemGlobbing.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Hosting.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Identity.Core.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Identity.Stores.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Localization.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Localization.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Logging.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Logging.AzureAppServices.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Logging.Configuration.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Logging.Console.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Logging.Debug.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Logging.EventSource.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Logging.TraceSource.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Logging.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.ObjectPool.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Options.ConfigurationExtensions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Options.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.PlatformAbstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.Primitives.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Extensions.WebEncoders.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.IdentityModel.Clients.ActiveDirectory.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.IdentityModel.Logging.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.IdentityModel.Protocols.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.IdentityModel.Tokens.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Net.Http.Headers.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Rest.ClientRuntime.Azure.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.Rest.ClientRuntime.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.VisualStudio.Web.BrowserLink.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Microsoft.WindowsAzure.Storage.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Newtonsoft.Json.Bson.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Newtonsoft.Json.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/Remotion.Linq.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/SQLitePCLRaw.batteries_green.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/SQLitePCLRaw.batteries_v2.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/SQLitePCLRaw.core.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/SQLitePCLRaw.provider.e_sqlite3.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/StackExchange.Redis.StrongName.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/System.Collections.Immutable.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/System.Data.SqlClient.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/System.Diagnostics.DiagnosticSource.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/System.IO.Pipelines.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/System.IdentityModel.Tokens.Jwt.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/System.Interactive.Async.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/System.Memory.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/System.Reflection.Metadata.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/System.Runtime.CompilerServices.Unsafe.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/System.Security.Cryptography.Cng.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/System.Security.Cryptography.Xml.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/System.Security.Principal.Windows.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/System.Spatial.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/System.Text.Encoding.CodePages.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/System.Text.Encodings.Web.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/System.Threading.Tasks.Extensions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/appsettings.Development.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/appsettings.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/de/Microsoft.Data.Edm.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/de/Microsoft.Data.OData.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/de/System.Spatial.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/es/Microsoft.Data.Edm.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/es/Microsoft.Data.OData.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/es/System.Spatial.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/fr/Microsoft.Data.Edm.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/fr/Microsoft.Data.OData.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/fr/System.Spatial.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/it/Microsoft.Data.Edm.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/it/Microsoft.Data.OData.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/it/System.Spatial.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/ja/Microsoft.Data.Edm.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/ja/Microsoft.Data.OData.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/ja/System.Spatial.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/ko/Microsoft.Data.Edm.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/ko/Microsoft.Data.OData.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/ko/System.Spatial.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/ru/Microsoft.Data.Edm.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/ru/Microsoft.Data.OData.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/ru/System.Spatial.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/runtimes/linux-arm/native/libuv.so" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/runtimes/linux-arm64/native/libuv.so" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/runtimes/linux-armel/native/libuv.so" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/runtimes/linux-x64/native/libe_sqlite3.so" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/runtimes/linux-x64/native/libuv.so" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/runtimes/linux-x86/native/libe_sqlite3.so" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/runtimes/osx-x64/native/libe_sqlite3.dylib" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/runtimes/osx/native/libuv.dylib" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/runtimes/unix/lib/netcoreapp2.0/System.Security.Principal.Windows.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/runtimes/unix/lib/netstandard2.0/System.Data.SqlClient.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/runtimes/win-arm/native/libuv.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/runtimes/win-arm64/native/sni.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/runtimes/win-x64/native/libuv.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/runtimes/win-x64/native/sni.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/runtimes/win-x86/native/libuv.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/runtimes/win-x86/native/sni.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/runtimes/win/lib/netcoreapp2.0/System.Security.Cryptography.Cng.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/runtimes/win/lib/netcoreapp2.0/System.Security.Principal.Windows.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/runtimes/win/lib/netcoreapp2.0/System.Text.Encoding.CodePages.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/runtimes/win/lib/netstandard2.0/System.Data.SqlClient.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/runtimes/win7-x64/native/e_sqlite3.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/runtimes/win7-x86/native/e_sqlite3.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/web.config" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/webapi.PrecompiledViews.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/webapi.PrecompiledViews.pdb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/webapi.deps.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/webapi.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/webapi.pdb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/webapi.runtimeconfig.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/zh-Hans/Microsoft.Data.Edm.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/zh-Hans/Microsoft.Data.OData.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/zh-Hans/System.Spatial.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/zh-Hant/Microsoft.Data.Edm.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/zh-Hant/Microsoft.Data.OData.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/publish/zh-Hant/System.Spatial.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/webapi.deps.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/webapi.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/webapi.pdb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/webapi.runtimeconfig.dev.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/bin/Release/netcoreapp2.0/webapi.runtimeconfig.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Debug/netcoreapp2.0/microsoft.aspnetcore.mvc.razor.viewcompilation.rsp" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Debug/netcoreapp2.0/webapi.AssemblyInfo.cs" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Debug/netcoreapp2.0/webapi.AssemblyInfoInputs.cache" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Debug/netcoreapp2.0/webapi.PrecompiledViews.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Debug/netcoreapp2.0/webapi.PrecompiledViews.pdb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Debug/netcoreapp2.0/webapi.assets.cache" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Debug/netcoreapp2.0/webapi.csproj.CoreCompileInputs.cache" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Debug/netcoreapp2.0/webapi.csproj.FileListAbsolute.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Debug/netcoreapp2.0/webapi.csprojAssemblyReference.cache" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Debug/netcoreapp2.0/webapi.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Debug/netcoreapp2.0/webapi.pdb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/AutoMapper.Extensions.Microsoft.DependencyInjection.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/AutoMapper.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AI.DependencyCollector.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.ApplicationInsights.AspNetCore.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.ApplicationInsights.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Antiforgery.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.ApplicationInsights.HostingStartup.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Authentication.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Authentication.Cookies.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Authentication.Core.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Authentication.Facebook.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Authentication.Google.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Authentication.JwtBearer.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Authentication.MicrosoftAccount.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Authentication.OAuth.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Authentication.Twitter.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Authentication.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Authorization.Policy.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Authorization.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.AzureAppServices.HostingStartup.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.AzureAppServicesIntegration.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Connections.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.CookiePolicy.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Cors.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Cryptography.Internal.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.DataProtection.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.DataProtection.AzureStorage.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.DataProtection.Extensions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.DataProtection.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Diagnostics.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Diagnostics.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.HostFiltering.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Hosting.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Hosting.Server.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Hosting.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Html.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Http.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Http.Extensions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Http.Features.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Http.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.HttpOverrides.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Identity.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.JsonPatch.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Localization.Routing.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Localization.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.MiddlewareAnalysis.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Mvc.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Mvc.ApiExplorer.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Mvc.Core.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Mvc.Cors.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Mvc.DataAnnotations.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Mvc.Formatters.Json.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Mvc.Formatters.Xml.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Mvc.Localization.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Mvc.Razor.Extensions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Mvc.Razor.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Mvc.RazorPages.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Mvc.TagHelpers.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Mvc.ViewFeatures.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Mvc.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.NodeServices.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Owin.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Razor.Language.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Razor.Runtime.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Razor.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.ResponseCaching.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.ResponseCaching.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.ResponseCompression.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Rewrite.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Routing.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Routing.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Server.HttpSys.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Server.IISIntegration.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Server.Kestrel.Core.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Server.Kestrel.Https.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Server.Kestrel.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.Session.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.SpaServices.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.StaticFiles.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.WebSockets.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.WebUtilities.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.AspNetCore.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Azure.KeyVault.WebKey.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Azure.KeyVault.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.CodeAnalysis.CSharp.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.CodeAnalysis.Razor.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.CodeAnalysis.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Data.Edm.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Data.OData.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Data.Sqlite.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.DotNet.PlatformAbstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.EntityFrameworkCore.Design.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.EntityFrameworkCore.InMemory.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.EntityFrameworkCore.Relational.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.EntityFrameworkCore.SqlServer.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.EntityFrameworkCore.Sqlite.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.EntityFrameworkCore.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Caching.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Caching.Memory.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Caching.Redis.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Caching.SqlServer.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Configuration.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Configuration.AzureKeyVault.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Configuration.Binder.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Configuration.CommandLine.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Configuration.EnvironmentVariables.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Configuration.FileExtensions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Configuration.Ini.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Configuration.Json.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Configuration.UserSecrets.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Configuration.Xml.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Configuration.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.DependencyInjection.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.DependencyInjection.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.DependencyModel.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.DiagnosticAdapter.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.FileProviders.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.FileProviders.Composite.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.FileProviders.Embedded.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.FileProviders.Physical.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.FileSystemGlobbing.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Hosting.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Identity.Core.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Identity.Stores.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Localization.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Localization.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Logging.Abstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Logging.AzureAppServices.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Logging.Configuration.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Logging.Console.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Logging.Debug.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Logging.EventSource.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Logging.TraceSource.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Logging.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.ObjectPool.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Options.ConfigurationExtensions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Options.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.PlatformAbstractions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.Primitives.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Extensions.WebEncoders.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.IdentityModel.Clients.ActiveDirectory.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.IdentityModel.Logging.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.IdentityModel.Protocols.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.IdentityModel.Tokens.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Net.Http.Headers.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Rest.ClientRuntime.Azure.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.Rest.ClientRuntime.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.VisualStudio.Web.BrowserLink.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Microsoft.WindowsAzure.Storage.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Newtonsoft.Json.Bson.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Newtonsoft.Json.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/Remotion.Linq.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/SQLitePCLRaw.batteries_green.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/SQLitePCLRaw.batteries_v2.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/SQLitePCLRaw.core.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/SQLitePCLRaw.provider.e_sqlite3.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/StackExchange.Redis.StrongName.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/System.Collections.Immutable.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/System.Data.SqlClient.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/System.Diagnostics.DiagnosticSource.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/System.IO.Pipelines.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/System.IdentityModel.Tokens.Jwt.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/System.Interactive.Async.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/System.Memory.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/System.Reflection.Metadata.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/System.Runtime.CompilerServices.Unsafe.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/System.Security.Cryptography.Cng.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/System.Security.Cryptography.Xml.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/System.Security.Principal.Windows.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/System.Spatial.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/System.Text.Encoding.CodePages.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/System.Text.Encodings.Web.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/System.Threading.Tasks.Extensions.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/appsettings.Development.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/appsettings.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/de/Microsoft.Data.Edm.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/de/Microsoft.Data.OData.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/de/System.Spatial.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/es/Microsoft.Data.Edm.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/es/Microsoft.Data.OData.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/es/System.Spatial.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/fr/Microsoft.Data.Edm.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/fr/Microsoft.Data.OData.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/fr/System.Spatial.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/it/Microsoft.Data.Edm.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/it/Microsoft.Data.OData.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/it/System.Spatial.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/ja/Microsoft.Data.Edm.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/ja/Microsoft.Data.OData.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/ja/System.Spatial.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/ko/Microsoft.Data.Edm.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/ko/Microsoft.Data.OData.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/ko/System.Spatial.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/ru/Microsoft.Data.Edm.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/ru/Microsoft.Data.OData.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/ru/System.Spatial.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/runtimes/linux-arm/native/libuv.so" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/runtimes/linux-arm64/native/libuv.so" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/runtimes/linux-armel/native/libuv.so" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/runtimes/linux-x64/native/libe_sqlite3.so" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/runtimes/linux-x64/native/libuv.so" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/runtimes/linux-x86/native/libe_sqlite3.so" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/runtimes/osx-x64/native/libe_sqlite3.dylib" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/runtimes/osx/native/libuv.dylib" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/runtimes/unix/lib/netcoreapp2.0/System.Security.Principal.Windows.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/runtimes/unix/lib/netstandard2.0/System.Data.SqlClient.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/runtimes/win-arm/native/libuv.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/runtimes/win-arm64/native/sni.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/runtimes/win-x64/native/libuv.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/runtimes/win-x64/native/sni.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/runtimes/win-x86/native/libuv.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/runtimes/win-x86/native/sni.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/runtimes/win/lib/netcoreapp2.0/System.Security.Cryptography.Cng.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/runtimes/win/lib/netcoreapp2.0/System.Security.Principal.Windows.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/runtimes/win/lib/netcoreapp2.0/System.Text.Encoding.CodePages.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/runtimes/win/lib/netstandard2.0/System.Data.SqlClient.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/runtimes/win7-x64/native/e_sqlite3.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/runtimes/win7-x86/native/e_sqlite3.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/web.config" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/webapi.PrecompiledViews.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/webapi.PrecompiledViews.pdb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/webapi.deps.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/webapi.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/webapi.pdb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/webapi.runtimeconfig.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/zh-Hans/Microsoft.Data.Edm.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/zh-Hans/Microsoft.Data.OData.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/zh-Hans/System.Spatial.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/zh-Hant/Microsoft.Data.Edm.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/zh-Hant/Microsoft.Data.OData.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/PubTmp/Out/zh-Hant/System.Spatial.resources.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/microsoft.aspnetcore.mvc.razor.viewcompilation.rsp" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/webapi.AssemblyInfo.cs" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/webapi.AssemblyInfoInputs.cache" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/webapi.PrecompiledViews.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/webapi.PrecompiledViews.pdb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/webapi.assets.cache" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/webapi.csproj.CoreCompileInputs.cache" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/webapi.csproj.FileListAbsolute.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/webapi.csprojAssemblyReference.cache" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/webapi.dll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/Release/netcoreapp2.0/webapi.pdb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/project.assets.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/webapi.csproj.nuget.cache" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/webapi.csproj.nuget.g.props" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/obj/webapi.csproj.nuget.g.targets" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/webapi.csproj" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/webapi.csproj.user" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/webapi_old/webapi.sln" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/BootActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Activities/BootActivity.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/FragmentAgronomics.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentAgronomics.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/FragmentBank.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentBank.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/FragmentEcommerce.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentEcommerce.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/FragmentEnvironmental.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentEnvironmental.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/FragmentIndividual.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentIndividual.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/FragmentSatellite.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentSatellite.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/FragmentSocial.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentSocial.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Activities/MainActivity.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/RegisterActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Activities/RegisterActivity.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_boot.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_boot.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_agronomics.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_agronomics.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_bank.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_bank.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_ecommerce.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_ecommerce.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_environmental.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_environmental.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_individual.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_individual.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_satellite.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_satellite.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_social.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_social.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
+      <change beforePath="$PROJECT_DIR$/ec2-18-213-3-218.compute-1.amazonaws.com.rdp" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/.vscode/launch.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/.vscode/tasks.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/Controllers/UsersController.cs" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/Controllers/ValuesController.cs" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/Database/Scrpits/.vs/Scrpits/v14/.ssms_suo" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/Database/Scrpits/Scrpits.ssmssln" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/Database/Scrpits/Scrpits.ssmssqlproj" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/Database/Scrpits/Tables.sql" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/Dtos/UserDto.cs" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/Entities/User.cs" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/Helpers/AppException.cs" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/Helpers/AppSettings.cs" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/Helpers/AutoMapperProfile.cs" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/Helpers/DataContext.cs" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/Program.cs" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/Properties/launchSettings.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/Services/UserService.cs" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/Startup.cs" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/appsettings.Development.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/appsettings.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/bin/Debug/netcoreapp2.1/publish/AutoMapper.Extensions.Microsoft.DependencyInjection.dll" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/bin/Debug/netcoreapp2.1/publish/AutoMapper.dll" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/bin/Debug/netcoreapp2.1/publish/appsettings.Development.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/bin/Debug/netcoreapp2.1/publish/appsettings.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/bin/Debug/netcoreapp2.1/publish/web.config" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/bin/Debug/netcoreapp2.1/publish/webapi.deps.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/bin/Debug/netcoreapp2.1/publish/webapi.dll" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/bin/Debug/netcoreapp2.1/publish/webapi.pdb" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/bin/Debug/netcoreapp2.1/publish/webapi.runtimeconfig.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/bin/Debug/netcoreapp2.1/webapi.deps.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/bin/Debug/netcoreapp2.1/webapi.dll" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/bin/Debug/netcoreapp2.1/webapi.pdb" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/bin/Debug/netcoreapp2.1/webapi.runtimeconfig.dev.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/bin/Debug/netcoreapp2.1/webapi.runtimeconfig.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/obj/Debug/netcoreapp2.1/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/obj/Debug/netcoreapp2.1/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/obj/Debug/netcoreapp2.1/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/obj/Debug/netcoreapp2.1/webapi.AssemblyInfo.cs" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/obj/Debug/netcoreapp2.1/webapi.AssemblyInfoInputs.cache" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/obj/Debug/netcoreapp2.1/webapi.RazorAssemblyInfo.cache" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/obj/Debug/netcoreapp2.1/webapi.RazorAssemblyInfo.cs" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/obj/Debug/netcoreapp2.1/webapi.RazorTargetAssemblyInfo.cache" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/obj/Debug/netcoreapp2.1/webapi.assets.cache" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/obj/Debug/netcoreapp2.1/webapi.csproj.CoreCompileInputs.cache" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/obj/Debug/netcoreapp2.1/webapi.csproj.FileListAbsolute.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/obj/Debug/netcoreapp2.1/webapi.csprojAssemblyReference.cache" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/obj/Debug/netcoreapp2.1/webapi.dll" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/obj/Debug/netcoreapp2.1/webapi.pdb" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/obj/project.assets.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/obj/webapi.csproj.nuget.cache" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/obj/webapi.csproj.nuget.g.props" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/obj/webapi.csproj.nuget.g.targets" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/webapi/webapi.csproj" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -608,65 +179,90 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="WebServiceOperation.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Helpers/WebServiceOperation.java">
+      <file leaf-file-name="styles.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="626">
-              <caret line="37" column="45" lean-forward="false" selection-start-line="37" selection-start-column="45" selection-end-line="37" selection-end-column="45" />
+            <state relative-caret-position="442">
+              <caret line="26" column="89" lean-forward="false" selection-start-line="26" selection-start-column="89" selection-end-line="26" selection-end-column="89" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="30" column="28" lean-forward="false" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-manifest">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_home.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="21" column="49" lean-forward="false" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CircleTransform.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Helpers/CircleTransform.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="35" lean-forward="false" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#339#340#0" expanded="true" />
-                <element signature="e#414#415#0" expanded="true" />
-                <element signature="e#448#449#0" expanded="true" />
-                <element signature="e#472#473#0" expanded="true" />
+                <element signature="e#550#551#0" expanded="true" />
+                <element signature="e#573#574#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LogErrors.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Helpers/LogErrors.java">
+      <file leaf-file-name="HomeActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Activities/HomeActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-60">
+              <caret line="169" column="10" lean-forward="true" selection-start-line="169" selection-start-column="10" selection-end-line="169" selection-end-column="10" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3490#3758#0" expanded="true" />
+                <element signature="e#3757#3758#0" expanded="true" />
+                <element signature="e#5890#6484#0" expanded="true" />
+                <element signature="e#6483#6484#0" expanded="true" />
+                <element signature="e#7914#7915#0" expanded="true" />
+                <element signature="e#7990#7991#0" expanded="true" />
+                <element signature="e#8311#10718#0" expanded="true" />
+                <element signature="e#10717#10718#0" expanded="true" />
+                <element signature="e#10826#10845#0" expanded="true" />
+                <element signature="e#10847#10867#0" expanded="true" />
+                <element signature="method#onBackPressed#0;class#HomeActivity#0" expanded="false" />
+                <element signature="method#onCreateOptionsMenu#0;class#HomeActivity#0" expanded="false" />
+                <element signature="method#onOptionsItemSelected#0;class#HomeActivity#0" expanded="false" />
+                <element signature="method#toggleFab#0;class#HomeActivity#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="nav_header_main.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/nav_header_main.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
               <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BootActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/BootActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="97" column="17" lean-forward="true" selection-start-line="97" selection-start-column="17" selection-end-line="97" selection-end-column="17" />
-              <folding>
-                <element signature="e#2359#3054#0" expanded="true" />
-                <element signature="e#3053#3054#0" expanded="true" />
-                <element signature="method#doInBackground#0;class#callLoginAPI#0;class#BootActivity#0" expanded="false" />
-                <element signature="method#goToRegisterPage#0;class#BootActivity#0" expanded="false" />
-                <element signature="method#validatePhone#0;class#BootActivity#0" expanded="false" />
-                <element signature="method#validatePassword#0;class#BootActivity#0" expanded="false" />
-                <element signature="method#requestFocus#0;class#BootActivity#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Validations.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Helpers/Validations.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="47" lean-forward="false" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RegisterActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/RegisterActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="46" column="85" lean-forward="false" selection-start-line="46" selection-start-column="85" selection-end-line="46" selection-end-column="85" />
               <folding />
             </state>
           </provider>
@@ -678,8 +274,17 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="resourceFile" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>imgNavHeaderBg</find>
+      <find>urlNavHeaderBg</find>
+      <find>logou</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -2701,14 +2306,34 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_bank.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_agronomics.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/RegisterActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Helpers/Validations.java" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Helpers/WebServiceOperation.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Helpers/LogErrors.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/BootActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/RegisterActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_boot.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/ham_header_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/ham_body_list.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/ham_bar_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/ham_body_list.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/notifications.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/bg_circle.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/menu_dot.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/HomeActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/nav_bar_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Helpers/CircleTransform.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/nav_header_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Activities/HomeActivity.java" />
       </list>
     </option>
   </component>
@@ -2736,6 +2361,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
       <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
@@ -2747,11 +2375,6 @@
             <path>
               <item name="Farmify" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="manifests" type="f94875db:AndroidManifestsGroupNode" />
-            </path>
-            <path>
-              <item name="Farmify" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
             </path>
             <path>
@@ -2765,7 +2388,7 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="farmifyagentfarmer" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="Helpers" type="462c0819:PsiDirectoryNode" />
+              <item name="Activities" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Farmify" type="1abcf292:AndroidViewProjectNode" />
@@ -2780,23 +2403,41 @@
             </path>
             <path>
               <item name="Farmify" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="menu" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="Farmify" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="Farmify" type="1abcf292:AndroidViewProjectNode" />
               <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/GitHubDesktop/app-1.3.3/resources/app/git/mingw64/bin/git.exe" />
-    <property name="sync.plugin.last.upgrade.timestamp" value="1535283999706" />
+    <property name="sync.plugin.last.upgrade.timestamp" value="1535441264978" />
     <property name="device.picker.selection" value="dbcdbcf8" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.nareshviriyala.farmifyagentfarmer.Activities" />
+      <recent name="com.example.nareshviriyala.farmifyagentfarmer.Fragments" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\naresh.viriyala\OneDrive - Cotiviti\Farmify\app\src\main\res\menu" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -2963,7 +2604,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2973,16 +2614,16 @@
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942432" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291866" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291866" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18251929" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.304698" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18230277" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3043062" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -2995,7 +2636,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291866" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -3003,90 +2644,17 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="12" />
+      <option name="time" value="21" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_individual.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="4" lean-forward="false" selection-start-line="16" selection-start-column="4" selection-end-line="416" selection-end-column="17" />
-          <folding>
-            <element signature="e#578#16824#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_agronomics.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="113" column="50" lean-forward="false" selection-start-line="113" selection-start-column="50" selection-end-line="113" selection-end-column="50" />
-          <folding>
-            <element signature="e#1033#1634#0" expanded="false" />
-            <element signature="e#1648#2296#0" expanded="false" />
-            <element signature="e#2310#2657#0" expanded="false" />
-            <element signature="e#2671#3815#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="28" lean-forward="false" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/RegisterActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1224">
-          <caret line="72" column="8" lean-forward="false" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/FragmentBank.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="9" column="27" lean-forward="false" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/BootActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Activities/BootActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1037">
           <caret line="61" column="79" lean-forward="false" selection-start-line="61" selection-start-column="79" selection-end-line="61" selection-end-column="79" />
           <folding>
-            <element signature="e#2359#3054#0" expanded="true" />
-            <element signature="e#3053#3054#0" expanded="true" />
-            <element signature="method#doInBackground#0;class#callLoginAPI#0;class#BootActivity#0" expanded="false" />
+            <element signature="method#goToMainPage#0;class#BootActivity#0" expanded="false" />
             <element signature="method#goToRegisterPage#0;class#BootActivity#0" expanded="false" />
             <element signature="method#validatePhone#0;class#BootActivity#0" expanded="false" />
             <element signature="method#validatePassword#0;class#BootActivity#0" expanded="false" />
@@ -3103,7 +2671,7 @@
         <state relative-caret-position="272">
           <caret line="16" column="4" lean-forward="false" selection-start-line="16" selection-start-column="4" selection-end-line="416" selection-end-column="17" />
           <folding>
-            <element signature="e#578#16824#0" expanded="false" />
+            <element signature="e#588#16834#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3116,13 +2684,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/FragmentBank.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentBank.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="27" lean-forward="false" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3134,10 +2699,10 @@
         <state relative-caret-position="867">
           <caret line="113" column="50" lean-forward="false" selection-start-line="113" selection-start-column="50" selection-end-line="113" selection-end-column="50" />
           <folding>
-            <element signature="e#1033#1634#0" expanded="false" />
-            <element signature="e#1648#2296#0" expanded="false" />
-            <element signature="e#2310#2657#0" expanded="false" />
-            <element signature="e#2671#3815#0" expanded="false" />
+            <element signature="e#1043#1644#0" expanded="false" />
+            <element signature="e#1658#2306#0" expanded="false" />
+            <element signature="e#2320#2667#0" expanded="false" />
+            <element signature="e#2681#3825#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3150,7 +2715,7 @@
         <state relative-caret-position="272">
           <caret line="16" column="4" lean-forward="false" selection-start-line="16" selection-start-column="4" selection-end-line="416" selection-end-column="17" />
           <folding>
-            <element signature="e#578#16824#0" expanded="false" />
+            <element signature="e#588#16834#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3163,13 +2728,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/FragmentBank.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentBank.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="27" lean-forward="false" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3181,10 +2743,10 @@
         <state relative-caret-position="1921">
           <caret line="113" column="50" lean-forward="false" selection-start-line="113" selection-start-column="50" selection-end-line="113" selection-end-column="50" />
           <folding>
-            <element signature="e#1033#1634#0" expanded="false" />
-            <element signature="e#1648#2296#0" expanded="false" />
-            <element signature="e#2310#2657#0" expanded="false" />
-            <element signature="e#2671#3815#0" expanded="false" />
+            <element signature="e#1043#1644#0" expanded="false" />
+            <element signature="e#1658#2306#0" expanded="false" />
+            <element signature="e#2320#2667#0" expanded="false" />
+            <element signature="e#2681#3825#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3197,7 +2759,7 @@
         <state relative-caret-position="6919">
           <caret line="407" column="19" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="417" selection-end-column="15" />
           <folding>
-            <element signature="e#578#16824#0" expanded="false" />
+            <element signature="e#588#16834#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3212,13 +2774,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/FragmentBank.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentBank.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="9" column="27" lean-forward="false" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3230,7 +2789,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/FragmentIndividual.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentIndividual.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="25" lean-forward="false" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
@@ -3245,7 +2804,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/FragmentIndividual.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentIndividual.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="25" lean-forward="false" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
@@ -3262,25 +2821,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_agronomics.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -3289,10 +2829,10 @@
         <state relative-caret-position="36">
           <caret line="113" column="50" lean-forward="false" selection-start-line="113" selection-start-column="50" selection-end-line="113" selection-end-column="50" />
           <folding>
-            <element signature="e#1033#1634#0" expanded="false" />
-            <element signature="e#1648#2296#0" expanded="false" />
-            <element signature="e#2310#2657#0" expanded="false" />
-            <element signature="e#2671#3815#0" expanded="false" />
+            <element signature="e#1043#1644#0" expanded="false" />
+            <element signature="e#1658#2306#0" expanded="false" />
+            <element signature="e#2320#2667#0" expanded="false" />
+            <element signature="e#2681#3825#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3305,7 +2845,7 @@
         <state relative-caret-position="272">
           <caret line="16" column="4" lean-forward="false" selection-start-line="16" selection-start-column="4" selection-end-line="416" selection-end-column="17" />
           <folding>
-            <element signature="e#578#16824#0" expanded="false" />
+            <element signature="e#588#16834#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3314,6 +2854,57 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
           <caret line="333" column="0" lean-forward="false" selection-start-line="333" selection-start-column="0" selection-end-line="333" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentBank.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="27" lean-forward="false" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Helpers/LogErrors.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/circle.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="31" lean-forward="false" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Helpers/Validations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="47" lean-forward="false" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Helpers/WebServiceOperation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="20" column="41" lean-forward="true" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
           <folding />
         </state>
       </provider>
@@ -3323,61 +2914,206 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1734">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="219">
+          <caret line="87" column="38" lean-forward="false" selection-start-line="87" selection-start-column="38" selection-end-line="87" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Activities/RegisterActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="160" column="79" lean-forward="false" selection-start-line="160" selection-start-column="79" selection-end-line="160" selection-end-column="79" />
+          <folding>
+            <element signature="e#3580#5440#0" expanded="false" />
+            <element signature="e#5439#5440#0" expanded="false" />
+            <element signature="method#requestFocus#0;class#RegisterActivity#0" expanded="false" />
+            <element signature="method#validateEmail#0;class#RegisterActivity#0" expanded="false" />
+            <element signature="method#validatePhone#0;class#RegisterActivity#0" expanded="false" />
+            <element signature="method#validatePassword#0;class#RegisterActivity#0" expanded="false" />
+            <element signature="method#validateConfirmPassword#0;class#RegisterActivity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="36" lean-forward="false" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/bg_circle.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="8" lean-forward="true" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Activities/BootActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+          <folding>
+            <element signature="method#goToMainPage#0;class#BootActivity#0" expanded="false" />
+            <element signature="method#goToRegisterPage#0;class#BootActivity#0" expanded="false" />
+            <element signature="method#validatePhone#0;class#BootActivity#0" expanded="false" />
+            <element signature="method#validatePassword#0;class#BootActivity#0" expanded="false" />
+            <element signature="method#requestFocus#0;class#BootActivity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Activities/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="56" lean-forward="false" selection-start-line="27" selection-start-column="56" selection-end-line="27" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="30" column="28" lean-forward="false" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/design-28.0.0-rc01.aar/c50c2a57ad2d3b30bc8d8278bbf74fe0/jars/classes.jar!/android/support/design/widget/NavigationView.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="209" column="16" lean-forward="false" selection-start-line="209" selection-start-column="16" selection-end-line="209" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Helpers/CircleTransform.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="35" lean-forward="false" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#550#551#0" expanded="true" />
+            <element signature="e#573#574#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/app/ActivityThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="2908" column="0" lean-forward="false" selection-start-line="2908" selection-start-column="0" selection-end-line="2908" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="49" lean-forward="false" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/app_bar_main.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="35" lean-forward="false" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0-rc02.aar/a8fb11eef744f5d18fe1293ecc5f6d2a/jars/classes.jar!/android/support/v7/app/AppCompatActivity.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="76" column="16" lean-forward="false" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/view/MenuItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="524" column="20" lean-forward="false" selection-start-line="524" selection-start-column="20" selection-end-line="524" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/menu_dot.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="15" lean-forward="true" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="89" lean-forward="false" selection-start-line="26" selection-start-column="89" selection-end-line="26" selection-end-column="89" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="34" lean-forward="true" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/main.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+          <caret line="8" column="7" lean-forward="true" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/FragmentBank.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="27" lean-forward="false" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/nav_header_main.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Helpers/Validations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="47" lean-forward="false" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/RegisterActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="46" column="85" lean-forward="false" selection-start-line="46" selection-start-column="85" selection-end-line="46" selection-end-column="85" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Helpers/WebServiceOperation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="626">
-          <caret line="37" column="45" lean-forward="false" selection-start-line="37" selection-start-column="45" selection-end-line="37" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#339#340#0" expanded="true" />
-            <element signature="e#414#415#0" expanded="true" />
-            <element signature="e#448#449#0" expanded="true" />
-            <element signature="e#472#473#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Helpers/LogErrors.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
@@ -3385,18 +3121,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/BootActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/notifications.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="97" column="17" lean-forward="true" selection-start-line="97" selection-start-column="17" selection-end-line="97" selection-end-column="17" />
+        <state relative-caret-position="238">
+          <caret line="14" column="7" lean-forward="true" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/activity_main_drawer.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="14" lean-forward="false" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Activities/HomeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-60">
+          <caret line="169" column="10" lean-forward="true" selection-start-line="169" selection-start-column="10" selection-end-line="169" selection-end-column="10" />
           <folding>
-            <element signature="e#2359#3054#0" expanded="true" />
-            <element signature="e#3053#3054#0" expanded="true" />
-            <element signature="method#doInBackground#0;class#callLoginAPI#0;class#BootActivity#0" expanded="false" />
-            <element signature="method#goToRegisterPage#0;class#BootActivity#0" expanded="false" />
-            <element signature="method#validatePhone#0;class#BootActivity#0" expanded="false" />
-            <element signature="method#validatePassword#0;class#BootActivity#0" expanded="false" />
-            <element signature="method#requestFocus#0;class#BootActivity#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#3490#3758#0" expanded="true" />
+            <element signature="e#3757#3758#0" expanded="true" />
+            <element signature="e#5890#6484#0" expanded="true" />
+            <element signature="e#6483#6484#0" expanded="true" />
+            <element signature="e#7914#7915#0" expanded="true" />
+            <element signature="e#7990#7991#0" expanded="true" />
+            <element signature="e#8311#10718#0" expanded="true" />
+            <element signature="e#10717#10718#0" expanded="true" />
+            <element signature="e#10826#10845#0" expanded="true" />
+            <element signature="e#10847#10867#0" expanded="true" />
+            <element signature="method#onBackPressed#0;class#HomeActivity#0" expanded="false" />
+            <element signature="method#onCreateOptionsMenu#0;class#HomeActivity#0" expanded="false" />
+            <element signature="method#onOptionsItemSelected#0;class#HomeActivity#0" expanded="false" />
+            <element signature="method#toggleFab#0;class#HomeActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>
