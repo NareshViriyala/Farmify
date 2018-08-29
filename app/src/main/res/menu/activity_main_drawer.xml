@@ -7,13 +7,13 @@
             android:icon="@drawable/baseline_home_black_24dp"
             android:title="Home" />
         <item
-            android:id="@+id/nav_photos"
-            android:icon="@drawable/baseline_insert_photo_black_24dp"
-            android:title="Photos" />
+            android:id="@+id/nav_myfarms"
+            android:icon="@drawable/baseline_format_list_bulleted_black_24dp"
+            android:title="My Farms" />
         <item
-            android:id="@+id/nav_movies"
-            android:icon="@drawable/baseline_movie_black_24dp"
-            android:title="Movies" />
+            android:id="@+id/nav_addfarm"
+            android:icon="@drawable/baseline_add_circle_outline_black_24dp"
+            android:title="Add Farm" />
 
         <item
             android:id="@+id/nav_notifications"
@@ -24,6 +24,11 @@
             android:id="@+id/nav_settings"
             android:icon="@drawable/baseline_settings_black_24dp"
             android:title="Settings" />
+
+        <item
+            android:id="@+id/nav_signout"
+            android:icon="@drawable/baseline_power_settings_new_black_24dp"
+            android:title="Signout" />
     </group>
 
     <item android:title="Other">

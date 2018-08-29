@@ -20,16 +20,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
-
-import com.bumptech.glide.Glide;
-import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentAgronomics;
-import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentBank;
+import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentAddFarm;
 import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentEcommerce;
-import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentIndividual;
+import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentHome;
+import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentMyFarms;
 import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentSatellite;
+import com.example.nareshviriyala.farmifyagentfarmer.Helpers.GlobalVariables;
+import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
 import com.example.nareshviriyala.farmifyagentfarmer.R;
+
+import org.json.JSONException;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -37,19 +37,23 @@ public class HomeActivity extends AppCompatActivity {
     private DrawerLayout drawer;
     private View navHeader;
     private ImageView imgNavHeaderBg, imgProfile;
-    private TextView txtName, txtWebsite;
+    private TextView txtName, txtEmail, txtPhone;
     private Toolbar toolbar;
     private FloatingActionButton fab;
+    private GlobalVariables globalVariables;
+    private LogErrors logErrors;
+    private String className;
 
     // index to identify current nav menu item
     public static int navItemIndex = 0;
 
     // tags used to attach the fragments
     private static final String TAG_HOME = "home";
-    private static final String TAG_PHOTOS = "photos";
-    private static final String TAG_MOVIES = "movies";
+    private static final String TAG_MYFARMS = "myfarms";
+    private static final String TAG_ADDFARM = "addfarm";
     private static final String TAG_NOTIFICATIONS = "notifications";
     private static final String TAG_SETTINGS = "settings";
+    private static final String TAG_SIGNOUT = "signout";
     public static String CURRENT_TAG = TAG_HOME;
 
     // toolbar titles respected to selected nav menu item
@@ -75,13 +79,17 @@ public class HomeActivity extends AppCompatActivity {
 
         // Navigation view header
         navHeader = navigationView.getHeaderView(0);
-        txtName = (TextView) navHeader.findViewById(R.id.name);
-        txtWebsite = (TextView) navHeader.findViewById(R.id.website);
+        txtName = (TextView) navHeader.findViewById(R.id.user_name);
+        txtEmail = (TextView) navHeader.findViewById(R.id.user_email);
+        txtPhone = (TextView) navHeader.findViewById(R.id.user_phone);
         imgNavHeaderBg = (ImageView) navHeader.findViewById(R.id.img_header_bg);
         imgProfile = (ImageView) navHeader.findViewById(R.id.img_profile);
 
         // load toolbar titles from string resources
         activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
+        globalVariables = GlobalVariables.getInstance();
+        logErrors = LogErrors.getInstance();
+        className = new Object(){}.getClass().getEnclosingClass().getName();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,11 +118,13 @@ public class HomeActivity extends AppCompatActivity {
      * name, website, notifications action view (dot)
      */
     private void loadNavHeader() {
-        // name, website
-        txtName.setText("Naresh Viriyala");
-        txtWebsite.setText("https://farmify.in");
+        try {
+            // name, website
+            txtName.setText(globalVariables.getUserProfile().getString("firstName")+" "+globalVariables.getUserProfile().getString("lastName"));
+            txtEmail.setText(globalVariables.getUserProfile().getString("email"));
+            txtPhone.setText(globalVariables.getUserProfile().getString("phone"));
 
-        // loading header background image
+            // loading header background image
         /*Glide.with(this).load(urlNavHeaderBg)
                 .transition(withCrossFade())
                 .into(imgNavHeaderBg);
@@ -127,8 +137,13 @@ public class HomeActivity extends AppCompatActivity {
                 //.diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imgProfile);*/
 
-        // showing dot next to notifications label
-        //navigationView.getMenu().getItem(3).setActionView(R.layout.menu_dot);
+            // showing dot next to notifications label
+            //navigationView.getMenu().getItem(3).setActionView(R.layout.menu_dot);
+        }catch (JSONException e) {
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage().toString());
+        }catch (Exception ex){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+        }
     }
 
     /***
@@ -162,8 +177,7 @@ public class HomeActivity extends AppCompatActivity {
                 // update the main content by replacing fragments
                 Fragment fragment = getHomeFragment();
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
-                        android.R.anim.fade_out);
+                fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
                 fragmentTransaction.replace(R.id.frame, fragment, CURRENT_TAG);
                 fragmentTransaction.commitAllowingStateLoss();
             }
@@ -187,28 +201,34 @@ public class HomeActivity extends AppCompatActivity {
     private Fragment getHomeFragment() {
         switch (navItemIndex) {
             case 0:
-                // home
-                FragmentIndividual fragmentIndividual = new FragmentIndividual();
-                return fragmentIndividual;
+                // home fragment
+                FragmentHome fragmentHome = new FragmentHome();
+                return fragmentHome;
             case 1:
-                // photos
-                FragmentBank fragmentBank = new FragmentBank();
-                return fragmentBank;
+                // myfarms fragment
+                FragmentMyFarms fragmentMyFarms = new FragmentMyFarms();
+                return fragmentMyFarms;
             case 2:
-                // movies fragment
-                FragmentAgronomics fragmentAgronomics = new FragmentAgronomics();
-                return fragmentAgronomics;
+                // addfarm fragment
+                FragmentAddFarm fragmentAddFarm = new FragmentAddFarm();
+                return fragmentAddFarm;
             case 3:
                 // notifications fragment
                 FragmentEcommerce fragmentEcommerce = new FragmentEcommerce();
                 return fragmentEcommerce;
-
             case 4:
                 // settings fragment
                 FragmentSatellite fragmentSatellite = new FragmentSatellite();
                 return fragmentSatellite;
+            case 5:
+                // signout
+                globalVariables.clearVariables();
+                Intent Intent = new Intent(this, BootActivity.class);
+                startActivity(Intent);
+                //this.overridePendingTransition(R.anim.slideinright,R.anim.slideoutright);
+                this.finish();
             default:
-                return new FragmentIndividual();
+                return new FragmentHome();
         }
     }
 
@@ -235,13 +255,13 @@ public class HomeActivity extends AppCompatActivity {
                         navItemIndex = 0;
                         CURRENT_TAG = TAG_HOME;
                         break;
-                    case R.id.nav_photos:
+                    case R.id.nav_myfarms:
                         navItemIndex = 1;
-                        CURRENT_TAG = TAG_PHOTOS;
+                        CURRENT_TAG = TAG_MYFARMS;
                         break;
-                    case R.id.nav_movies:
+                    case R.id.nav_addfarm:
                         navItemIndex = 2;
-                        CURRENT_TAG = TAG_MOVIES;
+                        CURRENT_TAG = TAG_ADDFARM;
                         break;
                     case R.id.nav_notifications:
                         navItemIndex = 3;
@@ -250,6 +270,10 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.nav_settings:
                         navItemIndex = 4;
                         CURRENT_TAG = TAG_SETTINGS;
+                        break;
+                    case R.id.nav_signout:
+                        navItemIndex = 5;
+                        CURRENT_TAG = TAG_SIGNOUT;
                         break;
                     /*case R.id.nav_about_us:
                         // launch new intent instead of loading fragment

@@ -6,10 +6,11 @@
     <string name="closeDrawer">close_drawer</string>
     <string-array name="nav_item_activity_titles">
         <item>Home</item>
-        <item>Photos</item>
-        <item>Movies</item>
+        <item>My Farms</item>
+        <item>Add Farm</item>
         <item>Notifications</item>
         <item>Settings</item>
+        <item>Signout</item>
     </string-array>
 
     <string-array name="month">

@@ -3,6 +3,7 @@ package com.example.nareshviriyala.farmifyagentfarmer.Activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.nareshviriyala.farmifyagentfarmer.Helpers.GlobalVariables;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.Validations;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.WebServiceOperation;
@@ -35,6 +37,7 @@ public class BootActivity extends AppCompatActivity {
     public LogErrors logErrors;
     public String className;
     public AlphaAnimation fadeIn, fadeOut;
+    public GlobalVariables globalVariables;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,7 @@ public class BootActivity extends AppCompatActivity {
         setContentView(R.layout.activity_boot);
 
         logErrors = LogErrors.getInstance();
+        globalVariables = GlobalVariables.getInstance();
         validations = new Validations();
         wso = new WebServiceOperation();
         input_phone = (EditText)findViewById(R.id.input_phone);
@@ -108,7 +112,8 @@ public class BootActivity extends AppCompatActivity {
                 pb_loading.setVisibility(View.INVISIBLE);
                 btn_signin.setText("Sign In");
                 if(result.getInt("responseCode") == 200) {
-                    goToMainPage();
+                    globalVariables.setUserProfile(new JSONObject(result.getString("response")));
+                    goToHomePage();
                 }
                 else {
                     tv_error.setText(result.getString("response"));
@@ -128,9 +133,9 @@ public class BootActivity extends AppCompatActivity {
         }
     }
 
-    public void goToMainPage()
+    public void goToHomePage()
     {
-        Intent Intent = new Intent(this, MainActivity.class);
+        Intent Intent = new Intent(this, HomeActivity.class);
         startActivity(Intent);
         this.overridePendingTransition(R.anim.slideinleft,R.anim.slideoutleft);
         this.finish();

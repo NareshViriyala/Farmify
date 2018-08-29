@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -26,8 +27,8 @@ import org.json.JSONObject;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private TextInputLayout input_layout_first_name, input_layout_last_name, input_layout_email, input_layout_phone, input_layout_password, input_layout_confirm_password;
-    private EditText input_first_name, input_last_name, input_email, input_phone, input_password, input_confirm_password;
+    private TextInputLayout input_layout_first_name, input_layout_last_name, input_layout_email, input_layout_phone, input_layout_password, input_layout_confirm_password, input_layout_otp;
+    private EditText input_first_name, input_last_name, input_email, input_phone, input_password, input_confirm_password, input_otp;
     private TextView tv_error;
     private Button btn_register;
     public Validations validations;
@@ -52,6 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
         input_layout_phone = (TextInputLayout)findViewById(R.id.input_layout_phone);
         input_layout_password = (TextInputLayout)findViewById(R.id.input_layout_password);
         input_layout_confirm_password = (TextInputLayout)findViewById(R.id.input_layout_confirm_password);
+        input_layout_otp = (TextInputLayout)findViewById(R.id.input_layout_otp);
         pb_loading = (ProgressBar) findViewById(R.id.pb_loading);
         tv_error = (TextView)findViewById(R.id.tv_error);
 
@@ -61,6 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
         input_phone = (EditText)findViewById(R.id.input_phone);
         input_password = (EditText)findViewById(R.id.input_password);
         input_confirm_password = (EditText)findViewById(R.id.input_confirm_password);
+        input_otp = (EditText)findViewById(R.id.input_otp);
 
         btn_register = (Button)findViewById(R.id.btn_register);
         fadeIn = new AlphaAnimation(0.0f , 1.0f ) ;
@@ -75,29 +78,36 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 try {
-                    if (!validateFirstName())
-                        return;
-                    if (!validateLastName())
-                        return;
-                    if (!validateEmail())
-                        return;
-                    if (!validatePhone())
-                        return;
-                    if (!validatePassword())
-                        return;
-                    if (!validateConfirmPassword())
-                        return;
-                    registerDataJson.put("FirstName", input_first_name.getText().toString().trim());
-                    registerDataJson.put("LastName", input_last_name.getText().toString().trim());
-                    registerDataJson.put("Email", input_email.getText().toString().trim());
-                    registerDataJson.put("Phone", input_phone.getText().toString().trim());
-                    registerDataJson.put("Password", input_password.getText().toString().trim());
-                    registerDataJson.put("Usertype", 1);
-                    registerDataJson.put("Id", 0);
-                    registerDataJson.put("OTP", 0);
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                    new callRegisterAPI().execute();
+                    if(registerDataJson.has("FirstName")) { //this means that user data is already sent now, OTP is being sent
+                        if (!validateOTP())
+                            return;
+                        registerDataJson.put("OTP", input_otp.getText().toString().trim());
+                        new callOTPAPI().execute();
+                    }else{
+                        if (!validateFirstName())
+                            return;
+                        if (!validateLastName())
+                            return;
+                        if (!validateEmail())
+                            return;
+                        if (!validatePhone())
+                            return;
+                        if (!validatePassword())
+                            return;
+                        if (!validateConfirmPassword())
+                            return;
+                        registerDataJson.put("FirstName", input_first_name.getText().toString().trim());
+                        registerDataJson.put("LastName", input_last_name.getText().toString().trim());
+                        registerDataJson.put("Email", input_email.getText().toString().trim());
+                        registerDataJson.put("Phone", input_phone.getText().toString().trim());
+                        registerDataJson.put("Password", input_password.getText().toString().trim());
+                        registerDataJson.put("Usertype", 1);
+                        registerDataJson.put("Id", 0);
+                        registerDataJson.put("OTP", 0);
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                        new callRegisterAPI().execute();
+                    }
                 }catch (JSONException e) {
                     logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage().toString());
                 }catch (Exception ex){
@@ -105,7 +115,6 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     public class callRegisterAPI extends AsyncTask<Object, Void, JSONObject> {
@@ -133,7 +142,7 @@ public class RegisterActivity extends AppCompatActivity {
                 pb_loading.setVisibility(View.INVISIBLE);
                 btn_register.setText("Register");
                 if(result.getInt("responseCode") == 200) {
-                    goToSignInPage(null);
+                    showOTPControl();
                 }
                 else {
                     tv_error.setText(result.getString("response"));
@@ -150,6 +159,77 @@ public class RegisterActivity extends AppCompatActivity {
             }catch (Exception ex){
                 logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
             }
+        }
+    }
+
+
+    public class callOTPAPI extends AsyncTask<Object, Void, JSONObject> {
+        @Override
+        protected void onPreExecute(){
+            pb_loading.setVisibility(View.VISIBLE);
+            btn_register.setText("");
+        }
+
+        @Override
+        protected JSONObject doInBackground(Object... params) {
+            JSONObject response = new JSONObject();
+            try {
+                JSONObject postDataParams = new JSONObject();
+                response = wso.MakePostCall("Users/otp", registerDataJson.toString());
+            }catch (Exception ex){
+                logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+            }
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject result) {
+            try {
+                pb_loading.setVisibility(View.INVISIBLE);
+                btn_register.setText("Register");
+                if(result.getInt("responseCode") == 200) {
+                    tv_error.setText(result.getString("response"));
+                    tv_error.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    tv_error.startAnimation(fadeIn);
+                    tv_error.startAnimation(fadeOut);
+                    fadeIn.setDuration(1200);
+                    fadeIn.setFillAfter(true);
+                    fadeOut.setDuration(1200);
+                    fadeOut.setFillAfter(true);
+                    fadeOut.setStartOffset(2200+fadeIn.getStartOffset());
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            goToSignInPage(null);
+                        }
+                    }, 2200);
+
+                }
+                else {
+                    tv_error.setText(result.getString("response"));
+                    tv_error.startAnimation(fadeIn);
+                    tv_error.startAnimation(fadeOut);
+                    fadeIn.setDuration(1200);
+                    fadeIn.setFillAfter(true);
+                    fadeOut.setDuration(1200);
+                    fadeOut.setFillAfter(true);
+                    fadeOut.setStartOffset(2200+fadeIn.getStartOffset());
+                }
+            }catch (JSONException e) {
+                logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage().toString());
+            }catch (Exception ex){
+                logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+            }
+        }
+    }
+
+    public void showOTPControl(){
+        try{
+            input_layout_otp.setVisibility(View.VISIBLE);
+            btn_register.setText("Send OTP");
+        }catch (Exception ex){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }
     }
 
@@ -233,6 +313,18 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         } else {
             input_layout_confirm_password.setErrorEnabled(false);
+        }
+        return true;
+    }
+
+    private boolean validateOTP() {
+        String val = validations.validateOTP(input_otp.getText().toString().trim());
+        if (val != null) {
+            input_layout_otp.setError(val);
+            requestFocus(input_otp);
+            return false;
+        } else {
+            input_layout_otp.setErrorEnabled(false);
         }
         return true;
     }

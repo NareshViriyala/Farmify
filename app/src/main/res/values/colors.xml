@@ -8,4 +8,6 @@
     <color name="hyperlink">#0000EE</color>
     <color name="navigationBarColor">#000000</color>
     <color name="error">#FF8A80</color>
+    <color name="orange">#FF9800</color>
+    <color name="lightblue">#03A9F4</color>
 </resources>

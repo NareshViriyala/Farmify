@@ -89,6 +89,7 @@ namespace webapi.Controllers
 
             try{
                 _userService.Create(user, userDto.Password);
+                /*
                 HttpClient optapi = new HttpClient();
                 string urlParameters = _appSettings.OtpDefaultParam;
                 urlParameters = urlParameters+"&mobiles=+91"+user.Phone;
@@ -97,6 +98,7 @@ namespace webapi.Controllers
                 optapi.BaseAddress = new Uri(_appSettings.OtpApi);  
                 HttpResponseMessage response = optapi.GetAsync(urlParameters).Result;
                 optapi.Dispose();
+                */
                 return Ok("Pending OTP confirmation");
             }
             catch (AppException ex)
@@ -120,7 +122,7 @@ namespace webapi.Controllers
             }
             catch (AppException ex)
             {
-                return Ok(ex.Message);
+                return BadRequest(ex.Message);
             }
             catch (Exception e){
                 return BadRequest(e.Message);

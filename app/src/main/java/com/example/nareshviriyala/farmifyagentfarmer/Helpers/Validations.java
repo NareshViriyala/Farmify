@@ -53,4 +53,14 @@ public class Validations {
         }
         return returnVal;
     }
+
+    public String validateOTP(String value){
+        String returnVal = null;
+        if (value.trim().isEmpty()) {
+            returnVal = "Please provide OTP";
+        } else if (!value.matches("\\d+(?:\\.\\d+)?")){
+            returnVal = "Invalid OTP";
+        }
+        return returnVal;
+    }
 }
