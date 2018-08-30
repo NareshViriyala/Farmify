@@ -27,6 +27,14 @@ https://www.androidhive.info/2013/11/android-sliding-menu-using-navigation-drawe
 https://design.google.com/icons/
 
 
+https://github.com/jaisonfdo/LocationHelper/blob/master/app/src/main/java/com/droidmentor/locationhelper/LocationUtil/LocationHelper.java
+
+
+Code to request app location - currently user has to manually provide location permission
+
+
+
+
 
 
 

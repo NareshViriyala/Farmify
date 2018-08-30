@@ -2,8 +2,9 @@ package com.example.nareshviriyala.farmifyagentfarmer.Activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
 import android.os.AsyncTask;
-import android.support.design.widget.Snackbar;
+import android.provider.Settings;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.GlobalVariables;
+import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LocationHelper;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.Validations;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.WebServiceOperation;
@@ -38,6 +40,7 @@ public class BootActivity extends AppCompatActivity {
     public String className;
     public AlphaAnimation fadeIn, fadeOut;
     public GlobalVariables globalVariables;
+    public LocationHelper locationHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +64,7 @@ public class BootActivity extends AppCompatActivity {
         fadeIn = new AlphaAnimation(0.0f , 1.0f ) ;
         fadeOut = new AlphaAnimation( 1.0f , 0.0f ) ;
         className = new Object(){}.getClass().getEnclosingClass().getName();
+        locationHelper = new LocationHelper(this);
         //lnk_register = (TextView)findViewById(R.id.lnk_register);
 
         //input_phone.addTextChangedListener(new MyTextWatcher(input_phone));
@@ -113,7 +117,8 @@ public class BootActivity extends AppCompatActivity {
                 btn_signin.setText("Sign In");
                 if(result.getInt("responseCode") == 200) {
                     globalVariables.setUserProfile(new JSONObject(result.getString("response")));
-                    goToHomePage();
+                    logSignInDetails();
+                    //goToHomePage();
                 }
                 else {
                     tv_error.setText(result.getString("response"));
@@ -130,6 +135,64 @@ public class BootActivity extends AppCompatActivity {
             }catch (Exception ex){
                 logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
             }
+        }
+    }
+
+    public class callLogSignInDataAPI extends AsyncTask<JSONObject, Void, JSONObject>{
+
+        @Override
+        protected void onPreExecute(){
+            pb_loading.setVisibility(View.VISIBLE);
+            btn_signin.setText("");
+        }
+
+        @Override
+        protected JSONObject doInBackground(JSONObject... jsondata) {
+            JSONObject response = new JSONObject();
+            try {
+                response = wso.MakePostCall("Logging/logsignindetails", jsondata[0].toString());
+            }catch (Exception ex){
+                logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+            }
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject result) {
+            try {
+                pb_loading.setVisibility(View.INVISIBLE);
+                btn_signin.setText("Sign In");
+                if(result.getInt("responseCode") == 200) {
+                    JSONObject response = new JSONObject(result.getString("response"));
+                    JSONObject userprofile = globalVariables.getUserProfile();
+                    int log_id = response.getInt("log_id");
+                    userprofile.put("log_id", log_id);
+                    globalVariables.setUserProfile(userprofile);
+                }
+                goToHomePage();
+            }catch (JSONException e) {
+                logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage().toString());
+            }catch (Exception ex){
+                logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+            }
+        }
+    }
+
+    public void logSignInDetails(){
+        try{
+            Location loc = locationHelper.getLocation();
+            String device_id = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
+            JSONObject signindata = new JSONObject();
+            signindata.put("user_id", globalVariables.getUserProfile().getInt("id"));
+            signindata.put("device_id", device_id);
+            signindata.put("device_type", 1);
+            signindata.put("latitude", loc.getLatitude());
+            signindata.put("longitude", loc.getLongitude());
+            new callLogSignInDataAPI().execute(signindata);
+        }catch (Exception ex){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+            //incase the login details are not captured, still go to home page
+            goToHomePage();
         }
     }
 

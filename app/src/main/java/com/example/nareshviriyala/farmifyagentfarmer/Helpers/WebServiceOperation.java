@@ -1,5 +1,6 @@
 package com.example.nareshviriyala.farmifyagentfarmer.Helpers;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -10,9 +11,14 @@ import java.net.URL;
 public class WebServiceOperation {
 
     private String apiURL;
+    private GlobalVariables globalVariables;
+    private String token;
 
     public WebServiceOperation(){
-        apiURL = "http://ec2-18-213-3-218.compute-1.amazonaws.com/";
+        try {
+            apiURL = "http://ec2-18-213-3-218.compute-1.amazonaws.com/";
+            globalVariables = GlobalVariables.getInstance();
+        }catch (Exception e) {}
     }
 
     public String MakeGetCall(){
@@ -28,6 +34,10 @@ public class WebServiceOperation {
             conn.setConnectTimeout(15000 /* milliseconds */);
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestProperty("Accept", "application/json");
+            if (globalVariables.getUserProfile() != null && globalVariables.getUserProfile().has("token")) {
+                token = "bearer " + globalVariables.getUserProfile().getString("token");
+                conn.setRequestProperty("Authorization", token);
+            }
             conn.setRequestProperty("Method", "POST");
             conn.setDoInput(true);
             conn.setDoOutput(true);

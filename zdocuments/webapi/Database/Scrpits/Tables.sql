@@ -56,8 +56,7 @@ CREATE TABLE dbo.tbl_errorlog(
 	 , UserId INT
 	 , Loginid INT
 	 , CodeFile NVARCHAR(100)
-	 , ClassName NVARCHAR(100)
+	 --, ClassName NVARCHAR(500)
+	 , MethodName NVARCHAR(500)
 	 , Errordesc NVARCHAR(2000)
 	 , InsertTime DATETIME DEFAULT(GETDATE()))
-
-

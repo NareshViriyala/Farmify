@@ -121,6 +121,7 @@
     <orderEntry type="library" name="Gradle: com.android.support:support-annotations:28.0.0-rc02@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:interpolator-28.0.0-rc02" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:versionedparcelable-28.0.0-rc02" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-basement-10.2.6" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:drawerlayout-28.0.0-rc02" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.lifecycle:viewmodel-1.1.1" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-media-compat-28.0.0-rc02" level="project" />
@@ -131,13 +132,16 @@
     <orderEntry type="library" name="Gradle: com.android.support:appcompat-v7-28.0.0-rc02" level="project" />
     <orderEntry type="library" name="Gradle: com.github.bumptech.glide:disklrucache:4.7.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-core-ui-28.0.0-rc02" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-base-10.2.6" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.core:common:1.1.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:asynclayoutinflater-28.0.0-rc02" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:swiperefreshlayout-28.0.0-rc02" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support.constraint:constraint-layout-1.0.2" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:cardview-v7-28.0.0-rc01" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.core:runtime-1.1.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-tasks-10.2.6" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:viewpager-28.0.0-rc02" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-location-10.2.6" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:recyclerview-v7-28.0.0-rc01" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:localbroadcastmanager-28.0.0-rc02" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-fragment-28.0.0-rc02" level="project" />
