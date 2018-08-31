@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.GlobalVariables;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LocationHelper;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
@@ -41,6 +42,7 @@ public class BootActivity extends AppCompatActivity {
     public AlphaAnimation fadeIn, fadeOut;
     public GlobalVariables globalVariables;
     public LocationHelper locationHelper;
+    public DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,7 @@ public class BootActivity extends AppCompatActivity {
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_boot);
 
-        logErrors = LogErrors.getInstance();
+        logErrors = LogErrors.getInstance(this);
         globalVariables = GlobalVariables.getInstance();
         validations = new Validations();
         wso = new WebServiceOperation();
@@ -65,6 +67,7 @@ public class BootActivity extends AppCompatActivity {
         fadeOut = new AlphaAnimation( 1.0f , 0.0f ) ;
         className = new Object(){}.getClass().getEnclosingClass().getName();
         locationHelper = new LocationHelper(this);
+        dbHelper = new DatabaseHelper(this);
         //lnk_register = (TextView)findViewById(R.id.lnk_register);
 
         //input_phone.addTextChangedListener(new MyTextWatcher(input_phone));
@@ -101,7 +104,7 @@ public class BootActivity extends AppCompatActivity {
                 JSONObject postDataParams = new JSONObject();
                 postDataParams.put("Phone", strings[0]);
                 postDataParams.put("Password", strings[1]);
-                response = wso.MakePostCall("Users/authenticate", postDataParams.toString());
+                response = wso.MakePostCall("Users/authenticate", postDataParams.toString(), null);
             }catch (JSONException e) {
                 logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage().toString());
             }catch (Exception ex){
@@ -116,7 +119,13 @@ public class BootActivity extends AppCompatActivity {
                 pb_loading.setVisibility(View.INVISIBLE);
                 btn_signin.setText("Sign In");
                 if(result.getInt("responseCode") == 200) {
-                    globalVariables.setUserProfile(new JSONObject(result.getString("response")));
+                    JSONObject userprofile = new JSONObject(result.getString("response"));
+                    dbHelper.setParameter("user_id", userprofile.getString("id"));
+                    dbHelper.setParameter("phone", userprofile.getString("phone"));
+                    dbHelper.setParameter("first_name", userprofile.getString("firstName"));
+                    dbHelper.setParameter("last_name", userprofile.getString("lastName"));
+                    dbHelper.setParameter("user_type", userprofile.getString("userType"));
+                    dbHelper.setParameter("token", "bearer "+userprofile.getString("token"));
                     logSignInDetails();
                     //goToHomePage();
                 }
@@ -150,7 +159,7 @@ public class BootActivity extends AppCompatActivity {
         protected JSONObject doInBackground(JSONObject... jsondata) {
             JSONObject response = new JSONObject();
             try {
-                response = wso.MakePostCall("Logging/logsignindetails", jsondata[0].toString());
+                response = wso.MakePostCall("Logging/logsignindetails", jsondata[0].toString(), dbHelper.getParameter("token"));
             }catch (Exception ex){
                 logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
             }
@@ -164,10 +173,7 @@ public class BootActivity extends AppCompatActivity {
                 btn_signin.setText("Sign In");
                 if(result.getInt("responseCode") == 200) {
                     JSONObject response = new JSONObject(result.getString("response"));
-                    JSONObject userprofile = globalVariables.getUserProfile();
-                    int log_id = response.getInt("log_id");
-                    userprofile.put("log_id", log_id);
-                    globalVariables.setUserProfile(userprofile);
+                    dbHelper.setParameter("signin_id", response.getString("log_id"));
                 }
                 goToHomePage();
             }catch (JSONException e) {
@@ -181,11 +187,13 @@ public class BootActivity extends AppCompatActivity {
     public void logSignInDetails(){
         try{
             Location loc = locationHelper.getLocation();
-            String device_id = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
+            String user_id = dbHelper.getParameter("user_id");
             JSONObject signindata = new JSONObject();
-            signindata.put("user_id", globalVariables.getUserProfile().getInt("id"));
-            signindata.put("device_id", device_id);
-            signindata.put("device_type", 1);
+            signindata.put("user_id", user_id);
+            signindata.put("device_id", dbHelper.getParameter("device_id"));
+            signindata.put("device_type", dbHelper.getParameter("device_type"));
+            signindata.put("device_version", dbHelper.getParameter("device_version"));
+            signindata.put("app_version", dbHelper.getParameter("app_version"));
             signindata.put("latitude", loc.getLatitude());
             signindata.put("longitude", loc.getLongitude());
             new callLogSignInDataAPI().execute(signindata);

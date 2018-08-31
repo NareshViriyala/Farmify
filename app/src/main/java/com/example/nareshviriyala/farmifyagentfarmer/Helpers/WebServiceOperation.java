@@ -7,12 +7,14 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Optional;
 
 public class WebServiceOperation {
 
     private String apiURL;
     private GlobalVariables globalVariables;
     private String token;
+    private DatabaseHelper dbHelper;
 
     public WebServiceOperation(){
         try {
@@ -25,7 +27,7 @@ public class WebServiceOperation {
        return "";
     }
 
-    public JSONObject MakePostCall(String endPoint, String postBody){
+    public JSONObject MakePostCall(String endPoint, String postBody, String token){
         JSONObject response = new JSONObject();
         try {
             URL url = new URL(apiURL+endPoint);
@@ -34,10 +36,8 @@ public class WebServiceOperation {
             conn.setConnectTimeout(15000 /* milliseconds */);
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestProperty("Accept", "application/json");
-            if (globalVariables.getUserProfile() != null && globalVariables.getUserProfile().has("token")) {
-                token = "bearer " + globalVariables.getUserProfile().getString("token");
+            if (token != null && !token.isEmpty())
                 conn.setRequestProperty("Authorization", token);
-            }
             conn.setRequestProperty("Method", "POST");
             conn.setDoInput(true);
             conn.setDoOutput(true);

@@ -29,7 +29,7 @@ public class LocationHelper extends Service implements LocationListener{
 
     public LocationHelper(Context context) {
         this.mContext = context;
-        logErrors = LogErrors.getInstance();
+        logErrors = LogErrors.getInstance(context);
         className = new Object(){}.getClass().getEnclosingClass().getName();
         getLocation();
     }

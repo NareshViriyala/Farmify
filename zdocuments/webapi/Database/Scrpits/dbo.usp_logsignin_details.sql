@@ -3,8 +3,14 @@ GO
 CREATE PROCEDURE dbo.usp_logsignin_details(@json NVARCHAR(4000), @output INT OUTPUT)
 AS
 BEGIN
-	INSERT INTO dbo.tbl_login_history(UserId, DeviceID, DeviceType, Latitude, Longitude)
-	SELECT JSON_VALUE(@json, '$.user_id'), JSON_VALUE(@json, '$.device_id'), JSON_VALUE(@json, '$.device_type'), JSON_VALUE(@json, '$.latitude'), JSON_VALUE(@json, '$.longitude')
+	INSERT INTO dbo.tbl_login_history(UserId, DeviceID, DeviceType, DeviceVersion, AppVersion, Latitude, Longitude)
+	SELECT JSON_VALUE(@json, '$.user_id')
+	     , JSON_VALUE(@json, '$.device_id')
+		 , JSON_VALUE(@json, '$.device_type')
+		 , JSON_VALUE(@json, '$.device_version')
+		 , JSON_VALUE(@json, '$.app_version')
+		 , JSON_VALUE(@json, '$.latitude')
+		 , JSON_VALUE(@json, '$.longitude')
 
 	SET @output = @@IDENTITY
 END

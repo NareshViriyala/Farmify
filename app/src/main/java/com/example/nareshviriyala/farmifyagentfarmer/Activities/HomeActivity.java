@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -21,15 +22,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentAddFarm;
-import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentEcommerce;
+import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentCommerce;
 import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentHome;
 import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentMyFarms;
-import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentSatellite;
+import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentDealer;
+import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.GlobalVariables;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
 import com.example.nareshviriyala.farmifyagentfarmer.R;
-
-import org.json.JSONException;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -43,6 +43,7 @@ public class HomeActivity extends AppCompatActivity {
     private GlobalVariables globalVariables;
     private LogErrors logErrors;
     private String className;
+    private DatabaseHelper dbHelper;
 
     // index to identify current nav menu item
     public static int navItemIndex = 0;
@@ -88,7 +89,8 @@ public class HomeActivity extends AppCompatActivity {
         // load toolbar titles from string resources
         activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
         globalVariables = GlobalVariables.getInstance();
-        logErrors = LogErrors.getInstance();
+        logErrors = LogErrors.getInstance(this);
+        dbHelper = new DatabaseHelper(this);
         className = new Object(){}.getClass().getEnclosingClass().getName();
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -120,9 +122,9 @@ public class HomeActivity extends AppCompatActivity {
     private void loadNavHeader() {
         try {
             // name, website
-            txtName.setText(globalVariables.getUserProfile().getString("firstName")+" "+globalVariables.getUserProfile().getString("lastName"));
-            txtEmail.setText(globalVariables.getUserProfile().getString("email"));
-            txtPhone.setText(globalVariables.getUserProfile().getString("phone"));
+            txtName.setText(dbHelper.getParameter("first_name") +" "+dbHelper.getParameter("last_name"));
+            txtEmail.setText(dbHelper.getParameter("email"));
+            txtPhone.setText(dbHelper.getParameter("phone"));
 
             // loading header background image
         /*Glide.with(this).load(urlNavHeaderBg)
@@ -139,8 +141,6 @@ public class HomeActivity extends AppCompatActivity {
 
             // showing dot next to notifications label
             //navigationView.getMenu().getItem(3).setActionView(R.layout.menu_dot);
-        }catch (JSONException e) {
-            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage().toString());
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }
@@ -214,15 +214,15 @@ public class HomeActivity extends AppCompatActivity {
                 return fragmentAddFarm;
             case 3:
                 // notifications fragment
-                FragmentEcommerce fragmentEcommerce = new FragmentEcommerce();
+                FragmentCommerce fragmentEcommerce = new FragmentCommerce();
                 return fragmentEcommerce;
             case 4:
                 // settings fragment
-                FragmentSatellite fragmentSatellite = new FragmentSatellite();
+                FragmentDealer fragmentSatellite = new FragmentDealer();
                 return fragmentSatellite;
             case 5:
                 // signout
-                globalVariables.clearVariables();
+                dbHelper.deleteParameter("token");
                 Intent Intent = new Intent(this, BootActivity.class);
                 startActivity(Intent);
                 //this.overridePendingTransition(R.anim.slideinright,R.anim.slideoutright);
@@ -247,6 +247,13 @@ public class HomeActivity extends AppCompatActivity {
             // This method will trigger on item Click of navigation menu
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+                //Clear all fragments stacked so far.
+                FragmentManager fm = getSupportFragmentManager(); // or 'getSupportFragmentManager();'
+                int count = fm.getBackStackEntryCount();
+                for(int i = 0; i < count; ++i) {
+                    fm.popBackStack();
+                }
 
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
@@ -333,9 +340,19 @@ public class HomeActivity extends AppCompatActivity {
             return;
         }
 
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            moveTaskToBack(true);
+            //super.onBackPressed();
+            //additional code
+        } else {
+            getSupportFragmentManager().popBackStack();
+        }
+
         // This code loads home fragment when back key is pressed
         // when user is in other fragment than home
-        if (shouldLoadHomeFragOnBackPress) {
+        /*if (shouldLoadHomeFragOnBackPress) {
             // checking if user is on other navigation menu
             // rather than home
             if (navItemIndex != 0) {
@@ -344,9 +361,9 @@ public class HomeActivity extends AppCompatActivity {
                 loadHomeFragment();
                 return;
             }
-        }
+        }*/
 
-        super.onBackPressed();
+        //super.onBackPressed();
     }
 
     @Override
@@ -399,5 +416,9 @@ public class HomeActivity extends AppCompatActivity {
             fab.show();
         else
             fab.hide();
+    }
+
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
     }
 }

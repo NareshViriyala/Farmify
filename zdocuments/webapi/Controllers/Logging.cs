@@ -83,6 +83,8 @@ namespace webapi.Controllers
         public int user_id {get; set;}
         public string device_id {get; set;}
         public int device_type {get; set;} //1 - Android, 2 - IPhone, 3 - Windows
+        public string device_version {get; set;} //lollypop, Kitkat
+        public string app_version {get; set;} //0.0.0.0
         public float latitude {get; set;}
         public float longitude {get; set;}
     }

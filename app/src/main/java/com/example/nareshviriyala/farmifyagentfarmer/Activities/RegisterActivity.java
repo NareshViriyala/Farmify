@@ -70,7 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
         fadeOut = new AlphaAnimation( 1.0f , 0.0f ) ;
 
         wso = new WebServiceOperation();
-        logErrors = LogErrors.getInstance();
+        logErrors = LogErrors.getInstance(this);
         registerDataJson = new JSONObject();
         className = new Object(){}.getClass().getEnclosingClass().getName();
 
@@ -129,7 +129,7 @@ public class RegisterActivity extends AppCompatActivity {
             JSONObject response = new JSONObject();
             try {
                 JSONObject postDataParams = new JSONObject();
-                response = wso.MakePostCall("Users/register", registerDataJson.toString());
+                response = wso.MakePostCall("Users/register", registerDataJson.toString(), null);
             }catch (Exception ex){
                 logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
             }
@@ -175,7 +175,7 @@ public class RegisterActivity extends AppCompatActivity {
             JSONObject response = new JSONObject();
             try {
                 JSONObject postDataParams = new JSONObject();
-                response = wso.MakePostCall("Users/otp", registerDataJson.toString());
+                response = wso.MakePostCall("Users/otp", registerDataJson.toString(), null);
             }catch (Exception ex){
                 logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
             }

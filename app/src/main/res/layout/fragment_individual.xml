@@ -5,15 +5,6 @@
     android:orientation="vertical"
     tools:context=".Fragments.FragmentIndividual">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Individual Data"
-        android:layout_gravity="center"
-        android:textSize="20dp"
-        android:layout_marginBottom="5dp"
-        android:textStyle="bold"/>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,12 +15,118 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
             android:background="@color/grey"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_weight="1">
+
+                    <EditText
+                        android:id="@+id/input_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Farmer's Phone"
+                        android:inputType="number" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
+
+
+                    <ProgressBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pb_loadingverify"
+                        android:layout_centerInParent="true"
+                        android:indeterminateTint="@color/white"
+                        android:visibility="invisible"
+                        android:translationZ="3dp"/>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Verify"
+                        android:textColor="@color/white"
+                        android:id="@+id/btn_verifyPhone"
+                        android:background="@color/colorPrimary"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:id="@+id/ll_verifyotp"
+                android:visibility="gone"
+                android:animateLayoutChanges="true"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_otp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <EditText
+                        android:id="@+id/input_otp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="OTP"
+                        android:inputType="number" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
+
+
+                    <ProgressBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pb_loadingotp"
+                        android:layout_centerInParent="true"
+                        android:indeterminateTint="@color/white"
+                        android:visibility="invisible"
+                        android:translationZ="3dp"/>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Send"
+                        android:textColor="@color/white"
+                        android:id="@+id/btn_sendotp"
+                        android:background="@color/colorPrimary"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false" />
+
+                </RelativeLayout>
+            </LinearLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_layout_name"
                 android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
                 android:layout_height="wrap_content"
                 android:background="@color/white">
 
@@ -42,7 +139,7 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/relationto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -101,7 +198,7 @@
                     android:hint="Relation Name"
                     android:inputType="text" />
 
-            </android.support.design.widget.TextInputLayout>
+            </android.support.design.widget.TextInputLayout>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -110,35 +207,34 @@
                 android:background="@color/white"
                 android:orientation="horizontal">
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_phone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/input_phone"
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_age"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Phone"
-                        android:inputType="number" />
+                        android:layout_weight="1">
 
-                </android.support.design.widget.TextInputLayout>
+                        <EditText
+                            android:id="@+id/input_age"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Age/DOB"
+                            android:inputType="number" />
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_age"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    </android.support.design.widget.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/input_age"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Age"
-                        android:inputType="number" />
-
-                </android.support.design.widget.TextInputLayout>
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/baseline_calendar_today_black_24dp"
+                        android:tint="@color/colorPrimary"
+                        android:id="@+id/img_calendar"
+                        android:layout_marginEnd="20dp"
+                        android:layout_alignParentEnd="true"/>
+                </RelativeLayout>
             </LinearLayout>
 
             <TextView
@@ -422,6 +518,7 @@
                 android:id="@+id/btn_save"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:background="@color/colorPrimary"
                 android:text="Save"
                 android:textColor="@android:color/white" />

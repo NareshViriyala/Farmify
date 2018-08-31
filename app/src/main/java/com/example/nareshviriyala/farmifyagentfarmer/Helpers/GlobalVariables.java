@@ -15,7 +15,7 @@ public class GlobalVariables {
         return globalVariables;
     }
 
-    private JSONObject userprofile;
+    /*private JSONObject userprofile;
     public JSONObject getUserProfile() {
         return userprofile;
     }
@@ -30,5 +30,6 @@ public class GlobalVariables {
     public void clearVariables(){
         userprofile = null;
     }
+    */
 
 }

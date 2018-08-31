@@ -11,10 +11,10 @@ import android.support.v7.widget.Toolbar;
 
 import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentAgronomics;
 import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentBank;
-import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentEcommerce;
+import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentCommerce;
 import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentEnvironmental;
 import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentIndividual;
-import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentSatellite;
+import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentDealer;
 import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentSocial;
 import com.example.nareshviriyala.farmifyagentfarmer.R;
 
@@ -48,10 +48,10 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new FragmentIndividual(), "Individual");
         adapter.addFragment(new FragmentBank(), "Bank");
         adapter.addFragment(new FragmentSocial(), "Social");
-        adapter.addFragment(new FragmentEcommerce(), "E-Commerce");
+        adapter.addFragment(new FragmentCommerce(), "E-Commerce");
         adapter.addFragment(new FragmentAgronomics(), "Agronomics");
         adapter.addFragment(new FragmentEnvironmental(), "Environmental");
-        adapter.addFragment(new FragmentSatellite(), "Satellite");
+        adapter.addFragment(new FragmentDealer(), "Satellite");
         viewPager.setAdapter(adapter);
     }
 

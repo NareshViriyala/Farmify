@@ -45,6 +45,8 @@ CREATE TABLE dbo.tbl_login_history(
 	 , UserId INT
 	 , DeviceID NVARCHAR(100) 
 	 , DeviceType INT --1. Android, 2. Iphone, 3. Windows
+	 , DeviceVersion NVARCHAR(20) -- Lollipop, Kitkat
+	 , AppVersion NVARCHAR(10)
 	 , LoginTime DATETIME DEFAULT(GETDATE())
 	 , Latitude DECIMAL(12,9)
 	 , Longitude DECIMAL(12,9))

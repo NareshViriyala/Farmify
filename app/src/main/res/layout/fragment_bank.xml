@@ -5,15 +5,6 @@
     android:orientation="vertical"
     tools:context=".Fragments.FragmentBank">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bank Data"
-        android:layout_gravity="center"
-        android:textSize="20dp"
-        android:layout_marginBottom="5dp"
-        android:textStyle="bold"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,6 +58,43 @@
                 android:inputType="number" />
 
         </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:paddingLeft="8dp"
+            android:text="Account type" />
+
+        <RadioGroup
+            android:id="@+id/rg_actype"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_savings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Savings" />
+
+            <RadioButton
+                android:id="@+id/rb_current"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Currnet" />
+
+            <RadioButton
+                android:id="@+id/rb_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Other" />
+        </RadioGroup>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -157,21 +185,7 @@
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_layout_aadharnumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="@color/white">
 
-            <EditText
-                android:id="@+id/input_aadharnumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Aadhar Number"
-                android:inputType="number" />
-
-        </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
 
