@@ -19,6 +19,7 @@ public class WebServiceOperation {
     public WebServiceOperation(){
         try {
             apiURL = "http://ec2-18-213-3-218.compute-1.amazonaws.com/";
+            //apiURL = "http://localhost:5000/";
             globalVariables = GlobalVariables.getInstance();
         }catch (Exception e) {}
     }

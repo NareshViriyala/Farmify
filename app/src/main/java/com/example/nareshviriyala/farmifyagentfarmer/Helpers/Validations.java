@@ -32,6 +32,8 @@ public class Validations {
             returnVal = "Please provide phone number";
         } else if (value.trim().length() < 10){
             returnVal = "Invalid phone number";
+        } else if(!Pattern.compile("^[6-9][0-9]{9}$").matcher(value.trim()).matches()){
+            returnVal = "Not a valid phone number";
         }
         return returnVal;
     }
@@ -60,6 +62,16 @@ public class Validations {
             returnVal = "Please provide OTP";
         } else if (!value.matches("\\d+(?:\\.\\d+)?")){
             returnVal = "Invalid OTP";
+        }
+        return returnVal;
+    }
+
+    public String validateAadhar(String value){
+        String returnVal = null;
+        if (value.trim().isEmpty()) {
+            returnVal = "Please provide aadhar number";
+        } else if (value.trim().replace(" ","").length() != 12){
+            returnVal = "Invalid aadhar number";
         }
         return returnVal;
     }

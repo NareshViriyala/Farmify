@@ -22,6 +22,7 @@ namespace webapi.Controllers
             _appSettings = appSettings.Value;
         }
 
+        /*
         //[HttpPost("{logsignindata}")]
         [HttpPost]
         [Route("[action]")]
@@ -51,6 +52,7 @@ namespace webapi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        */
 
         // [HttpPost("{logerrordata}")]
         [HttpPost]

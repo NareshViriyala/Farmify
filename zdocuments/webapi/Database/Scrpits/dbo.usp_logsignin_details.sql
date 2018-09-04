@@ -4,7 +4,7 @@ CREATE PROCEDURE dbo.usp_logsignin_details(@json NVARCHAR(4000), @output INT OUT
 AS
 BEGIN
 	INSERT INTO dbo.tbl_login_history(UserId, DeviceID, DeviceType, DeviceVersion, AppVersion, Latitude, Longitude)
-	SELECT JSON_VALUE(@json, '$.user_id')
+	SELECT JSON_VALUE(@json, '$.Id')
 	     , JSON_VALUE(@json, '$.device_id')
 		 , JSON_VALUE(@json, '$.device_type')
 		 , JSON_VALUE(@json, '$.device_version')

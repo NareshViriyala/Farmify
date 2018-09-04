@@ -108,8 +108,8 @@ public class HomeActivity extends AppCompatActivity {
         setUpNavigationView();
 
         if (savedInstanceState == null) {
-            navItemIndex = 0;
-            CURRENT_TAG = TAG_HOME;
+            navItemIndex = 2;
+            CURRENT_TAG = TAG_ADDFARM;
             loadHomeFragment();
         }
     }
@@ -176,6 +176,8 @@ public class HomeActivity extends AppCompatActivity {
             public void run() {
                 // update the main content by replacing fragments
                 Fragment fragment = getHomeFragment();
+                if(fragment == null)
+                    return;
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
                 fragmentTransaction.replace(R.id.frame, fragment, CURRENT_TAG);
@@ -227,6 +229,7 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(Intent);
                 //this.overridePendingTransition(R.anim.slideinright,R.anim.slideoutright);
                 this.finish();
+                return null;
             default:
                 return new FragmentHome();
         }

@@ -75,7 +75,7 @@ public class LocationHelper extends Service implements LocationListener{
             }
         }
         catch (SecurityException secEx){
-            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), secEx.getMessage().toString());
+            //logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), secEx.getMessage().toString());
         }
         catch (Exception e){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage().toString());

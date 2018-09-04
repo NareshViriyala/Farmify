@@ -19,509 +19,635 @@
             android:background="@color/grey"
             android:orientation="vertical">
 
+            <!--show farmer's phone and aadhar-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="horizontal">
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_phone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:id="@+id/ll_verifyfarmerphoneandaadhar"
+                android:outlineSpotShadowColor="@color/colorPrimary"
+                android:orientation="vertical">
 
-                    android:layout_weight="1">
-
-                    <EditText
-                        android:id="@+id/input_phone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Farmer's Phone"
-                        android:inputType="number" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal">
-
-
-
-                    <ProgressBar
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/pb_loadingverify"
-                        android:layout_centerInParent="true"
-                        android:indeterminateTint="@color/white"
-                        android:visibility="invisible"
-                        android:translationZ="3dp"/>
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Verify"
-                        android:textColor="@color/white"
-                        android:id="@+id/btn_verifyPhone"
-                        android:background="@color/colorPrimary"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false" />
-
-                </RelativeLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:id="@+id/ll_verifyotp"
-                android:visibility="gone"
-                android:animateLayoutChanges="true"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_otp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <EditText
-                        android:id="@+id/input_otp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="OTP"
-                        android:inputType="number" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal">
-
-
-
-                    <ProgressBar
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/pb_loadingotp"
-                        android:layout_centerInParent="true"
-                        android:indeterminateTint="@color/white"
-                        android:visibility="invisible"
-                        android:translationZ="3dp"/>
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Send"
-                        android:textColor="@color/white"
-                        android:id="@+id/btn_sendotp"
-                        android:background="@color/colorPrimary"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false" />
-
-                </RelativeLayout>
-            </LinearLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_layout_name"
-                android:layout_width="match_parent"
-                android:layout_marginTop="5dp"
-                android:layout_height="wrap_content"
-                android:background="@color/white">
-
-                <EditText
-                    android:id="@+id/input_name"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Name"
-                    android:inputType="text" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <!--<TextView
-                android:id="@+id/relationto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@color/white"
-                android:paddingLeft="8dp"
-                android:text="Relation to:" />
-
-            <RadioGroup
-                android:id="@+id/rg_relationship"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/rb_so"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="S/o" />
-
-                <RadioButton
-                    android:id="@+id/rb_do"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="D/o" />
-
-                <RadioButton
-                    android:id="@+id/rb_bo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="B/o" />
-
-                <RadioButton
-                    android:id="@+id/rb_wo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="W/o" />
-            </RadioGroup>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_layout_relationname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@color/white">
-
-                <EditText
-                    android:id="@+id/input_relationname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Relation Name"
-                    android:inputType="text" />
-
-            </android.support.design.widget.TextInputLayout>-->
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
-                android:background="@color/white"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:background="@color/white"
+                    android:orientation="horizontal">
 
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/input_layout_age"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:id="@+id/input_layout_aadhar"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content">
 
                         <EditText
-                            android:id="@+id/input_age"
+                            android:id="@+id/input_aadhar"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Age/DOB"
+                            android:hint="Aadhar number"
                             android:inputType="number" />
 
                     </android.support.design.widget.TextInputLayout>
 
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/baseline_calendar_today_black_24dp"
-                        android:tint="@color/colorPrimary"
-                        android:id="@+id/img_calendar"
-                        android:layout_marginEnd="20dp"
-                        android:layout_alignParentEnd="true"/>
-                </RelativeLayout>
-            </LinearLayout>
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_phone"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/caste"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@color/white"
-                android:paddingLeft="8dp"
-                android:text="Caste:" />
+                        <EditText
+                            android:id="@+id/input_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Phone number"
+                            android:inputType="number" />
 
-            <RadioGroup
-                android:id="@+id/rg_caste"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="horizontal">
+                    </android.support.design.widget.TextInputLayout>
 
-                <RadioButton
-                    android:id="@+id/rb_cast_general"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="General" />
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/rl_aadharbutton"
+                        android:layout_gravity="center_horizontal">
 
-                <RadioButton
-                    android:id="@+id/rb_case_obc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="OBC" />
+                        <ProgressBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/pb_loadingaadharverify"
+                            android:layout_centerInParent="true"
+                            android:indeterminateTint="@color/white"
+                            android:visibility="invisible"
+                            android:translationZ="3dp"/>
 
-                <RadioButton
-                    android:id="@+id/rb_cast_sc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="SC" />
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Verify"
+                            android:textColor="@color/white"
+                            android:id="@+id/btn_verifyAadharandphone"
+                            android:background="@color/colorPrimary"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false" />
 
-                <RadioButton
-                    android:id="@+id/rb_cast_st"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="ST" />
+                    </RelativeLayout>
 
-                <RadioButton
-                    android:id="@+id/rb_cast_other"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Other" />
-            </RadioGroup>
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/gender"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@color/white"
-                android:paddingLeft="8dp"
-                android:text="Gender:" />
 
-            <RadioGroup
-                android:id="@+id/rg_gender"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/rb_male"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Male" />
-
-                <RadioButton
-                    android:id="@+id/rb_female"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Female" />
-            </RadioGroup>
-
-            <TextView
-                android:id="@+id/farmertype"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@color/white"
-                android:paddingLeft="8dp"
-                android:text="Farmer Type:" />
-
-            <RadioGroup
-                android:id="@+id/rg_farmertype"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/rb_ftsmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Small" />
-
-                <RadioButton
-                    android:id="@+id/rb_ftmarginal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Marginal" />
-
-                <RadioButton
-                    android:id="@+id/rb_ftother"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Other" />
-            </RadioGroup>
-
-            <TextView
-                android:id="@+id/farmercategory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@color/white"
-                android:paddingLeft="8dp"
-                android:text="Farmer Category:" />
-
-            <RadioGroup
-                android:id="@+id/rg_farmercategory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/rb_fcowner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Owner" />
-
-                <RadioButton
-                    android:id="@+id/rb_fctenant"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Tenant" />
-
-                <RadioButton
-                    android:id="@+id/rb_fcsharecropper"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Sharecropper" />
-            </RadioGroup>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_layout_address1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@color/white">
-
-                <EditText
-                    android:id="@+id/input_address1"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Address Line 1"/>
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_layout_address2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@color/white">
-
-                <EditText
-                    android:id="@+id/input_address2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Address Line 2"/>
-
-            </android.support.design.widget.TextInputLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
-                android:background="@color/white"
-                android:orientation="horizontal">
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_state"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <EditText
-                        android:id="@+id/input_state"
-                        android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:id="@+id/ll_verifyotp"
+                    android:visibility="visible"
+                    android:animateLayoutChanges="true"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal">
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_otp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="State" />
+                        android:layout_weight="1">
 
-                </android.support.design.widget.TextInputLayout>
+                        <EditText
+                            android:id="@+id/input_otp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="OTP"
+                            android:inputType="number" />
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_district"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    </android.support.design.widget.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/input_district"
-                        android:layout_width="match_parent"
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="District" />
+                        android:layout_gravity="center_horizontal">
 
-                </android.support.design.widget.TextInputLayout>
+                        <ProgressBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/pb_loadingotp"
+                            android:layout_centerInParent="true"
+                            android:indeterminateTint="@color/white"
+                            android:visibility="invisible"
+                            android:translationZ="3dp"/>
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Send"
+                            android:textColor="@color/white"
+                            android:id="@+id/btn_sendotp"
+                            android:background="@color/colorPrimary"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false" />
+
+                    </RelativeLayout>
+                </LinearLayout>
 
             </LinearLayout>
 
+            <!--Verified farmer's phone and aadhar-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
-                android:background="@color/white"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:id="@+id/ll_showfarmerphoneandaadhar"
+                android:background="@drawable/layout_tile_background"
+                android:padding="5dp"
+                android:outlineSpotShadowColor="@color/colorPrimary"
+                android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_aadhar"
+                        android:text=""
+                        android:background="@color/white"
+                        android:layout_marginBottom="2dp"
+                        android:textSize="18dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_phone"
+                        android:text=""
+                        android:background="@color/white"
+                        android:textSize="18dp"/>
+            </LinearLayout>
+
+            <!--Verify farmer's individual faorm-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ll_individualform"
+                android:visibility="visible"
+                android:orientation="vertical">
+
+                <!--firstname, lastname-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@color/white">
+
+                    <!--firstname-->
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_firstname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/white">
+
+                        <EditText
+                            android:id="@+id/input_firstname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="First name"
+                            android:inputType="text" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <!--lastname-->
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_lastname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/white">
+
+                        <EditText
+                            android:id="@+id/input_lastname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Last name"
+                            android:inputType="text" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <!--surname, dob-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white">
+
+                    <!--surname-->
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_surname"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/white">
+
+                        <EditText
+                            android:id="@+id/input_surname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Surname"
+                            android:inputType="text" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <!--dob-->
+                    <RelativeLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="10dp"
+                        android:layout_weight="1"
+                        android:background="@color/white">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_age"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/input_age"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="DOB(dd/mm/yyyy)"
+                                android:inputType="number" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:src="@drawable/baseline_calendar_today_black_24dp"
+                            android:tint="@color/colorPrimary"
+                            android:id="@+id/img_calendar"
+                            android:layout_marginEnd="20dp"
+                            android:layout_alignParentEnd="true"/>
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <!--<TextView
+                    android:id="@+id/relationto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white"
+                    android:paddingLeft="8dp"
+                    android:text="Relation to:" />
+
+                <RadioGroup
+                    android:id="@+id/rg_relationship"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_so"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="S/o" />
+
+                    <RadioButton
+                        android:id="@+id/rb_do"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="D/o" />
+
+                    <RadioButton
+                        android:id="@+id/rb_bo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="B/o" />
+
+                    <RadioButton
+                        android:id="@+id/rb_wo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="W/o" />
+                </RadioGroup>
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_villagetown"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/input_layout_relationname"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white">
 
                     <EditText
-                        android:id="@+id/input_villagetown"
+                        android:id="@+id/input_relationname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Village\\Town" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_pincode"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <EditText
-                        android:id="@+id/input_pincode"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Pincode"
-                        android:inputType="number" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <!--<android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_mandal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <EditText
-                        android:id="@+id/input_mandal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Mandal" />
+                        android:hint="Relation Name"
+                        android:inputType="text" />
 
                 </android.support.design.widget.TextInputLayout>-->
+
+                <!--Cast of farmer text view General, SC, ST, OBC, Other-->
+                <TextView
+                    android:id="@+id/caste"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white"
+                    android:paddingLeft="8dp"
+                    android:text="Caste:" />
+
+                <!--Cast of farmer radio group General, SC, ST, OBC, Other-->
+                <RadioGroup
+                    android:id="@+id/rg_cast"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_cast_general"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="General" />
+
+                    <RadioButton
+                        android:id="@+id/rb_cast_obc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="OBC" />
+
+                    <RadioButton
+                        android:id="@+id/rb_cast_sc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="SC" />
+
+                    <RadioButton
+                        android:id="@+id/rb_cast_st"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="ST" />
+
+                    <RadioButton
+                        android:id="@+id/rb_cast_other"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Other" />
+                </RadioGroup>
+
+                <!--gender of farmer text view Male, Female-->
+                <TextView
+                    android:id="@+id/gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white"
+                    android:paddingLeft="8dp"
+                    android:text="Gender:" />
+
+                <!--gender of farmer radio group  Male, Female-->
+                <RadioGroup
+                    android:id="@+id/rg_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_male"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Male" />
+
+                    <RadioButton
+                        android:id="@+id/rb_female"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Female" />
+                </RadioGroup>
+
+                <!--type of farmer text view small, marginal, other-->
+                <TextView
+                    android:id="@+id/farmertype"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white"
+                    android:paddingLeft="8dp"
+                    android:text="Farmer Type:" />
+
+                <!--type of farmer radio group small, marginal, other-->
+                <RadioGroup
+                    android:id="@+id/rg_farmertype"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_ftsmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Small" />
+
+                    <RadioButton
+                        android:id="@+id/rb_ftmarginal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Marginal" />
+
+                    <RadioButton
+                        android:id="@+id/rb_ftother"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Other" />
+                </RadioGroup>
+
+                <!--type of farm text view owner, tenant, sharecropper-->
+                <TextView
+                    android:id="@+id/farmercategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white"
+                    android:paddingLeft="8dp"
+                    android:text="Farmer Category:" />
+
+                <!--type of farm radio group owner, tenant, sharecropper-->
+                <RadioGroup
+                    android:id="@+id/rg_farmcategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_fcowner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Owner" />
+
+                    <RadioButton
+                        android:id="@+id/rb_fctenant"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Tenant" />
+
+                    <RadioButton
+                        android:id="@+id/rb_fcsharecropper"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Sharecropper" />
+                </RadioGroup>
+
+                <!--address 1 edit text view -->
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_address1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white">
+
+                    <EditText
+                        android:id="@+id/input_address1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Address Line 1"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <!--address 2 edit text view -->
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_address2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white">
+
+                    <EditText
+                        android:id="@+id/input_address2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Address Line 2"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <!--state, district -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <!--state -->
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:id="@+id/input_state"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="State" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <!--district -->
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_district"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:id="@+id/input_district"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="District" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <!--village\town, pincode -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <!--village\town -->
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_villagetown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:id="@+id/input_villagetown"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Village\\Town" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <!-- pincode -->
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_pincode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:id="@+id/input_pincode"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Pincode"
+                            android:inputType="number" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <!--<android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_mandal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:id="@+id/input_mandal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Mandal" />
+
+                    </android.support.design.widget.TextInputLayout>-->
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_individualdatasave"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/colorPrimary"
+                    android:text="Save"
+                    android:textColor="@android:color/white" />
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btn_save"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@color/colorPrimary"
-                android:text="Save"
-                android:textColor="@android:color/white" />
         </LinearLayout>
 
     </ScrollView>

@@ -101,9 +101,22 @@ public class BootActivity extends AppCompatActivity {
         protected JSONObject doInBackground(String... strings) {
             JSONObject response = new JSONObject();
             try {
+                Location loc = locationHelper.getLocation();
                 JSONObject postDataParams = new JSONObject();
                 postDataParams.put("Phone", strings[0]);
                 postDataParams.put("Password", strings[1]);
+                if(loc != null) {
+                    postDataParams.put("latitude", loc.getLatitude());
+                    postDataParams.put("longitude", loc.getLongitude());
+                }else {
+                    postDataParams.put("latitude", "00.000000000");
+                    postDataParams.put("longitude", "00.000000000");
+                }
+                postDataParams.put("device_id", dbHelper.getParameter("device_id"));
+                postDataParams.put("device_type", dbHelper.getParameter("device_type"));
+                postDataParams.put("device_version", dbHelper.getParameter("device_version"));
+                postDataParams.put("app_version", dbHelper.getParameter("app_version"));
+
                 response = wso.MakePostCall("Users/authenticate", postDataParams.toString(), null);
             }catch (JSONException e) {
                 logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage().toString());
@@ -120,14 +133,16 @@ public class BootActivity extends AppCompatActivity {
                 btn_signin.setText("Sign In");
                 if(result.getInt("responseCode") == 200) {
                     JSONObject userprofile = new JSONObject(result.getString("response"));
-                    dbHelper.setParameter("user_id", userprofile.getString("id"));
+                    dbHelper.setParameter("user_id", userprofile.getString("userId"));
+                    dbHelper.setParameter("signin_id", userprofile.getString("signinId"));
                     dbHelper.setParameter("phone", userprofile.getString("phone"));
                     dbHelper.setParameter("first_name", userprofile.getString("firstName"));
                     dbHelper.setParameter("last_name", userprofile.getString("lastName"));
+                    dbHelper.setParameter("email", userprofile.getString("email"));
                     dbHelper.setParameter("user_type", userprofile.getString("userType"));
                     dbHelper.setParameter("token", "bearer "+userprofile.getString("token"));
-                    logSignInDetails();
-                    //goToHomePage();
+                    //logSignInDetails();
+                    goToHomePage();
                 }
                 else {
                     tv_error.setText(result.getString("response"));
@@ -147,7 +162,7 @@ public class BootActivity extends AppCompatActivity {
         }
     }
 
-    public class callLogSignInDataAPI extends AsyncTask<JSONObject, Void, JSONObject>{
+    /*public class callLogSignInDataAPI extends AsyncTask<JSONObject, Void, JSONObject>{
 
         @Override
         protected void onPreExecute(){
@@ -186,23 +201,33 @@ public class BootActivity extends AppCompatActivity {
 
     public void logSignInDetails(){
         try{
-            Location loc = locationHelper.getLocation();
             String user_id = dbHelper.getParameter("user_id");
+            Location loc = null;
             JSONObject signindata = new JSONObject();
+            signindata.put("latitude", "00.000000000");
+            signindata.put("longitude", "00.000000000");
+
+            if(locationHelper != null) {
+                loc = locationHelper.getLocation();
+                signindata.put("latitude", loc.getLatitude());
+                signindata.put("longitude", loc.getLongitude());
+            }
+
+
             signindata.put("user_id", user_id);
             signindata.put("device_id", dbHelper.getParameter("device_id"));
             signindata.put("device_type", dbHelper.getParameter("device_type"));
             signindata.put("device_version", dbHelper.getParameter("device_version"));
             signindata.put("app_version", dbHelper.getParameter("app_version"));
-            signindata.put("latitude", loc.getLatitude());
-            signindata.put("longitude", loc.getLongitude());
+            *//*signindata.put("latitude", loc.getLatitude());
+            signindata.put("longitude", loc.getLongitude());*//*
             new callLogSignInDataAPI().execute(signindata);
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
             //incase the login details are not captured, still go to home page
             goToHomePage();
         }
-    }
+    }*/
 
     public void goToHomePage()
     {

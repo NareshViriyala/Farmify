@@ -38,6 +38,8 @@ public class LogErrors {
             String user_id_str = dbHeler.getParameter("user_id");
             String signin_id_str = dbHeler.getParameter("signin_id");
             token = dbHeler.getParameter("token");
+            if(token.isEmpty() || token == null)
+                return;
             if(!user_id_str.isEmpty())
                 user_id = Integer.parseInt(user_id_str);
             if(!signin_id_str.isEmpty())

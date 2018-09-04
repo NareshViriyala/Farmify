@@ -12,6 +12,9 @@ using System;
 using webapi.Entities;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Data.SqlClient;
+using System.Data;
+using Newtonsoft.Json;
 
 namespace webapi.Controllers
 {
@@ -56,10 +59,28 @@ namespace webapi.Controllers
 
                 var token = tokenHandler.CreateToken(tokenDescriptor);
                 var tokenString = tokenHandler.WriteToken(token);
+                int signinId = 0;
+                userDto.Id = user.Id;
+                
+                using(var sqlConnection = new SqlConnection(_appSettings.ConnectionString))
+                {
+                    using(var sqlCommand = new SqlCommand("dbo.usp_logsignin_details",sqlConnection))
+                    {
+                        sqlCommand.CommandType = CommandType.StoredProcedure;
+                        sqlCommand.Parameters.Add("@json",SqlDbType.NVarChar, -1).Value = JsonConvert.SerializeObject(userDto);
+                        sqlCommand.Parameters.Add("@output", SqlDbType.Int);
+                        sqlCommand.Parameters["@output"].Direction = ParameterDirection.Output;
+                        sqlConnection.Open();
+                        sqlCommand.ExecuteReader();
+                        sqlConnection.Close();
+                        signinId = Int32.Parse(sqlCommand.Parameters["@output"].Value.ToString());
+                    }
+                }
 
                 //return basic user info (without password) and token to store client side
                 return Ok(new {
-                    Id = user.Id,
+                    UserId = user.Id,
+                    SigninId = signinId,
                     Phone = user.Phone,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
