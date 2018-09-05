@@ -4,6 +4,22 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="openDrawer">open_drawer</string>
     <string name="closeDrawer">close_drawer</string>
+    <string name="Individual">FarmerIndividualData</string>
+    <string name="IndividualStatus">FarmerIndividualData_Status</string>
+    <string name="Bank">BankData</string>
+    <string name="BankStatus">BankData_Status</string>
+    <string name="Social">SocialData</string>
+    <string name="SocialStatus">SocialData_Status</string>
+    <string name="Agronomic">AgronomicData</string>
+    <string name="AgronomicStatus">AgronomicData_Status</string>
+    <string name="Commerce">CommerceData</string>
+    <string name="CommerceStatus">CommerceData_Status</string>
+    <string name="Dealer">DealerData</string>
+    <string name="DealerStatus">DealerData_Status</string>
+    <string name="PesticideSO">PesticideSOData</string>
+    <string name="PesticideSOStatus">PesticideSOData_Status</string>
+
+
     <string-array name="nav_item_activity_titles">
         <item>Home</item>
         <item>My Farms</item>

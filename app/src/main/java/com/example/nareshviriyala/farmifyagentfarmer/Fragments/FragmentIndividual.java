@@ -54,7 +54,6 @@ public class FragmentIndividual extends Fragment implements View.OnClickListener
     private JSONObject farmerIdvData;
     private TextView tv_aadhar, tv_phone;
     private DatabaseHelper dbHelper;
-    private static String FARMER_INDIVIDUAL_DATA = "FarmerIndividualData";
 
     public FragmentIndividual(){}
 
@@ -71,7 +70,7 @@ public class FragmentIndividual extends Fragment implements View.OnClickListener
             logErrors = LogErrors.getInstance(getActivity());
             className = new Object(){}.getClass().getEnclosingClass().getName();
             dbHelper = new DatabaseHelper(getActivity());
-            String data = dbHelper.getParameter(FARMER_INDIVIDUAL_DATA);
+            String data = dbHelper.getParameter(getString(R.string.Individual));
             if(data.isEmpty() || data == null)
                 farmerIdvData = new JSONObject();
             else
@@ -312,7 +311,7 @@ public class FragmentIndividual extends Fragment implements View.OnClickListener
                         farmerIdvData.put("Pincode", input_pincode.getText().toString().trim());
                         break;
                 }
-                dbHelper.setParameter(FARMER_INDIVIDUAL_DATA, farmerIdvData.toString());
+                dbHelper.setParameter(getString(R.string.Individual), farmerIdvData.toString());
             }catch (Exception ex){
                 logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage());
             }
@@ -342,7 +341,7 @@ public class FragmentIndividual extends Fragment implements View.OnClickListener
                     input_age.setText(sday + "/" + smonth+ "/" + String.valueOf(year));
                     try {
                         farmerIdvData.put("DOB", input_age.getText().toString().trim());
-                        dbHelper.setParameter(FARMER_INDIVIDUAL_DATA, farmerIdvData.toString());
+                        dbHelper.setParameter(getString(R.string.Individual), farmerIdvData.toString());
                     } catch (JSONException e) {
                         logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());
                     }
@@ -514,9 +513,40 @@ public class FragmentIndividual extends Fragment implements View.OnClickListener
 
     private void validateIndividualData(){
         try{
-            if(!farmerIdvData.has("Cast"))
+            dbHelper.setParameter(getString(R.string.Individual), farmerIdvData.toString());
+            dbHelper.setParameter(getString(R.string.IndividualStatus), "3");
+            if(!farmerIdvData.has("Aadhar") && !farmerIdvData.has("Phone")) {
+                dbHelper.setParameter(getString(R.string.IndividualStatus), "0");
+            }else if(!farmerIdvData.has("FirstName") || farmerIdvData.getString("FirstName").equalsIgnoreCase("")
+                    || !farmerIdvData.has("DOB") || farmerIdvData.getString("DOB").equalsIgnoreCase("")
+                    || !farmerIdvData.has("Cast") || farmerIdvData.getString("Cast").equalsIgnoreCase("")
+                    || !farmerIdvData.has("Gender") || farmerIdvData.getString("Gender").equalsIgnoreCase("")
+                    || !farmerIdvData.has("FarmerType") || farmerIdvData.getString("FarmerType").equalsIgnoreCase("")
+                    || !farmerIdvData.has("FarmType") || farmerIdvData.getString("FarmType").equalsIgnoreCase("")
+                    || !farmerIdvData.has("Address1") || farmerIdvData.getString("Address1").equalsIgnoreCase("")
+                    || !farmerIdvData.has("State") || farmerIdvData.getString("State").equalsIgnoreCase("")
+                    || !farmerIdvData.has("District") || farmerIdvData.getString("District").equalsIgnoreCase("")
+                    || !farmerIdvData.has("Pincode") || farmerIdvData.getString("Pincode").equalsIgnoreCase("")){
+                dbHelper.setParameter(getString(R.string.IndividualStatus), "1");
+            }else if(!farmerIdvData.has("LastName") || farmerIdvData.getString("LastName").equalsIgnoreCase("")
+                    || !farmerIdvData.has("Surname") || farmerIdvData.getString("Surname").equalsIgnoreCase("")
+                    || !farmerIdvData.has("Address2") || farmerIdvData.getString("Address2").equalsIgnoreCase("")
+                    || !farmerIdvData.has("VillageTown") || farmerIdvData.getString("VillageTown").equalsIgnoreCase("")){
+                dbHelper.setParameter(getString(R.string.IndividualStatus), "2");
+            }
+            goBack();
+        }catch (Exception ex){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage());
+        }
+    }
+
+    public void goBack(){
+        try{
+            if ( getFragmentManager().getBackStackEntryCount() > 0)
+            {
+                getFragmentManager().popBackStack();
                 return;
-            dbHelper.setParameter(FARMER_INDIVIDUAL_DATA, farmerIdvData.toString());
+            }
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage());
         }
@@ -538,11 +568,12 @@ public class FragmentIndividual extends Fragment implements View.OnClickListener
                     break;
                 case R.id.btn_sendotp:
                     verifyOtp();
+                    break;
                 case R.id.btn_individualdatasave:
                     InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
                     validateIndividualData();
-
+                    break;
                 //cast radio button group
                 case R.id.rb_cast_general:
                     if (checked)
@@ -605,7 +636,7 @@ public class FragmentIndividual extends Fragment implements View.OnClickListener
                 default:
                     break;
             }
-            dbHelper.setParameter(FARMER_INDIVIDUAL_DATA, farmerIdvData.toString());
+            dbHelper.setParameter(getString(R.string.Individual), farmerIdvData.toString());
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }

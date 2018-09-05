@@ -5,22 +5,6 @@
     android:orientation="vertical"
     tools:context=".Fragments.FragmentSocial">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/input_layout_aadharnumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:background="@color/white">
-
-        <EditText
-            android:id="@+id/input_aadharnumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Aadhar Number"
-            android:inputType="number" />
-    </android.support.design.widget.TextInputLayout>
-
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,27 +13,69 @@
         android:paddingLeft="8dp"
         android:text="Social medial presence" />
 
-    <RadioGroup
-        android:id="@+id/rg_socialmedia"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
+        android:paddingBottom="5dp"
         android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/rb_facebook"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Facebook" />
+            android:orientation="vertical">
+            <CheckBox
+                android:id="@+id/chk_facebook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Facebook" />
 
-        <RadioButton
-            android:id="@+id/rb_whatsapp"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_facebookid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:background="@color/white">
+
+                <EditText
+                    android:id="@+id/input_facebookid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Facebook ID"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Whatsapp" />
-    </RadioGroup>
+            android:orientation="vertical">
+            <CheckBox
+                android:id="@+id/chk_whatsapp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Whatsapp"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_whatsappnumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:background="@color/white">
+
+                <EditText
+                    android:id="@+id/input_whatsappnumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Whatsapp Number"
+                    android:inputType="number" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+    </LinearLayout>
 
 
     <TextView
@@ -81,14 +107,14 @@
             android:text="Hindi"/>
 
         <CheckBox
-            android:id="@+id/chk_english"
+            android:id="@+id/chk_lanenglish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="English" />
 
         <CheckBox
-            android:id="@+id/chk_other"
+            android:id="@+id/chk_lanother"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -140,6 +166,7 @@
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/input_layout_srcother"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white">
@@ -182,16 +209,25 @@
             android:inputType="text" />
     </android.support.design.widget.TextInputLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_farmerreferences"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
     <View
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"/>
 
     <Button
-        android:id="@+id/btn_save"
+        android:id="@+id/btn_socialdatasave"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:layout_gravity="bottom"
         android:background="@color/colorPrimary"
         android:text="Save"
         android:textColor="@android:color/white" />
