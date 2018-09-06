@@ -3,11 +3,23 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="10dp"
+    android:layout_margin="10dp"
+    android:background="@drawable/layout_tile_background"
     android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="Credit Information"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="@color/white"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <android.support.design.widget.TextInputLayout
@@ -45,14 +57,146 @@
             </android.support.design.widget.TextInputLayout>
 
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:src="@drawable/baseline_calendar_today_black_24dp"
                 android:tint="@color/colorPrimary"
                 android:id="@+id/img_credittakencalendar"
                 android:layout_marginEnd="10dp"
                 android:layout_alignParentEnd="true"/>
         </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_creditamount"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/input_creditamount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Credit amount"
+                android:inputType="number"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_creditinterest"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/input_creditinterest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Interest per annum"
+                android:inputType="number"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                android:paddingLeft="8dp"
+                android:text="Status of credit:" />
+
+            <!--credit status radio group  fullpaid, pending-->
+            <RadioGroup
+                android:id="@+id/rg_creditstatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_creditpaidfull"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:layout_weight="1"
+                    android:text="Full paid" />
+
+                <RadioButton
+                    android:id="@+id/rb_creditpending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Pending" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_creditpending"
+            android:layout_weight="1"
+            android:layout_gravity="bottom"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/input_creditpending"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Pending amount"
+                android:inputType="number"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_creditsave"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:background="@color/colorPrimary"
+            android:text="Save"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btn_creditcancel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:text="Cancel"
+            android:textColor="@android:color/white" />
+
     </LinearLayout>
 
 </LinearLayout>

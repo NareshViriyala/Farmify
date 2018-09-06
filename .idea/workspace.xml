@@ -10,7 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f7f5dc4-f0f7-47cc-a345-10010909c04f" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_farmer_credit.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Adapters/AdapterCreditInformation.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Dialogs/DialogAddCreditItem.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Models/ModelCreditInformation.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/listitem_creditinformation.xml" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" />
@@ -20,16 +23,15 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Activities/BootActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Activities/BootActivity.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentAddFarm.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentAddFarm.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentBank.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentBank.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentIndividual.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentIndividual.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentSocial.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentSocial.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_agronomics.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_agronomics.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Activities/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Activities/Delete_MainActivity.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/DatePickerFragment.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentCommerce.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentCommerce.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/delete_activity_main.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_farmer_credit.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_farmer_credit.xml" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_bank.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_bank.xml" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_commerce.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_commerce.xml" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_social.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_social.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,36 +55,30 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FragmentAddFarm.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentAddFarm.java">
+      <file leaf-file-name="AdapterCreditInformation.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Adapters/AdapterCreditInformation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1173">
-              <caret line="32" column="13" lean-forward="false" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+            <state relative-caret-position="864">
+              <caret line="137" column="129" lean-forward="false" selection-start-line="137" selection-start-column="129" selection-end-line="137" selection-end-column="129" />
               <folding>
-                <element signature="e#3257#3289#0" expanded="true" />
-                <element signature="e#3614#3649#0" expanded="true" />
-                <element signature="e#3975#4009#0" expanded="true" />
-                <element signature="e#4330#4362#0" expanded="true" />
-                <element signature="e#4698#4735#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="method#getView#0;class#AdapterCreditInformation#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fragment_social.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_social.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
+      <file leaf-file-name="FragmentCommerce.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentCommerce.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="166" column="4" lean-forward="true" selection-start-line="166" selection-start-column="4" selection-end-line="179" selection-end-column="52" />
+            <state relative-caret-position="-205">
+              <caret line="80" column="67" lean-forward="false" selection-start-line="80" selection-start-column="67" selection-end-line="80" selection-end-column="67" />
               <folding>
-                <element signature="e#292#554#0" expanded="false" />
-                <element signature="e#791#1934#0" expanded="false" />
-                <element signature="e#1944#3099#0" expanded="false" />
-                <element signature="e#3126#3382#0" expanded="false" />
-                <element signature="e#4572#4833#0" expanded="false" />
+                <element signature="method#refreshCreditListView#0;class#FragmentCommerce#0" expanded="false" />
+                <element signature="method#onClick#0;class#FragmentCommerce#0" expanded="false" />
+                <element signature="method#modifyFarmExpenseArray#0;class#FragmentCommerce#0" expanded="false" />
+                <element signature="e#10930#10931#0" expanded="true" />
+                <element signature="e#10970#10971#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -91,66 +87,59 @@
       <file leaf-file-name="FragmentSocial.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentSocial.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2754">
-              <caret line="329" column="39" lean-forward="false" selection-start-line="329" selection-start-column="39" selection-end-line="329" selection-end-column="39" />
+            <state relative-caret-position="565">
+              <caret line="130" column="13" lean-forward="false" selection-start-line="111" selection-start-column="12" selection-end-line="130" selection-end-column="13" />
               <folding>
-                <element signature="e#2020#2046#0" expanded="true" />
-                <element signature="e#9120#9146#0" expanded="true" />
-                <element signature="e#9417#9443#0" expanded="true" />
-                <element signature="e#9735#9761#0" expanded="true" />
-                <element signature="e#10024#10050#0" expanded="true" />
-                <element signature="e#10304#10330#0" expanded="true" />
-                <element signature="e#14531#14557#0" expanded="true" />
-                <element signature="e#15795#15821#0" expanded="true" />
-                <element signature="e#17752#17778#0" expanded="true" />
-                <element signature="e#18072#18098#0" expanded="true" />
-                <element signature="e#18164#18196#0" expanded="true" />
-                <element signature="e#19254#19286#0" expanded="true" />
+                <element signature="class#MyTextWatcher#0;class#FragmentSocial#0" expanded="false" />
                 <element signature="method#goBack#0;class#FragmentSocial#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fragment_individual.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_individual.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
+      <file leaf-file-name="DialogAddCreditItem.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Dialogs/DialogAddCreditItem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="254" column="20" lean-forward="false" selection-start-line="254" selection-start-column="20" selection-end-line="282" selection-end-column="37" />
+            <state relative-caret-position="2951">
+              <caret line="204" column="42" lean-forward="false" selection-start-line="204" selection-start-column="42" selection-end-line="204" selection-end-column="42" />
               <folding>
-                <element signature="e#848#6714#0" expanded="false" />
-                <element signature="e#4257#6685#0" expanded="false" />
-                <element signature="e#6782#8020#0" expanded="false" />
-                <element signature="e#8410#10285#0" expanded="false" />
-                <element signature="e#12976#15617#0" expanded="false" />
-                <element signature="e#15711#16073#0" expanded="false" />
-                <element signature="e#16169#18010#0" expanded="false" />
-                <element signature="e#18091#18455#0" expanded="false" />
-                <element signature="e#18539#19457#0" expanded="false" />
-                <element signature="e#19546#19919#0" expanded="false" />
-                <element signature="e#20010#21248#0" expanded="false" />
-                <element signature="e#21340#21721#0" expanded="false" />
-                <element signature="e#21815#23065#0" expanded="false" />
-                <element signature="e#23132#23788#0" expanded="false" />
-                <element signature="e#23855#24511#0" expanded="false" />
-                <element signature="e#24569#26257#0" expanded="false" />
-                <element signature="e#28760#29160#0" expanded="false" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#2343#2379#0" expanded="true" />
+                <element signature="e#10400#10436#0" expanded="true" />
+                <element signature="method#requestFocus#0;class#DialogAddCreditItem#0" expanded="false" />
+                <element signature="method#openCalendar#0;class#DialogAddCreditItem#0" expanded="false" />
+                <element signature="e#11252#12096#0" expanded="true" />
+                <element signature="e#12095#12096#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dialog_farmer_credit.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_farmer_credit.xml">
+      <file leaf-file-name="fragment_commerce.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_commerce.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="167" column="39" lean-forward="false" selection-start-line="167" selection-start-column="39" selection-end-line="167" selection-end-column="39" />
+              <folding>
+                <element signature="e#425#1839#0" expanded="false" />
+                <element signature="e#1202#1819#0" expanded="false" />
+                <element signature="e#1845#2107#0" expanded="false" />
+                <element signature="e#2113#3071#0" expanded="false" />
+                <element signature="e#3077#3629#0" expanded="false" />
+                <element signature="e#3635#6133#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
           <provider editor-type-id="android-designer2">
             <state />
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModelCreditInformation.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Models/ModelCreditInformation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="46" column="22" lean-forward="true" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
+            <state relative-caret-position="442">
+              <caret line="33" column="24" lean-forward="false" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -161,9 +150,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="resourceFile" />
         <option value="layoutResourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -2202,11 +2191,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/ham_bar_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/menu/ham_body_list.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/menu/notifications.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/menu/main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/bg_circle.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/menu_dot.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/HomeActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
@@ -2241,18 +2225,23 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Helpers/Validations.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Helpers/LogErrors.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_individual.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Activities/BootActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentIndividual.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_bank.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentAddFarm.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentBank.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_social.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentSocial.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_agronomics.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_commerce.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_social.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_farmer_credit.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Models/ModelCreditInformation.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_bank.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Dialogs/DialogAddCreditItem.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Adapters/AdapterCreditInformation.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentCommerce.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/listitem_creditinformation.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_commerce.xml" />
       </list>
     </option>
   </component>
@@ -2281,15 +2270,19 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="ProjectPane" />
       <pane id="Scope" />
-      <pane id="Scratches" />
+      <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
             <path>
               <item name="Farmify" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="Farmify" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="manifests" type="f94875db:AndroidManifestsGroupNode" />
             </path>
             <path>
               <item name="Farmify" type="1abcf292:AndroidViewProjectNode" />
@@ -2314,6 +2307,20 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="farmifyagentfarmer" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="Adapters" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Farmify" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="farmifyagentfarmer" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="Dialogs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Farmify" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="farmifyagentfarmer" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="Fragments" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -2322,6 +2329,13 @@
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="farmifyagentfarmer" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="Helpers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Farmify" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="farmifyagentfarmer" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="Models" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Farmify" type="1abcf292:AndroidViewProjectNode" />
@@ -2336,26 +2350,21 @@
             </path>
             <path>
               <item name="Farmify" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="Farmify" type="1abcf292:AndroidViewProjectNode" />
               <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/GitHubDesktop/app-1.3.3/resources/app/git/mingw64/bin/git.exe" />
-    <property name="sync.plugin.last.upgrade.timestamp" value="1536079181996" />
-    <property name="device.picker.selection" value="192.168.0.108:5555" />
+    <property name="sync.plugin.last.upgrade.timestamp" value="1536211990401" />
+    <property name="device.picker.selection" value="dbcdbcf8" />
     <property name="android.profiler.active" value="true" />
   </component>
   <component name="RecentsManager">
@@ -2558,11 +2567,11 @@
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45503357" sideWeight="0.5025707" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3714653" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3714653" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291866" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885906" sideWeight="0.49573562" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.52057415" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.51946306" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2589,82 +2598,23 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="144" />
+      <option name="time" value="179" />
     </breakpoint-manager>
-    <watches-manager />
+    <watches-manager>
+      <configuration name="app">
+        <watch expression="farmercommerceData" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="32" lean-forward="false" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Adapters/AdapterFarmerData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="892">
-          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2550">
-          <caret line="150" column="46" lean-forward="false" selection-start-line="150" selection-start-column="37" selection-end-line="150" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Helpers/PermissionUtils.java" />
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/app/ActivityThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1073">
-          <caret line="2908" column="0" lean-forward="false" selection-start-line="2908" selection-start-column="0" selection-end-line="2908" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/os/AsyncTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="332" column="0" lean-forward="false" selection-start-line="332" selection-start-column="0" selection-end-line="332" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/database/sqlite/SQLiteOpenHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="346" column="41" lean-forward="true" selection-start-line="346" selection-start-column="41" selection-end-line="346" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Helpers/GlobalVariables.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="6" lean-forward="false" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_addfarm.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="73" lean-forward="false" selection-start-line="0" selection-start-column="73" selection-end-line="0" selection-end-column="73" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/listitem_farmerdata.xml">
       <provider editor-type-id="android-designer2">
         <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="22" column="46" lean-forward="false" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="46" />
-        </state>
       </provider>
     </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0-rc02.aar/8c56cefc2cc1fb6bf4755dabaa776085/jars/classes.jar!/android/support/v4/app/FragmentActivity.class">
@@ -2702,37 +2652,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/app_bar_main.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="17" column="35" lean-forward="false" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0-rc02.aar/a8fb11eef744f5d18fe1293ecc5f6d2a/jars/classes.jar!/android/support/v7/app/AppCompatActivity.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="239">
           <caret line="156" column="16" lean-forward="false" selection-start-line="156" selection-start-column="16" selection-end-line="156" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="49" lean-forward="false" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/DatePickerFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="5" lean-forward="false" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -2747,14 +2670,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Activities/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -2795,20 +2710,19 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/layout_tile_background.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="38" lean-forward="false" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/widget/TextView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="9396" column="0" lean-forward="false" selection-start-line="9396" selection-start-column="0" selection-end-line="9396" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2816,55 +2730,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="18" column="42" lean-forward="true" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_boot.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="35" lean-forward="false" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Activities/HomeActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="48" column="39" lean-forward="false" selection-start-line="48" selection-start-column="39" selection-end-line="48" selection-end-column="39" />
-          <folding />
-        </state>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Activities/BootActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="269">
           <caret line="218" column="9" lean-forward="false" selection-start-line="218" selection-start-column="9" selection-end-line="218" selection-end-column="9" />
-          <folding>
-            <element signature="method#validatePassword#0;class#BootActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Helpers/Validations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="779">
-          <caret line="74" column="9" lean-forward="false" selection-start-line="74" selection-start-column="9" selection-end-line="74" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2872,7 +2754,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2880,18 +2761,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_bank.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="70" column="38" lean-forward="false" selection-start-line="70" selection-start-column="29" selection-end-line="70" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2899,7 +2768,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3621">
           <caret line="242" column="4" lean-forward="false" selection-start-line="242" selection-start-column="4" selection-end-line="245" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2907,140 +2775,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="59" lean-forward="false" selection-start-line="19" selection-start-column="59" selection-end-line="19" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentCommerce.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentIndividual.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="159" column="4" lean-forward="false" selection-start-line="159" selection-start-column="4" selection-end-line="262" selection-end-column="5" />
-          <folding>
-            <element signature="class#MyTextWatcher#0;class#FragmentIndividual#0" expanded="false" />
-            <element signature="e#13348#13349#0" expanded="false" />
-            <element signature="e#13388#13389#0" expanded="false" />
-            <element signature="method#openCalendar#0;class#FragmentIndividual#0" expanded="false" />
-            <element signature="method#verifyAadharAndPhone#0;class#FragmentIndividual#0" expanded="false" />
-            <element signature="class#callVerifyAadharAndPhone#0;class#FragmentIndividual#0" expanded="false" />
-            <element signature="method#validatePhone#0;class#FragmentIndividual#0" expanded="false" />
-            <element signature="method#validateAadhar#0;class#FragmentIndividual#0" expanded="false" />
-            <element signature="method#verifyOtp#0;class#FragmentIndividual#0" expanded="false" />
-            <element signature="class#callVerifyOtp#0;class#FragmentIndividual#0" expanded="false" />
-            <element signature="method#requestFocus#0;class#FragmentIndividual#0" expanded="false" />
-            <element signature="e#24603#24633#0" expanded="false" />
-            <element signature="e#24696#24732#0" expanded="false" />
-            <element signature="e#26054#26090#0" expanded="false" />
-            <element signature="method#goBack#0;class#FragmentIndividual#0" expanded="false" />
-            <element signature="method#onClick#0;class#FragmentIndividual#0" expanded="false" />
-            <element signature="e#30500#30530#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/view/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="6366" column="0" lean-forward="false" selection-start-line="6366" selection-start-column="0" selection-end-line="6366" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentBank.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="97" column="83" lean-forward="false" selection-start-line="96" selection-start-column="12" selection-end-line="97" selection-end-column="83" />
-          <folding>
-            <element signature="e#2226#2250#0" expanded="false" />
-            <element signature="e#6879#6880#0" expanded="false" />
-            <element signature="e#6919#6920#0" expanded="false" />
-            <element signature="e#7416#7440#0" expanded="false" />
-            <element signature="e#7708#7732#0" expanded="false" />
-            <element signature="e#8021#8045#0" expanded="false" />
-            <element signature="e#8298#8322#0" expanded="false" />
-            <element signature="e#8581#8605#0" expanded="false" />
-            <element signature="e#8846#8870#0" expanded="false" />
-            <element signature="e#9123#9147#0" expanded="false" />
-            <element signature="e#9391#9415#0" expanded="false" />
-            <element signature="e#10462#10486#0" expanded="false" />
-            <element signature="e#10754#10778#0" expanded="false" />
-            <element signature="e#11042#11066#0" expanded="false" />
-            <element signature="e#11472#11496#0" expanded="false" />
-            <element signature="e#11560#11590#0" expanded="false" />
-            <element signature="e#12298#12328#0" expanded="false" />
-            <element signature="e#12832#12862#0" expanded="false" />
-            <element signature="method#goBack#0;class#FragmentBank#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentAddFarm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1173">
-          <caret line="32" column="13" lean-forward="false" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-          <folding>
-            <element signature="e#3257#3289#0" expanded="true" />
-            <element signature="e#3614#3649#0" expanded="true" />
-            <element signature="e#3975#4009#0" expanded="true" />
-            <element signature="e#4330#4362#0" expanded="true" />
-            <element signature="e#4698#4735#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_agronomics.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
           <caret line="59" column="43" lean-forward="true" selection-start-line="59" selection-start-column="43" selection-end-line="59" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_social.xml">
       <provider editor-type-id="android-designer2">
         <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="166" column="4" lean-forward="true" selection-start-line="166" selection-start-column="4" selection-end-line="179" selection-end-column="52" />
-          <folding>
-            <element signature="e#292#554#0" expanded="false" />
-            <element signature="e#791#1934#0" expanded="false" />
-            <element signature="e#1944#3099#0" expanded="false" />
-            <element signature="e#3126#3382#0" expanded="false" />
-            <element signature="e#4572#4833#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_commerce.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="91" column="39" lean-forward="true" selection-start-line="91" selection-start-column="39" selection-end-line="91" selection-end-column="39" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_individual.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="254" column="20" lean-forward="false" selection-start-line="254" selection-start-column="20" selection-end-line="282" selection-end-column="37" />
+        <state relative-caret-position="51">
+          <caret line="402" column="16" lean-forward="false" selection-start-line="402" selection-start-column="16" selection-end-line="432" selection-end-column="29" />
           <folding>
             <element signature="e#848#6714#0" expanded="false" />
             <element signature="e#4257#6685#0" expanded="false" />
@@ -3048,9 +2799,7 @@
             <element signature="e#8410#10285#0" expanded="false" />
             <element signature="e#12976#15617#0" expanded="false" />
             <element signature="e#15711#16073#0" expanded="false" />
-            <element signature="e#16169#18010#0" expanded="false" />
             <element signature="e#18091#18455#0" expanded="false" />
-            <element signature="e#18539#19457#0" expanded="false" />
             <element signature="e#19546#19919#0" expanded="false" />
             <element signature="e#20010#21248#0" expanded="false" />
             <element signature="e#21340#21721#0" expanded="false" />
@@ -3062,37 +2811,282 @@
           </folding>
         </state>
       </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="49" lean-forward="false" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/app_bar_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="29" column="4" lean-forward="false" selection-start-line="29" selection-start-column="4" selection-end-line="36" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Activities/HomeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-459">
+          <caret line="41" column="36" lean-forward="false" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0-rc02.aar/8c56cefc2cc1fb6bf4755dabaa776085/jars/classes.jar!/android/support/v4/app/FragmentManagerImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="545">
+          <caret line="1598" column="0" lean-forward="false" selection-start-line="1598" selection-start-column="0" selection-end-line="1598" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="580">
+          <caret line="39" column="28" lean-forward="false" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/DatePickerFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_social.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="219" column="19" lean-forward="true" selection-start-line="219" selection-start-column="19" selection-end-line="219" selection-end-column="19" />
+          <folding>
+            <element signature="e#367#629#0" expanded="false" />
+            <element signature="e#866#2009#0" expanded="false" />
+            <element signature="e#2019#3174#0" expanded="false" />
+            <element signature="e#3201#3457#0" expanded="false" />
+            <element signature="e#4647#4908#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Helpers/Validations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="64" column="9" lean-forward="false" selection-start-line="60" selection-start-column="8" selection-end-line="64" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Models/FarmerData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="4" lean-forward="false" selection-start-line="16" selection-start-column="4" selection-end-line="18" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Activities/Delete_MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/delete_activity_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Adapters/AdapterFarmerData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-71">
+          <caret line="22" column="72" lean-forward="false" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/listitem_farmerdata.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="51" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentBank.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1258">
+          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_bank.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="206" column="15" lean-forward="true" selection-start-line="206" selection-start-column="15" selection-end-line="206" selection-end-column="15" />
+          <folding>
+            <element signature="e#290#7247#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_farmer_credit.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="36" lean-forward="false" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentAddFarm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-493">
+          <caret line="58" column="69" lean-forward="false" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentIndividual.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="569" column="32" lean-forward="true" selection-start-line="569" selection-start-column="32" selection-end-line="569" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Models/ModelCreditInformation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="33" column="24" lean-forward="false" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/view/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="67">
+          <caret line="6402" column="16" lean-forward="false" selection-start-line="6402" selection-start-column="16" selection-end-line="6402" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Dialogs/DialogAddCreditItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2951">
+          <caret line="204" column="42" lean-forward="false" selection-start-line="204" selection-start-column="42" selection-end-line="204" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2343#2379#0" expanded="true" />
+            <element signature="e#10400#10436#0" expanded="true" />
+            <element signature="method#requestFocus#0;class#DialogAddCreditItem#0" expanded="false" />
+            <element signature="method#openCalendar#0;class#DialogAddCreditItem#0" expanded="false" />
+            <element signature="e#11252#12096#0" expanded="true" />
+            <element signature="e#12095#12096#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Adapters/AdapterCreditInformation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="864">
+          <caret line="137" column="129" lean-forward="false" selection-start-line="137" selection-start-column="129" selection-end-line="137" selection-end-column="129" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getView#0;class#AdapterCreditInformation#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/listitem_creditinformation.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="18" column="36" lean-forward="false" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+          <folding>
+            <element signature="e#2339#3133#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentSocial.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2754">
-          <caret line="329" column="39" lean-forward="false" selection-start-line="329" selection-start-column="39" selection-end-line="329" selection-end-column="39" />
+        <state relative-caret-position="565">
+          <caret line="130" column="13" lean-forward="false" selection-start-line="111" selection-start-column="12" selection-end-line="130" selection-end-column="13" />
           <folding>
-            <element signature="e#2020#2046#0" expanded="true" />
-            <element signature="e#9120#9146#0" expanded="true" />
-            <element signature="e#9417#9443#0" expanded="true" />
-            <element signature="e#9735#9761#0" expanded="true" />
-            <element signature="e#10024#10050#0" expanded="true" />
-            <element signature="e#10304#10330#0" expanded="true" />
-            <element signature="e#14531#14557#0" expanded="true" />
-            <element signature="e#15795#15821#0" expanded="true" />
-            <element signature="e#17752#17778#0" expanded="true" />
-            <element signature="e#18072#18098#0" expanded="true" />
-            <element signature="e#18164#18196#0" expanded="true" />
-            <element signature="e#19254#19286#0" expanded="true" />
+            <element signature="class#MyTextWatcher#0;class#FragmentSocial#0" expanded="false" />
             <element signature="method#goBack#0;class#FragmentSocial#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_farmer_credit.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_commerce.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="167" column="39" lean-forward="false" selection-start-line="167" selection-start-column="39" selection-end-line="167" selection-end-column="39" />
+          <folding>
+            <element signature="e#425#1839#0" expanded="false" />
+            <element signature="e#1202#1819#0" expanded="false" />
+            <element signature="e#1845#2107#0" expanded="false" />
+            <element signature="e#2113#3071#0" expanded="false" />
+            <element signature="e#3077#3629#0" expanded="false" />
+            <element signature="e#3635#6133#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/nareshviriyala/farmifyagentfarmer/Fragments/FragmentCommerce.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="46" column="22" lean-forward="true" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
-          <folding />
+        <state relative-caret-position="-205">
+          <caret line="80" column="67" lean-forward="false" selection-start-line="80" selection-start-column="67" selection-end-line="80" selection-end-column="67" />
+          <folding>
+            <element signature="method#refreshCreditListView#0;class#FragmentCommerce#0" expanded="false" />
+            <element signature="method#onClick#0;class#FragmentCommerce#0" expanded="false" />
+            <element signature="method#modifyFarmExpenseArray#0;class#FragmentCommerce#0" expanded="false" />
+            <element signature="e#10930#10931#0" expanded="true" />
+            <element signature="e#10970#10971#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
