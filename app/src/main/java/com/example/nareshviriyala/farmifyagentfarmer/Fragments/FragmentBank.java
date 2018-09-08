@@ -242,8 +242,7 @@ public class FragmentBank extends Fragment implements View.OnClickListener {
                     || !farmerbankData.has("IFSC") || farmerbankData.getString("IFSC").equalsIgnoreCase("")
                     || !farmerbankData.has("AccountType") || farmerbankData.getString("AccountType").equalsIgnoreCase("")){
                 dbHelper.setParameter(getString(R.string.BankStatus), "1");
-            }else if(!farmerbankData.has("BranchNumber") || farmerbankData.getString("BranchNumber").equalsIgnoreCase("")
-                    || !farmerbankData.has("IFSC") || farmerbankData.getString("IFSC").equalsIgnoreCase("")
+            }else if(!farmerbankData.has("BranchName") || farmerbankData.getString("BranchName").equalsIgnoreCase("")
                     || !farmerbankData.has("District") || farmerbankData.getString("District").equalsIgnoreCase("")
                     || !farmerbankData.has("State") || farmerbankData.getString("State").equalsIgnoreCase("")){
                 dbHelper.setParameter(getString(R.string.BankStatus), "2");

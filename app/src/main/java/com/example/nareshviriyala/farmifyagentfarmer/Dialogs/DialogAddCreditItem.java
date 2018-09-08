@@ -31,13 +31,11 @@ import java.util.Calendar;
 public class DialogAddCreditItem extends Dialog implements View.OnClickListener{
 
     private LogErrors logErrors;
-    private DatabaseHelper dbHelper;
     private String className;
     private Context context;
     private EditText input_creditsrcname, input_creditdate, input_creditamount, input_creditinterest, input_creditpending, input;
     private TextInputLayout input_layout_creditpending, input_layout_creditsrcname, input_layout_creditdate, input_layout_creditamount, input_layout_creditinterest;
     private int day, month, year;
-    private JSONObject farmercommerceData;
     private RadioButton rb_creditpaidfull, rb_creditpending;
     private ModelCreditInformation item;
     private FragmentCommerce fragmentCommerce;
@@ -51,12 +49,6 @@ public class DialogAddCreditItem extends Dialog implements View.OnClickListener{
             this.fragmentCommerce = fragmentCommerce;
             className = new Object() {
             }.getClass().getEnclosingClass().getName();
-            dbHelper = new DatabaseHelper(context);
-            String data = dbHelper.getParameter(context.getString(R.string.Commerce));
-            if (data.isEmpty() || data == null)
-                farmercommerceData = new JSONObject();
-            else
-                farmercommerceData = new JSONObject(data);
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }
@@ -192,8 +184,8 @@ public class DialogAddCreditItem extends Dialog implements View.OnClickListener{
                 input_layout_creditpending.setErrorEnabled(false);
 
             JSONArray jlist;
-            if(farmercommerceData.has("CreditInformation"))
-                jlist = farmercommerceData.getJSONArray("CreditInformation");
+            if(fragmentCommerce.farmercommerceData.has("CreditInformation"))
+                jlist = fragmentCommerce.farmercommerceData.getJSONArray("CreditInformation");
             else
                 jlist = new JSONArray();
 
@@ -228,8 +220,7 @@ public class DialogAddCreditItem extends Dialog implements View.OnClickListener{
                 }
                 jlist = newlist;
             }
-            farmercommerceData.put("CreditInformation", jlist);
-            dbHelper.setParameter(context.getString(R.string.Commerce), farmercommerceData.toString());
+            fragmentCommerce.farmercommerceData.put("CreditInformation", jlist);
             fragmentCommerce.refreshCreditListView();
             dismiss();
         }catch (Exception ex){

@@ -2,6 +2,7 @@ package com.example.nareshviriyala.farmifyagentfarmer.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,15 +13,24 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.RadioButton;
 
 import com.example.nareshviriyala.farmifyagentfarmer.Activities.HomeActivity;
+import com.example.nareshviriyala.farmifyagentfarmer.Adapters.AdapterKeyValueCommerceInformation;
+import com.example.nareshviriyala.farmifyagentfarmer.Adapters.AdapterKeyValueSocialInformation;
+import com.example.nareshviriyala.farmifyagentfarmer.Dialogs.DialogAddKeyValueCommerceItem;
+import com.example.nareshviriyala.farmifyagentfarmer.Dialogs.DialogAddKeyValueSocialItem;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.Validations;
+import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelKeyValueInformation;
 import com.example.nareshviriyala.farmifyagentfarmer.R;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class FragmentSocial extends Fragment implements View.OnClickListener {
 
@@ -28,10 +38,13 @@ public class FragmentSocial extends Fragment implements View.OnClickListener {
     private LogErrors logErrors;
     private DatabaseHelper dbHelper;
     private String className;
-    private JSONObject farmersocialData;
+    public JSONObject farmersocialData;
     private Validations validations;
     private Button btn_socialdatasave;
     private EditText input_facebookid, input_whatsappnumber, input_srcother, input_rationcard, input_pancard;
+    private ListView lv_referencelist;
+    private FloatingActionButton fab_addreference;
+    private AdapterKeyValueSocialInformation adapterreferenceInformation;
 
     public FragmentSocial(){}
 
@@ -69,6 +82,14 @@ public class FragmentSocial extends Fragment implements View.OnClickListener {
             input_srcother.addTextChangedListener(new MyTextWatcher(input_srcother));
             input_rationcard.addTextChangedListener(new MyTextWatcher(input_rationcard));
             input_pancard.addTextChangedListener(new MyTextWatcher(input_pancard));
+
+            lv_referencelist = rootView.findViewById(R.id.lv_referencelist);
+
+            rootView.findViewById(R.id.rb_referencesyes).setOnClickListener(this);
+            rootView.findViewById(R.id.rb_referencesno).setOnClickListener(this);
+
+            fab_addreference = rootView.findViewById(R.id.fab_addreference);
+            fab_addreference.setOnClickListener(this);
 
             rootView.findViewById(R.id.chk_facebook).setOnClickListener(this);
             rootView.findViewById(R.id.chk_whatsapp).setOnClickListener(this);
@@ -165,8 +186,40 @@ public class FragmentSocial extends Fragment implements View.OnClickListener {
                     }
                 }
             }
-
+            refreshReferenceListView();
             }catch (Exception ex){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+        }
+    }
+
+    public void refreshReferenceListView(){
+        try{
+            if(!farmersocialData.has("ReferenceInformation")){
+                rootView.findViewById(R.id.ll_referencelist).setVisibility(View.GONE);
+                return;
+            }
+            ArrayList<ModelKeyValueInformation> referenceInformation = new ArrayList<>();
+            JSONArray referenceList = farmersocialData.getJSONArray("ReferenceInformation");
+            for(int i = 0; i < referenceList.length(); i++){
+                JSONObject item = referenceList.getJSONObject(i);
+                referenceInformation.add(new ModelKeyValueInformation(item.getInt("Id"), item.getString("Name"), item.getString("Phone")));
+            }
+            if(referenceInformation.size() > 0)
+                rootView.findViewById(R.id.ll_referencelist).setVisibility(View.VISIBLE);
+            else
+                rootView.findViewById(R.id.ll_referencelist).setVisibility(View.GONE);
+
+            if(adapterreferenceInformation == null) {
+                adapterreferenceInformation = new AdapterKeyValueSocialInformation(this.getContext(), referenceInformation, this, "ReferenceInformation", "Name", "Phone");
+                lv_referencelist.setAdapter(adapterreferenceInformation);
+            }else
+                adapterreferenceInformation.updateAssetList(referenceInformation);
+            dbHelper.setParameter(getString(R.string.Social),farmersocialData.toString());
+            if(getView() != null) {
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+            }
+        }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }
     }
@@ -218,6 +271,8 @@ public class FragmentSocial extends Fragment implements View.OnClickListener {
             boolean checked = false;
             if(v instanceof CheckBox)
                 checked = ((CheckBox) v).isChecked();
+            if(v instanceof RadioButton)
+                checked = ((RadioButton) v).isChecked();
 
             switch (v.getId()){
                 case R.id.chk_facebook:
@@ -261,6 +316,17 @@ public class FragmentSocial extends Fragment implements View.OnClickListener {
                         rootView.findViewById(R.id.input_layout_srcother).setVisibility(View.VISIBLE);
                     else
                         rootView.findViewById(R.id.input_layout_srcother).setVisibility(View.GONE);
+                    break;
+                case R.id.rb_referencesyes:
+                    if (checked)
+                        rootView.findViewById(R.id.ll_fabcontainer).setVisibility(View.VISIBLE);
+                    break;
+                case R.id.rb_referencesno:
+                    if (checked)
+                        rootView.findViewById(R.id.ll_fabcontainer).setVisibility(View.GONE);
+                    break;
+                case R.id.fab_addreference:
+                    new DialogAddKeyValueSocialItem(getActivity(), null, this, "ReferenceInformation", "Name", "Phone").show();
                     break;
                 case R.id.btn_socialdatasave:
                     InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);

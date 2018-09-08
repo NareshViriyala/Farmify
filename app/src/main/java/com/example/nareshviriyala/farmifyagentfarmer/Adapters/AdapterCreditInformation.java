@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
-import android.util.JsonReader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,8 +28,6 @@ import java.util.List;
 public class AdapterCreditInformation extends ArrayAdapter<ModelCreditInformation> implements View.OnClickListener{
     private Context context;
     private List<ModelCreditInformation> creditData;
-    private DatabaseHelper dbHelper;
-    private JSONObject farmercommerceData;
     private LogErrors logErrors;
     private String className;
     private FragmentCommerce fragmentCommerce;
@@ -41,16 +38,9 @@ public class AdapterCreditInformation extends ArrayAdapter<ModelCreditInformatio
             this.context = context;
             this.fragmentCommerce = fragmentCommerce;
             logErrors = LogErrors.getInstance(context);
-            dbHelper = new DatabaseHelper(context);
             className = new Object() {
             }.getClass().getEnclosingClass().getName();
             this.creditData = list;
-            String data = dbHelper.getParameter(context.getString(R.string.Commerce));
-            if (data.isEmpty() || data == null)
-                farmercommerceData = new JSONObject();
-            else
-                farmercommerceData = new JSONObject(data);
-
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }
@@ -135,15 +125,13 @@ public class AdapterCreditInformation extends ArrayAdapter<ModelCreditInformatio
                         public void onClick(DialogInterface dialog, int id) {
                             try {
                                 dialog.cancel();
-                                farmercommerceData = new JSONObject(dbHelper.getParameter(context.getString(R.string.Commerce)));
-                                JSONArray oldlist = farmercommerceData.getJSONArray("CreditInformation");
+                                JSONArray oldlist = fragmentCommerce.farmercommerceData.getJSONArray("CreditInformation");
                                 JSONArray newlist = new JSONArray();
                                 for (int i = 0; i < oldlist.length(); i++) {
                                     if (Id != oldlist.getJSONObject(i).getInt("Id"))
                                         newlist.put(oldlist.get(i));
                                 }
-                                farmercommerceData.put("CreditInformation", newlist);
-                                dbHelper.setParameter(context.getString(R.string.Commerce), farmercommerceData.toString());
+                                fragmentCommerce.farmercommerceData.put("CreditInformation", newlist);
                                 fragmentCommerce.refreshCreditListView();
 
                             }catch (Exception ex){

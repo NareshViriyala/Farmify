@@ -17,11 +17,14 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 
 import com.example.nareshviriyala.farmifyagentfarmer.Activities.HomeActivity;
+import com.example.nareshviriyala.farmifyagentfarmer.Adapters.AdapterKeyValueCommerceInformation;
 import com.example.nareshviriyala.farmifyagentfarmer.Adapters.AdapterCreditInformation;
+import com.example.nareshviriyala.farmifyagentfarmer.Dialogs.DialogAddKeyValueCommerceItem;
 import com.example.nareshviriyala.farmifyagentfarmer.Dialogs.DialogAddCreditItem;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.Validations;
+import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelKeyValueInformation;
 import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelCreditInformation;
 import com.example.nareshviriyala.farmifyagentfarmer.R;
 
@@ -36,13 +39,14 @@ public class FragmentCommerce extends Fragment implements View.OnClickListener{
     private LogErrors logErrors;
     private DatabaseHelper dbHelper;
     private String className;
-    private JSONObject farmercommerceData;
+    public JSONObject farmercommerceData;
     private Validations validations;
     private Button btn_commercedatasave;
     private EditText input_annualincome, input_incomefromcrops, input_feother;
-    private FloatingActionButton fab_addcredit;
+    private FloatingActionButton fab_addcredit, fab_addasset, fab_addosi;
     private AdapterCreditInformation adapterCreditInformation;
-    private ListView lv_creditlist;
+    private AdapterKeyValueCommerceInformation adapterAssetInformation, adapterOsiInformation;
+    private ListView lv_creditlist, lv_assetlist, lv_osilist;
 
     public FragmentCommerce(){}
 
@@ -76,6 +80,8 @@ public class FragmentCommerce extends Fragment implements View.OnClickListener{
             input_feother = rootView.findViewById(R.id.input_feother);
 
             lv_creditlist = rootView.findViewById(R.id.lv_creditlist);
+            lv_assetlist = rootView.findViewById(R.id.lv_assetlist);
+            lv_osilist = rootView.findViewById(R.id.lv_osilist);
 
             input_annualincome.addTextChangedListener(new MyTextWatcher(input_annualincome));
             input_incomefromcrops.addTextChangedListener(new MyTextWatcher(input_incomefromcrops));
@@ -88,8 +94,20 @@ public class FragmentCommerce extends Fragment implements View.OnClickListener{
             rootView.findViewById(R.id.rb_credittakenyes).setOnClickListener(this);
             rootView.findViewById(R.id.rb_credittakenno).setOnClickListener(this);
 
+            rootView.findViewById(R.id.rb_assetsyes).setOnClickListener(this);
+            rootView.findViewById(R.id.rb_assetsno).setOnClickListener(this);
+
+            rootView.findViewById(R.id.rb_osiyes).setOnClickListener(this);
+            rootView.findViewById(R.id.rb_osino).setOnClickListener(this);
+
             fab_addcredit = rootView.findViewById(R.id.fab_addcredit);
             fab_addcredit.setOnClickListener(this);
+
+            fab_addasset = rootView.findViewById(R.id.fab_addasset);
+            fab_addasset.setOnClickListener(this);
+
+            fab_addosi = rootView.findViewById(R.id.fab_addosi);
+            fab_addosi.setOnClickListener(this);
 
             populateForm();
         }catch (Exception ex){
@@ -124,10 +142,12 @@ public class FragmentCommerce extends Fragment implements View.OnClickListener{
             }
             if(farmercommerceData.has("FarmExpenseSourceOther")) {
                 input_feother.setText(farmercommerceData.getString("FarmExpenseSourceOther"));
-                input_feother.setVisibility(View.VISIBLE);
+                rootView.findViewById(R.id.input_layout_feother).setVisibility(View.VISIBLE);
             }
 
             refreshCreditListView();
+            refreshAssetListView();
+            refreshOsiListView();
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }
@@ -135,8 +155,11 @@ public class FragmentCommerce extends Fragment implements View.OnClickListener{
 
     public void refreshCreditListView(){
         try{
+            if(!farmercommerceData.has("CreditInformation")){
+                rootView.findViewById(R.id.ll_creditlist).setVisibility(View.GONE);
+                return;
+            }
             ArrayList<ModelCreditInformation> creditInformation = new ArrayList<>();
-            farmercommerceData = new JSONObject(dbHelper.getParameter(getString(R.string.Commerce)));
             JSONArray creditList = farmercommerceData.getJSONArray("CreditInformation");
             for(int i = 0; i < creditList.length(); i++){
                 JSONObject item = creditList.getJSONObject(i);
@@ -157,7 +180,71 @@ public class FragmentCommerce extends Fragment implements View.OnClickListener{
                 lv_creditlist.setAdapter(adapterCreditInformation);
             }else
                 adapterCreditInformation.updateCreditList(creditInformation);
+            dbHelper.setParameter(getString(R.string.Commerce),farmercommerceData.toString());
+            if(getView() != null) {
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+            }
+        }catch (Exception ex){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+        }
+    }
 
+    public void refreshAssetListView(){
+        try{
+            if(!farmercommerceData.has("AssetInformation")){
+                rootView.findViewById(R.id.ll_assetlist).setVisibility(View.GONE);
+                return;
+            }
+            ArrayList<ModelKeyValueInformation> assetInformation = new ArrayList<>();
+            JSONArray assetList = farmercommerceData.getJSONArray("AssetInformation");
+            for(int i = 0; i < assetList.length(); i++){
+                JSONObject item = assetList.getJSONObject(i);
+                assetInformation.add(new ModelKeyValueInformation(item.getInt("Id"), item.getString("AssetName"), item.getString("AssetValue")));
+            }
+            if(assetInformation.size() > 0)
+                rootView.findViewById(R.id.ll_assetlist).setVisibility(View.VISIBLE);
+            else
+                rootView.findViewById(R.id.ll_assetlist).setVisibility(View.GONE);
+
+            if(adapterAssetInformation == null) {
+                adapterAssetInformation = new AdapterKeyValueCommerceInformation(this.getContext(), assetInformation, this, "AssetInformation", "AssetName", "AssetValue");
+                lv_assetlist.setAdapter(adapterAssetInformation);
+            }else
+                adapterAssetInformation.updateAssetList(assetInformation);
+            dbHelper.setParameter(getString(R.string.Commerce),farmercommerceData.toString());
+            if(getView() != null) {
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+            }
+        }catch (Exception ex){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+        }
+    }
+
+    public void refreshOsiListView(){
+        try{
+            if(!farmercommerceData.has("OsiInformation")){
+                rootView.findViewById(R.id.ll_osilist).setVisibility(View.GONE);
+                return;
+            }
+            ArrayList<ModelKeyValueInformation> osiInformation = new ArrayList<>();
+            JSONArray osiList = farmercommerceData.getJSONArray("OsiInformation");
+            for(int i = 0; i < osiList.length(); i++){
+                JSONObject item = osiList.getJSONObject(i);
+                osiInformation.add(new ModelKeyValueInformation(item.getInt("Id"), item.getString("OsiName"), item.getString("OsiValue")));
+            }
+            if(osiInformation.size() > 0)
+                rootView.findViewById(R.id.ll_osilist).setVisibility(View.VISIBLE);
+            else
+                rootView.findViewById(R.id.ll_osilist).setVisibility(View.GONE);
+
+            if(adapterOsiInformation == null) {
+                adapterOsiInformation = new AdapterKeyValueCommerceInformation(this.getContext(), osiInformation, this, "OsiInformation", "OsiName", "OsiValue");
+                lv_osilist.setAdapter(adapterOsiInformation);
+            }else
+                adapterOsiInformation.updateAssetList(osiInformation);
+            dbHelper.setParameter(getString(R.string.Commerce),farmercommerceData.toString());
             if(getView() != null) {
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
@@ -198,8 +285,30 @@ public class FragmentCommerce extends Fragment implements View.OnClickListener{
                     if (checked)
                         rootView.findViewById(R.id.ll_fabcontainer).setVisibility(View.GONE);
                     break;
+                case R.id.rb_assetsyes:
+                    if (checked)
+                        rootView.findViewById(R.id.ll_fabassetcontainer).setVisibility(View.VISIBLE);
+                    break;
+                case R.id.rb_assetsno:
+                    if (checked)
+                        rootView.findViewById(R.id.ll_fabassetcontainer).setVisibility(View.GONE);
+                    break;
+                case R.id.rb_osiyes:
+                    if (checked)
+                        rootView.findViewById(R.id.ll_fabosicontainer).setVisibility(View.VISIBLE);
+                    break;
+                case R.id.rb_osino:
+                    if (checked)
+                        rootView.findViewById(R.id.ll_fabosicontainer).setVisibility(View.GONE);
+                    break;
                 case R.id.fab_addcredit:
                     new DialogAddCreditItem(getActivity(), null, this).show();
+                    break;
+                case R.id.fab_addasset:
+                    new DialogAddKeyValueCommerceItem(getActivity(), null, this, "AssetInformation", "AssetName", "AssetValue").show();
+                    break;
+                case R.id.fab_addosi:
+                    new DialogAddKeyValueCommerceItem(getActivity(), null, this, "OsiInformation", "OsiName", "OsiValue").show();
                     break;
             }
 

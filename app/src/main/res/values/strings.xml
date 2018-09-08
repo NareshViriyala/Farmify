@@ -19,6 +19,24 @@
     <string name="PesticideSO">PesticideSOData</string>
     <string name="PesticideSOStatus">PesticideSOData_Status</string>
 
+    <string-array name="AssetInformation">
+        <item>Asset Information</item>
+        <item>Asset name</item>
+        <item>Asset value</item>
+    </string-array>
+
+    <string-array name="OsiInformation">
+        <item>Other source of income</item>
+        <item>Income type</item>
+        <item>Income value</item>
+    </string-array>
+
+    <string-array name="ReferenceInformation">
+        <item>References</item>
+        <item>Name</item>
+        <item>Phone</item>
+    </string-array>
+
 
     <string-array name="nav_item_activity_titles">
         <item>Home</item>
