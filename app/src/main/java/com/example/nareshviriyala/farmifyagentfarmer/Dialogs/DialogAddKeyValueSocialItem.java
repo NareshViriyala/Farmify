@@ -12,8 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentCommerce;
-import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentSocial;
+import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentAFSocial;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
 import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelKeyValueInformation;
@@ -28,7 +27,7 @@ public class DialogAddKeyValueSocialItem extends Dialog implements View.OnClickL
     private String className;
     private Context context;
     private ModelKeyValueInformation item;
-    private FragmentSocial fragmentSocial;
+    private FragmentAFSocial fragmentSocial;
     private TextInputLayout input_layout_assetname, input_layout_assetvalue;
     private EditText input_name, input_value;
     private TextView tv_header;
@@ -36,7 +35,7 @@ public class DialogAddKeyValueSocialItem extends Dialog implements View.OnClickL
     private String jsonKey, key, value;
     private String[] dialogTitles;
 
-    public DialogAddKeyValueSocialItem(@NonNull Context context, ModelKeyValueInformation item, FragmentSocial fragmentSocial, String jsonKey, String key, String value) {
+    public DialogAddKeyValueSocialItem(@NonNull Context context, ModelKeyValueInformation item, FragmentAFSocial fragmentSocial, String jsonKey, String key, String value) {
         super(context);
         try {
             this.context = context;

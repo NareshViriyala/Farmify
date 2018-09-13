@@ -14,10 +14,12 @@
     <string name="AgronomicStatus">AgronomicData_Status</string>
     <string name="Commerce">CommerceData</string>
     <string name="CommerceStatus">CommerceData_Status</string>
-    <string name="Dealer">DealerData</string>
-    <string name="DealerStatus">DealerData_Status</string>
-    <string name="PesticideSO">PesticideSOData</string>
-    <string name="PesticideSOStatus">PesticideSOData_Status</string>
+    <string name="Partner">PartnerData</string>
+    <string name="PartnerStatus">PartnerData_Status</string>
+    <string name="Images">ImagesData</string>
+    <string name="ImagesStatus">ImagesData_Status</string>
+    <string name="campermission">need access to CAMERA to scan QR codes <u><b>ONLY</b></u>.\nFollowing popup message is a standard android warning.\nPlease click ALLOW to proceed</string>
+    <string name="locationpermission">need access to your location.\nFollowing popup message is a standard android warning.\nPlease click ALLOW to proceed</string>
 
     <string-array name="AssetInformation">
         <item>Asset Information</item>
@@ -45,6 +47,14 @@
         <item>Notifications</item>
         <item>Settings</item>
         <item>Signout</item>
+    </string-array>
+
+    <string name="partner_prompt">Partner type</string>
+    <string-array name="partners_type">
+        <item>Select</item>
+        <item>Pump operator</item>
+        <item>Produce buyer</item>
+        <item>Pesticides shot owner</item>
     </string-array>
 
     <string-array name="month">

@@ -11,10 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.nareshviriyala.farmifyagentfarmer.Dialogs.DialogAddKeyValueCommerceItem;
 import com.example.nareshviriyala.farmifyagentfarmer.Dialogs.DialogAddKeyValueSocialItem;
-import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentCommerce;
-import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentSocial;
+import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentAFSocial;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
 import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelKeyValueInformation;
 import com.example.nareshviriyala.farmifyagentfarmer.R;
@@ -30,10 +28,10 @@ public class AdapterKeyValueSocialInformation extends ArrayAdapter<ModelKeyValue
     private List<ModelKeyValueInformation> keyValueData;
     private LogErrors logErrors;
     private String className;
-    private FragmentSocial fragmentSocial;
+    private FragmentAFSocial fragmentSocial;
     private String jsonKey, key, value;
 
-    public AdapterKeyValueSocialInformation(Context context, ArrayList<ModelKeyValueInformation> list, FragmentSocial fragmentSocial, String jsonKey, String key, String value){
+    public AdapterKeyValueSocialInformation(Context context, ArrayList<ModelKeyValueInformation> list, FragmentAFSocial fragmentSocial, String jsonKey, String key, String value){
         super(context, 0, list);
         try {
             this.context = context;

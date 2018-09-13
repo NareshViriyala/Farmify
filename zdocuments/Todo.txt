@@ -33,6 +33,23 @@ https://github.com/jaisonfdo/LocationHelper/blob/master/app/src/main/java/com/dr
 Code to request app location - currently user has to manually provide location permission
 
 
+<?xml version="1.0" encoding="UTF-8"?>
+<PrintLetterBarcodeData uid="428400470799" name="Viriyala Naresh Kumar" gender="M" yob="1985" co="S/O: Late V V Rao" house="Block 34, Flat No 10-04" street="Malaysian Town Ship" vtc="Tirumalagiri" po="Kukatpally" dist="Hyderabad" subdist="Tirumalagiri" state="Telangana" pc="500072" dob="07/01/1985"/>
+
+back press from AddFarm -> QR code -->Individual details
+scroll view on ecommerce fragment
+
+Pictures:
+1. Farmer
+2. Bank account book
+3. Ration card
+4. Pan card
+5. Soil test certificate
+6. Additional documentation
+
+
+
+
 
 
 

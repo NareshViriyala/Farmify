@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.nareshviriyala.farmifyagentfarmer.Dialogs.DialogAddKeyValueCommerceItem;
-import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentCommerce;
+import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentAFCommerce;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
 import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelKeyValueInformation;
 import com.example.nareshviriyala.farmifyagentfarmer.R;
@@ -28,10 +28,10 @@ public class AdapterKeyValueCommerceInformation extends ArrayAdapter<ModelKeyVal
     private List<ModelKeyValueInformation> keyValueData;
     private LogErrors logErrors;
     private String className;
-    private FragmentCommerce fragmentCommerce;
+    private FragmentAFCommerce fragmentCommerce;
     private String jsonKey, key, value;
 
-    public AdapterKeyValueCommerceInformation(Context context, ArrayList<ModelKeyValueInformation> list, FragmentCommerce fragmentCommerce, String jsonKey, String key, String value){
+    public AdapterKeyValueCommerceInformation(Context context, ArrayList<ModelKeyValueInformation> list, FragmentAFCommerce fragmentCommerce, String jsonKey, String key, String value){
         super(context, 0, list);
         try {
             this.context = context;

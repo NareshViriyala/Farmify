@@ -83,14 +83,14 @@ public class FragmentAddFarm extends Fragment implements AdapterView.OnItemClick
                     , dbHelper.getParameter(getString(R.string.CommerceStatus)).equalsIgnoreCase("")?0:Integer.parseInt(dbHelper.getParameter(getString(R.string.CommerceStatus)))));
 
             farmerDataList.add(new FarmerData(R.drawable.baseline_dealer_black_24dp
-                    , "Dealer"
+                    , "Partners"
                     , "Description to be provided later"
-                    , dbHelper.getParameter(getString(R.string.DealerStatus)).equalsIgnoreCase("")?0:Integer.parseInt(dbHelper.getParameter(getString(R.string.DealerStatus)))));
+                    , dbHelper.getParameter(getString(R.string.PartnerStatus)).equalsIgnoreCase("")?0:Integer.parseInt(dbHelper.getParameter(getString(R.string.PartnerStatus)))));
 
-            farmerDataList.add(new FarmerData(R.drawable.baseline_pesticide_black_24dp
-                    , "Pesticide shop owner"
+            farmerDataList.add(new FarmerData(R.drawable.baseline_add_photo_alternate_black_24dp
+                    , "Images"
                     , "Description to be provided later"
-                    , dbHelper.getParameter(getString(R.string.PesticideSOStatus)).equalsIgnoreCase("")?0:Integer.parseInt(dbHelper.getParameter(getString(R.string.PesticideSOStatus)))));
+                    , dbHelper.getParameter(getString(R.string.ImagesStatus)).equalsIgnoreCase("")?0:Integer.parseInt(dbHelper.getParameter(getString(R.string.ImagesStatus)))));
 
             adapterFarmerData = new AdapterFarmerData(this.getContext(), farmerDataList);
             lv_addFarmData.setAdapter(adapterFarmerData);
@@ -130,23 +130,30 @@ public class FragmentAddFarm extends Fragment implements AdapterView.OnItemClick
         try{
             switch (fragmentname) {
                 case "Individual":
-                    FragmentIndividual fragmentIndividual = new FragmentIndividual();
-                    return fragmentIndividual;
+                    /*FragmentScanQR fragmentScanQR = new FragmentScanQR();
+                    return fragmentScanQR;*/
+                    /*FragmentAFIndividual fragmentIndividual = new FragmentAFIndividual();
+                    return fragmentIndividual;*/
+                    FragmentCameraPicture fragmentCameraPicture = new FragmentCameraPicture();
+                    return fragmentCameraPicture;
                 case "Bank":
-                    FragmentBank fragmentBank = new FragmentBank();
+                    FragmentAFBank fragmentBank = new FragmentAFBank();
                     return fragmentBank;
                 case "Social":
-                    FragmentSocial fragmentSocial = new FragmentSocial();
+                    FragmentAFSocial fragmentSocial = new FragmentAFSocial();
                     return fragmentSocial;
                 case "Agronomic":
                     FragmentAgronomics fragmentAgronomics = new FragmentAgronomics();
                     return fragmentAgronomics;
                 case "Commerce":
-                    FragmentCommerce fragmentCommerce = new FragmentCommerce();
+                    FragmentAFCommerce fragmentCommerce = new FragmentAFCommerce();
                     return fragmentCommerce;
-                case "Dealer":
-                    FragmentDealer fragmentDealer = new FragmentDealer();
-                    return fragmentDealer;
+                case "Partners":
+                    FragmentAFPartner fragmentPartner = new FragmentAFPartner();
+                    return fragmentPartner;
+                case "Images":
+                    FragmentAFImages fragmentImages = new FragmentAFImages();
+                    return fragmentImages;
                 default:
                     return new FragmentHome();
             }
@@ -155,4 +162,13 @@ public class FragmentAddFarm extends Fragment implements AdapterView.OnItemClick
         }
         return new FragmentHome();
     }
+
+    /*@Override
+    public void onResume(){
+        super.onResume();
+        try {
+            getFragmentManager().popBackStackImmediate(null, getFragmentManager().POP_BACK_STACK_INCLUSIVE);
+        }
+        catch (Exception e){logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());}
+    }*/
 }

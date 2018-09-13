@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -13,8 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentCommerce;
-import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentSocial;
+import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentAFCommerce;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
 import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelKeyValueInformation;
@@ -29,7 +27,7 @@ public class DialogAddKeyValueCommerceItem extends Dialog implements View.OnClic
     private String className;
     private Context context;
     private ModelKeyValueInformation item;
-    private FragmentCommerce fragmentCommerce;
+    private FragmentAFCommerce fragmentCommerce;
     private TextInputLayout input_layout_assetname, input_layout_assetvalue;
     private EditText input_name, input_value;
     private TextView tv_header;
@@ -37,7 +35,7 @@ public class DialogAddKeyValueCommerceItem extends Dialog implements View.OnClic
     private String jsonKey, key, value;
     private String[] dialogTitles;
 
-    public DialogAddKeyValueCommerceItem(@NonNull Context context, ModelKeyValueInformation item, FragmentCommerce fragmentCommerce, String jsonKey, String key, String value) {
+    public DialogAddKeyValueCommerceItem(@NonNull Context context, ModelKeyValueInformation item, FragmentAFCommerce fragmentCommerce, String jsonKey, String key, String value) {
         super(context);
         try {
             this.context = context;

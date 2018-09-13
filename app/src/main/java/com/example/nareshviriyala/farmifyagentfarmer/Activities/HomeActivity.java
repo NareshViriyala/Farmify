@@ -22,10 +22,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentAddFarm;
-import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentCommerce;
+import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentAFCommerce;
 import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentHome;
 import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentMyFarms;
-import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentDealer;
+import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentAFPartner;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.GlobalVariables;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
@@ -216,11 +216,11 @@ public class HomeActivity extends AppCompatActivity {
                 return fragmentAddFarm;
             case 3:
                 // notifications fragment
-                FragmentCommerce fragmentEcommerce = new FragmentCommerce();
+                FragmentAFCommerce fragmentEcommerce = new FragmentAFCommerce();
                 return fragmentEcommerce;
             case 4:
                 // settings fragment
-                FragmentDealer fragmentSatellite = new FragmentDealer();
+                FragmentAFPartner fragmentSatellite = new FragmentAFPartner();
                 return fragmentSatellite;
             case 5:
                 // signout

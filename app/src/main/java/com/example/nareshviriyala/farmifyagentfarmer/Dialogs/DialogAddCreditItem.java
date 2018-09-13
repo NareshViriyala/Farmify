@@ -9,7 +9,6 @@ import android.support.design.widget.TextInputLayout;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -17,8 +16,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentCommerce;
-import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
+import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentAFCommerce;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
 import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelCreditInformation;
 import com.example.nareshviriyala.farmifyagentfarmer.R;
@@ -38,9 +36,9 @@ public class DialogAddCreditItem extends Dialog implements View.OnClickListener{
     private int day, month, year;
     private RadioButton rb_creditpaidfull, rb_creditpending;
     private ModelCreditInformation item;
-    private FragmentCommerce fragmentCommerce;
+    private FragmentAFCommerce fragmentCommerce;
 
-    public DialogAddCreditItem(@NonNull Context context, ModelCreditInformation item, FragmentCommerce fragmentCommerce) {
+    public DialogAddCreditItem(@NonNull Context context, ModelCreditInformation item, FragmentAFCommerce fragmentCommerce) {
         super(context);
         try {
             this.context = context;

@@ -12,14 +12,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.nareshviriyala.farmifyagentfarmer.Dialogs.DialogAddCreditItem;
-import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentCommerce;
-import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
+import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentAFCommerce;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
 import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelCreditInformation;
 import com.example.nareshviriyala.farmifyagentfarmer.R;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +28,9 @@ public class AdapterCreditInformation extends ArrayAdapter<ModelCreditInformatio
     private List<ModelCreditInformation> creditData;
     private LogErrors logErrors;
     private String className;
-    private FragmentCommerce fragmentCommerce;
+    private FragmentAFCommerce fragmentCommerce;
 
-    public AdapterCreditInformation(Context context, ArrayList<ModelCreditInformation> list, FragmentCommerce fragmentCommerce){
+    public AdapterCreditInformation(Context context, ArrayList<ModelCreditInformation> list, FragmentAFCommerce fragmentCommerce){
         super(context, 0, list);
         try {
             this.context = context;
