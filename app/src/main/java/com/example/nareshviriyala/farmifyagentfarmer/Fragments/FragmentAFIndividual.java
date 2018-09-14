@@ -512,8 +512,8 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
         try{
             dbHelper.setParameter(getString(R.string.Individual), farmerIdvData.toString());
             dbHelper.setParameter(getString(R.string.IndividualStatus), "3");
-            if(!farmerIdvData.has("Aadhar") && !farmerIdvData.has("Phone")) {
-                dbHelper.setParameter(getString(R.string.IndividualStatus), "0");
+            if(!farmerIdvData.has("Aadhar") || !farmerIdvData.has("Phone")) {
+                dbHelper.setParameter(getString(R.string.IndividualStatus), "1");
             }else if(!farmerIdvData.has("FirstName") || farmerIdvData.getString("FirstName").equalsIgnoreCase("")
                     || !farmerIdvData.has("DOB") || farmerIdvData.getString("DOB").equalsIgnoreCase("")
                     || !farmerIdvData.has("Cast") || farmerIdvData.getString("Cast").equalsIgnoreCase("")
@@ -539,7 +539,7 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
 
     public void goBack(){
         try{
-            Fragment fragment = new FragmentAddFarm();
+            Fragment fragment = new FragmentAddFarmer();
             FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
             fragmentTransaction.setCustomAnimations(R.anim.slideinright,R.anim.slideoutright);
             fragmentTransaction.replace(R.id.frame, fragment, "addfarm");

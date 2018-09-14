@@ -3,6 +3,7 @@ package com.example.nareshviriyala.farmifyagentfarmer.Fragments;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -27,9 +28,11 @@ import com.example.nareshviriyala.farmifyagentfarmer.Helpers.Convertor;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
 import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelImageInformation;
+import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelImageParameters;
 import com.example.nareshviriyala.farmifyagentfarmer.R;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -45,7 +48,7 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
     private GridView gv_images;
     private Button btn_imagedatasave;
     private AdapterImageInformation adapterImageInformation;
-    private String[] itemList = new String[]{"Farmer","Bank book","Ration card","Pan card","Aadhar card","Additional"};
+    private String[] itemList;
     private Convertor convertor;
     private ImageView img_picturetile, img_leftpic, img_rightpic, img_deletepic;
     public FragmentAFImages(){}
@@ -68,6 +71,7 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
             dbHelper = new DatabaseHelper(getActivity());
             //dbHelper.deleteParameter(getResources().getString(R.string.Images));
             String data = dbHelper.getParameter(getResources().getString(R.string.Images));
+            itemList = getResources().getStringArray(R.array.image_types);
             convertor = new Convertor(getActivity());
             if(data.isEmpty() || data == null)
                 farmerImageData = new JSONObject();
@@ -112,19 +116,15 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
         }
     }
 
-    public List<byte[]> getImageByteArray(String pictureType){
-        List<byte[]> imageByteArray = null;
+    public byte[] getImageByteArray(String pictureType){
+        byte[] imageByteArray = null;
         try{
             pictureType = pictureType.replace(" ","");
             JSONArray imageJsonArray = null;
             if(farmerImageData.has(pictureType)) {
                 imageJsonArray = farmerImageData.getJSONArray(pictureType);
                 if(imageJsonArray.length() > 0)
-                    imageByteArray = new ArrayList<>();
-                for(int i = 0; i < imageJsonArray.length(); i++) {
-                    byte[] img = Base64.decode(imageJsonArray.getString(i), Base64.DEFAULT);
-                    imageByteArray.add(img);
-                }
+                    imageByteArray = dbHelper.getImage(imageJsonArray.getInt(0));
             }
             else
                 imageByteArray = null;
@@ -147,7 +147,7 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
                         loadFragment();
                     else {
                         JSONArray imagesArray = farmerImageData.getJSONArray(currentPictureType);
-                        byte[] imgSource = Base64.decode(imagesArray.getString(currentPictureId), Base64.DEFAULT);
+                        byte[] imgSource = dbHelper.getImage(imagesArray.getInt(currentPictureId));
                         new DialogExpandPicture(getActivity(), imgSource).show();
                     }
                     break;
@@ -186,6 +186,8 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
                                     for(int i = 0; i < imageArray.length(); i++){
                                         if(i != currentPictureId)
                                             newImageArray.put(imageArray.get(i));
+                                        else
+                                            dbHelper.deleteImage(i);
                                     }
                                     farmerImageData.put(currentPictureType, newImageArray);
                                     dbHelper.setParameter(getResources().getString(R.string.Images), farmerImageData.toString());
@@ -197,7 +199,8 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
                                     currentPictureId = 0;
                                 else if(currentPictureId == 0 && (newImageArray == null || newImageArray.length() == 0))
                                     currentPictureId = -1;
-                                loadImage(currentPictureType, currentPictureId);
+                                new loadImage().execute(currentPictureType, String.valueOf(currentPictureId));
+                                refreshImageListView();
                             }catch (Exception ex){
                                 logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
                             }
@@ -233,7 +236,7 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
                 currentPictureId = currentPictureId - 1;
             else
                 currentPictureId = -1;
-            loadImage(currentPictureType, currentPictureId);
+            new loadImage().execute(currentPictureType, String.valueOf(currentPictureId));
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }
@@ -254,7 +257,7 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
             else
                 currentPictureId = -1;
 
-            loadImage(currentPictureType, currentPictureId);
+            new loadImage().execute(currentPictureType, String.valueOf(currentPictureId));
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }
@@ -297,12 +300,79 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
         try {
             (rootView.findViewById(R.id.rl_container)).setVisibility(View.VISIBLE);
             currentPictureType = ((TextView) view.findViewById(R.id.tv_picturetype)).getText().toString().trim().replace(" ","");
-            loadImage(currentPictureType, 0);
+            currentPictureId = 0;
+            new loadImage().execute(currentPictureType, String.valueOf(currentPictureId));
         }
         catch (Exception e){logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());}
     }
 
+    public class loadImage extends AsyncTask<String, Void, ModelImageParameters> {
+        @Override
+        protected void onPreExecute(){
+            img_picturetile.setImageResource(R.drawable.processing);
+            img_picturetile.getLayoutParams().width = 200;
+            img_picturetile.getLayoutParams().height = 200;
+        }
 
+        @Override
+        protected ModelImageParameters doInBackground(String... strings) {
+            ModelImageParameters response = null;
+            try {
+                String imageType = strings[0];
+                int imageId = Integer.parseInt(strings[1]);
+                JSONArray imagesArray = null;
+                if(farmerImageData.has(imageType))
+                    imagesArray = farmerImageData.getJSONArray(imageType);
+
+                if(imagesArray == null || imagesArray.length() == 0){
+                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.baseline_add_photo_alternate_black_24dp);
+                    response = new ModelImageParameters(bitmap,200,200,View.GONE,View.GONE, View.GONE);
+                    currentPictureId = -1;
+                }else if (imageId == -1 && imagesArray.length() > 0){
+                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.baseline_add_photo_alternate_black_24dp);
+                    response = new ModelImageParameters(bitmap,200,200,View.VISIBLE,View.GONE, View.GONE);
+                    currentPictureId = -1;
+                }else if(imageId > imagesArray.length()){
+                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.baseline_add_photo_alternate_black_24dp);
+                    response = new ModelImageParameters(bitmap,200,200,View.GONE,View.GONE, View.GONE);
+                    currentPictureId = -1;
+                }else if(imageId == 0){
+                    byte[] imgbyte = dbHelper.getImage(imagesArray.getInt(0));
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(imgbyte, 0, imgbyte.length);
+                    response = new ModelImageParameters(bitmap,(rootView.findViewById(R.id.rl_container)).getHeight()
+                            ,(rootView.findViewById(R.id.rl_container)).getWidth(),View.GONE,View.VISIBLE, View.VISIBLE);
+                    currentPictureId = 0;
+                }else {
+                    byte[] imgbyte = dbHelper.getImage(imagesArray.getInt(imageId));
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(imgbyte, 0, imgbyte.length);
+                    response = new ModelImageParameters(bitmap,(rootView.findViewById(R.id.rl_container)).getHeight()
+                            ,(rootView.findViewById(R.id.rl_container)).getWidth(),View.VISIBLE,View.VISIBLE, View.VISIBLE);
+                    currentPictureId = imageId;
+
+                }
+            }catch (JSONException e) {
+                logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage().toString());
+            }catch (Exception ex){
+                logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+            }
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(ModelImageParameters response) {
+            try {
+                //Toast.makeText(getActivity(), "Done"+response.getBitmap().getByteCount(), Toast.LENGTH_SHORT).show();
+                img_picturetile.setImageBitmap(response.getBitmap());
+                img_picturetile.getLayoutParams().width = response.getWidth();
+                img_picturetile.getLayoutParams().height = response.getHeight();
+                img_deletepic.setVisibility(response.getDeletePic());
+                img_rightpic.setVisibility(response.getRightPic());
+                img_leftpic.setVisibility(response.getLeftPic());
+            }catch (Exception ex){
+                logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+            }
+        }
+    }
 
     public void loadImage(String imageType, int imageId){
         try{

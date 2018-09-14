@@ -21,7 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentAddFarm;
+import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentAddFarmer;
 import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentAFCommerce;
 import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentHome;
 import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentMyFarms;
@@ -51,7 +51,7 @@ public class HomeActivity extends AppCompatActivity {
     // tags used to attach the fragments
     private static final String TAG_HOME = "home";
     private static final String TAG_MYFARMS = "myfarms";
-    private static final String TAG_ADDFARM = "addfarm";
+    private static final String TAG_ADDFARMER = "addfarmer";
     private static final String TAG_NOTIFICATIONS = "notifications";
     private static final String TAG_SETTINGS = "settings";
     private static final String TAG_SIGNOUT = "signout";
@@ -109,7 +109,7 @@ public class HomeActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             navItemIndex = 2;
-            CURRENT_TAG = TAG_ADDFARM;
+            CURRENT_TAG = TAG_ADDFARMER;
             loadHomeFragment();
         }
     }
@@ -125,22 +125,7 @@ public class HomeActivity extends AppCompatActivity {
             txtName.setText(dbHelper.getParameter("first_name") +" "+dbHelper.getParameter("last_name"));
             txtEmail.setText(dbHelper.getParameter("email"));
             txtPhone.setText(dbHelper.getParameter("phone"));
-
-            // loading header background image
-        /*Glide.with(this).load(urlNavHeaderBg)
-                .transition(withCrossFade())
-                .into(imgNavHeaderBg);
-
-        // Loading profile image
-        Glide.with(this).load(urlProfileImg)
-                .transition(withCrossFade())
-                .thumbnail(0.5f)
-                //.bitmapTransform(new CircleTransform(this))
-                //.diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(imgProfile);*/
-
-            // showing dot next to notifications label
-            //navigationView.getMenu().getItem(3).setActionView(R.layout.menu_dot);
+            navigationView.getMenu().getItem(3).setActionView(R.layout.menu_dot);
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }
@@ -212,7 +197,7 @@ public class HomeActivity extends AppCompatActivity {
                 return fragmentMyFarms;
             case 2:
                 // addfarm fragment
-                FragmentAddFarm fragmentAddFarm = new FragmentAddFarm();
+                FragmentAddFarmer fragmentAddFarm = new FragmentAddFarmer();
                 return fragmentAddFarm;
             case 3:
                 // notifications fragment
@@ -271,7 +256,7 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_addfarm:
                         navItemIndex = 2;
-                        CURRENT_TAG = TAG_ADDFARM;
+                        CURRENT_TAG = TAG_ADDFARMER;
                         break;
                     case R.id.nav_notifications:
                         navItemIndex = 3;

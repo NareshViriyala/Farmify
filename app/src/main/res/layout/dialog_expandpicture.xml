@@ -4,6 +4,14 @@
     android:layout_height="match_parent"
     android:layout_margin="10dp"
     android:orientation="vertical">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_clear_black_24dp"
+        android:background="@color/white"
+        android:layout_alignParentRight="true"
+        android:elevation="5dp"
+        android:id="@+id/img_close"/>
 
     <ImageView
         android:layout_width="match_parent"

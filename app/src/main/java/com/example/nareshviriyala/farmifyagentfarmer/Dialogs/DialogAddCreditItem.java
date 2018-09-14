@@ -101,6 +101,11 @@ public class DialogAddCreditItem extends Dialog implements View.OnClickListener{
                 input_creditamount.setText(item.getAmount());
                 input_creditinterest.setText(item.getInterest());
                 input_creditpending.setText(item.getPendingAmount());
+                if(!item.getPaid()){
+                    input_layout_creditpending.setVisibility(View.VISIBLE);
+                    rb_creditpending.setChecked(true);
+                }
+
                 if(item.getPaid())
                     ((RadioGroup)findViewById(R.id.rg_creditstatus)).check(R.id.rb_creditpaidfull);
             }
@@ -119,8 +124,10 @@ public class DialogAddCreditItem extends Dialog implements View.OnClickListener{
 
             switch (v.getId()){
                 case R.id.rb_creditpaidfull:
-                    if(checked)
+                    if(checked) {
                         input_layout_creditpending.setVisibility(View.GONE);
+                        input_creditpending.setText("");
+                    }
                     break;
                 case R.id.rb_creditpending:
                     if(checked)
@@ -178,6 +185,11 @@ public class DialogAddCreditItem extends Dialog implements View.OnClickListener{
                 input_layout_creditpending.setError("Enter amount");
                 requestFocus(input_creditpending);
                 return;
+            }else if (input_layout_creditpending.getVisibility() == View.VISIBLE
+                    && Integer.parseInt(input_creditpending.getText().toString().trim()) > Integer.parseInt(input_creditamount.getText().toString().trim())) {
+                input_layout_creditpending.setError("Pending amount more than credit");
+                requestFocus(input_creditpending);
+                return;
             }else
                 input_layout_creditpending.setErrorEnabled(false);
 
@@ -199,7 +211,7 @@ public class DialogAddCreditItem extends Dialog implements View.OnClickListener{
                 jobj.put("Date", input_creditdate.getText().toString().trim());
                 jobj.put("Amount", input_creditamount.getText().toString().trim());
                 jobj.put("Interest", input_creditinterest.getText().toString().trim());
-                jobj.put("Paid", rb_creditpaidfull.isSelected());
+                jobj.put("Paid", rb_creditpaidfull.isChecked());
                 jobj.put("PendingAmount", input_creditpending.getText().toString().trim());
                 jlist.put(jobj);
             }else{ //editing existing item
@@ -211,7 +223,7 @@ public class DialogAddCreditItem extends Dialog implements View.OnClickListener{
                         jobj.put("Date", input_creditdate.getText().toString().trim());
                         jobj.put("Amount", input_creditamount.getText().toString().trim());
                         jobj.put("Interest", input_creditinterest.getText().toString().trim());
-                        jobj.put("Paid", rb_creditpaidfull.isSelected());
+                        jobj.put("Paid", rb_creditpaidfull.isChecked());
                         jobj.put("PendingAmount", input_creditpending.getText().toString().trim());
                     }
                     newlist.put(jobj);

@@ -10,17 +10,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.nareshviriyala.farmifyagentfarmer.Models.FarmerData;
+import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelFarmerData;
 import com.example.nareshviriyala.farmifyagentfarmer.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdapterFarmerData extends ArrayAdapter<FarmerData>{
+public class AdapterFarmerData extends ArrayAdapter<ModelFarmerData>{
     private Context context;
-    private List<FarmerData> farmerData = new ArrayList<>();
+    private List<ModelFarmerData> farmerData = new ArrayList<>();
 
-    public AdapterFarmerData(Context context, ArrayList<FarmerData> list){
+    public AdapterFarmerData(Context context, ArrayList<ModelFarmerData> list){
         super(context, 0, list);
         this.context = context;
         this.farmerData = list;
@@ -32,7 +32,7 @@ public class AdapterFarmerData extends ArrayAdapter<FarmerData>{
         if(listItem == null)
             listItem = LayoutInflater.from(context).inflate(R.layout.listitem_farmerdata,parent,false);
 
-        FarmerData currentDataItem = farmerData.get(position);
+        ModelFarmerData currentDataItem = farmerData.get(position);
 
         ImageView img_icon = (ImageView)listItem.findViewById(R.id.img_icon);
         img_icon.setImageResource(currentDataItem.getmFarmerDataImage());

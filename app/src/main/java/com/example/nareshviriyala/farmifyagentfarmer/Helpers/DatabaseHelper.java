@@ -8,6 +8,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
 import android.provider.Settings;
 
+import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelDatabaseImage;
+import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelSystemParameter;
+
+import java.sql.Blob;
+import java.util.ArrayList;
+import java.util.List;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
@@ -21,7 +28,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE tbl_systemparameter (id INTEGER PRIMARY KEY AUTOINCREMENT, paramname text, paramvalue text)");
+        db.execSQL("CREATE TABLE tbl_systemparameter (paramname text primary key, paramvalue text)");
+        db.execSQL("CREATE TABLE tbl_images (id INTEGER PRIMARY KEY AUTOINCREMENT, image BLOB)");
         /*Set basic system parameters*/
         db.execSQL("INSERT INTO tbl_systemparameter(paramname, paramvalue) VALUES('device_id','"+Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID)+"')");
         db.execSQL("INSERT INTO tbl_systemparameter(paramname, paramvalue) VALUES('device_type','1')");
@@ -66,6 +74,92 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("tbl_systemparameter", "paramname='"+paramname+"'",  null);
         db.close();
+    }
+
+    public List<ModelSystemParameter> getAllParameters(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<ModelSystemParameter> list = new ArrayList<>();
+
+        Cursor res =  db.rawQuery("Select * from tbl_systemparameter", null);
+        try {
+            if(res.moveToFirst()) {
+                do {
+                    ModelSystemParameter item = new ModelSystemParameter(
+                            res.getString(res.getColumnIndex("paramname")),
+                            res.getString(res.getColumnIndex("paramvalue")));
+                    list.add(item);
+                }while (res.moveToNext());
+            }
+        }
+        catch (Exception e){}
+        finally {
+            res.close();
+            db.close();
+        }
+        return list;
+    }
+
+    public long setImage(byte[] image){
+        SQLiteDatabase db = this.getWritableDatabase();
+        long id = 0;
+        try {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("image", image);
+            id = db.insert("tbl_images",null,contentValues);
+        }
+        catch (Exception e){}
+        finally {
+            db.close();
+        }
+        return id;
+    }
+
+    public byte[] getImage(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        byte[] response = null;
+        Cursor res =  db.rawQuery("Select image from tbl_images where id = "+id, null);
+        try {
+            if(res.moveToFirst()) {
+                do {
+                    response = res.getBlob(res.getColumnIndex("image"));
+                }while (res.moveToNext());
+            }
+        }
+        catch (Exception e){}
+        finally {
+            res.close();
+            db.close();
+        }
+        return response;
+    }
+
+    public void deleteImage(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("tbl_images", "id="+id,  null);
+        db.close();
+    }
+
+    public List<ModelDatabaseImage> getAllImages(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<ModelDatabaseImage> list = new ArrayList<>();
+
+        Cursor res =  db.rawQuery("Select * from tbl_images", null);
+        try {
+            if(res.moveToFirst()) {
+                do {
+                    ModelDatabaseImage item = new ModelDatabaseImage(
+                            res.getInt(res.getColumnIndex("id")),
+                            res.getBlob(res.getColumnIndex("image")));
+                    list.add(item);
+                }while (res.moveToNext());
+            }
+        }
+        catch (Exception e){}
+        finally {
+            res.close();
+            db.close();
+        }
+        return list;
     }
 
     @Override

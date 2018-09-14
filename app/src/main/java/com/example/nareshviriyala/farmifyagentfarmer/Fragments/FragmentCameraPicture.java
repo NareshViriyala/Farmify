@@ -137,14 +137,16 @@ public class FragmentCameraPicture extends Fragment implements SurfaceHolder.Cal
                 data = (byte[])params[0];
                 Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
                 ByteArrayOutputStream bytearrayopstream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG,40,bytearrayopstream);
+                bitmap.compress(Bitmap.CompressFormat.JPEG,20,bytearrayopstream);
                 data = bytearrayopstream.toByteArray();
                 JSONArray jsonArray = null;
                 if(farmerPictureData.has(currentPictureType))
                     jsonArray = farmerPictureData.getJSONArray(currentPictureType);
                 else
                     jsonArray = new JSONArray();
-                jsonArray.put(Base64.encodeToString(data, Base64.DEFAULT));
+                long id = dbHelper.setImage(data);
+                jsonArray.put(id);
+                //jsonArray.put(data);
                 farmerPictureData.put(currentPictureType, jsonArray);
             }
             catch (Exception e) {
@@ -274,8 +276,8 @@ public class FragmentCameraPicture extends Fragment implements SurfaceHolder.Cal
                         Camera.Parameters params = mCamera.getParameters();
                         params.setRotation(90);
                         Camera.Size size = getBestPreviewSize(params);
-                        params.setPreviewSize(size.width, size.height);
-                        params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+                        params.setPictureSize(size.width, size.height);
+                        params.setFocusMode(Camera.Parameters.FOCUS_MODE_MACRO);
                         mCamera.setParameters(params);
                         mCamera.setDisplayOrientation(90);
                         mCamera.setPreviewDisplay(surfaceHolder);
@@ -299,7 +301,7 @@ public class FragmentCameraPicture extends Fragment implements SurfaceHolder.Cal
             //params.setPreviewSize(sfv_camview.getWidth(), sfv_camview.getHeight());
             params.setRotation(90);
             Camera.Size size = getBestPreviewSize(params);
-            params.setPreviewSize(size.width, size.height);
+            params.setPictureSize(size.width, size.height);
             params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
             mCamera.setParameters(params);
             mCamera.setDisplayOrientation(90);

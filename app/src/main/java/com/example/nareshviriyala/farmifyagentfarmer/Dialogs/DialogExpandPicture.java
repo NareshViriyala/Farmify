@@ -24,12 +24,12 @@ import com.example.nareshviriyala.farmifyagentfarmer.R;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class DialogExpandPicture extends Dialog{
+public class DialogExpandPicture extends Dialog implements View.OnClickListener{
     private LogErrors logErrors;
     private String className;
     private Context context;
     private byte[] imgsource;
-    private ImageView img_exppicture;
+    private ImageView img_exppicture, img_close;
 
 
     public DialogExpandPicture(@NonNull Context context, byte[] imgsource) {
@@ -50,10 +50,23 @@ public class DialogExpandPicture extends Dialog{
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_expandpicture);
+        getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.MATCH_PARENT);
 
         img_exppicture = (ImageView) findViewById(R.id.img_exppicture);
         Bitmap bmp = BitmapFactory.decodeByteArray(imgsource, 0, imgsource.length);
         img_exppicture.setImageBitmap(bmp);
+
+        img_close = findViewById(R.id.img_close);
+        img_close.setOnClickListener(this);
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.img_close:
+                dismiss();
+                break;
+        }
+    }
 }

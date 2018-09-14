@@ -49,6 +49,15 @@
         <item>Signout</item>
     </string-array>
 
+    <string-array name="image_types">
+        <item>Farmer</item>
+        <item>Bank book</item>
+        <item>Ration card</item>
+        <item>Pan card</item>
+        <item>Aadhar card</item>
+        <item>Additional</item>
+    </string-array>
+
     <string name="partner_prompt">Partner type</string>
     <string-array name="partners_type">
         <item>Select</item>

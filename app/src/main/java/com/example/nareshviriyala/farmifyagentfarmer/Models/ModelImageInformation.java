@@ -6,9 +6,9 @@ public class ModelImageInformation {
 
     private int Id;
     private String ImageType;
-    private List<byte[]> ImageSource;
+    private byte[] ImageSource;
 
-    public ModelImageInformation(int Id, String ImageType, List<byte[]> ImageSource) {
+    public ModelImageInformation(int Id, String ImageType, byte[] ImageSource) {
         this.Id = Id;
         this.ImageType = ImageType;
         this.ImageSource = ImageSource;
@@ -22,7 +22,7 @@ public class ModelImageInformation {
         return ImageType;
     }
 
-    public List<byte[]> getImageSource() {
+    public byte[] getImageSource() {
         return ImageSource;
     }
 

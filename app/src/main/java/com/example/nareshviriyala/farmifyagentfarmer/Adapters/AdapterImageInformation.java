@@ -58,8 +58,8 @@ public class AdapterImageInformation extends ArrayAdapter<ModelImageInformation>
 
             ImageView img_picture = (ImageView)listItem.findViewById(R.id.img_picture);
 
-            if(currentDataItem.getImageSource() != null && currentDataItem.getImageSource().size() > 0){
-                byte[] img = currentDataItem.getImageSource().get(0);
+            if(currentDataItem.getImageSource() != null){
+                byte[] img = currentDataItem.getImageSource();
                 Bitmap bmp = BitmapFactory.decodeByteArray(img, 0, img.length);
                 img_picture.setImageBitmap(bmp);
             }
