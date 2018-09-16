@@ -21,6 +21,8 @@ import com.example.nareshviriyala.farmifyagentfarmer.R;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.Arrays;
+
 public class DialogAddPartnerItem extends Dialog implements View.OnClickListener{
     private LogErrors logErrors;
     private String className;
@@ -71,7 +73,9 @@ public class DialogAddPartnerItem extends Dialog implements View.OnClickListener
             if(item != null){
                 input_name.setText(item.getPartnerName());
                 input_value.setText(item.getPartnerPhone());
-                spnr_partnertype.setSelection(0, true);
+                String[] partnerType = context.getResources().getStringArray(R.array.partners_type);
+                int index = Arrays.asList(partnerType).indexOf(item.getPartnerType());
+                spnr_partnertype.setSelection(index, true);
             }
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage());

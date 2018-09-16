@@ -1,18 +1,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Fragments.FragmentAFIndividual">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:layout_marginBottom="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
@@ -21,12 +22,12 @@
 
             <!--show farmer's phone and aadhar-->
             <LinearLayout
+                android:id="@+id/ll_verifyfarmerphoneandaadhar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
-                android:id="@+id/ll_verifyfarmerphoneandaadhar"
+                android:orientation="vertical"
                 android:outlineSpotShadowColor="@color/colorPrimary"
-                android:orientation="vertical">
+                android:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -37,8 +38,8 @@
                     <android.support.design.widget.TextInputLayout
                         android:id="@+id/input_layout_aadhar"
                         android:layout_width="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
 
                         <EditText
                             android:id="@+id/input_aadhar"
@@ -51,9 +52,9 @@
 
                     <android.support.design.widget.TextInputLayout
                         android:id="@+id/input_layout_phone"
-                        android:layout_weight="1"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
 
                         <EditText
                             android:id="@+id/input_phone"
@@ -65,29 +66,29 @@
                     </android.support.design.widget.TextInputLayout>
 
                     <RelativeLayout
+                        android:id="@+id/rl_aadharbutton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/rl_aadharbutton"
                         android:layout_gravity="center_horizontal">
 
                         <ProgressBar
+                            android:id="@+id/pb_loadingaadharverify"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/pb_loadingaadharverify"
                             android:layout_centerInParent="true"
                             android:indeterminateTint="@color/white"
-                            android:visibility="invisible"
-                            android:translationZ="3dp"/>
+                            android:translationZ="3dp"
+                            android:visibility="invisible" />
 
                         <Button
+                            android:id="@+id/btn_verifyAadharandphone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Verify"
-                            android:textColor="@color/white"
-                            android:id="@+id/btn_verifyAadharandphone"
                             android:background="@color/colorPrimary"
                             android:focusable="false"
-                            android:focusableInTouchMode="false" />
+                            android:focusableInTouchMode="false"
+                            android:text="Verify"
+                            android:textColor="@color/white" />
 
                     </RelativeLayout>
 
@@ -95,14 +96,15 @@
 
 
                 <LinearLayout
+                    android:id="@+id/ll_verifyotp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:id="@+id/ll_verifyotp"
-                    android:visibility="visible"
-                    android:animateLayoutChanges="true"
                     android:layout_marginTop="3dp"
-                    android:orientation="horizontal">
+                    android:animateLayoutChanges="true"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
                     <android.support.design.widget.TextInputLayout
                         android:id="@+id/input_layout_otp"
                         android:layout_width="wrap_content"
@@ -124,23 +126,23 @@
                         android:layout_gravity="center_horizontal">
 
                         <ProgressBar
+                            android:id="@+id/pb_loadingotp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/pb_loadingotp"
                             android:layout_centerInParent="true"
                             android:indeterminateTint="@color/white"
-                            android:visibility="invisible"
-                            android:translationZ="3dp"/>
+                            android:translationZ="3dp"
+                            android:visibility="invisible" />
 
                         <Button
+                            android:id="@+id/btn_sendotp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Send"
-                            android:textColor="@color/white"
-                            android:id="@+id/btn_sendotp"
                             android:background="@color/colorPrimary"
                             android:focusable="false"
-                            android:focusableInTouchMode="false" />
+                            android:focusableInTouchMode="false"
+                            android:text="Send"
+                            android:textColor="@color/white" />
 
                     </RelativeLayout>
                 </LinearLayout>
@@ -177,18 +179,19 @@
 
             <!--Verify farmer's individual faorm-->
             <LinearLayout
+                android:id="@+id/ll_individualform"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/ll_individualform"
-                android:visibility="visible"
-                android:orientation="vertical">
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:visibility="visible">
 
                 <!--firstname, lastname-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:background="@color/white">
+                    android:background="@color/white"
+                    android:orientation="horizontal">
 
                     <!--firstname-->
                     <android.support.design.widget.TextInputLayout
@@ -230,9 +233,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginTop="5dp"
-                    android:background="@color/white">
+                    android:background="@color/white"
+                    android:orientation="horizontal">
 
                     <!--surname-->
                     <android.support.design.widget.TextInputLayout
@@ -253,8 +256,8 @@
 
                     <!--dob-->
                     <RelativeLayout
-                        android:layout_height="wrap_content"
                         android:layout_width="10dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@color/white">
 
@@ -273,13 +276,13 @@
                         </android.support.design.widget.TextInputLayout>
 
                         <ImageView
+                            android:id="@+id/img_calendar"
                             android:layout_width="35dp"
                             android:layout_height="35dp"
-                            android:src="@drawable/baseline_calendar_today_black_24dp"
-                            android:tint="@color/colorPrimary"
-                            android:id="@+id/img_calendar"
+                            android:layout_alignParentEnd="true"
                             android:layout_marginEnd="20dp"
-                            android:layout_alignParentEnd="true"/>
+                            android:src="@drawable/baseline_calendar_today_black_24dp"
+                            android:tint="@color/colorPrimary" />
                     </RelativeLayout>
 
                 </LinearLayout>
@@ -433,7 +436,7 @@
                 </RadioGroup>
 
                 <!--type of farmer text view small, marginal, other-->
-                <TextView
+                <!--<TextView
                     android:id="@+id/farmertype"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -442,7 +445,7 @@
                     android:paddingLeft="8dp"
                     android:text="Farmer Type:" />
 
-                <!--type of farmer radio group small, marginal, other-->
+                &lt;!&ndash;type of farmer radio group small, marginal, other&ndash;&gt;
                 <RadioGroup
                     android:id="@+id/rg_farmertype"
                     android:layout_width="match_parent"
@@ -472,7 +475,7 @@
                         android:text="Other" />
                 </RadioGroup>
 
-                <!--type of farm text view owner, tenant, sharecropper-->
+                &lt;!&ndash;type of farm text view owner, tenant, sharecropper&ndash;&gt;
                 <TextView
                     android:id="@+id/farmercategory"
                     android:layout_width="match_parent"
@@ -482,7 +485,7 @@
                     android:paddingLeft="8dp"
                     android:text="Farmer Category:" />
 
-                <!--type of farm radio group owner, tenant, sharecropper-->
+                &lt;!&ndash;type of farm radio group owner, tenant, sharecropper&ndash;&gt;
                 <RadioGroup
                     android:id="@+id/rg_farmcategory"
                     android:layout_width="match_parent"
@@ -510,7 +513,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Sharecropper" />
-                </RadioGroup>
+                </RadioGroup>-->
 
                 <!--address 1 edit text view -->
                 <android.support.design.widget.TextInputLayout
@@ -524,7 +527,7 @@
                         android:id="@+id/input_address1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Address Line 1"/>
+                        android:hint="Address Line 1" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -540,7 +543,7 @@
                         android:id="@+id/input_address2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Address Line 2"/>
+                        android:hint="Address Line 2" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -638,17 +641,23 @@
                     </android.support.design.widget.TextInputLayout>-->
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/btn_individualdatasave"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:background="@color/colorPrimary"
-                    android:text="Save"
-                    android:textColor="@android:color/white" />
+
             </LinearLayout>
+
+
 
         </LinearLayout>
 
     </ScrollView>
+
+    <Button
+        android:id="@+id/btn_individualdatasave"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/colorPrimary"
+        android:text="Save"
+        android:textColor="@android:color/white" />
 </LinearLayout>

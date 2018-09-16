@@ -62,3 +62,57 @@ CREATE TABLE dbo.tbl_errorlog(
 	 , MethodName NVARCHAR(500)
 	 , Errordesc NVARCHAR(2000)
 	 , InsertTime DATETIME DEFAULT(GETDATE()))
+GO
+DROP TABLE IF EXISTS dbo.tbl_mstr_caste; 
+GO
+CREATE TABLE dbo.tbl_mstr_caste(
+	   Id INT IDENTITY(1,1) PRIMARY KEY
+	 , CasteType NVARCHAR(20) NOT NULL
+	 , CreatedDate DATETIME DEFAULT(GETDATE())
+	 , CreatedBy NVARCHAR(100) NOT NULL)
+GO
+INSERT INTO dbo.tbl_mstr_caste(CasteType, CreatedBy)
+SELECT 'General', 'Naresh.Viriyala' UNION
+SELECT 'OBC', 'Naresh.Viriyala' UNION
+SELECT 'SC', 'Naresh.Viriyala' UNION
+SELECT 'ST', 'Naresh.Viriyala' UNION
+SELECT 'Other', 'Naresh.Viriyala' 
+GO
+DROP TABLE IF EXISTS dbo.tbl_mstr_farmertype; 
+GO
+CREATE TABLE dbo.tbl_mstr_farmertype(
+	   Id INT IDENTITY(1,1) PRIMARY KEY
+	 , FarmerType NVARCHAR(20) NOT NULL
+	 , CreatedDate DATETIME DEFAULT(GETDATE())
+	 , CreatedBy NVARCHAR(100) NOT NULL)
+GO
+INSERT INTO dbo.tbl_mstr_farmertype(FarmerType, CreatedBy)
+SELECT 'Small', 'Naresh.Viriyala' UNION
+SELECT 'Marginal', 'Naresh.Viriyala' UNION
+SELECT 'Other', 'Naresh.Viriyala' 
+GO
+DROP TABLE IF EXISTS dbo.tbl_mstr_farmercategory; 
+GO
+CREATE TABLE dbo.tbl_mstr_farmercategory(
+	   Id INT IDENTITY(1,1) PRIMARY KEY
+	 , FarmerCategory NVARCHAR(20) NOT NULL
+	 , CreatedDate DATETIME DEFAULT(GETDATE())
+	 , CreatedBy NVARCHAR(100) NOT NULL)
+GO
+INSERT INTO dbo.tbl_mstr_farmercategory(FarmerCategory, CreatedBy)
+SELECT 'Owner', 'Naresh.Viriyala' UNION
+SELECT 'Tenant', 'Naresh.Viriyala' UNION
+SELECT 'SharedCropper', 'Naresh.Viriyala' 
+GO
+DROP TABLE IF EXISTS dbo.tbl_mstr_bankaccounttype
+GO
+CREATE TABLE dbo.tbl_mstr_bankaccounttype(
+	   Id INT IDENTITY(1,1) PRIMARY KEY
+	 , AccountType NVARCHAR(20) NOT NULL
+	 , CreatedDate DATETIME DEFAULT(GETDATE())
+	 , CreatedBy NVARCHAR(100) NOT NULL)
+GO
+INSERT INTO dbo.tbl_mstr_bankaccounttype(AccountType, CreatedBy)
+SELECT 'Savings', 'Naresh.Viriyala' UNION
+SELECT 'Current', 'Naresh.Viriyala' UNION
+SELECT 'Other', 'Naresh.Viriyala' 

@@ -120,7 +120,7 @@ public class FragmentAFSocial extends Fragment implements View.OnClickListener {
                 rootView.findViewById(R.id.input_layout_whatsappnumber).setVisibility(View.VISIBLE);
             }
             if(farmersocialData.has("SourceOfInfoOther")) {
-                input_srcother.setText(farmersocialData.getString("SourceOfInfoOther").replace("Other --> ", "").replace(" <-- Other", ""));
+                input_srcother.setText(farmersocialData.getString("SourceOfInfoOther"));
                 rootView.findViewById(R.id.input_layout_srcother).setVisibility(View.VISIBLE);
             }
             if(farmersocialData.has("RationCard"))
@@ -245,7 +245,7 @@ public class FragmentAFSocial extends Fragment implements View.OnClickListener {
                         dbHelper.setParameter(getString(R.string.Social), farmersocialData.toString());
                         break;
                     case R.id.input_srcother:
-                        farmersocialData.put("SourceOfInfoOther", "Other --> "+input_srcother.getText().toString().trim()+" <-- Other");
+                        farmersocialData.put("SourceOfInfoOther", input_srcother.getText().toString().trim());
                         dbHelper.setParameter(getString(R.string.Social), farmersocialData.toString());
                         break;
                     case R.id.input_rationcard:

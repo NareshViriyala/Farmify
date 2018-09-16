@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
@@ -298,7 +299,11 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         try {
+            int children = parent.getChildCount();
+            for(int i = 0; i < children; i++)
+                parent.getChildAt(i).setBackground(getResources().getDrawable(R.drawable.background_picturetiles));
             (rootView.findViewById(R.id.rl_container)).setVisibility(View.VISIBLE);
+            view.setBackground(getResources().getDrawable(R.drawable.background_picturetilesselected));
             currentPictureType = ((TextView) view.findViewById(R.id.tv_picturetype)).getText().toString().trim().replace(" ","");
             currentPictureId = 0;
             new loadImage().execute(currentPictureType, String.valueOf(currentPictureId));
@@ -348,7 +353,6 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
                     response = new ModelImageParameters(bitmap,(rootView.findViewById(R.id.rl_container)).getHeight()
                             ,(rootView.findViewById(R.id.rl_container)).getWidth(),View.VISIBLE,View.VISIBLE, View.VISIBLE);
                     currentPictureId = imageId;
-
                 }
             }catch (JSONException e) {
                 logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage().toString());
@@ -371,57 +375,6 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
             }catch (Exception ex){
                 logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
             }
-        }
-    }
-
-    public void loadImage(String imageType, int imageId){
-        try{
-            JSONArray imagesArray = null;
-            if(farmerImageData.has(imageType))
-                imagesArray = farmerImageData.getJSONArray(imageType);
-
-            if(imagesArray == null || imagesArray.length() == 0){
-                img_picturetile.setImageResource(R.drawable.baseline_add_photo_alternate_black_24dp);
-                img_picturetile.getLayoutParams().width = 200;
-                img_picturetile.getLayoutParams().height = 200;
-                img_deletepic.setVisibility(View.GONE);
-                img_leftpic.setVisibility(View.GONE);
-                img_rightpic.setVisibility(View.GONE);
-            }else if (imageId == -1 && imagesArray.length() > 0){
-                img_picturetile.setImageResource(R.drawable.baseline_add_photo_alternate_black_24dp);
-                img_picturetile.getLayoutParams().width = 200;
-                img_picturetile.getLayoutParams().height = 200;
-                img_deletepic.setVisibility(View.GONE);
-                img_leftpic.setVisibility(View.VISIBLE);
-                img_rightpic.setVisibility(View.GONE);
-            }else if(imageId > imagesArray.length()){
-                img_picturetile.setImageResource(R.drawable.baseline_add_photo_alternate_black_24dp);
-                img_picturetile.getLayoutParams().width = 200;
-                img_picturetile.getLayoutParams().height = 200;
-                img_deletepic.setVisibility(View.GONE);
-                img_leftpic.setVisibility(View.GONE);
-                img_rightpic.setVisibility(View.GONE);
-            }else if(imageId == 0){
-                byte[] imgbyte = Base64.decode(imagesArray.getString(0), Base64.DEFAULT);
-                Bitmap bitmap = BitmapFactory.decodeByteArray(imgbyte, 0, imgbyte.length);
-                img_picturetile.setImageBitmap(bitmap);
-                img_picturetile.getLayoutParams().width = (rootView.findViewById(R.id.rl_container)).getWidth();
-                img_picturetile.getLayoutParams().height = (rootView.findViewById(R.id.rl_container)).getHeight();
-                img_deletepic.setVisibility(View.VISIBLE);
-                img_rightpic.setVisibility(View.VISIBLE);
-                img_leftpic.setVisibility(View.GONE);
-            }else {
-                byte[] imgbyte = Base64.decode(imagesArray.getString(imageId), Base64.DEFAULT);
-                Bitmap bitmap = BitmapFactory.decodeByteArray(imgbyte, 0, imgbyte.length);
-                img_picturetile.setImageBitmap(bitmap);
-                img_picturetile.getLayoutParams().width = (rootView.findViewById(R.id.rl_container)).getWidth();
-                img_picturetile.getLayoutParams().height = (rootView.findViewById(R.id.rl_container)).getHeight();
-                img_deletepic.setVisibility(View.VISIBLE);
-                img_rightpic.setVisibility(View.VISIBLE);
-                img_leftpic.setVisibility(View.VISIBLE);
-            }
-        }catch (Exception e){
-            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());
         }
     }
 

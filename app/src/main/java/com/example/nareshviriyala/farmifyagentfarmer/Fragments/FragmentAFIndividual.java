@@ -133,13 +133,13 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
             rootView.findViewById(R.id.rb_male).setOnClickListener(this);
             rootView.findViewById(R.id.rb_female).setOnClickListener(this);
 
-            rootView.findViewById(R.id.rb_ftsmall).setOnClickListener(this);
+            /*rootView.findViewById(R.id.rb_ftsmall).setOnClickListener(this);
             rootView.findViewById(R.id.rb_ftmarginal).setOnClickListener(this);
             rootView.findViewById(R.id.rb_ftother).setOnClickListener(this);
 
             rootView.findViewById(R.id.rb_fcowner).setOnClickListener(this);
             rootView.findViewById(R.id.rb_fctenant).setOnClickListener(this);
-            rootView.findViewById(R.id.rb_fcsharecropper).setOnClickListener(this);
+            rootView.findViewById(R.id.rb_fcsharecropper).setOnClickListener(this);*/
 
             populateForm();
 
@@ -154,6 +154,7 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
             if(farmerIdvData.has("Aadhar")) {
                 ll_individualform.setVisibility(View.VISIBLE);
                 input_aadhar.setText(farmerIdvData.getString("Aadhar"));
+                input_aadhar.setEnabled(false);
                 if(farmerIdvData.has("Phone")) {
                     rootView.findViewById(R.id.rl_aadharbutton).setVisibility(View.GONE);
                     ll_verifyotp.setVisibility(View.GONE);
@@ -187,9 +188,9 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
                     input_pincode.setText(farmerIdvData.getString("Pincode"));
 
 
-                if(farmerIdvData.has("Cast")){
+                if(farmerIdvData.has("Caste")){
                     RadioGroup rg_cast = rootView.findViewById(R.id.rg_cast);
-                    switch (farmerIdvData.getString("Cast")){
+                    switch (farmerIdvData.getString("Caste")){
                         case "General":
                             rg_cast.check(R.id.rb_cast_general);
                             break;
@@ -221,7 +222,7 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
                     }
                 }
 
-                if(farmerIdvData.has("FarmerType")){
+                /*if(farmerIdvData.has("FarmerType")){
                     RadioGroup rg_farmertype = rootView.findViewById(R.id.rg_farmertype);
                     switch (farmerIdvData.getString("FarmerType")){
                         case "Small":
@@ -249,7 +250,7 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
                             rg_farmcategory.check(R.id.rb_fcsharecropper);
                             break;
                     }
-                }
+                }*/
             }else{
                 ll_individualform.setVisibility(View.GONE);
                 ll_verifyotp.setVisibility(View.GONE);
@@ -364,8 +365,7 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
             if (!validateAadhar())
                 return;
             farmerIdvData.put("Aadhar", input_aadhar.getText().toString().trim());
-            farmerIdvData.put("Phone", input_phone.getText().toString().trim());
-            new  callVerifyAadharAndPhone().execute();
+            new  callVerifyAadharAndPhone().execute(farmerIdvData.getString("Aadhar"), input_phone.getText().toString().trim());
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage());
         }
@@ -477,6 +477,8 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
                     ll_verifyotp.setVisibility(View.GONE);
                     rootView.findViewById(R.id.rl_aadharbutton).setVisibility(View.GONE);
                     input_phone.setEnabled(false);
+                    input_aadhar.setEnabled(false);
+                    farmerIdvData.put("Phone", input_phone.getText().toString().trim());
                     Toast.makeText(getActivity(), "Aadhar and Phone numbers verified", Toast.LENGTH_LONG).show();
                 }
                 else {
@@ -516,10 +518,10 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
                 dbHelper.setParameter(getString(R.string.IndividualStatus), "1");
             }else if(!farmerIdvData.has("FirstName") || farmerIdvData.getString("FirstName").equalsIgnoreCase("")
                     || !farmerIdvData.has("DOB") || farmerIdvData.getString("DOB").equalsIgnoreCase("")
-                    || !farmerIdvData.has("Cast") || farmerIdvData.getString("Cast").equalsIgnoreCase("")
+                    || !farmerIdvData.has("Caste") || farmerIdvData.getString("Caste").equalsIgnoreCase("")
                     || !farmerIdvData.has("Gender") || farmerIdvData.getString("Gender").equalsIgnoreCase("")
-                    || !farmerIdvData.has("FarmerType") || farmerIdvData.getString("FarmerType").equalsIgnoreCase("")
-                    || !farmerIdvData.has("FarmType") || farmerIdvData.getString("FarmType").equalsIgnoreCase("")
+                    /*|| !farmerIdvData.has("FarmerType") || farmerIdvData.getString("FarmerType").equalsIgnoreCase("")
+                    || !farmerIdvData.has("FarmType") || farmerIdvData.getString("FarmType").equalsIgnoreCase("")*/
                     || !farmerIdvData.has("Address1") || farmerIdvData.getString("Address1").equalsIgnoreCase("")
                     || !farmerIdvData.has("State") || farmerIdvData.getString("State").equalsIgnoreCase("")
                     || !farmerIdvData.has("District") || farmerIdvData.getString("District").equalsIgnoreCase("")
@@ -580,23 +582,23 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
                 //cast radio button group
                 case R.id.rb_cast_general:
                     if (checked)
-                        farmerIdvData.put("Cast", "General");
+                        farmerIdvData.put("Caste", "General");
                     break;
                 case R.id.rb_cast_obc:
                     if (checked)
-                        farmerIdvData.put("Cast", "OBC");
+                        farmerIdvData.put("Caste", "OBC");
                     break;
                 case R.id.rb_cast_sc:
                     if (checked)
-                        farmerIdvData.put("Cast", "SC");
+                        farmerIdvData.put("Caste", "SC");
                     break;
                 case R.id.rb_cast_st:
                     if (checked)
-                        farmerIdvData.put("Cast", "ST");
+                        farmerIdvData.put("Caste", "ST");
                     break;
                 case R.id.rb_cast_other:
                     if (checked)
-                        farmerIdvData.put("Cast", "Other");
+                        farmerIdvData.put("Caste", "Other");
                     break;
 
                 //Gender radio button group
@@ -610,7 +612,7 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
                     break;
 
                 //Farmer Type radio button group
-                case R.id.rb_ftsmall:
+                /*case R.id.rb_ftsmall:
                     if (checked)
                         farmerIdvData.put("FarmerType", "Small");
                     break;
@@ -635,7 +637,7 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
                 case R.id.rb_fcsharecropper:
                     if (checked)
                         farmerIdvData.put("FarmType", "ShareCropper");
-                    break;
+                    break;*/
                 default:
                     break;
             }

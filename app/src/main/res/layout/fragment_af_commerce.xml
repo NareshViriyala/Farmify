@@ -9,403 +9,404 @@
     tools:context=".Fragments.FragmentAFCommerce">
 
     <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1">
 
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!--annual income and crop income text view-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_annualincome"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@color/white">
-
-                    <EditText
-                        android:id="@+id/input_annualincome"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Annual income"
-                        android:inputType="number" />
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_incomefromcrops"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@color/white">
-
-                    <EditText
-                        android:id="@+id/input_incomefromcrops"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Crop income"
-                        android:inputType="number" />
-                </android.support.design.widget.TextInputLayout>
-
-            </LinearLayout>
-
-            <!--source of farm expense text view-->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@color/white"
-                android:paddingLeft="8dp"
-                android:text="Source of farm expense" />
-
-            <!--source of farm expense check boxes-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="horizontal"
-                android:paddingBottom="5dp">
-
-                <CheckBox
-                    android:id="@+id/chk_febankloan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Bank loan" />
-
-                <CheckBox
-                    android:id="@+id/chk_femoneylender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Money lender" />
-
-
-                <CheckBox
-                    android:id="@+id/chk_fecother"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Other" />
-            </LinearLayout>
-
-            <!--other source of farm expense edit text-->
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_layout_feother"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:visibility="gone">
-
-                <EditText
-                    android:id="@+id/input_feother"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Other soruce"
-                    android:inputType="text" />
-            </android.support.design.widget.TextInputLayout>
-
-            <!--credit taken radio button-->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@color/white"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:orientation="vertical">
 
+                    <!--annual income and crop income text view-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_annualincome"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@color/white">
+
+                            <EditText
+                                android:id="@+id/input_annualincome"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Annual income"
+                                android:inputType="number" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_incomefromcrops"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@color/white">
+
+                            <EditText
+                                android:id="@+id/input_incomefromcrops"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Crop income"
+                                android:inputType="number" />
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <!--source of farm expense text view-->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:background="@color/white"
                         android:paddingLeft="8dp"
-                        android:text="Credits taken:" />
+                        android:text="Source of farm expense" />
 
-                    <!--credit status radio group  fullpaid, pending-->
-                    <RadioGroup
-                        android:id="@+id/rg_credittakenstatus"
+                    <!--source of farm expense check boxes-->
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:paddingBottom="5dp">
 
-                        <RadioButton
-                            android:id="@+id/rb_credittakenyes"
+                        <CheckBox
+                            android:id="@+id/chk_febankloan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Yes" />
+                            android:text="Bank loan" />
 
-                        <RadioButton
-                            android:id="@+id/rb_credittakenno"
+                        <CheckBox
+                            android:id="@+id/chk_femoneylender"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:checked="true"
-                            android:text="No" />
-                    </RadioGroup>
-                </LinearLayout>
+                            android:text="Money lender" />
 
-                <LinearLayout
-                    android:id="@+id/ll_fabcontainer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerInParent="true"
-                    android:visibility="gone">
 
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/fab_addcredit"
-                        android:layout_width="wrap_content"
+                        <CheckBox
+                            android:id="@+id/chk_fecother"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Other" />
+                    </LinearLayout>
+
+                    <!--other source of farm expense edit text-->
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_feother"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="20dp"
-                        app:backgroundTint="@color/colorPrimary"
-                        app:srcCompat="@android:drawable/ic_input_add" />
-                </LinearLayout>
+                        android:background="@color/white"
+                        android:visibility="gone">
 
-            </RelativeLayout>
+                        <EditText
+                            android:id="@+id/input_feother"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Other soruce"
+                            android:inputType="text" />
+                    </android.support.design.widget.TextInputLayout>
 
-            <!--credit taken list view-->
-            <LinearLayout
-                android:id="@+id/ll_creditlist"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="15dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:background="@color/colorPrimary"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:text="Credit List"
-                    android:textColor="@color/white" />
-
-                <ListView
-                    android:id="@+id/lv_creditlist"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                </ListView>
-
-            </LinearLayout>
-
-            <!--asset radio button-->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@color/white"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
+                    <!--credit taken radio button-->
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:background="@color/white"
-                        android:paddingLeft="8dp"
-                        android:text="Assets:" />
-
-                    <!--assets radio group-->
-                    <RadioGroup
-                        android:id="@+id/rg_assetsstatus"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
                         android:orientation="horizontal">
 
-                        <RadioButton
-                            android:id="@+id/rb_assetsyes"
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Yes" />
+                            android:orientation="vertical">
 
-                        <RadioButton
-                            android:id="@+id/rb_assetsno"
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:background="@color/white"
+                                android:paddingLeft="8dp"
+                                android:text="Credits taken:" />
+
+                            <!--credit status radio group  fullpaid, pending-->
+                            <RadioGroup
+                                android:id="@+id/rg_credittakenstatus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/rb_credittakenyes"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Yes" />
+
+                                <RadioButton
+                                    android:id="@+id/rb_credittakenno"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:checked="true"
+                                    android:text="No" />
+                            </RadioGroup>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_fabcontainer"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:checked="true"
-                            android:text="No" />
-                    </RadioGroup>
-                </LinearLayout>
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerInParent="true"
+                            android:visibility="gone">
 
-                <LinearLayout
-                    android:id="@+id/ll_fabassetcontainer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerInParent="true"
-                    android:visibility="gone">
+                            <android.support.design.widget.FloatingActionButton
+                                android:id="@+id/fab_addcredit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="20dp"
+                                app:backgroundTint="@color/colorPrimary"
+                                app:srcCompat="@android:drawable/ic_input_add" />
+                        </LinearLayout>
 
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/fab_addasset"
-                        android:layout_width="wrap_content"
+                    </RelativeLayout>
+
+                    <!--credit taken list view-->
+                    <LinearLayout
+                        android:id="@+id/ll_creditlist"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="20dp"
-                        app:backgroundTint="@color/colorPrimary"
-                        app:srcCompat="@android:drawable/ic_input_add" />
-                </LinearLayout>
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical">
 
-            </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:text="Credit List"
+                            android:textColor="@color/white" />
 
-            <!--assets list view-->
-            <LinearLayout
-                android:id="@+id/ll_assetlist"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="15dp"
-                android:orientation="vertical">
+                        <ListView
+                            android:id="@+id/lv_creditlist"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:background="@color/colorPrimary"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:text="Assets List"
-                    android:textColor="@color/white" />
+                        </ListView>
 
-                <ListView
-                    android:id="@+id/lv_assetlist"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    </LinearLayout>
 
-                </ListView>
-
-            </LinearLayout>
-
-            <!--other source of income radio button-->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@color/white"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
+                    <!--asset radio button-->
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:background="@color/white"
-                        android:paddingLeft="8dp"
-                        android:text="Other sources of income:" />
+                        android:orientation="horizontal">
 
-                    <!--assets radio group-->
-                    <RadioGroup
-                        android:id="@+id/rg_osistatus"
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:background="@color/white"
+                                android:paddingLeft="8dp"
+                                android:text="Assets:" />
+
+                            <!--assets radio group-->
+                            <RadioGroup
+                                android:id="@+id/rg_assetsstatus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/rb_assetsyes"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Yes" />
+
+                                <RadioButton
+                                    android:id="@+id/rb_assetsno"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:checked="true"
+                                    android:text="No" />
+                            </RadioGroup>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_fabassetcontainer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerInParent="true"
+                            android:visibility="gone">
+
+                            <android.support.design.widget.FloatingActionButton
+                                android:id="@+id/fab_addasset"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="20dp"
+                                app:backgroundTint="@color/colorPrimary"
+                                app:srcCompat="@android:drawable/ic_input_add" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <!--assets list view-->
+                    <LinearLayout
+                        android:id="@+id/ll_assetlist"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:text="Assets List"
+                            android:textColor="@color/white" />
+
+                        <ListView
+                            android:id="@+id/lv_assetlist"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        </ListView>
+
+                    </LinearLayout>
+
+                    <!--other source of income radio button-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
                         android:background="@color/white"
                         android:orientation="horizontal">
 
-                        <RadioButton
-                            android:id="@+id/rb_osiyes"
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:background="@color/white"
+                                android:paddingLeft="8dp"
+                                android:text="Other sources of income:" />
+
+                            <!--assets radio group-->
+                            <RadioGroup
+                                android:id="@+id/rg_osistatus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/rb_osiyes"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Yes" />
+
+                                <RadioButton
+                                    android:id="@+id/rb_osino"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:checked="true"
+                                    android:text="No" />
+                            </RadioGroup>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_fabosicontainer"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Yes" />
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerInParent="true"
+                            android:visibility="gone">
 
-                        <RadioButton
-                            android:id="@+id/rb_osino"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:checked="true"
-                            android:text="No" />
-                    </RadioGroup>
-                </LinearLayout>
+                            <android.support.design.widget.FloatingActionButton
+                                android:id="@+id/fab_addosi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="20dp"
+                                app:backgroundTint="@color/colorPrimary"
+                                app:srcCompat="@android:drawable/ic_input_add" />
+                        </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/ll_fabosicontainer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerInParent="true"
-                    android:visibility="gone">
+                    </RelativeLayout>
 
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/fab_addosi"
-                        android:layout_width="wrap_content"
+                    <!--other source of income list view-->
+                    <LinearLayout
+                        android:id="@+id/ll_osilist"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="20dp"
-                        app:backgroundTint="@color/colorPrimary"
-                        app:srcCompat="@android:drawable/ic_input_add" />
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:text="Other sources of income"
+                            android:textColor="@color/white" />
+
+                        <ListView
+                            android:id="@+id/lv_osilist"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:headerDividersEnabled="true">
+
+                        </ListView>
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
-            </RelativeLayout>
-
-            <!--other source of income list view-->
-            <LinearLayout
-                android:id="@+id/ll_osilist"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="15dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:background="@color/colorPrimary"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:text="Other sources of income"
-                    android:textColor="@color/white" />
-
-                <ListView
-                    android:id="@+id/lv_osilist"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:headerDividersEnabled="true">
-
-                </ListView>
-
-            </LinearLayout>
-
-        </LinearLayout>
 
     </ScrollView>
-
     <Button
         android:id="@+id/btn_commercedatasave"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:background="@color/colorPrimary"
         android:text="Save"
         android:textColor="@android:color/white" />
-
 </LinearLayout>

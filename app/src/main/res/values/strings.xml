@@ -51,10 +51,10 @@
 
     <string-array name="image_types">
         <item>Farmer</item>
+        <item>Aadhar card</item>
         <item>Bank book</item>
         <item>Ration card</item>
         <item>Pan card</item>
-        <item>Aadhar card</item>
         <item>Additional</item>
     </string-array>
 
