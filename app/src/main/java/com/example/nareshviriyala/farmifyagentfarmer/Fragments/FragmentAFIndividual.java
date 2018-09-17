@@ -418,10 +418,12 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
                         //replace already set data with the new data
                         response = response.getJSONObject("result");
                         dbHelper.setParameter(getResources().getString(R.string.Individual), response.getString("individual_data"));
+                        farmerIdvData = response.getJSONObject("individual_data");
                         dbHelper.setParameter(getResources().getString(R.string.Bank), response.getString("bank_data"));
                         dbHelper.setParameter(getResources().getString(R.string.Social), response.getString("social_data"));
                         dbHelper.setParameter(getResources().getString(R.string.Commerce), response.getString("commerce_data"));
                         dbHelper.setParameter(getResources().getString(R.string.Partner), response.getString("partner_data"));
+                        populateForm();
                     }else if(!response.getBoolean("status") && response.getString("result").equalsIgnoreCase("Otp sent")){ //aadhar not found
                         //show otp edit text
                         ll_verifyotp.setVisibility(View.VISIBLE);

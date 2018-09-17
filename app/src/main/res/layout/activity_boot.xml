@@ -137,17 +137,10 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="right"
         android:paddingBottom="20dp"
+        android:layout_marginRight="10dp"
         android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="30dp"
-            android:text="Our Moto"/>
 
         <TextView
             android:layout_width="wrap_content"
