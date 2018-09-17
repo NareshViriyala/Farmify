@@ -53,7 +53,7 @@ namespace webapi.Controllers
                     {
                         new Claim(ClaimTypes.Name, userDto.Id.ToString())
                     }),
-                    Expires = DateTime.UtcNow.AddHours(2),
+                    Expires = DateTime.UtcNow.AddHours(24),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
                 };
 

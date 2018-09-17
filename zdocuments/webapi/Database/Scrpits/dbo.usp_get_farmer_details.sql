@@ -2,10 +2,11 @@ DROP PROCEDURE IF EXISTS dbo.usp_get_farmer_details
 GO
 CREATE PROCEDURE dbo.usp_get_farmer_details(
 	   @json NVARCHAR(500)
+	 , @status BIT OUTPUT
 	 , @output NVARCHAR(MAX) OUTPUT)
 AS
 BEGIN
-	SELECT @output = (SELECT * FROM dbo.tbl_mstr_farmer (NOLOCK) WHERE Aadhar = JSON_VALUE(@json, '$.Aadhar') OR Phone = JSON_VALUE(@json, '$.Phone') FOR JSON PATH, ROOT('result')) 
+	SELECT @output = (SELECT * FROM dbo.tbl_mstr_farmer (NOLOCK) WHERE Aadhar = JSON_VALUE(@json, '$.Aadhar') FOR JSON PATH, ROOT('result')) 
 	
 	IF @output IS NOT NULL-- aadhar exists so insert the record
 	BEGIN
@@ -17,15 +18,39 @@ BEGIN
 			
 			SELECT @bank_data = (SELECT * FROM dbo.tbl_farmer_bank (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
 			SELECT @bank_data = JSON_QUERY(@bank_data, '$.result[0]')
-			
-			SELECT @social_data = (SELECT * FROM dbo.tbl_farmer_social (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
+
+			SELECT @social_data = (SELECT FacebookID
+										, WhatsappID
+										, JSON_QUERY(Languages) AS Languages 
+										, JSON_QUERY(SourceInformation) AS SourceInfomation 
+										, SourceOfInfoOther
+										, RationCard
+										, PanCard
+										, JSON_QUERY(Reference) AS Reference 
+									 FROM dbo.tbl_farmer_social (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
 			SELECT @social_data = JSON_QUERY(@social_data, '$.result[0]')
-			
-			SELECT @commerce_data = (SELECT * FROM dbo.tbl_farmer_commerce (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
+
+			SELECT @commerce_data = (SELECT AnnualIncome
+										  , CropIncome
+										  , JSON_QUERY(FarmExpenseSource) AS FarmExpenseSource
+										  , JSON_QUERY(CreditInformation) AS CreditInformation 
+										  , JSON_QUERY(AssetInformation) AS AssetInformation
+										  , JSON_QUERY(OsiInformation) AS OsiInformation
+									   FROM dbo.tbl_farmer_commerce (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
 			SELECT @commerce_data = JSON_QUERY(@commerce_data, '$.result[0]')
-			
-			SELECT @partner_data = (SELECT * FROM dbo.tbl_farmer_partner (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
+
+			SELECT @partner_data = (SELECT JSON_QUERY(PartnerData) AS PartnerData 
+									  FROM dbo.tbl_farmer_partner (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
 			SELECT @partner_data = JSON_QUERY(@partner_data, '$.result[0]')
+			
+			--SELECT @social_data = (SELECT * FROM dbo.tbl_farmer_social (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
+			--SELECT @social_data = JSON_QUERY(@social_data, '$.result[0]')
+			
+			--SELECT @commerce_data = (SELECT * FROM dbo.tbl_farmer_commerce (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
+			--SELECT @commerce_data = JSON_QUERY(@commerce_data, '$.result[0]')
+			
+			--SELECT @partner_data = (SELECT * FROM dbo.tbl_farmer_partner (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
+			--SELECT @partner_data = JSON_QUERY(@partner_data, '$.result[0]')
 			
 			SELECT @output ='{"agent_id":0, 
 							"individual_data":'+ISNULL(@individual_data,'')+',
@@ -34,9 +59,17 @@ BEGIN
 							"commerce_data":'+ISNULL(@commerce_data,'')+',
 							"partner_data":'+ISNULL(@partner_data,'')+'
 						   }'
+		   SET @status = 1
 	END
 	ELSE
 	BEGIN
+		IF ISNULL(JSON_VALUE(@json, '$.Phone'), '') = ''
+		BEGIN
+			SET @status = 0
+			SET @output = 'Otp not sent'
+			RETURN
+		END
+
 		DECLARE @Otp INT = LEFT(SUBSTRING (RTRIM(RAND()) + SUBSTRING(RTRIM(RAND()),3,11), 3,11),4)
 
 		MERGE dbo.tbl_phone_validation src
@@ -48,6 +81,7 @@ BEGIN
 	   INSERT (Phone, Otp)
 	   VALUES (dest.Phone, dest.Otp);
 
+	    SET @status = 0
 		SET @output = 'Otp sent'
 	END
 END

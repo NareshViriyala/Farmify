@@ -65,7 +65,6 @@ namespace webapi.Controllers
         {
             try
             {
-                string output = "";
                 using(var sqlConnection = new SqlConnection(_appSettings.ConnectionString))
                 {
                     using(var sqlCommand = new SqlCommand("dbo.usp_get_farmer_details",sqlConnection))
@@ -74,13 +73,27 @@ namespace webapi.Controllers
                         sqlCommand.Parameters.Add("@json",SqlDbType.NVarChar, 500).Value = JsonConvert.SerializeObject(jsonString);
                         sqlCommand.Parameters.Add("@output", SqlDbType.NVarChar, -1);
                         sqlCommand.Parameters["@output"].Direction = ParameterDirection.Output;
+                        sqlCommand.Parameters.Add("@status", SqlDbType.Bit);
+                        sqlCommand.Parameters["@status"].Direction = ParameterDirection.Output;
                         sqlConnection.Open();
                         sqlCommand.ExecuteReader();
                         sqlConnection.Close();
-                        output = sqlCommand.Parameters["@output"].Value.ToString();
+                        if((bool)sqlCommand.Parameters["@status"].Value)
+                        {
+                            return Ok(new {
+                                status = true,
+                                result = JsonConvert.DeserializeObject<FarmerDataItem>(sqlCommand.Parameters["@output"].Value.ToString())
+                            });
+                        }
+                        else
+                        {
+                            return Ok(new {
+                                status = false,
+                                result = sqlCommand.Parameters["@output"].Value.ToString()
+                            });
+                        }
                     }
                 }
-                return Ok(new {output = output});
             }
             catch (Exception ex)
             {
@@ -94,7 +107,7 @@ namespace webapi.Controllers
         {
             try
             {
-                bool output = false;
+                JObject output = new JObject();
                 using(var sqlConnection = new SqlConnection(_appSettings.ConnectionString))
                 {
                     using(var sqlCommand = new SqlCommand("dbo.usp_verify_phone_otp",sqlConnection))
@@ -106,10 +119,11 @@ namespace webapi.Controllers
                         sqlConnection.Open();
                         sqlCommand.ExecuteReader();
                         sqlConnection.Close();
-                        output = (bool)sqlCommand.Parameters["@output"].Value;
+                        //output = (bool)sqlCommand.Parameters["@output"].Value;
+                        output.Add("output", (bool)sqlCommand.Parameters["@output"].Value);
                     }
                 }
-                return Ok(new {output = output});
+                return Ok(output);
             }
             catch (Exception ex)
             {
@@ -135,8 +149,9 @@ namespace webapi.Controllers
         public JObject individual_data {get; set;}
         public JObject bank_data {get; set;} 
         public JObject social_data {get; set;} 
+        public JArray agronomic_data {get; set;} 
         public JObject commerce_data {get; set;} 
-        public JObject partner_data {get; set;}
+        public JArray partner_data {get; set;}
         public JObject image_data {get; set;}
     }
 }

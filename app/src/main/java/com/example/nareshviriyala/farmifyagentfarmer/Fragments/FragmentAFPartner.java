@@ -30,7 +30,7 @@ public class FragmentAFPartner extends Fragment implements View.OnClickListener{
     private LogErrors logErrors;
     private DatabaseHelper dbHelper;
     private String className;
-    public JSONObject farmerpartnerData;
+    public JSONArray farmerpartnerData;
     private ListView lv_partnerlist;
     private Button btn_partnerdatasave;
     private FloatingActionButton fab_addpartner;
@@ -52,11 +52,12 @@ public class FragmentAFPartner extends Fragment implements View.OnClickListener{
             logErrors = LogErrors.getInstance(getActivity());
             className = new Object(){}.getClass().getEnclosingClass().getName();
             dbHelper = new DatabaseHelper(getActivity());
+
             String data = dbHelper.getParameter(getString(R.string.Partner));
-            if(data.isEmpty() || data == null)
-                farmerpartnerData = new JSONObject();
+            if(data.isEmpty() || data == null || data.equalsIgnoreCase("[]"))
+                farmerpartnerData = new JSONArray();
             else
-                farmerpartnerData = new JSONObject(data);
+                farmerpartnerData = new JSONArray(data);
             ((HomeActivity) getActivity()).setActionBarTitle("Partner Details");
 
             btn_partnerdatasave = rootView.findViewById(R.id.btn_partnerdatasave);
@@ -76,14 +77,14 @@ public class FragmentAFPartner extends Fragment implements View.OnClickListener{
 
     public void refreshPartnerListView(){
         try{
-            if(!farmerpartnerData.has(getResources().getString(R.string.Partner))){
+            if(farmerpartnerData.length() == 0){
                 lv_partnerlist.setVisibility(View.GONE);
                 return;
             }
             ArrayList<ModelPartnerInformation> partnerInformation = new ArrayList<>();
-            JSONArray partnerList = farmerpartnerData.getJSONArray(getResources().getString(R.string.Partner));
-            for(int i = 0; i < partnerList.length(); i++){
-                JSONObject item = partnerList.getJSONObject(i);
+            //JSONArray partnerList = farmerpartnerData.getJSONArray(getResources().getString(R.string.Partner));
+            for(int i = 0; i < farmerpartnerData.length(); i++){
+                JSONObject item = farmerpartnerData.getJSONObject(i);
                 partnerInformation.add(new ModelPartnerInformation(item.getInt("Id"), item.getString("PartnerName"), item.getString("PartnerPhone"), item.getString("PartnerType")));
             }
             if(partnerInformation.size() > 0)
@@ -129,10 +130,7 @@ public class FragmentAFPartner extends Fragment implements View.OnClickListener{
         try{
             dbHelper.setParameter(getString(R.string.Partner), farmerpartnerData.toString());
             dbHelper.setParameter(getString(R.string.PartnerStatus), "3");
-            JSONArray list = null;
-            if(farmerpartnerData.has(getResources().getString(R.string.Partner)))
-                list = farmerpartnerData.getJSONArray(getResources().getString(R.string.Partner));
-            if(list.length() <= 0 || list == null)
+            if(farmerpartnerData.length() <= 0 || farmerpartnerData == null)
                 dbHelper.setParameter(getString(R.string.PartnerStatus), "2");
 
             goBack();

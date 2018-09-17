@@ -1,7 +1,9 @@
 package com.example.nareshviriyala.farmifyagentfarmer.Fragments;
 
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
@@ -17,6 +19,7 @@ import com.example.nareshviriyala.farmifyagentfarmer.Activities.HomeActivity;
 import com.example.nareshviriyala.farmifyagentfarmer.Adapters.AdapterFarmerData;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
+import com.example.nareshviriyala.farmifyagentfarmer.Helpers.WebServiceOperation;
 import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelDatabaseImage;
 import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelFarmerData;
 import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelSystemParameter;
@@ -37,6 +40,7 @@ public class FragmentAddFarmer extends Fragment implements AdapterView.OnItemCli
     private String className;
     private DatabaseHelper dbHelper;
     private Button btn_farmerdiscard, btn_farmersave;
+    private WebServiceOperation wso;
 
     public FragmentAddFarmer(){}
 
@@ -58,6 +62,7 @@ public class FragmentAddFarmer extends Fragment implements AdapterView.OnItemCli
             dbHelper = new DatabaseHelper(getActivity());
             btn_farmersave = rootView.findViewById(R.id.btn_farmersave);
             btn_farmerdiscard = rootView.findViewById(R.id.btn_farmerdiscard);
+            wso = new WebServiceOperation();
 
             List<ModelSystemParameter> list = dbHelper.getAllParameters();
             List<ModelDatabaseImage> imageList = dbHelper.getAllImages();
@@ -159,7 +164,7 @@ public class FragmentAddFarmer extends Fragment implements AdapterView.OnItemCli
                     FragmentAFSocial fragmentSocial = new FragmentAFSocial();
                     return fragmentSocial;
                 case "Agronomic":
-                    FragmentAgronomics fragmentAgronomics = new FragmentAgronomics();
+                    FragmentAFAgronomic fragmentAgronomics = new FragmentAFAgronomic();
                     return fragmentAgronomics;
                 case "Commerce":
                     FragmentAFCommerce fragmentCommerce = new FragmentAFCommerce();
@@ -184,11 +189,149 @@ public class FragmentAddFarmer extends Fragment implements AdapterView.OnItemCli
         try{
             switch (v.getId()){
                 case R.id.btn_farmersave:
+                    if(!saveFarmerData(getResources().getString(R.string.IndividualStatus)))
+                        return;
+                    if(!saveFarmerData(getResources().getString(R.string.BankStatus)))
+                        return;
+                    if(!saveFarmerData(getResources().getString(R.string.SocialStatus)))
+                        return;
+                    if(!saveFarmerData(getResources().getString(R.string.AgronomicStatus)))
+                        return;
+                    if(!saveFarmerData(getResources().getString(R.string.CommerceStatus)))
+                        return;
+                    if(!saveFarmerData(getResources().getString(R.string.PartnerStatus)))
+                        return;
+                    if(!saveFarmerData(getResources().getString(R.string.ImagesStatus)))
+                        return;
+
+                    JSONObject payload = new JSONObject();
+                    payload.put("agent_id", dbHelper.getParameter("user_id"));
+                    payload.put("individual_data", new JSONObject(dbHelper.getParameter(getResources().getString(R.string.Individual))));
+                    payload.put("bank_data", new JSONObject(dbHelper.getParameter(getResources().getString(R.string.Bank))));
+                    payload.put("social_data", new JSONObject(dbHelper.getParameter(getResources().getString(R.string.Social))));
+                    payload.put("agronomic_data", new JSONArray(dbHelper.getParameter(getResources().getString(R.string.Agronomic))));
+                    payload.put("commerce_data", new JSONObject(dbHelper.getParameter(getResources().getString(R.string.Commerce))));
+                    payload.put("partner_data", new JSONArray(dbHelper.getParameter(getResources().getString(R.string.Partner))));
+
+                    new sendPayLoad().execute(payload.toString(), dbHelper.getParameter("token"));
                     break;
                 case R.id.btn_farmerdiscard:
                     deleteFarmerData();
                     break;
             }
+        }catch (Exception ex){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+        }
+    }
+
+    public class sendPayLoad extends AsyncTask<String, Void, JSONObject>{
+
+        @Override
+        protected void onPreExecute(){
+            (rootView.findViewById(R.id.pb_loadingsavefarmer)).setVisibility(View.VISIBLE);
+            btn_farmersave.setText("");
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... strings) {
+            JSONObject response = new JSONObject();
+            try {
+                response = wso.MakePostCall("FarmerData/logFarmerDetails", strings[0], strings[1]);
+            }catch (Exception ex){
+                logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+            }
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject result) {
+            try {
+                (rootView.findViewById(R.id.pb_loadingsavefarmer)).setVisibility(View.GONE);
+                btn_farmersave.setText("Save");
+                JSONObject response = new JSONObject(result.getString("response"));
+                if (result.getInt("responseCode") == 200 && response.getInt("output") > 0) {
+                    Snackbar.make(getActivity().findViewById(R.id.fab), "Successfully saved to server", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    eraseFarmerData();
+                }else{
+                    Snackbar.make(getActivity().findViewById(R.id.fab), "Saving locally", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    saveLocally();
+                    eraseFarmerData();
+                }
+            } catch (Exception ex){
+                logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+            }
+        }
+
+    }
+
+    public void saveLocally(){
+        try{
+
+        }catch (Exception ex){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+        }
+    }
+
+    public boolean saveFarmerData(String type){
+        String responsetext = "";
+        boolean response = false;
+        try{
+            String status = dbHelper.getParameter(type);
+
+            if(status.equalsIgnoreCase("0") || status.equalsIgnoreCase(""))
+                responsetext = "Save "+type.replace("_Status","")+" details";
+            else if(status.equalsIgnoreCase("1"))
+                responsetext = "Complete "+type.replace("_Status","")+" details";
+            else
+                response = true;
+
+            if(!response)
+                Snackbar.make(getActivity().findViewById(R.id.fab), responsetext, Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+
+        }catch (Exception ex){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+        }
+        return response;
+    }
+
+    public void eraseFarmerData(){
+        try{
+            dbHelper.deleteParameter(getResources().getString(R.string.Individual));
+            dbHelper.deleteParameter(getResources().getString(R.string.IndividualStatus));
+            dbHelper.deleteParameter(getResources().getString(R.string.Bank));
+            dbHelper.deleteParameter(getResources().getString(R.string.BankStatus));
+            dbHelper.deleteParameter(getResources().getString(R.string.Social));
+            dbHelper.deleteParameter(getResources().getString(R.string.SocialStatus));
+            dbHelper.deleteParameter(getResources().getString(R.string.Agronomic));
+            dbHelper.deleteParameter(getResources().getString(R.string.AgronomicStatus));
+            dbHelper.deleteParameter(getResources().getString(R.string.Commerce));
+            dbHelper.deleteParameter(getResources().getString(R.string.CommerceStatus));
+            dbHelper.deleteParameter(getResources().getString(R.string.Partner));
+            dbHelper.deleteParameter(getResources().getString(R.string.PartnerStatus));
+            String data = dbHelper.getParameter(getResources().getString(R.string.Images));
+            JSONObject jsonObject = null;
+            if(data.isEmpty()){
+                dbHelper.deleteParameter(getResources().getString(R.string.Images));
+                dbHelper.deleteParameter(getResources().getString(R.string.ImagesStatus));
+            }
+            else {
+                jsonObject = new JSONObject(data);
+                String[] image_types = getResources().getStringArray(R.array.image_types);
+                for (String item:image_types) {
+                    if(jsonObject.has(item.replace(" ", ""))){
+                        JSONArray jsonArray = jsonObject.getJSONArray(item.replace(" ",""));
+                        for (int i = 0; i < jsonArray.length(); i++){
+                            dbHelper.deleteImage(jsonArray.getInt(i));
+                        }
+                    }
+                }
+                dbHelper.deleteParameter(getResources().getString(R.string.Images));
+                dbHelper.deleteParameter(getResources().getString(R.string.ImagesStatus));
+            }
+            populateListView();
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }
@@ -205,39 +348,7 @@ public class FragmentAddFarmer extends Fragment implements AdapterView.OnItemCli
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             try {
-                                dbHelper.deleteParameter(getResources().getString(R.string.Individual));
-                                dbHelper.deleteParameter(getResources().getString(R.string.IndividualStatus));
-                                dbHelper.deleteParameter(getResources().getString(R.string.Bank));
-                                dbHelper.deleteParameter(getResources().getString(R.string.BankStatus));
-                                dbHelper.deleteParameter(getResources().getString(R.string.Social));
-                                dbHelper.deleteParameter(getResources().getString(R.string.SocialStatus));
-                                dbHelper.deleteParameter(getResources().getString(R.string.Agronomic));
-                                dbHelper.deleteParameter(getResources().getString(R.string.AgronomicStatus));
-                                dbHelper.deleteParameter(getResources().getString(R.string.Commerce));
-                                dbHelper.deleteParameter(getResources().getString(R.string.CommerceStatus));
-                                dbHelper.deleteParameter(getResources().getString(R.string.Partner));
-                                dbHelper.deleteParameter(getResources().getString(R.string.PartnerStatus));
-                                String data = dbHelper.getParameter(getResources().getString(R.string.Images));
-                                JSONObject jsonObject = null;
-                                if(data.isEmpty()){
-                                    dbHelper.deleteParameter(getResources().getString(R.string.Images));
-                                    dbHelper.deleteParameter(getResources().getString(R.string.ImagesStatus));
-                                }
-                                else {
-                                    jsonObject = new JSONObject(data);
-                                    String[] image_types = getResources().getStringArray(R.array.image_types);
-                                    for (String item:image_types) {
-                                        if(jsonObject.has(item.replace(" ", ""))){
-                                            JSONArray jsonArray = jsonObject.getJSONArray(item.replace(" ",""));
-                                            for (int i = 0; i < jsonArray.length(); i++){
-                                                dbHelper.deleteImage(jsonArray.getInt(i));
-                                            }
-                                        }
-                                    }
-                                    dbHelper.deleteParameter(getResources().getString(R.string.Images));
-                                    dbHelper.deleteParameter(getResources().getString(R.string.ImagesStatus));
-                                }
-                                populateListView();
+                                eraseFarmerData();
                                 dialog.cancel();
                             }catch (Exception ex){
                                 logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());

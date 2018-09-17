@@ -41,7 +41,39 @@
         android:textColor="@color/colorPrimary"
         android:id="@+id/tv_scanqr"/>
 
-    <Button
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal">
+
+
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pb_loading"
+            android:layout_centerInParent="true"
+            android:indeterminateTint="@color/white"
+            android:visibility="invisible"
+            android:translationZ="3dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enter manually"
+            android:textColor="@color/white"
+            android:id="@+id/btn_entermanual"
+            android:background="@color/colorPrimary"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+
+    </RelativeLayout>
+
+<!--    <Button
         android:id="@+id/btn_entermanual"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -51,5 +83,5 @@
         android:background="@color/colorPrimary"
         android:layout_alignParentBottom="true"
         android:text="Enter manually"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white" />-->
 </RelativeLayout>

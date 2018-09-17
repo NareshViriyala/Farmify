@@ -1,0 +1,451 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Fragments.FragmentAFAgronomic">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/grey"
+            android:orientation="vertical">
+
+            <!--type of farmer text view small, marginal, other-->
+            <TextView
+                android:id="@+id/farmertype"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingLeft="8dp"
+                android:text="Farmer Type:" />
+
+            <!--type of farmer radio group small, marginal, other-->
+            <RadioGroup
+                android:id="@+id/rg_farmertype"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_ftsmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Small" />
+
+                <RadioButton
+                    android:id="@+id/rb_ftmarginal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Marginal" />
+
+                <RadioButton
+                    android:id="@+id/rb_ftother"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Other" />
+            </RadioGroup>
+
+            <!--type of farm text view owner, tenant, sharecropper-->
+            <TextView
+                android:id="@+id/farmercategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                android:paddingLeft="8dp"
+                android:text="Farmer Category:" />
+
+            <!--type of farm radio group owner, tenant, sharecropper-->
+            <RadioGroup
+                android:id="@+id/rg_farmcategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_fcowner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Owner" />
+
+                <RadioButton
+                    android:id="@+id/rb_fctenant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Tenant" />
+
+                <RadioButton
+                    android:id="@+id/rb_fcsharecropper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Sharecropper" />
+            </RadioGroup>
+
+            <!--type of crop text view cotton, chilli, corn, other-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                android:paddingLeft="8dp"
+                android:text="Type of crop" />
+
+            <!--type of crop check boxes cotton, chilli, corn, other-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp">
+
+                <CheckBox
+                    android:id="@+id/chk_toccotton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cotton" />
+
+                <CheckBox
+                    android:id="@+id/chk_tocchilli"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Chilli" />
+
+                <CheckBox
+                    android:id="@+id/chk_toccorn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Corn" />
+
+                <CheckBox
+                    android:id="@+id/chk_tocother"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Other" />
+            </LinearLayout>
+
+            <!--type of crop edit text for other-->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_tocother"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/input_tocother"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Name of crop"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
+
+            <!--type of soil text view regadi, nalla regadi, other-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                android:paddingLeft="8dp"
+                android:text="Type of soil" />
+
+            <!--type of soil text view regadi, nalla regadi, other-->
+            <RadioGroup
+                android:id="@+id/rg_soiltype"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_soilregadi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Regadi" />
+
+                <RadioButton
+                    android:id="@+id/rb_soilnallaregadi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Nalla regadi" />
+
+                <RadioButton
+                    android:id="@+id/rb_soilother"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Other" />
+            </RadioGroup>
+
+            <!--type of soil edit text other-->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_soilother"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/input_soilother"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Type of soil"
+                    android:inputType="text" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <!--text view water source-->
+            <TextView
+                android:id="@+id/watersource"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                android:paddingLeft="8dp"
+                android:text="Water source:" />
+
+            <!--spinner water source-->
+            <Spinner
+                android:id="@+id/spnr_watersource"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:entries="@array/watersource"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+                <!--edit text own land-->
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_landacers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/white">
+
+                    <EditText
+                        android:id="@+id/input_landacers"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="land (Acers)"
+                        android:inputType="number" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <!--soiltesting linear layout-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <!--soiltesting text view-->
+                    <TextView
+                        android:id="@+id/tv_soiltexting"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:paddingLeft="8dp"
+                        android:text="Soil testing done?" />
+
+                    <!--soiltesting radio group yes, no-->
+                    <RadioGroup
+                        android:id="@+id/rg_soiltesting"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rb_soiltestingyes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Yes" />
+
+                        <RadioButton
+                            android:id="@+id/rb_soiltestingno"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="No" />
+
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <!--edit text farming experience-->
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_farmingexperience"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/white">
+
+                    <EditText
+                        android:id="@+id/input_farmingexperience"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Farming exp (years)"
+                        android:inputType="number" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <!--crop insurance linear layout-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <!--crop insurance text view-->
+                    <TextView
+                        android:id="@+id/tv_cropinsurance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:paddingLeft="8dp"
+                        android:text="Corp insurance?" />
+
+                    <!--crop insurance radio group yes, no-->
+                    <RadioGroup
+                        android:id="@+id/rg_cropinsurance"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rb_cropinsuranceyes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Yes" />
+
+                        <RadioButton
+                            android:id="@+id/rb_cropinsurancegno"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="No" />
+
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--crop history radio button-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/white"
+                        android:paddingLeft="8dp"
+                        android:text="Crop history:" />
+
+                    <!--assets radio group-->
+                    <RadioGroup
+                        android:id="@+id/rg_crophistorystatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rb_crophistoryyes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Yes" />
+
+                        <RadioButton
+                            android:id="@+id/rb_crophistoryno"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="true"
+                            android:text="No" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_fabcrophistorycontainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone">
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/fab_addcrophistory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        app:backgroundTint="@color/colorPrimary"
+                        app:srcCompat="@android:drawable/ic_input_add" />
+                </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_agronomicslavedatasave"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/colorPrimary"
+        android:text="Save"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>

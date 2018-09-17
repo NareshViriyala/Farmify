@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/background_picturetiles"
+    android:padding="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_id"
+            android:visibility="gone"/>
+
+        <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2">
+        <TextView
+            android:id="@+id/textView_farmertype"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:layout_columnSpan="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Farmer type: "
+            android:layout_gravity="center_vertical"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView_farmercategory"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:layout_columnSpan="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Farmer category: "
+            android:layout_gravity="center_vertical"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/textView_croptype"
+            android:layout_column="0"
+            android:layout_row="3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Crop type: "
+            android:layout_gravity="center_vertical"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/textView_soiltype"
+            android:layout_column="1"
+            android:layout_row="3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Soil type: "
+            android:layout_gravity="center_vertical"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/textView_watersource"
+            android:layout_column="0"
+            android:layout_row="4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Water source: "
+            android:layout_gravity="center_vertical"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/textView_landacers"
+            android:layout_column="1"
+            android:layout_row="4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Land: "
+            android:layout_gravity="center_vertical"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/textView_soiltesting"
+            android:layout_column="0"
+            android:layout_row="5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Soil testing: "
+            android:layout_gravity="center_vertical"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/textView_cropinsurance"
+            android:layout_column="1"
+            android:layout_row="5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Crop insurance: "
+            android:layout_gravity="center_vertical"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/textView_farmexp"
+            android:layout_column="0"
+            android:layout_row="6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Farming exp: "
+            android:layout_gravity="center_vertical"
+            android:textSize="15sp"/>
+    </GridLayout>
+
+        <ImageView
+            android:id="@+id/img_deleteFarm"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerInParent="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/baseline_delete_outline_black_24dp"
+            android:layout_gravity="center_vertical"/>
+
+        <ImageView
+            android:id="@+id/img_arrow"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerInParent="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/baseline_keyboard_arrow_right_black_24dp"/>
+
+    </RelativeLayout>
+</LinearLayout>

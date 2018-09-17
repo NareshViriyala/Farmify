@@ -121,13 +121,13 @@ public class AdapterPartnerInformation extends ArrayAdapter<ModelPartnerInformat
                         public void onClick(DialogInterface dialog, int id) {
                             try {
                                 dialog.cancel();
-                                JSONArray oldlist = fragmentPartner.farmerpartnerData.getJSONArray(context.getResources().getString(R.string.Partner));
+                                JSONArray oldlist = fragmentPartner.farmerpartnerData;
                                 JSONArray newlist = new JSONArray();
                                 for (int i = 0; i < oldlist.length(); i++) {
                                     if (Id != oldlist.getJSONObject(i).getInt("Id"))
                                         newlist.put(oldlist.get(i));
                                 }
-                                fragmentPartner.farmerpartnerData.put(context.getResources().getString(R.string.Partner), newlist);
+                                fragmentPartner.farmerpartnerData = newlist;
                                 fragmentPartner.refreshPartnerListView();
 
                             }catch (Exception ex){

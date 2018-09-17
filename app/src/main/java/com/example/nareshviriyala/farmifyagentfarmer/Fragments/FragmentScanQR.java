@@ -8,6 +8,7 @@ import android.hardware.Camera;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -20,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +36,7 @@ import java.util.TimerTask;
 import com.example.nareshviriyala.farmifyagentfarmer.Activities.HomeActivity;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
+import com.example.nareshviriyala.farmifyagentfarmer.Helpers.WebServiceOperation;
 import com.example.nareshviriyala.farmifyagentfarmer.R;
 import com.example.nareshviriyala.farmifyagentfarmer.zxing.BinaryBitmap;
 import com.example.nareshviriyala.farmifyagentfarmer.zxing.ChecksumException;
@@ -65,6 +68,7 @@ public class FragmentScanQR extends Fragment implements SurfaceHolder.Callback, 
     private TextView tv_scanqr;
     private ImageView img_processing;
     private TextView tv_scanStatus;
+    private ProgressBar pb_loading;
 
     public int shotInterval = 100;
     public boolean decodingQR = false;
@@ -75,6 +79,8 @@ public class FragmentScanQR extends Fragment implements SurfaceHolder.Callback, 
     public Camera.PreviewCallback previewCallback;
     public int vibrateMilli = 400;
     public Hashtable<DecodeHintType, Object> decodeHints = new Hashtable<DecodeHintType, Object>();
+
+    public WebServiceOperation wso;
 
     public String lastQRContent = "";
     public Vibrator v;
@@ -94,9 +100,11 @@ public class FragmentScanQR extends Fragment implements SurfaceHolder.Callback, 
             dbHelper = new DatabaseHelper(getActivity());
             ((HomeActivity) getActivity()).setActionBarTitle("Scan aadhar QR");
             decodeHints.put(DecodeHintType.TRY_HARDER, Boolean.TRUE);
+            wso = new WebServiceOperation();
 
             btn_entermanual = rootView.findViewById(R.id.btn_entermanual);
             btn_entermanual.setOnClickListener(this);
+            pb_loading = rootView.findViewById(R.id.pb_loading);
             img_processing = (ImageView) rootView.findViewById(R.id.img_processing);
             Glide.with(getActivity()).load(R.drawable.preloader).into(img_processing);
             tv_scanqr = (TextView) rootView.findViewById(R.id.tv_scanqr);
@@ -210,7 +218,8 @@ public class FragmentScanQR extends Fragment implements SurfaceHolder.Callback, 
             if(validateData(QRContent)) {
                 mCamera.stopPreview();
                 v.vibrate(vibrateMilli/4);
-                loadFragment("FragmentAFIndividual");
+                new getAadharDataFromServer().execute(dbHelper.getParameter(getResources().getString(R.string.Individual)), dbHelper.getParameter("token"));
+                //loadFragment("FragmentAFIndividual");
             }
             else {
                 decodingQR = false;
@@ -218,6 +227,64 @@ public class FragmentScanQR extends Fragment implements SurfaceHolder.Callback, 
             }
         }
         catch (Exception e){logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());}
+    }
+
+    public class getAadharDataFromServer extends AsyncTask<String, Integer, JSONObject>{
+        @Override
+        protected void onPreExecute(){
+            pb_loading.setVisibility(View.VISIBLE);
+            btn_entermanual.setText("");
+        }
+
+        @Override
+        protected JSONObject doInBackground(String[] params) {
+            //android.os.Debug.waitForDebugger();
+            JSONObject aadharInfo = null;
+            try {
+                JSONObject json = new JSONObject(params[0]);
+                String token = params[1];
+                JSONObject postDataParams = new JSONObject();
+                postDataParams.put("Aadhar", json.getString("Aadhar"));
+                postDataParams.put("Phone", "");
+                aadharInfo = wso.MakePostCall("FarmerData/verifyAadhar", postDataParams.toString(), token);
+            }
+            catch (Exception e) {
+                logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());
+            }
+
+            return aadharInfo;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject result){
+            super.onPostExecute(result);
+            pb_loading.setVisibility(View.GONE);
+            btn_entermanual.setText("Enter Manually");
+            try {
+                if (result.getInt("responseCode") == 200) {
+                    JSONObject response = new JSONObject(result.getString("response"));
+                    if(response.getBoolean("status")){ //found aadhar
+                        //replace already set data with the new data
+                        response = response.getJSONObject("result");
+                        dbHelper.setParameter(getResources().getString(R.string.Individual), response.getString("individual_data"));
+                        dbHelper.setParameter(getResources().getString(R.string.Bank), response.getString("bank_data"));
+                        dbHelper.setParameter(getResources().getString(R.string.Agronomic), response.getString("agronomic_data"));
+                        dbHelper.setParameter(getResources().getString(R.string.Social), response.getString("social_data"));
+                        dbHelper.setParameter(getResources().getString(R.string.Commerce), response.getString("commerce_data"));
+                        dbHelper.setParameter(getResources().getString(R.string.Partner), response.getString("partner_data"));
+                        loadFragment("FragmentAFIndividual");
+                    }else{ //aadhar not found
+                        // move to next fragment with scanned data from QR code
+                        loadFragment("FragmentAFIndividual");
+                    }
+                } else {
+                    /*Snackbar.make(getActivity().findViewById(R.id.fab), "Loading...", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();*/
+                    loadFragment("FragmentAFIndividual");
+                }
+            }
+            catch (Exception e){logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());}
+        }
     }
 
     public boolean validateData(String QRContent){
@@ -269,7 +336,7 @@ public class FragmentScanQR extends Fragment implements SurfaceHolder.Callback, 
             }
             JSONObject farmerIdvData = new JSONObject();
             if(uid.length() == 12)
-                farmerIdvData.put("Aadhar", uid.substring(0, 4)+" "+uid.substring(4, 8)+" "+uid.substring(8));
+                farmerIdvData.put("Aadhar", uid);
             String[] names = uname.split(" ");
             if(names.length > 0)
                 farmerIdvData.put("Surname", names[0]);

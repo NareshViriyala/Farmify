@@ -121,8 +121,8 @@ public class DialogAddPartnerItem extends Dialog implements View.OnClickListener
             }
 
             JSONArray partnerList;
-            if(fragmentPartner.farmerpartnerData.has(context.getResources().getString(R.string.Partner)))
-                partnerList = fragmentPartner.farmerpartnerData.getJSONArray(context.getResources().getString(R.string.Partner));
+            if(fragmentPartner.farmerpartnerData.length() > 0)
+                partnerList = fragmentPartner.farmerpartnerData;
             else
                 partnerList = new JSONArray();
 
@@ -151,7 +151,7 @@ public class DialogAddPartnerItem extends Dialog implements View.OnClickListener
                 }
                 partnerList = newAssetList;
             }
-            fragmentPartner.farmerpartnerData.put(context.getResources().getString(R.string.Partner), partnerList);
+            fragmentPartner.farmerpartnerData = partnerList;
             fragmentPartner.refreshPartnerListView();
             dismiss();
         }catch (Exception ex){

@@ -7,6 +7,7 @@ CREATE TABLE dbo.tbl_mstr_farmer (
 	 , FirstName VARCHAR(100)
 	 , LastName VARCHAR(100)
 	 , Surname VARCHAR(100)
+	 , DOB DATE
 	 , Caste VARCHAR(10) -- 1 General, 2 OBC, 3	Other, 4 SC,5 ST
 	 , Gender VARCHAR(10) --1 Male, 0 Female
 	 , Address1 NVARCHAR(200)
@@ -26,6 +27,7 @@ CREATE TABLE dbo.tbl_farmer_bank (
 	 , farmer_id INT
 	 , AccountName NVARCHAR(200)
 	 , AccountNumber NVARCHAR(20)
+	 , ConfirmAccountNumber NVARCHAR(20)
 	 , AccountType VARCHAR(20) -- 1 -Current, 2 - Other, 3 - Savings
 	 , BankName NVARCHAR(100)
 	 , BranchName NVARCHAR(100)
@@ -41,6 +43,7 @@ GO
 CREATE TABLE dbo.tbl_farmer_social (
 	   Id INT IDENTITY(1,1) PRIMARY KEY
 	 , farmer_id INT
+	 , SocialMediaInformation VARCHAR(100)
 	 , FacebookID NVARCHAR(200)
 	 , WhatsappID NVARCHAR(20)
 	 , Languages NVARCHAR(200)
@@ -49,6 +52,26 @@ CREATE TABLE dbo.tbl_farmer_social (
 	 , RationCard NVARCHAR(20)
 	 , PanCard NVARCHAR(15)
 	 , Reference NVARCHAR(1000)
+	 , CreatedDate DATETIME DEFAULT(GETDATE())
+	 , LastModified DATETIME
+	 , LastModifiedBy INT)
+GO
+DROP TABLE IF EXISTS dbo.tbl_farmer_agronomic; 
+GO
+CREATE TABLE dbo.tbl_farmer_agronomic (
+	   Id INT IDENTITY(1,1) PRIMARY KEY
+	 , farmer_id INT
+	 , FarmerType VARCHAR(20)
+	 , FarmerCategory NVARCHAR(20)
+	 , CropType VARCHAR(200)
+	 , CropTypeOther VARCHAR(50)
+	 , SoilType VARCHAR(20)
+	 , SoilTypeOther VARCHAR(50)
+	 , WaterSource VARCHAR(100)
+	 , LandAcers VARCHAR(15)
+	 , SoilTesting BIT
+	 , FarmExp VARCHAR(10)
+	 , CropInsurance BIT
 	 , CreatedDate DATETIME DEFAULT(GETDATE())
 	 , LastModified DATETIME
 	 , LastModifiedBy INT)
@@ -73,7 +96,9 @@ GO
 CREATE TABLE dbo.tbl_farmer_partner (
 	   Id INT IDENTITY(1,1) PRIMARY KEY
 	 , farmer_id INT
-	 , PartnerData NVARCHAR(MAX)
+	 , PartnerName NVARCHAR(100)
+	 , PartnerPhone VARCHAR(20)
+	 , PartnerType VARCHAR(50)
 	 , CreatedDate DATETIME DEFAULT(GETDATE())
 	 , LastModified DATETIME
 	 , LastModifiedBy INT)

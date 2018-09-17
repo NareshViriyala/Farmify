@@ -27,7 +27,35 @@
             android:text="Discard"
             android:textColor="@android:color/white" />
 
-        <Button
+        <RelativeLayout
+            android:id="@+id/rl_aadharbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal">
+
+            <ProgressBar
+                android:id="@+id/pb_loadingsavefarmer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:indeterminateTint="@color/white"
+                android:translationZ="3dp"
+                android:visibility="invisible" />
+
+            <Button
+                android:id="@+id/btn_farmersave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:text="Save"
+                android:textColor="@color/white" />
+
+        </RelativeLayout>
+
+        <!--<Button
             android:id="@+id/btn_farmersave"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -35,7 +63,7 @@
             android:layout_weight="1"
             android:background="@color/colorPrimary"
             android:text="Save"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white" />-->
 
     </LinearLayout>
 </RelativeLayout>

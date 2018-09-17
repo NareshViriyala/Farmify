@@ -8,18 +8,19 @@ AS
 BEGIN
 	SET NOCOUNT ON
 	DECLARE @agent_id VARCHAR(10), @farmer_id VARCHAR(10)
-	DECLARE @individual_data NVARCHAR(MAX), @bank_data NVARCHAR(MAX), @social_data NVARCHAR(MAX), @commerce_data NVARCHAR(MAX), @partner_data NVARCHAR(MAX), @image_data NVARCHAR(MAX)
+	DECLARE @individual_data NVARCHAR(MAX), @bank_data NVARCHAR(MAX), @social_data NVARCHAR(MAX), @agronomic_data NVARCHAR(MAX), @commerce_data NVARCHAR(MAX), @partner_data NVARCHAR(MAX), @image_data NVARCHAR(MAX)
 
 	SELECT @agent_id = CASE WHEN [key] = 'agent_id' THEN [value] ELSE @agent_id END
 		 , @individual_data = CASE WHEN [key] = 'individual_data' THEN [value] ELSE @individual_data END
 		 , @bank_data = CASE WHEN [key] = 'bank_data' THEN [value] ELSE @bank_data END
 		 , @social_data = CASE WHEN [key] = 'social_data' THEN [value] ELSE @social_data END
+		 , @agronomic_data = CASE WHEN [key] = 'agronomic_data' THEN [value] ELSE @agronomic_data END
 		 , @commerce_data = CASE WHEN [key] = 'commerce_data' THEN [value] ELSE @commerce_data END
 		 , @partner_data = CASE WHEN [key] = 'partner_data' THEN [value] ELSE @partner_data END
 		 , @image_data = CASE WHEN [key] = 'image_data' THEN [value] ELSE @image_data END
 	 FROM OPENJSON(@json)
 
-	 SELECT @farmer_id = JSON_VALUE(@individual_data, '$.Id')
+	 SELECT @farmer_id = ISNULL(JSON_VALUE(@individual_data, '$.Id'),0)
 
 	 --if the farmer_id = 0, then its a new entry, else an update to existsing data
 	 IF @farmer_id = 0 
@@ -36,6 +37,7 @@ BEGIN
 				 , JSON_VALUE(@individual_data, '$.FirstName')
 				 , JSON_VALUE(@individual_data, '$.LastName')
 				 , JSON_VALUE(@individual_data, '$.Surname')
+				 , JSON_VALUE(@individual_data, '$.DOB')
 				 , JSON_VALUE(@individual_data, '$.Caste')
 				 , JSON_VALUE(@individual_data, '$.Gender')
 				 , JSON_VALUE(@individual_data, '$.Address1')
@@ -54,6 +56,7 @@ BEGIN
 			SELECT @farmer_id
 				 , JSON_VALUE(@bank_data, '$.AccountName')
 				 , JSON_VALUE(@bank_data, '$.AccountNumber')
+				 , JSON_VALUE(@bank_data, '$.ConfirmAccountNumber')
 				 , JSON_VALUE(@bank_data, '$.AccountType')
 				 , JSON_VALUE(@bank_data, '$.BankName')
 				 , JSON_VALUE(@bank_data, '$.BranchName')
@@ -67,6 +70,7 @@ BEGIN
 			-- Insert social information for the given farmer_id
 			INSERT INTO dbo.tbl_farmer_social
 			SELECT @farmer_id
+				 , JSON_QUERY(@social_data, '$.SocialMediaInformation')
 				 , JSON_VALUE(@social_data, '$.FacebookID')
 				 , JSON_VALUE(@social_data, '$.WhatsappID')
 				 , JSON_QUERY(@social_data, '$.Languages')
@@ -78,6 +82,38 @@ BEGIN
 				 , GETDATE()
 				 , GETDATE()
 				 , @agent_id
+
+
+			-- Insert agronomic information for the given farmer_id
+			INSERT INTO dbo.tbl_farmer_agronomic
+			SELECT @farmer_id
+			   , FarmerType
+			   , FarmerCategory 
+			   , CropType
+			   , CropTypeOther
+			   , SoilType
+			   , SoilTypeOther
+			   , WaterSource
+			   , LandAcers
+			   , SoilTesting
+			   , FarmExp
+			   , CropInsurance
+			   , GETDATE()
+			   , GETDATE()
+			   , @agent_id
+			FROM OPENJSON(@agronomic_data)
+			WITH (FarmerType VARCHAR(20) '$.FarmerType'
+			   , FarmerCategory VARCHAR(20) '$.FarmerCategory'
+			   , CropType VARCHAR(200) '$.CropType'
+			   , CropTypeOther VARCHAR(20) '$.CropTypeOther'
+			   , SoilType VARCHAR(200) '$.SoilType'
+			   , SoilTypeOther VARCHAR(50) '$.SoilTypeOther'
+			   , WaterSource VARCHAR(200) '$.WaterSource'
+			   , LandAcers VARCHAR(200) '$.LandAcers'
+			   , SoilTesting BIT '$.SoilTesting'
+			   , FarmExp VARCHAR(200) '$.FarmExp'
+			   , CropInsurance VARCHAR(200) '$.CropInsurance')
+
 
 			-- Insert commerce information for the given farmer_id
 			INSERT INTO dbo.tbl_farmer_commerce
@@ -95,10 +131,16 @@ BEGIN
 			-- Insert partner information for the given farmer_id
 			INSERT INTO dbo.tbl_farmer_partner
 			SELECT @farmer_id
-				 , JSON_QUERY(@partner_data, '$.PartnerData')
+				 , PartnerName
+				 , PartnerPhone
+				 , PartnerType
 				 , GETDATE()
 				 , GETDATE()
 				 , @agent_id
+			 FROM OPENJSON(@partner_data)
+			 WITH (PartnerName VARCHAR(20) '$.PartnerName'
+			    , PartnerPhone VARCHAR(20) '$.PartnerPhone'
+			    , PartnerType VARCHAR(200) '$.PartnerType')
 
 			SELECT @output = @farmer_id, @desc = 'Insert'
 		END
@@ -110,16 +152,34 @@ BEGIN
 			SELECT @bank_data = (SELECT * FROM dbo.tbl_farmer_bank (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
 			SELECT @bank_data = JSON_QUERY(@bank_data, '$.result[0]')
 
-			SELECT @social_data = (SELECT * FROM dbo.tbl_farmer_social (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
+			SELECT @social_data = (SELECT FacebookID
+										, WhatsappID
+										, JSON_QUERY(Languages) AS Languages 
+										, JSON_QUERY(SourceInformation) AS SourceInfomation 
+										, SourceOfInfoOther
+										, RationCard
+										, PanCard
+										, JSON_QUERY(Reference) AS Reference 
+									 FROM dbo.tbl_farmer_social (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
 			SELECT @social_data = JSON_QUERY(@social_data, '$.result[0]')
 
-			SELECT @commerce_data = (SELECT * FROM dbo.tbl_farmer_commerce (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
+			SELECT @agronomic_data = (SELECT Id, FarmerType, FarmerCategory, CropType, CropTypeOther, SoilType, SoilTypeOther, WaterSource
+										   , LandAcers, SoilTesting, FarmExp, CropInsurance
+									  FROM dbo.tbl_farmer_agronomic (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH)
+
+			SELECT @commerce_data = (SELECT AnnualIncome
+										  , CropIncome
+										  , JSON_QUERY(FarmExpenseSource) AS FarmExpenseSource
+										  , JSON_QUERY(CreditInformation) AS CreditInformation 
+										  , JSON_QUERY(AssetInformation) AS AssetInformation
+										  , JSON_QUERY(OsiInformation) AS OsiInformation
+									   FROM dbo.tbl_farmer_commerce (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
 			SELECT @commerce_data = JSON_QUERY(@commerce_data, '$.result[0]')
 
-			SELECT @partner_data = (SELECT * FROM dbo.tbl_farmer_partner (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
-			SELECT @partner_data = JSON_QUERY(@partner_data, '$.result[0]')
+			SELECT @partner_data = (SELECT Id, PartnerName, PartnerPhone, PartnerType 
+									  FROM dbo.tbl_farmer_partner (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH)
 
-			SELECT @output = @farmer_id, @desc = '{"agent_id":'+CAST(@agent_id AS NVARCHAR)+',"individual_data":'+ISNULL(@individual_data,'')+',"bank_data":'+ISNULL(@bank_data,'')+',"social_data":'+ISNULL(@social_data,'')+',"commerce_data":'+ISNULL(@commerce_data,'')+',"partner_data":'+ISNULL(@partner_data,'')+'}'
+			SELECT @output = @farmer_id, @desc = '{"agent_id":'+CAST(@agent_id AS NVARCHAR)+',"individual_data":'+ISNULL(@individual_data,'')+',"bank_data":'+ISNULL(@bank_data,'')+',"social_data":'+ISNULL(@social_data,'')+', "agronomic_data":'+@agronomic_data+', "commerce_data":'+ISNULL(@commerce_data,'')+',"partner_data":'+ISNULL(@partner_data,'')+'}'
 			RETURN
 		END
 	 END
@@ -131,6 +191,7 @@ BEGIN
 		     , FirstName = JSON_VALUE(@individual_data, '$.FirstName')
 			 , LastName = JSON_VALUE(@individual_data, '$.LastName')
 			 , Surname = JSON_VALUE(@individual_data, '$.Surname')
+			 , DOB = JSON_VALUE(@individual_data, '$.DOB')
 			 , Caste = JSON_VALUE(@individual_data, '$.Caste')
 			 , Gender = JSON_VALUE(@individual_data, '$.Gender')
 			 , Address1 = JSON_VALUE(@individual_data, '$.Address1')
@@ -149,6 +210,7 @@ BEGIN
 		UPDATE dbo.tbl_farmer_bank
 		   SET AccountName = JSON_VALUE(@bank_data, '$.AccountName')
 			 , AccountNumber = JSON_VALUE(@bank_data, '$.AccountNumber')
+			 , ConfirmAccountNumber = JSON_VALUE(@bank_data, '$.ConfirmAccountNumber')
 			 , AccountType = JSON_VALUE(@bank_data, '$.AccountType')
 			 , BankName = JSON_VALUE(@bank_data, '$.BankName')
 			 , BranchName = JSON_VALUE(@bank_data, '$.BranchName')
@@ -161,7 +223,8 @@ BEGIN
 
 		--Update social information for the given farmer_id
 		UPDATE dbo.tbl_farmer_social
-		   SET FacebookID = JSON_VALUE(@social_data, '$.FacebookID')
+		   SET SocialMediaInformation = JSON_QUERY(@social_data, '$.SocialMediaInformation')
+			 , FacebookID = JSON_VALUE(@social_data, '$.FacebookID')
 		     , WhatsappID = JSON_VALUE(@social_data, '$.WhatsappID')
 			 , Languages = JSON_QUERY(@social_data, '$.Languages')
 			 , SourceInformation = JSON_QUERY(@social_data, '$.SourceInformation')
@@ -172,6 +235,39 @@ BEGIN
 			 , LastModified = GETDATE()
 			 , LastModifiedBy = @agent_id
 		 WHERE farmer_id = @farmer_id
+
+		 --Update agronomic information for the given farmer_id
+		 DELETE FROM dbo.tbl_farmer_agronomic WHERE farmer_id = @farmer_id
+		 INSERT INTO dbo.tbl_farmer_agronomic
+		 SELECT  @farmer_id
+			   , FarmerType
+			   , FarmerCategory 
+			   , CropType
+			   , CropTypeOther
+			   , SoilType
+			   , SoilTypeOther
+			   , WaterSource
+			   , LandAcers
+			   , SoilTesting
+			   , FarmExp
+			   , CropInsurance
+			   , GETDATE()
+			   , GETDATE()
+			   , @agent_id
+			FROM OPENJSON(@agronomic_data)
+			WITH (FarmerType VARCHAR(20) '$.FarmerType'
+			   , FarmerCategory VARCHAR(20) '$.FarmerCategory'
+			   , CropType VARCHAR(200) '$.CropType'
+			   , CropTypeOther VARCHAR(20) '$.CropTypeOther'
+			   , SoilType VARCHAR(200) '$.SoilType'
+			   , SoilTypeOther VARCHAR(50) '$.SoilTypeOther'
+			   , WaterSource VARCHAR(200) '$.WaterSource'
+			   , LandAcers VARCHAR(200) '$.LandAcers'
+			   , SoilTesting BIT '$.SoilTesting'
+			   , FarmExp VARCHAR(200) '$.FarmExp'
+			   , CropInsurance VARCHAR(200) '$.CropInsurance')
+
+
 
 		--Update commerce information for the given farmer_id
 		UPDATE dbo.tbl_farmer_commerce
@@ -186,11 +282,20 @@ BEGIN
 		 WHERE farmer_id = @farmer_id
 
 		--Update partner information for the given farmer_id
-		UPDATE dbo.tbl_farmer_partner
-		   SET PartnerData = JSON_QUERY(@partner_data, '$.PartnerData')
-		     , LastModified = GETDATE()
-			 , LastModifiedBy = @agent_id
-		 WHERE farmer_id = @farmer_id
+		DELETE FROM dbo.tbl_farmer_partner WHERE farmer_id = @farmer_id
+
+		INSERT INTO dbo.tbl_farmer_partner
+			SELECT @farmer_id
+				 , PartnerName
+				 , PartnerPhone
+				 , PartnerType
+				 , GETDATE()
+				 , GETDATE()
+				 , @agent_id
+			 FROM OPENJSON(@partner_data)
+			 WITH (PartnerName VARCHAR(20) '$.PartnerName'
+			    , PartnerPhone VARCHAR(20) '$.PartnerPhone'
+			    , PartnerType VARCHAR(200) '$.PartnerType')
 
 		 SELECT @output = ISNULL(@farmer_id, 0)
 	 END

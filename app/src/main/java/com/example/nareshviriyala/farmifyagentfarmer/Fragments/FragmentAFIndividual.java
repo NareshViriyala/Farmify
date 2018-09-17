@@ -23,12 +23,14 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.nareshviriyala.farmifyagentfarmer.Activities.HomeActivity;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.Validations;
+import com.example.nareshviriyala.farmifyagentfarmer.Helpers.WebServiceOperation;
 import com.example.nareshviriyala.farmifyagentfarmer.R;
 
 import org.json.JSONException;
@@ -44,13 +46,14 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
     private TextInputLayout input_layout_phone, input_layout_aadhar, input_layout_otp, input_layout_firstname, input_layout_lastname, input_layout_surname, input_layout_age;
     private Button btn_verifyAadharandphone, btn_sendotp, btn_individualdatasave;
     private LinearLayout ll_verifyotp, ll_individualform;
-    private ImageView img_calendar;
+    private ImageView img_calendar, img_editphone;
     private int day, month, year;
     public Validations validations;
     private ProgressBar pb_loadingaadharverify, pb_loadingotp;
     private JSONObject farmerIdvData;
     //private TextView tv_aadhar, tv_phone;
     private DatabaseHelper dbHelper;
+    private WebServiceOperation wso;
 
     public FragmentAFIndividual(){}
 
@@ -67,6 +70,7 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
             logErrors = LogErrors.getInstance(getActivity());
             className = new Object(){}.getClass().getEnclosingClass().getName();
             dbHelper = new DatabaseHelper(getActivity());
+            wso = new WebServiceOperation();
             String data = dbHelper.getParameter(getString(R.string.Individual));
             if(data.isEmpty() || data == null)
                 farmerIdvData = new JSONObject();
@@ -79,6 +83,8 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
             btn_sendotp = rootView.findViewById(R.id.btn_sendotp);
             btn_individualdatasave = rootView.findViewById(R.id.btn_individualdatasave);
             img_calendar = rootView.findViewById(R.id.img_calendar);
+            img_editphone = rootView.findViewById(R.id.img_editphone);
+            img_editphone.setOnClickListener(this);
 
             btn_verifyAadharandphone.setOnClickListener(this);
             btn_sendotp.setOnClickListener(this);
@@ -153,13 +159,16 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
         try{
             if(farmerIdvData.has("Aadhar")) {
                 ll_individualform.setVisibility(View.VISIBLE);
-                input_aadhar.setText(farmerIdvData.getString("Aadhar"));
+                String uid = farmerIdvData.getString("Aadhar");
+                uid = uid.substring(0, 4)+" "+uid.substring(4, 8)+" "+uid.substring(8);
+                input_aadhar.setText(uid);
                 input_aadhar.setEnabled(false);
                 if(farmerIdvData.has("Phone")) {
                     rootView.findViewById(R.id.rl_aadharbutton).setVisibility(View.GONE);
                     ll_verifyotp.setVisibility(View.GONE);
                     input_phone.setEnabled(false);
                     input_phone.setText(farmerIdvData.getString("Phone"));
+                    img_editphone.setVisibility(View.VISIBLE);
                 }else
                     ll_verifyotp.setVisibility(View.GONE);
 
@@ -364,8 +373,10 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
                 return;
             if (!validateAadhar())
                 return;
-            farmerIdvData.put("Aadhar", input_aadhar.getText().toString().trim());
-            new  callVerifyAadharAndPhone().execute(farmerIdvData.getString("Aadhar"), input_phone.getText().toString().trim());
+            InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+            farmerIdvData.put("Aadhar", input_aadhar.getText().toString().trim().replace(" ",""));
+            new  callVerifyAadharAndPhone().execute(farmerIdvData.getString("Aadhar"), input_phone.getText().toString().trim(), dbHelper.getParameter("token"));
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage());
         }
@@ -382,7 +393,11 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
         protected JSONObject doInBackground(String... strings) {
             JSONObject response = new JSONObject();
             try {
-                response.put("responseCode", 200);
+                String token = strings[2];
+                JSONObject postDataParams = new JSONObject();
+                postDataParams.put("Aadhar", strings[0]);
+                postDataParams.put("Phone", strings[1]);
+                response = wso.MakePostCall("FarmerData/verifyAadhar", postDataParams.toString(), token);
             }catch (JSONException e) {
                 logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage().toString());
             }catch (Exception ex){
@@ -396,12 +411,24 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
             try {
                 pb_loadingaadharverify.setVisibility(View.INVISIBLE);
                 btn_verifyAadharandphone.setText("Verify");
-                if(result.getInt("responseCode") == 200) {
-                    ll_verifyotp.setVisibility(View.VISIBLE);
-                    requestFocus(input_otp);
-                }
-                else {
-                    Snackbar.make(null, result.getString("response"), Snackbar.LENGTH_LONG)
+
+                if (result.getInt("responseCode") == 200) {
+                    JSONObject response = new JSONObject(result.getString("response"));
+                    if(response.getBoolean("status")){ //found aadhar
+                        //replace already set data with the new data
+                        response = response.getJSONObject("result");
+                        dbHelper.setParameter(getResources().getString(R.string.Individual), response.getString("individual_data"));
+                        dbHelper.setParameter(getResources().getString(R.string.Bank), response.getString("bank_data"));
+                        dbHelper.setParameter(getResources().getString(R.string.Social), response.getString("social_data"));
+                        dbHelper.setParameter(getResources().getString(R.string.Commerce), response.getString("commerce_data"));
+                        dbHelper.setParameter(getResources().getString(R.string.Partner), response.getString("partner_data"));
+                    }else if(!response.getBoolean("status") && response.getString("result").equalsIgnoreCase("Otp sent")){ //aadhar not found
+                        //show otp edit text
+                        ll_verifyotp.setVisibility(View.VISIBLE);
+                        requestFocus(input_otp);
+                    }
+                } else {
+                    Snackbar.make(getActivity().findViewById(R.id.fab), result.getString("response"), Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }
             }catch (JSONException e) {
@@ -440,8 +467,10 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
         try{
             if (!validateOtp())
                 return;
+            InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
             farmerIdvData.put("Otp", input_otp.getText().toString().trim());
-            new  callVerifyOtp().execute();
+            new  callVerifyOtp().execute(input_phone.getText().toString().trim(), farmerIdvData.getString("Otp"), dbHelper.getParameter("token"));
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }
@@ -458,7 +487,11 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
         protected JSONObject doInBackground(String... strings) {
             JSONObject response = new JSONObject();
             try {
-                response.put("responseCode", 200);
+                String token = strings[2];
+                JSONObject postDataParams = new JSONObject();
+                postDataParams.put("Phone", strings[0]);
+                postDataParams.put("Otp", strings[1]);
+                response = wso.MakePostCall("FarmerData/validateOTP", postDataParams.toString(), token);
             }catch (JSONException e) {
                 logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage().toString());
             }catch (Exception ex){
@@ -472,17 +505,24 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
             try {
                 pb_loadingotp.setVisibility(View.INVISIBLE);
                 btn_sendotp.setText("Send");
-                if(result.getInt("responseCode") == 200) {
+                JSONObject response = new JSONObject(result.getString("response"));
+                if(result.getInt("responseCode") == 200 && response.getBoolean("output")) {
                     ll_individualform.setVisibility(View.VISIBLE);
                     ll_verifyotp.setVisibility(View.GONE);
+                    img_editphone.setVisibility(View.VISIBLE);
                     rootView.findViewById(R.id.rl_aadharbutton).setVisibility(View.GONE);
                     input_phone.setEnabled(false);
                     input_aadhar.setEnabled(false);
                     farmerIdvData.put("Phone", input_phone.getText().toString().trim());
-                    Toast.makeText(getActivity(), "Aadhar and Phone numbers verified", Toast.LENGTH_LONG).show();
+                    Snackbar.make(getActivity().findViewById(R.id.fab), "Aadhar and Phone numbers verified", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+                else if(result.getInt("responseCode") == 200 && !response.getBoolean("output")){
+                    Snackbar.make(getActivity().findViewById(R.id.fab), "Invalid Otp", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
                 }
                 else {
-                    Snackbar.make(null, result.getString("response"), Snackbar.LENGTH_LONG)
+                    Snackbar.make(getActivity().findViewById(R.id.fab), result.getString("response"), Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }
             }catch (JSONException e) {
@@ -565,6 +605,11 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
                 checked = ((RadioButton) v).isChecked();
 
             switch (v.getId()) {
+                case R.id.img_editphone:
+                    input_phone.setEnabled(true);
+                    ((RelativeLayout)rootView.findViewById(R.id.rl_aadharbutton)).setVisibility(View.VISIBLE);
+                    img_editphone.setVisibility(View.GONE);
+                    break;
                 case R.id.img_calendar:
                     openCalendar();
                     break;
