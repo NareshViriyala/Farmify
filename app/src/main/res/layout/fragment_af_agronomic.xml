@@ -16,7 +16,7 @@
     </ListView>
 
 
-    <android.support.design.widget.FloatingActionButton
+    <!--<android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_addfarm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,5 +24,25 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
         app:backgroundTint="@color/colorPrimary"
+        app:srcCompat="@android:drawable/ic_input_add" />-->
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_addfarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_above="@+id/btn_agronomicdatasave"
+        android:layout_marginBottom="10dp"
+        app:backgroundTint="@color/colorPrimary"
         app:srcCompat="@android:drawable/ic_input_add" />
+
+    <Button
+        android:id="@+id/btn_agronomicdatasave"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:background="@color/colorPrimary"
+        android:text="Save"
+        android:textColor="@android:color/white" />
 </RelativeLayout>

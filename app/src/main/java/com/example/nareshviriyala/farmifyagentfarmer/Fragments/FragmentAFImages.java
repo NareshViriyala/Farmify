@@ -28,6 +28,7 @@ import com.example.nareshviriyala.farmifyagentfarmer.Dialogs.DialogExpandPicture
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.Convertor;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
+import com.example.nareshviriyala.farmifyagentfarmer.Helpers.ValidationFarmerData;
 import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelImageInformation;
 import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelImageParameters;
 import com.example.nareshviriyala.farmifyagentfarmer.R;
@@ -267,7 +268,9 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
     public void validatePartnerData(){
         try{
             dbHelper.setParameter(getString(R.string.Images), farmerImageData.toString());
-            dbHelper.setParameter(getString(R.string.ImagesStatus), "3");
+            new ValidationFarmerData(getActivity()).validateImageData();
+
+            /*dbHelper.setParameter(getString(R.string.ImagesStatus), "3");
             if(!farmerImageData.has("Farmer") || farmerImageData.getJSONArray("Farmer").length() == 0
                     || !farmerImageData.has("Aadharcard")  || farmerImageData.getJSONArray("Aadharcard").length() == 0)
                 dbHelper.setParameter(getString(R.string.ImagesStatus), "1");
@@ -277,7 +280,7 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
                         || !farmerImageData.has("Rationcard") || (farmerImageData.has("Rationcard") && farmerImageData.getJSONArray("Rationcard").length() == 0)
                         || !farmerImageData.has("Pancard") || (farmerImageData.has("Pancard") && farmerImageData.getJSONArray("Pancard").length() == 0)
                         || !farmerImageData.has("Additional") || (farmerImageData.has("Additional") && farmerImageData.getJSONArray("Additional").length() == 0)))
-                dbHelper.setParameter(getString(R.string.ImagesStatus), "2");
+                dbHelper.setParameter(getString(R.string.ImagesStatus), "2");*/
             goBack();
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());

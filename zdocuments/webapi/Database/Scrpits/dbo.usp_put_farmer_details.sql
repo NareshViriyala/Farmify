@@ -8,7 +8,7 @@ AS
 BEGIN
 	SET NOCOUNT ON
 	DECLARE @agent_id VARCHAR(10), @farmer_id VARCHAR(10)
-	DECLARE @individual_data NVARCHAR(MAX), @bank_data NVARCHAR(MAX), @social_data NVARCHAR(MAX), @agronomic_data NVARCHAR(MAX), @commerce_data NVARCHAR(MAX), @partner_data NVARCHAR(MAX), @image_data NVARCHAR(MAX)
+	DECLARE @individual_data NVARCHAR(MAX), @bank_data NVARCHAR(MAX), @social_data NVARCHAR(MAX), @agronomic_data NVARCHAR(MAX), @commerce_data NVARCHAR(MAX), @partner_data NVARCHAR(MAX), @image_data VARCHAR(MAX)
 
 	SELECT @agent_id = CASE WHEN [key] = 'agent_id' THEN [value] ELSE @agent_id END
 		 , @individual_data = CASE WHEN [key] = 'individual_data' THEN [value] ELSE @individual_data END
@@ -78,7 +78,7 @@ BEGIN
 				 , JSON_VALUE(@social_data, '$.SourceOfInfoOther')
 				 , JSON_VALUE(@social_data, '$.RationCard')
 				 , JSON_VALUE(@social_data, '$.PanCard')
-				 , JSON_QUERY(@social_data, '$.Reference')
+				 , JSON_QUERY(@social_data, '$.ReferenceInformation')
 				 , GETDATE()
 				 , GETDATE()
 				 , @agent_id
@@ -118,8 +118,8 @@ BEGIN
 			-- Insert commerce information for the given farmer_id
 			INSERT INTO dbo.tbl_farmer_commerce
 			SELECT @farmer_id
-				 , CASt(JSON_VALUE(@commerce_data, '$.AnnualIncome') AS INT)
-				 , CASt(JSON_VALUE(@commerce_data, '$.CropIncome') AS INT)
+				 , CAST(JSON_VALUE(@commerce_data, '$.AnnualIncome') AS INT)
+				 , CAST(JSON_VALUE(@commerce_data, '$.CropIncome') AS INT)
 				 , JSON_QUERY(@commerce_data, '$.FarmExpenseSource')
 				 , JSON_QUERY(@commerce_data, '$.CreditInformation')
 				 , JSON_QUERY(@commerce_data, '$.AssetInformation')
@@ -142,6 +142,20 @@ BEGIN
 			    , PartnerPhone VARCHAR(20) '$.PartnerPhone'
 			    , PartnerType VARCHAR(200) '$.PartnerType')
 
+
+			-- Insert image information for the given farmer_id
+			INSERT INTO dbo.tbl_farmer_images
+			SELECT @farmer_id
+				 , JSON_QUERY(@image_data, '$.Farmer')
+				 , JSON_VALUE(@image_data, '$.Aadharcard')
+				 , JSON_VALUE(@image_data, '$.Bankbook')
+				 , JSON_QUERY(@image_data, '$.Rationcard')
+				 , JSON_QUERY(@image_data, '$.Pancard')
+				 , JSON_VALUE(@image_data, '$.Additional')
+				 , GETDATE()
+				 , GETDATE()
+				 , @agent_id
+
 			SELECT @output = @farmer_id, @desc = 'Insert'
 		END
 		ELSE
@@ -154,16 +168,17 @@ BEGIN
 
 			SELECT @social_data = (SELECT FacebookID
 										, WhatsappID
+										, JSON_QUERY(SocialMediaInformation) AS SocialMediaInformation
 										, JSON_QUERY(Languages) AS Languages 
-										, JSON_QUERY(SourceInformation) AS SourceInfomation 
+										, JSON_QUERY(SourceInformation) AS SourceInformation 
 										, SourceOfInfoOther
 										, RationCard
 										, PanCard
-										, JSON_QUERY(Reference) AS Reference 
+										, JSON_QUERY(ReferenceInformation) AS ReferenceInformation 
 									 FROM dbo.tbl_farmer_social (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
 			SELECT @social_data = JSON_QUERY(@social_data, '$.result[0]')
 
-			SELECT @agronomic_data = (SELECT Id, FarmerType, FarmerCategory, CropType, CropTypeOther, SoilType, SoilTypeOther, WaterSource
+			SELECT @agronomic_data = (SELECT Id, FarmerType, FarmerCategory, JSON_QUERY(CropType) AS CropType, CropTypeOther, SoilType, SoilTypeOther, WaterSource
 										   , LandAcers, SoilTesting, FarmExp, CropInsurance
 									  FROM dbo.tbl_farmer_agronomic (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH)
 
@@ -179,7 +194,16 @@ BEGIN
 			SELECT @partner_data = (SELECT Id, PartnerName, PartnerPhone, PartnerType 
 									  FROM dbo.tbl_farmer_partner (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH)
 
-			SELECT @output = @farmer_id, @desc = '{"agent_id":'+CAST(@agent_id AS NVARCHAR)+',"individual_data":'+ISNULL(@individual_data,'')+',"bank_data":'+ISNULL(@bank_data,'')+',"social_data":'+ISNULL(@social_data,'')+', "agronomic_data":'+@agronomic_data+', "commerce_data":'+ISNULL(@commerce_data,'')+',"partner_data":'+ISNULL(@partner_data,'')+'}'
+			SELECT @image_data = (SELECT JSON_QUERY(Farmer) AS Farmer
+										  , JSON_QUERY(Aadharcard) AS Aadharcard 
+										  , JSON_QUERY(Bankbook) AS Bankbook
+										  , JSON_QUERY(Rationcard) AS Rationcard
+										  , JSON_QUERY(Pancard) AS Pancard
+										  , JSON_QUERY(Additional) AS Additional
+									   FROM dbo.tbl_farmer_images (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
+			SELECT @image_data = JSON_QUERY(@image_data, '$.result[0]')
+
+			SELECT @output = @farmer_id, @desc = '{"agent_id":'+CAST(@agent_id AS NVARCHAR)+',"individual_data":'+ISNULL(@individual_data,'')+',"bank_data":'+ISNULL(@bank_data,'')+',"social_data":'+ISNULL(@social_data,'')+', "agronomic_data":'+@agronomic_data+', "commerce_data":'+ISNULL(@commerce_data,'')+',"partner_data":'+ISNULL(@partner_data,'')+', "image_data":'+ISNULL(@image_data, '')+'}'
 			RETURN
 		END
 	 END
@@ -231,7 +255,7 @@ BEGIN
 			 , SourceOfInfoOther = JSON_VALUE(@social_data, '$.SourceOfInfoOther')
 			 , RationCard = JSON_VALUE(@social_data, '$.RationCard')
 			 , PanCard = JSON_VALUE(@social_data, '$.PanCard')
-			 , Reference = JSON_QUERY(@social_data, '$.Reference')
+			 , ReferenceInformation = JSON_QUERY(@social_data, '$.ReferenceInformation')
 			 , LastModified = GETDATE()
 			 , LastModifiedBy = @agent_id
 		 WHERE farmer_id = @farmer_id
@@ -296,6 +320,19 @@ BEGIN
 			 WITH (PartnerName VARCHAR(20) '$.PartnerName'
 			    , PartnerPhone VARCHAR(20) '$.PartnerPhone'
 			    , PartnerType VARCHAR(200) '$.PartnerType')
+
+
+		--Update images information for the given farmer_id
+		UPDATE dbo.tbl_farmer_images
+		   SET Farmer = CAST(JSON_VALUE(@image_data, '$.Farmer') AS INT)
+			 , Aadharcard = CAST(JSON_VALUE(@image_data, '$.Aadharcard') AS INT)
+			 , Bankbook = JSON_QUERY(@image_data, '$.Bankbook')
+			 , Rationcard = JSON_QUERY(@image_data, '$.Rationcard')
+			 , Pancard = JSON_QUERY(@image_data, '$.Pancard')
+			 , Additional = JSON_QUERY(@image_data, '$.Additional')
+			 , LastModified = GETDATE()
+			 , LastModifiedBy = @agent_id
+		 WHERE farmer_id = @farmer_id
 
 		 SELECT @output = ISNULL(@farmer_id, 0)
 	 END

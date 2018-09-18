@@ -29,6 +29,7 @@ import android.widget.Toast;
 import com.example.nareshviriyala.farmifyagentfarmer.Activities.HomeActivity;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
+import com.example.nareshviriyala.farmifyagentfarmer.Helpers.ValidationFarmerData;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.Validations;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.WebServiceOperation;
 import com.example.nareshviriyala.farmifyagentfarmer.R;
@@ -421,6 +422,7 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
                         farmerIdvData = response.getJSONObject("individual_data");
                         dbHelper.setParameter(getResources().getString(R.string.Bank), response.getString("bank_data"));
                         dbHelper.setParameter(getResources().getString(R.string.Social), response.getString("social_data"));
+                        dbHelper.setParameter(getResources().getString(R.string.Agronomic), response.getString("agronomic_data"));
                         dbHelper.setParameter(getResources().getString(R.string.Commerce), response.getString("commerce_data"));
                         dbHelper.setParameter(getResources().getString(R.string.Partner), response.getString("partner_data"));
                         populateForm();
@@ -555,15 +557,16 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
     private void validateIndividualData(){
         try{
             dbHelper.setParameter(getString(R.string.Individual), farmerIdvData.toString());
-            dbHelper.setParameter(getString(R.string.IndividualStatus), "3");
+            new ValidationFarmerData(getActivity()).validateIndividualData();
+            /*dbHelper.setParameter(getString(R.string.IndividualStatus), "3");
             if(!farmerIdvData.has("Aadhar") || !farmerIdvData.has("Phone")) {
                 dbHelper.setParameter(getString(R.string.IndividualStatus), "1");
             }else if(!farmerIdvData.has("FirstName") || farmerIdvData.getString("FirstName").equalsIgnoreCase("")
                     || !farmerIdvData.has("DOB") || farmerIdvData.getString("DOB").equalsIgnoreCase("")
                     || !farmerIdvData.has("Caste") || farmerIdvData.getString("Caste").equalsIgnoreCase("")
                     || !farmerIdvData.has("Gender") || farmerIdvData.getString("Gender").equalsIgnoreCase("")
-                    /*|| !farmerIdvData.has("FarmerType") || farmerIdvData.getString("FarmerType").equalsIgnoreCase("")
-                    || !farmerIdvData.has("FarmType") || farmerIdvData.getString("FarmType").equalsIgnoreCase("")*/
+                    *//*|| !farmerIdvData.has("FarmerType") || farmerIdvData.getString("FarmerType").equalsIgnoreCase("")
+                    || !farmerIdvData.has("FarmType") || farmerIdvData.getString("FarmType").equalsIgnoreCase("")*//*
                     || !farmerIdvData.has("Address1") || farmerIdvData.getString("Address1").equalsIgnoreCase("")
                     || !farmerIdvData.has("State") || farmerIdvData.getString("State").equalsIgnoreCase("")
                     || !farmerIdvData.has("District") || farmerIdvData.getString("District").equalsIgnoreCase("")
@@ -574,7 +577,7 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
                     || !farmerIdvData.has("Address2") || farmerIdvData.getString("Address2").equalsIgnoreCase("")
                     || !farmerIdvData.has("VillageTown") || farmerIdvData.getString("VillageTown").equalsIgnoreCase("")){
                 dbHelper.setParameter(getString(R.string.IndividualStatus), "2");
-            }
+            }*/
             goBack();
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage());

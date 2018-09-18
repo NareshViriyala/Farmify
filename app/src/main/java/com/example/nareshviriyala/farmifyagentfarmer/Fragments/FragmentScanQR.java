@@ -36,6 +36,7 @@ import java.util.TimerTask;
 import com.example.nareshviriyala.farmifyagentfarmer.Activities.HomeActivity;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
+import com.example.nareshviriyala.farmifyagentfarmer.Helpers.ValidationFarmerData;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.WebServiceOperation;
 import com.example.nareshviriyala.farmifyagentfarmer.R;
 import com.example.nareshviriyala.farmifyagentfarmer.zxing.BinaryBitmap;
@@ -217,6 +218,7 @@ public class FragmentScanQR extends Fragment implements SurfaceHolder.Callback, 
 
             if(validateData(QRContent)) {
                 mCamera.stopPreview();
+                decodingQR = false;
                 v.vibrate(vibrateMilli/4);
                 new getAadharDataFromServer().execute(dbHelper.getParameter(getResources().getString(R.string.Individual)), dbHelper.getParameter("token"));
                 //loadFragment("FragmentAFIndividual");
@@ -272,6 +274,7 @@ public class FragmentScanQR extends Fragment implements SurfaceHolder.Callback, 
                         dbHelper.setParameter(getResources().getString(R.string.Social), response.getString("social_data"));
                         dbHelper.setParameter(getResources().getString(R.string.Commerce), response.getString("commerce_data"));
                         dbHelper.setParameter(getResources().getString(R.string.Partner), response.getString("partner_data"));
+                        new ValidationFarmerData(getActivity()).validateAllData();
                         loadFragment("FragmentAFIndividual");
                     }else{ //aadhar not found
                         // move to next fragment with scanned data from QR code

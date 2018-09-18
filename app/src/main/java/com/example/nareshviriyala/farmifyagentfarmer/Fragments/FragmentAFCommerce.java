@@ -23,6 +23,7 @@ import com.example.nareshviriyala.farmifyagentfarmer.Dialogs.DialogAddKeyValueCo
 import com.example.nareshviriyala.farmifyagentfarmer.Dialogs.DialogAddCreditItem;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
+import com.example.nareshviriyala.farmifyagentfarmer.Helpers.ValidationFarmerData;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.Validations;
 import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelKeyValueInformation;
 import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelCreditInformation;
@@ -325,7 +326,9 @@ public class FragmentAFCommerce extends Fragment implements View.OnClickListener
     public void validateCommerceData(){
         try{
             dbHelper.setParameter(getString(R.string.Commerce), farmercommerceData.toString());
-            dbHelper.setParameter(getString(R.string.CommerceStatus), "3");
+            new ValidationFarmerData(getActivity()).validateCommerceData();
+
+            /*dbHelper.setParameter(getString(R.string.CommerceStatus), "3");
 
             if(!farmercommerceData.has("AnnualIncome") || farmercommerceData.getString("CropIncome").equalsIgnoreCase("")
                     || !farmercommerceData.has("FarmExpenseSource")
@@ -335,7 +338,7 @@ public class FragmentAFCommerce extends Fragment implements View.OnClickListener
                     || (farmercommerceData.has("AssetInformation") && farmercommerceData.getString("AssetInformation").equalsIgnoreCase(""))
                     || (farmercommerceData.has("ReferenceInformation") && farmercommerceData.getString("ReferenceInformation").equalsIgnoreCase(""))){
                 dbHelper.setParameter(getString(R.string.CommerceStatus), "2");
-            }
+            }*/
             goBack();
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());

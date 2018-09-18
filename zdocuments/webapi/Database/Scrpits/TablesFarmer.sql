@@ -51,7 +51,7 @@ CREATE TABLE dbo.tbl_farmer_social (
 	 , SourceOfInfoOther NVARCHAR(200)
 	 , RationCard NVARCHAR(20)
 	 , PanCard NVARCHAR(15)
-	 , Reference NVARCHAR(1000)
+	 , ReferenceInformation NVARCHAR(1000)
 	 , CreatedDate DATETIME DEFAULT(GETDATE())
 	 , LastModified DATETIME
 	 , LastModifiedBy INT)
@@ -108,8 +108,12 @@ GO
 CREATE TABLE dbo.tbl_farmer_images (
 	   Id INT IDENTITY(1,1) PRIMARY KEY
 	 , farmer_id INT
-	 , ImageType NVARCHAR(50)
-	 , ImageData NVARCHAR(MAX)
+	 , Farmer VARCHAR(MAX)
+	 , Aadharcard VARCHAR(MAX)
+	 , Bankbook VARCHAR(MAX)
+	 , Rationcard VARCHAR(MAX)
+	 , Pancard VARCHAR(MAX)
+	 , Additional VARCHAR(MAX)
 	 , CreatedDate DATETIME DEFAULT(GETDATE())
 	 , LastModified DATETIME
 	 , LastModifiedBy INT)

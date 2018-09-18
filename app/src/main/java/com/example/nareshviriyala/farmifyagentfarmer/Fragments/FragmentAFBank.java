@@ -19,6 +19,7 @@ import android.widget.RadioGroup;
 import com.example.nareshviriyala.farmifyagentfarmer.Activities.HomeActivity;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
+import com.example.nareshviriyala.farmifyagentfarmer.Helpers.ValidationFarmerData;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.Validations;
 import com.example.nareshviriyala.farmifyagentfarmer.R;
 
@@ -236,7 +237,8 @@ public class FragmentAFBank extends Fragment implements View.OnClickListener {
             if (!validateConfirmAccountNumber())
                 return;
 
-            if(!farmerbankData.has("AccountName") || farmerbankData.getString("AccountName").equalsIgnoreCase("")
+            new ValidationFarmerData(getActivity()).validateBankData();
+            /*if(!farmerbankData.has("AccountName") || farmerbankData.getString("AccountName").equalsIgnoreCase("")
                     || !farmerbankData.has("AccountNumber") || farmerbankData.getString("AccountNumber").equalsIgnoreCase("")
                     || !farmerbankData.has("BankName") || farmerbankData.getString("BankName").equalsIgnoreCase("")
                     || !farmerbankData.has("IFSC") || farmerbankData.getString("IFSC").equalsIgnoreCase("")
@@ -246,7 +248,7 @@ public class FragmentAFBank extends Fragment implements View.OnClickListener {
                     || !farmerbankData.has("District") || farmerbankData.getString("District").equalsIgnoreCase("")
                     || !farmerbankData.has("State") || farmerbankData.getString("State").equalsIgnoreCase("")){
                 dbHelper.setParameter(getString(R.string.BankStatus), "2");
-            }
+            }*/
             goBack();
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());

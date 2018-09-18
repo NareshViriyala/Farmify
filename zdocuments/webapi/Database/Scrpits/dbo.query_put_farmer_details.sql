@@ -150,6 +150,8 @@ SELECT * FROM tbl_farmer_agronomic
 SELECT * FROM tbl_farmer_commerce
 SELECT * FROM tbl_farmer_partner
 
+UPDATE tbl_farmer_agronomic set CropType = '["Cotton", "Chilli"]'
+
 SELECT * FROM tbl_farmer_partner FOR JSON PATH
 
 

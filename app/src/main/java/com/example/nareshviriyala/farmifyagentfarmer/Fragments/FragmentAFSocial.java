@@ -21,6 +21,7 @@ import com.example.nareshviriyala.farmifyagentfarmer.Adapters.AdapterKeyValueSoc
 import com.example.nareshviriyala.farmifyagentfarmer.Dialogs.DialogAddKeyValueSocialItem;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
+import com.example.nareshviriyala.farmifyagentfarmer.Helpers.ValidationFarmerData;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.Validations;
 import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelKeyValueInformation;
 import com.example.nareshviriyala.farmifyagentfarmer.R;
@@ -444,7 +445,8 @@ public class FragmentAFSocial extends Fragment implements View.OnClickListener {
         try{
             dbHelper.setParameter(getString(R.string.Social), farmersocialData.toString());
             dbHelper.setParameter(getString(R.string.SocialStatus), "3");
-            if(!farmersocialData.has("RationCard") || farmersocialData.getString("RationCard").equalsIgnoreCase("")
+            new ValidationFarmerData(getActivity()).validateSocialData();
+            /*if(!farmersocialData.has("RationCard") || farmersocialData.getString("RationCard").equalsIgnoreCase("")
                     || !farmersocialData.has("PanCard") || farmersocialData.getString("PanCard").equalsIgnoreCase("")
                     || (farmersocialData.has("FacebookID") && farmersocialData.getString("FacebookID").equalsIgnoreCase(""))
                     || (farmersocialData.has("WhatsappID") && farmersocialData.getString("WhatsappID").equalsIgnoreCase(""))
@@ -453,7 +455,7 @@ public class FragmentAFSocial extends Fragment implements View.OnClickListener {
                     || !farmersocialData.has("SourceInformation") || farmersocialData.getString("SourceInformation").equalsIgnoreCase("")
                     || !farmersocialData.has("SocialMediaInformation") || farmersocialData.getString("SocialMediaInformation").equalsIgnoreCase("")){
                 dbHelper.setParameter(getString(R.string.SocialStatus), "2");
-            }
+            }*/
             goBack();
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());

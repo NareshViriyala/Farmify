@@ -21,17 +21,18 @@ BEGIN
 
 			SELECT @social_data = (SELECT FacebookID
 										, WhatsappID
+										, JSON_QUERY(SocialMediaInformation) AS SocialMediaInformation
 										, JSON_QUERY(Languages) AS Languages 
-										, JSON_QUERY(SourceInformation) AS SourceInfomation 
+										, JSON_QUERY(SourceInformation) AS SourceInformation 
 										, SourceOfInfoOther
 										, RationCard
 										, PanCard
-										, JSON_QUERY(Reference) AS Reference 
+										, JSON_QUERY(ReferenceInformation) AS ReferenceInformation 
 									 FROM dbo.tbl_farmer_social (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
 			SELECT @social_data = JSON_QUERY(@social_data, '$.result[0]')
 
 
-			SELECT @agronomic_data = (SELECT Id, FarmerType, FarmerCategory, CropType, CropTypeOther, SoilType, SoilTypeOther, WaterSource
+			SELECT @agronomic_data = (SELECT Id, FarmerType, FarmerCategory, JSON_QUERY(CropType) AS CropType, CropTypeOther, SoilType, SoilTypeOther, WaterSource
 										   , LandAcers, SoilTesting, FarmExp, CropInsurance
 									  FROM dbo.tbl_farmer_agronomic (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH)
 

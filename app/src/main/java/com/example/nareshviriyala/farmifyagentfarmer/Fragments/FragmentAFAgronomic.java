@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.nareshviriyala.farmifyagentfarmer.Activities.HomeActivity;
@@ -31,6 +32,7 @@ public class FragmentAFAgronomic extends Fragment implements View.OnClickListene
     private DatabaseHelper dbHelper;
     private ListView lv_farmlist;
     private AdapterFarmInformation adapterFarmInformation;
+    private Button btn_agronomicdatasave;
 
     public FragmentAFAgronomic(){}
 
@@ -50,6 +52,9 @@ public class FragmentAFAgronomic extends Fragment implements View.OnClickListene
             dbHelper = new DatabaseHelper(getActivity());
             lv_farmlist = rootView.findViewById(R.id.lv_farmlist);
             lv_farmlist.setOnItemClickListener(this);
+
+            btn_agronomicdatasave = rootView.findViewById(R.id.btn_agronomicdatasave);
+            btn_agronomicdatasave.setOnClickListener(this);
             //dbHelper.deleteParameter(getResources().getString(R.string.Agronomic));
 
             fab_addfarm = rootView.findViewById(R.id.fab_addfarm);
@@ -80,8 +85,8 @@ public class FragmentAFAgronomic extends Fragment implements View.OnClickListene
                 farmInformation.add(new ModelAgronomicInformation(item.has("Id")?item.getInt("Id"):0
                         , item.has("FarmerType")?item.getString("FarmerType"):""
                         , item.has("FarmerCategory")?item.getString("FarmerCategory"):""
-                        , item.has("FarmerType")?item.getString("CropType"):""
-                        , item.has("CropType")?item.getString("SoilType"):""
+                        , item.has("CropType")?item.getString("CropType"):""
+                        , item.has("SoilType")?item.getString("SoilType"):""
                         , item.has("WaterSource")?item.getString("WaterSource"):""
                         , item.has("LandAcers")?item.getString("LandAcers"):""
                         , item.has("Soiltesting")?item.getBoolean("Soiltesting"):false
@@ -113,9 +118,24 @@ public class FragmentAFAgronomic extends Fragment implements View.OnClickListene
                 case R.id.fab_addfarm:
                     loadAgronomicSlaveFragment(-1);
                     break;
+                case R.id.btn_agronomicdatasave:
+                    goBack();
+                    break;
             }
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+        }
+    }
+
+    public void goBack(){
+        try{
+            if ( getFragmentManager().getBackStackEntryCount() > 0)
+            {
+                getFragmentManager().popBackStack();
+                return;
+            }
+        }catch (Exception ex){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage());
         }
     }
 
