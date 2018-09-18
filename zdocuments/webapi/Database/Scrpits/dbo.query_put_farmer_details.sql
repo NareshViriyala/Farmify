@@ -149,6 +149,7 @@ SELECT * FROM tbl_farmer_social
 SELECT * FROM tbl_farmer_agronomic
 SELECT * FROM tbl_farmer_commerce
 SELECT * FROM tbl_farmer_partner
+SELECT * FROM tbl_farmer_images
 
 UPDATE tbl_farmer_agronomic set CropType = '["Cotton", "Chilli"]'
 

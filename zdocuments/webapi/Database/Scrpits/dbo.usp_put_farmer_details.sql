@@ -324,8 +324,8 @@ BEGIN
 
 		--Update images information for the given farmer_id
 		UPDATE dbo.tbl_farmer_images
-		   SET Farmer = CAST(JSON_VALUE(@image_data, '$.Farmer') AS INT)
-			 , Aadharcard = CAST(JSON_VALUE(@image_data, '$.Aadharcard') AS INT)
+		   SET Farmer = JSON_QUERY(@image_data, '$.Farmer')
+			 , Aadharcard = JSON_QUERY(@image_data, '$.Aadharcard')
 			 , Bankbook = JSON_QUERY(@image_data, '$.Bankbook')
 			 , Rationcard = JSON_QUERY(@image_data, '$.Rationcard')
 			 , Pancard = JSON_QUERY(@image_data, '$.Pancard')

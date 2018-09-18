@@ -48,14 +48,14 @@ BEGIN
 			SELECT @partner_data = (SELECT Id, PartnerName, PartnerPhone, PartnerType 
 									  FROM dbo.tbl_farmer_partner (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH)
 			
-			--SELECT @social_data = (SELECT * FROM dbo.tbl_farmer_social (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
-			--SELECT @social_data = JSON_QUERY(@social_data, '$.result[0]')
-			
-			--SELECT @commerce_data = (SELECT * FROM dbo.tbl_farmer_commerce (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
-			--SELECT @commerce_data = JSON_QUERY(@commerce_data, '$.result[0]')
-			
-			--SELECT @partner_data = (SELECT * FROM dbo.tbl_farmer_partner (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
-			--SELECT @partner_data = JSON_QUERY(@partner_data, '$.result[0]')
+			SELECT @image_data = (SELECT JSON_QUERY(Farmer) AS Farmer
+										  , JSON_QUERY(Aadharcard) AS Aadharcard 
+										  , JSON_QUERY(Bankbook) AS Bankbook
+										  , JSON_QUERY(Rationcard) AS Rationcard
+										  , JSON_QUERY(Pancard) AS Pancard
+										  , JSON_QUERY(Additional) AS Additional
+									   FROM dbo.tbl_farmer_images (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
+			SELECT @image_data = JSON_QUERY(@image_data, '$.result[0]')
 			
 			SELECT @output ='{"agent_id":0, 
 							"individual_data":'+ISNULL(@individual_data,'')+',
@@ -63,7 +63,8 @@ BEGIN
 							"social_data":'+ISNULL(@social_data,'')+',
 							"agronomic_data":'+ISNULL(@agronomic_data,'[]')+',
 							"commerce_data":'+ISNULL(@commerce_data,'')+',
-							"partner_data":'+ISNULL(@partner_data,'[]')+'
+							"partner_data":'+ISNULL(@partner_data,'[]')+',
+							"image_data":'+ISNULL(@image_data,'')+'
 						   }'
 		   SET @status = 1
 	END

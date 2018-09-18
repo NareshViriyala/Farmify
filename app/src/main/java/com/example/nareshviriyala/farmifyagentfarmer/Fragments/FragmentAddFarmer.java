@@ -62,7 +62,9 @@ public class FragmentAddFarmer extends Fragment implements AdapterView.OnItemCli
             }.getClass().getEnclosingClass().getName();
             ((HomeActivity) getActivity()).setActionBarTitle("Add Farmer");
             dbHelper = new DatabaseHelper(getActivity());
-            //dbHelper.deleteImage(15);
+            /*dbHelper.deleteImage(81);
+            dbHelper.deleteImage(86);
+            dbHelper.deleteImage(87);*/
             btn_farmersave = rootView.findViewById(R.id.btn_farmersave);
             btn_farmerdiscard = rootView.findViewById(R.id.btn_farmerdiscard);
             wso = new WebServiceOperation();

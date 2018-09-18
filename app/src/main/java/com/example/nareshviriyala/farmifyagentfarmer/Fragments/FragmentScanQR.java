@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -50,6 +51,7 @@ import com.example.nareshviriyala.farmifyagentfarmer.zxing.Result;
 import com.example.nareshviriyala.farmifyagentfarmer.zxing.common.HybridBinarizer;
 import com.example.nareshviriyala.farmifyagentfarmer.zxing.qrcode.QRCodeReader;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -274,6 +276,7 @@ public class FragmentScanQR extends Fragment implements SurfaceHolder.Callback, 
                         dbHelper.setParameter(getResources().getString(R.string.Social), response.getString("social_data"));
                         dbHelper.setParameter(getResources().getString(R.string.Commerce), response.getString("commerce_data"));
                         dbHelper.setParameter(getResources().getString(R.string.Partner), response.getString("partner_data"));
+                        dbHelper.setParameter(getResources().getString(R.string.Images), saveImagesLocally(response.getString("image_data")).toString());
                         new ValidationFarmerData(getActivity()).validateAllData();
                         loadFragment("FragmentAFIndividual");
                     }else{ //aadhar not found
@@ -288,6 +291,26 @@ public class FragmentScanQR extends Fragment implements SurfaceHolder.Callback, 
             }
             catch (Exception e){logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());}
         }
+    }
+
+    public JSONObject saveImagesLocally(String imagedata){
+        JSONObject finalJson = new JSONObject();
+        try {
+
+            JSONObject imageString = new JSONObject(imagedata);
+            JSONArray imageType = imageString.names();
+            for(int i = 0; i < imageType.length(); i++){//loop each image category Farmer, Aadhar, Ration, Pan, Bankbook, Additional
+                JSONArray imagearray = imageString.getJSONArray(imageType.getString(i));
+                JSONArray localImageIntArray = new JSONArray();
+                for(int j = 0; j < imagearray.length(); j++){
+                    byte[] img = Base64.decode(imagearray.getString(j), Base64.DEFAULT);
+                    localImageIntArray.put(dbHelper.setImage(img));
+                }
+                finalJson.put(imageType.getString(i), localImageIntArray);
+            }
+
+        }catch (Exception e){logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());}
+        return finalJson;
     }
 
     public boolean validateData(String QRContent){
