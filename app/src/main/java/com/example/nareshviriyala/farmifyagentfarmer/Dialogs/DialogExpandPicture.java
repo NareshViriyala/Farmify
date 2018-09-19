@@ -2,27 +2,19 @@ package com.example.nareshviriyala.farmifyagentfarmer.Dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.TextInputLayout;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.TextView;
 
-import com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentAFPartner;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
-import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelPartnerInformation;
 import com.example.nareshviriyala.farmifyagentfarmer.R;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 public class DialogExpandPicture extends Dialog implements View.OnClickListener{
     private LogErrors logErrors;

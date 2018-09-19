@@ -13,13 +13,17 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nareshviriyala.farmifyagentfarmer.Activities.HomeActivity;
+import com.example.nareshviriyala.farmifyagentfarmer.Dialogs.DialogAddCropHistoryItem;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
 import com.example.nareshviriyala.farmifyagentfarmer.R;
@@ -36,12 +40,13 @@ public class FragmentAFAgronomicSlave extends Fragment implements View.OnClickLi
     private String className;
     private FloatingActionButton fab_addcrophistory;
     private DatabaseHelper dbHelper;
-    private JSONObject farmeragronomicDataItem;
+    public JSONObject farmeragronomicDataItem;
     private JSONArray farmeragronomicData;
     private EditText input_landacers, input_farmingexperience, input_soilother, input_tocother;
     private TextInputLayout input_layout_landacers, input_layout_farmingexperience, input_layout_soilother, input_layout_tocother;
     private Button btn_agronomicslavedatasave;
     private Spinner spnr_watersource;
+    private TableLayout tl_crophistory;
     int currentItemId = 0;
 
     public FragmentAFAgronomicSlave(){}
@@ -96,6 +101,8 @@ public class FragmentAFAgronomicSlave extends Fragment implements View.OnClickLi
             fab_addcrophistory = rootView.findViewById(R.id.fab_addcrophistory);
             fab_addcrophistory.setOnClickListener(this);
 
+            tl_crophistory = rootView.findViewById(R.id.tl_crophistory);
+
             (rootView.findViewById(R.id.rb_ftsmall)).setOnClickListener(this);
             (rootView.findViewById(R.id.rb_ftmarginal)).setOnClickListener(this);
             (rootView.findViewById(R.id.rb_ftother)).setOnClickListener(this);
@@ -121,8 +128,10 @@ public class FragmentAFAgronomicSlave extends Fragment implements View.OnClickLi
 
             (rootView.findViewById(R.id.rb_crophistoryyes)).setOnClickListener(this);
             (rootView.findViewById(R.id.rb_crophistoryno)).setOnClickListener(this);
-            if(currentItemId != -1)
+            if(currentItemId != -1) {
                 fillForm();
+                refreshCropHistoryListView();
+            }
 
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
@@ -243,6 +252,41 @@ public class FragmentAFAgronomicSlave extends Fragment implements View.OnClickLi
         }
     }
 
+    public void refreshCropHistoryListView(){
+        try{
+            if(farmeragronomicDataItem.has("CropHistory")){
+                tl_crophistory.removeAllViews();
+                JSONArray cropHistory = farmeragronomicDataItem.getJSONArray("CropHistory");
+                if(cropHistory.length() > 0){
+                    TableRow row = (TableRow)LayoutInflater.from(getActivity()).inflate(R.layout.tablerow_crophistory   , null);
+                    ((TextView)row.findViewById(R.id.tv_id)).setText("Id");
+                    ((TextView)row.findViewById(R.id.tv_year)).setText("Year");
+                    ((TextView)row.findViewById(R.id.tv_month)).setText("Month");
+                    ((TextView)row.findViewById(R.id.tv_acers)).setText("Acers");
+                    ((TextView)row.findViewById(R.id.tv_crop)).setText("Crop");
+                    ((TextView)row.findViewById(R.id.tv_production)).setText("Production");
+                    ((TextView)row.findViewById(R.id.tv_rate)).setText("Rate");
+                    ((ImageView)row.findViewById(R.id.ch_delete)).setVisibility(View.GONE);
+                    ((ImageView)row.findViewById(R.id.ch_edit)).setVisibility(View.GONE);
+                    tl_crophistory.addView(row);
+                }
+                for(int i = 0; i < cropHistory.length(); i++){
+                    TableRow row = (TableRow)LayoutInflater.from(getActivity()).inflate(R.layout.tablerow_crophistory   , null);
+                    ((TextView)row.findViewById(R.id.tv_id)).setText(String.valueOf(cropHistory.getJSONObject(i).getInt("Id")));
+                    ((TextView)row.findViewById(R.id.tv_year)).setText(cropHistory.getJSONObject(i).getString("Year"));
+                    ((TextView)row.findViewById(R.id.tv_month)).setText(cropHistory.getJSONObject(i).getString("Month"));
+                    ((TextView)row.findViewById(R.id.tv_acers)).setText(cropHistory.getJSONObject(i).getString("Acers"));
+                    ((TextView)row.findViewById(R.id.tv_crop)).setText(cropHistory.getJSONObject(i).getString("Crop"));
+                    ((TextView)row.findViewById(R.id.tv_production)).setText(cropHistory.getJSONObject(i).getString("Production"));
+                    ((TextView)row.findViewById(R.id.tv_rate)).setText(cropHistory.getJSONObject(i).getString("Rate"));
+                    tl_crophistory.addView(row);
+                }
+            }
+        }catch (Exception ex){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+        }
+    }
+
     public void modifyTypeOfCropArray(String cropType, boolean checked){
         try{
             JSONArray cropTypeArray = null;
@@ -348,6 +392,7 @@ public class FragmentAFAgronomicSlave extends Fragment implements View.OnClickLi
                     rootView.findViewById(R.id.ll_fabcrophistorycontainer).setVisibility(View.GONE);
                     break;
                 case R.id.fab_addcrophistory:
+                    new DialogAddCropHistoryItem(getActivity(), null, this).show();
                     break;
                 case R.id.btn_agronomicslavedatasave:
                     validateForm();

@@ -32,7 +32,7 @@ BEGIN
 			SELECT @social_data = JSON_QUERY(@social_data, '$.result[0]')
 
 
-			SELECT @agronomic_data = (SELECT Id, FarmerType, FarmerCategory, JSON_QUERY(CropType) AS CropType, CropTypeOther, SoilType, SoilTypeOther, WaterSource
+			SELECT @agronomic_data = (SELECT Id, FarmerType, FarmerCategory, JSON_QUERY(CropType) AS CropType, CropTypeOther, SoilType, SoilTypeOther, WaterSource, JSON_QUERY(CropHistory) AS CropHistory
 										   , LandAcers, SoilTesting, FarmExp, CropInsurance
 									  FROM dbo.tbl_farmer_agronomic (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH)
 

@@ -276,7 +276,7 @@ public class FragmentScanQR extends Fragment implements SurfaceHolder.Callback, 
                         dbHelper.setParameter(getResources().getString(R.string.Social), response.getString("social_data"));
                         dbHelper.setParameter(getResources().getString(R.string.Commerce), response.getString("commerce_data"));
                         dbHelper.setParameter(getResources().getString(R.string.Partner), response.getString("partner_data"));
-                        dbHelper.setParameter(getResources().getString(R.string.Images), saveImagesLocally(response.getString("image_data")).toString());
+                        dbHelper.setParameter(getResources().getString(R.string.Images), response.getString("image_data"));
                         new ValidationFarmerData(getActivity()).validateAllData();
                         loadFragment("FragmentAFIndividual");
                     }else{ //aadhar not found
@@ -293,7 +293,7 @@ public class FragmentScanQR extends Fragment implements SurfaceHolder.Callback, 
         }
     }
 
-    public JSONObject saveImagesLocally(String imagedata){
+    /*public JSONObject saveImagesLocally(String imagedata){
         JSONObject finalJson = new JSONObject();
         try {
 
@@ -311,7 +311,7 @@ public class FragmentScanQR extends Fragment implements SurfaceHolder.Callback, 
 
         }catch (Exception e){logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());}
         return finalJson;
-    }
+    }*/
 
     public boolean validateData(String QRContent){
         boolean ret = false;

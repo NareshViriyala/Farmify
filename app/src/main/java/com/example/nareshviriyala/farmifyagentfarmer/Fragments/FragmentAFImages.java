@@ -126,7 +126,7 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
             if(farmerImageData.has(pictureType)) {
                 imageJsonArray = farmerImageData.getJSONArray(pictureType);
                 if(imageJsonArray.length() > 0)
-                    imageByteArray = dbHelper.getImage(imageJsonArray.getInt(0));
+                    imageByteArray = Base64.decode(imageJsonArray.getString(0), Base64.DEFAULT);
             }
             else
                 imageByteArray = null;
@@ -149,7 +149,7 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
                         loadFragment();
                     else {
                         JSONArray imagesArray = farmerImageData.getJSONArray(currentPictureType);
-                        byte[] imgSource = dbHelper.getImage(imagesArray.getInt(currentPictureId));
+                        byte[] imgSource = Base64.decode(imagesArray.getString(currentPictureId), Base64.DEFAULT);
                         new DialogExpandPicture(getActivity(), imgSource).show();
                     }
                     break;
@@ -188,8 +188,6 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
                                     for(int i = 0; i < imageArray.length(); i++){
                                         if(i != currentPictureId)
                                             newImageArray.put(imageArray.get(i));
-                                        else
-                                            dbHelper.deleteImage(i);
                                     }
                                     farmerImageData.put(currentPictureType, newImageArray);
                                     dbHelper.setParameter(getResources().getString(R.string.Images), farmerImageData.toString());
@@ -345,13 +343,13 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
                     response = new ModelImageParameters(bitmap,200,200,View.GONE,View.GONE, View.GONE);
                     currentPictureId = -1;
                 }else if(imageId == 0){
-                    byte[] imgbyte = dbHelper.getImage(imagesArray.getInt(0));
+                    byte[] imgbyte = Base64.decode(imagesArray.getString(0), Base64.DEFAULT);
                     Bitmap bitmap = BitmapFactory.decodeByteArray(imgbyte, 0, imgbyte.length);
                     response = new ModelImageParameters(bitmap,(rootView.findViewById(R.id.rl_container)).getHeight()
                             ,(rootView.findViewById(R.id.rl_container)).getWidth(),View.GONE,View.VISIBLE, View.VISIBLE);
                     currentPictureId = 0;
                 }else {
-                    byte[] imgbyte = dbHelper.getImage(imagesArray.getInt(imageId));
+                    byte[] imgbyte = Base64.decode(imagesArray.getString(imageId), Base64.DEFAULT);
                     Bitmap bitmap = BitmapFactory.decodeByteArray(imgbyte, 0, imgbyte.length);
                     response = new ModelImageParameters(bitmap,(rootView.findViewById(R.id.rl_container)).getHeight()
                             ,(rootView.findViewById(R.id.rl_container)).getWidth(),View.VISIBLE,View.VISIBLE, View.VISIBLE);
@@ -395,4 +393,5 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
             fragmentTransaction.commitAllowingStateLoss();
         }catch (Exception e){logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());}
     }
+
 }

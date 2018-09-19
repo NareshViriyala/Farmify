@@ -135,7 +135,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void deleteImage(int id){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete("tbl_images", "id="+id,  null);
+        String where_clause = (id == 0)?"id = id":"id = "+id;
+        db.delete("tbl_images", where_clause,  null);
         db.close();
     }
 

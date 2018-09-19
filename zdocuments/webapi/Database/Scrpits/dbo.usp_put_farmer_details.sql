@@ -98,13 +98,14 @@ BEGIN
 			   , SoilTesting
 			   , FarmExp
 			   , CropInsurance
+			   , CropHistory
 			   , GETDATE()
 			   , GETDATE()
 			   , @agent_id
 			FROM OPENJSON(@agronomic_data)
 			WITH (FarmerType VARCHAR(20) '$.FarmerType'
 			   , FarmerCategory VARCHAR(20) '$.FarmerCategory'
-			   , CropType VARCHAR(200) '$.CropType'
+			   , CropType NVARCHAR(MAX) AS JSON
 			   , CropTypeOther VARCHAR(20) '$.CropTypeOther'
 			   , SoilType VARCHAR(200) '$.SoilType'
 			   , SoilTypeOther VARCHAR(50) '$.SoilTypeOther'
@@ -112,7 +113,8 @@ BEGIN
 			   , LandAcers VARCHAR(200) '$.LandAcers'
 			   , SoilTesting BIT '$.SoilTesting'
 			   , FarmExp VARCHAR(200) '$.FarmExp'
-			   , CropInsurance VARCHAR(200) '$.CropInsurance')
+			   , CropInsurance VARCHAR(200) '$.CropInsurance'
+			   , CropHistory NVARCHAR(MAX) AS JSON)
 
 
 			-- Insert commerce information for the given farmer_id
@@ -163,47 +165,53 @@ BEGIN
 			SELECT @individual_data = JSON_QUERY(@desc, '$.result[0]')
 			SELECT @farmer_id = JSON_VALUE(@individual_data, '$.Id')
 
-			SELECT @bank_data = (SELECT * FROM dbo.tbl_farmer_bank (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
-			SELECT @bank_data = JSON_QUERY(@bank_data, '$.result[0]')
+			DECLARE @status BIT
+			DECLARE @input NVARCHAR(100) = '{"Aadhar":"'+JSON_VALUE(@individual_data, '$.Aadhar')+'", "Phone":""}'
+			EXEC dbo.usp_get_farmer_details @input, @status = @status OUTPUT, @output = @desc OUTPUT
 
-			SELECT @social_data = (SELECT FacebookID
-										, WhatsappID
-										, JSON_QUERY(SocialMediaInformation) AS SocialMediaInformation
-										, JSON_QUERY(Languages) AS Languages 
-										, JSON_QUERY(SourceInformation) AS SourceInformation 
-										, SourceOfInfoOther
-										, RationCard
-										, PanCard
-										, JSON_QUERY(ReferenceInformation) AS ReferenceInformation 
-									 FROM dbo.tbl_farmer_social (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
-			SELECT @social_data = JSON_QUERY(@social_data, '$.result[0]')
+			--SELECT @bank_data = (SELECT * FROM dbo.tbl_farmer_bank (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
+			--SELECT @bank_data = JSON_QUERY(@bank_data, '$.result[0]')
 
-			SELECT @agronomic_data = (SELECT Id, FarmerType, FarmerCategory, JSON_QUERY(CropType) AS CropType, CropTypeOther, SoilType, SoilTypeOther, WaterSource
-										   , LandAcers, SoilTesting, FarmExp, CropInsurance
-									  FROM dbo.tbl_farmer_agronomic (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH)
+			--SELECT @social_data = (SELECT FacebookID
+			--							, WhatsappID
+			--							, JSON_QUERY(SocialMediaInformation) AS SocialMediaInformation
+			--							, JSON_QUERY(Languages) AS Languages 
+			--							, JSON_QUERY(SourceInformation) AS SourceInformation 
+			--							, SourceOfInfoOther
+			--							, RationCard
+			--							, PanCard
+			--							, JSON_QUERY(ReferenceInformation) AS ReferenceInformation 
+			--						 FROM dbo.tbl_farmer_social (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
+			--SELECT @social_data = JSON_QUERY(@social_data, '$.result[0]')
 
-			SELECT @commerce_data = (SELECT AnnualIncome
-										  , CropIncome
-										  , JSON_QUERY(FarmExpenseSource) AS FarmExpenseSource
-										  , JSON_QUERY(CreditInformation) AS CreditInformation 
-										  , JSON_QUERY(AssetInformation) AS AssetInformation
-										  , JSON_QUERY(OsiInformation) AS OsiInformation
-									   FROM dbo.tbl_farmer_commerce (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
-			SELECT @commerce_data = JSON_QUERY(@commerce_data, '$.result[0]')
+			--SELECT @agronomic_data = (SELECT Id, FarmerType, FarmerCategory, JSON_QUERY(CropType) AS CropType, CropTypeOther, SoilType, SoilTypeOther, WaterSource
+			--							   , LandAcers, SoilTesting, FarmExp, CropInsurance
+			--						  FROM dbo.tbl_farmer_agronomic (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH)
 
-			SELECT @partner_data = (SELECT Id, PartnerName, PartnerPhone, PartnerType 
-									  FROM dbo.tbl_farmer_partner (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH)
+			--SELECT @commerce_data = (SELECT AnnualIncome
+			--							  , CropIncome
+			--							  , JSON_QUERY(FarmExpenseSource) AS FarmExpenseSource
+			--							  , JSON_QUERY(CreditInformation) AS CreditInformation 
+			--							  , JSON_QUERY(AssetInformation) AS AssetInformation
+			--							  , JSON_QUERY(OsiInformation) AS OsiInformation
+			--						   FROM dbo.tbl_farmer_commerce (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
+			--SELECT @commerce_data = JSON_QUERY(@commerce_data, '$.result[0]')
 
-			SELECT @image_data = (SELECT JSON_QUERY(Farmer) AS Farmer
-										  , JSON_QUERY(Aadharcard) AS Aadharcard 
-										  , JSON_QUERY(Bankbook) AS Bankbook
-										  , JSON_QUERY(Rationcard) AS Rationcard
-										  , JSON_QUERY(Pancard) AS Pancard
-										  , JSON_QUERY(Additional) AS Additional
-									   FROM dbo.tbl_farmer_images (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
-			SELECT @image_data = JSON_QUERY(@image_data, '$.result[0]')
+			--SELECT @partner_data = (SELECT Id, PartnerName, PartnerPhone, PartnerType 
+			--						  FROM dbo.tbl_farmer_partner (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH)
 
-			SELECT @output = @farmer_id, @desc = '{"agent_id":'+CAST(@agent_id AS NVARCHAR)+',"individual_data":'+ISNULL(@individual_data,'')+',"bank_data":'+ISNULL(@bank_data,'')+',"social_data":'+ISNULL(@social_data,'')+', "agronomic_data":'+@agronomic_data+', "commerce_data":'+ISNULL(@commerce_data,'')+',"partner_data":'+ISNULL(@partner_data,'')+', "image_data":'+ISNULL(@image_data, '')+'}'
+			--SELECT @image_data = (SELECT JSON_QUERY(Farmer) AS Farmer
+			--							  , JSON_QUERY(Aadharcard) AS Aadharcard 
+			--							  , JSON_QUERY(Bankbook) AS Bankbook
+			--							  , JSON_QUERY(Rationcard) AS Rationcard
+			--							  , JSON_QUERY(Pancard) AS Pancard
+			--							  , JSON_QUERY(Additional) AS Additional
+			--						   FROM dbo.tbl_farmer_images (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
+			--SELECT @image_data = JSON_QUERY(@image_data, '$.result[0]')
+
+			--SELECT @output = @farmer_id, @desc = '{"agent_id":'+CAST(@agent_id AS NVARCHAR)+',"individual_data":'+ISNULL(@individual_data,'')+',"bank_data":'+ISNULL(@bank_data,'')+',"social_data":'+ISNULL(@social_data,'')+', "agronomic_data":'+@agronomic_data+', "commerce_data":'+ISNULL(@commerce_data,'')+',"partner_data":'+ISNULL(@partner_data,'')+', "image_data":'+ISNULL(@image_data, '')+'}'
+			
+			SELECT @output = @farmer_id
 			RETURN
 		END
 	 END
@@ -275,13 +283,14 @@ BEGIN
 			   , SoilTesting
 			   , FarmExp
 			   , CropInsurance
+			   , CropHistory
 			   , GETDATE()
 			   , GETDATE()
 			   , @agent_id
 			FROM OPENJSON(@agronomic_data)
 			WITH (FarmerType VARCHAR(20) '$.FarmerType'
 			   , FarmerCategory VARCHAR(20) '$.FarmerCategory'
-			   , CropType VARCHAR(200) '$.CropType'
+			   , CropType NVARCHAR(MAX) AS JSON
 			   , CropTypeOther VARCHAR(20) '$.CropTypeOther'
 			   , SoilType VARCHAR(200) '$.SoilType'
 			   , SoilTypeOther VARCHAR(50) '$.SoilTypeOther'
@@ -289,7 +298,8 @@ BEGIN
 			   , LandAcers VARCHAR(200) '$.LandAcers'
 			   , SoilTesting BIT '$.SoilTesting'
 			   , FarmExp VARCHAR(200) '$.FarmExp'
-			   , CropInsurance VARCHAR(200) '$.CropInsurance')
+			   , CropInsurance VARCHAR(200) '$.CropInsurance'
+			   , CropHistory NVARCHAR(MAX) AS JSON)
 
 
 
@@ -338,151 +348,3 @@ BEGIN
 	 END
 
 END
-
-/*
-DECLARE @json NVARCHAR(MAX) = '{
-   "agent_id":1,
-   "farmer_id":0,
-   "individual_data":{
-      "Aadhar":"4284 0047 0799",
-      "Surname":"Viriyala",
-      "FirstName":"Naresh",
-      "LastName":"Kumar",
-      "DOB":"07\/01\/1985",
-      "Gender":"Male",
-      "Address1":"Block 34, Flat No 10-04",
-      "Address2":"Malaysian Town Ship Kukatpally",
-      "State":"Telangana",
-      "District":"Hyderabad",
-      "VillageTown":"Tirumalagiri",
-      "Pincode":"500072",
-      "Cast":"OBC",
-      "Phone":"9985265352",
-      "Otp":"8965"
-   },
-   "bank_data":{
-      "AccountName":"Naresh",
-      "AccountNumber":"123456789",
-      "ConfirmAccountNumber":"123456789",
-      "AccountType":"Savings",
-      "BankName":"icici",
-      "BranchName":"jntu",
-      "IFSC":"asdf",
-      "District":"Hyderabad",
-      "State":"Telangana"
-   },
-   "social_data":{
-      "ReferenceInformation":[
-         {
-            "Id":1,
-            "Name":"Naresh",
-            "Phone":"9985265382"
-         },
-         {
-            "Id":2,
-            "Name":"zfhjk",
-            "Phone":"9985265352"
-         },
-         {
-            "Id":3,
-            "Name":"ghkk",
-            "Phone":"9985265352"
-         },
-         {
-            "Id":4,
-            "Name":"xgJzj",
-            "Phone":"905232333"
-         }
-      ],
-      "FacebookID":"naresh1253@gmail.com",
-      "WhatsappID":"998525352",
-      "SocialMediaInformation":[
-         "Facebook",
-         "Whatsapp"
-      ],
-      "SourceOfInfoOther":"magazine",
-      "SourceInformation":[
-         "Paper",
-         "TV-Radio",
-         "Other"
-      ],
-      "RationCard":"ratcard",
-      "PanCard":"aerpv7542p",
-      "Languages":[
-         "Hindi",
-         "Other"
-      ]
-   },
-   "commerce_data":{
-      "AnnualIncome":"50000",
-      "CropIncome":"20000",
-      "FarmExpenseSource":[
-         "Bank"
-      ],
-      "CreditInformation":[
-         {
-            "Id":1,
-            "Source":"Naresh",
-            "Date":"09\/09\/2018",
-            "Amount":"50000",
-            "Interest":"2",
-            "Paid":true,
-            "PendingAmount":""
-         },
-         {
-            "Id":2,
-            "Source":"Bharat",
-            "Date":"02\/09\/2018",
-            "Amount":"30000",
-            "Interest":"2",
-            "Paid":true,
-            "PendingAmount":""
-         },
-         {
-            "Id":3,
-            "Source":"Laharika",
-            "Date":"06\/09\/2018",
-            "Amount":"10000",
-            "Interest":"2",
-            "Paid":false,
-            "PendingAmount":"5000"
-         }
-      ],
-      "AssetInformation":[
-         {
-            "Id":1,
-            "AssetName":"House",
-            "AssetValue":"20000"
-         }
-      ],
-      "OsiInformation":[
-         {
-            "Id":1,
-            "OsiName":"rent",
-            "OsiValue":"500"
-         }
-      ]
-   },
-   "partner_data":{
-      "PartnerData":[
-         {
-            "Id":1,
-            "PartnerName":"Naresh",
-            "PartnerPhone":"9985265352",
-            "PartnerType":"Pump operator"
-         },
-         {
-            "Id":2,
-            "PartnerName":"testing",
-            "PartnerPhone":"7032803804",
-            "PartnerType":"Produce buyer"
-         }
-      ]
-   }
-}'
-DECLARE @output INT
-DECLARE @desc NVARCHAR(100)
-EXEC dbo.usp_put_farmer_details @json, @output = @output OUTPUT, @desc = @desc OUTPUT
-SELECT @output AS output, @desc AS desc1
-
-*/

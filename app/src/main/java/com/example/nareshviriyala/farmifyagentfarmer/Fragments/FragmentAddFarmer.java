@@ -62,8 +62,8 @@ public class FragmentAddFarmer extends Fragment implements AdapterView.OnItemCli
             }.getClass().getEnclosingClass().getName();
             ((HomeActivity) getActivity()).setActionBarTitle("Add Farmer");
             dbHelper = new DatabaseHelper(getActivity());
-            /*dbHelper.deleteImage(81);
-            dbHelper.deleteImage(86);
+            /*dbHelper.deleteImage(91);
+            dbHelper.deleteImage(95);
             dbHelper.deleteImage(87);*/
             btn_farmersave = rootView.findViewById(R.id.btn_farmersave);
             btn_farmerdiscard = rootView.findViewById(R.id.btn_farmerdiscard);
@@ -218,7 +218,7 @@ public class FragmentAddFarmer extends Fragment implements AdapterView.OnItemCli
                     payload.put("agronomic_data", new JSONArray(dbHelper.getParameter(getResources().getString(R.string.Agronomic))));
                     payload.put("commerce_data", new JSONObject(dbHelper.getParameter(getResources().getString(R.string.Commerce))));
                     payload.put("partner_data", new JSONArray(dbHelper.getParameter(getResources().getString(R.string.Partner))));
-                    payload.put("image_data", prepareImageJson());
+                    payload.put("image_data", new JSONObject(dbHelper.getParameter(getResources().getString(R.string.Images))));
 
                     new sendPayLoad().execute(payload.toString(), dbHelper.getParameter("token"));
                     break;
@@ -231,7 +231,7 @@ public class FragmentAddFarmer extends Fragment implements AdapterView.OnItemCli
         }
     }
 
-    public JSONObject prepareImageJson(){
+   /* public JSONObject prepareImageJson(){
         JSONObject ImagesActual = new JSONObject();
         try{
             JSONObject imagesReference = new JSONObject(dbHelper.getParameter(getResources().getString(R.string.Images)));
@@ -299,7 +299,7 @@ public class FragmentAddFarmer extends Fragment implements AdapterView.OnItemCli
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }
         return ImagesActual;
-    }
+    }*/
 
     public class sendPayLoad extends AsyncTask<String, Void, JSONObject>{
 
@@ -388,7 +388,9 @@ public class FragmentAddFarmer extends Fragment implements AdapterView.OnItemCli
             dbHelper.deleteParameter(getResources().getString(R.string.CommerceStatus));
             dbHelper.deleteParameter(getResources().getString(R.string.Partner));
             dbHelper.deleteParameter(getResources().getString(R.string.PartnerStatus));
-            String data = dbHelper.getParameter(getResources().getString(R.string.Images));
+            dbHelper.deleteParameter(getResources().getString(R.string.Images));
+            dbHelper.deleteParameter(getResources().getString(R.string.ImagesStatus));
+            /*String data = dbHelper.getParameter(getResources().getString(R.string.Images));
             JSONObject jsonObject = null;
             if(data.isEmpty()){
                 dbHelper.deleteParameter(getResources().getString(R.string.Images));
@@ -407,7 +409,7 @@ public class FragmentAddFarmer extends Fragment implements AdapterView.OnItemCli
                 }
                 dbHelper.deleteParameter(getResources().getString(R.string.Images));
                 dbHelper.deleteParameter(getResources().getString(R.string.ImagesStatus));
-            }
+            }*/
             populateListView();
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());

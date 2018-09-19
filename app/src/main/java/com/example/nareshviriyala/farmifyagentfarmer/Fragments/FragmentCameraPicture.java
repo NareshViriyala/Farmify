@@ -144,8 +144,8 @@ public class FragmentCameraPicture extends Fragment implements SurfaceHolder.Cal
                     jsonArray = farmerPictureData.getJSONArray(currentPictureType);
                 else
                     jsonArray = new JSONArray();
-                long id = dbHelper.setImage(data);
-                jsonArray.put(id);
+                //long id = dbHelper.setImage(data);
+                jsonArray.put(Base64.encodeToString(data, Base64.DEFAULT));
                 //jsonArray.put(data);
                 farmerPictureData.put(currentPictureType, jsonArray);
             }

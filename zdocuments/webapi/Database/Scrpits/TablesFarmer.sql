@@ -72,6 +72,7 @@ CREATE TABLE dbo.tbl_farmer_agronomic (
 	 , SoilTesting BIT
 	 , FarmExp VARCHAR(10)
 	 , CropInsurance BIT
+	 , CropHistory VARCHAR(MAX)
 	 , CreatedDate DATETIME DEFAULT(GETDATE())
 	 , LastModified DATETIME
 	 , LastModifiedBy INT)
