@@ -1,9 +1,13 @@
 package com.example.nareshviriyala.farmifyagentfarmer.Fragments;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -26,7 +30,11 @@ import com.example.nareshviriyala.farmifyagentfarmer.Activities.HomeActivity;
 import com.example.nareshviriyala.farmifyagentfarmer.Dialogs.DialogAddCropHistoryItem;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
+import com.example.nareshviriyala.farmifyagentfarmer.Helpers.MiscMethods;
+import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelCropHistoryInformation;
 import com.example.nareshviriyala.farmifyagentfarmer.R;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -48,6 +56,7 @@ public class FragmentAFAgronomicSlave extends Fragment implements View.OnClickLi
     private Spinner spnr_watersource;
     private TableLayout tl_crophistory;
     int currentItemId = 0;
+    private static final int ERROR_DIALOG_REQUEST = 9001;
 
     public FragmentAFAgronomicSlave(){}
 
@@ -279,6 +288,13 @@ public class FragmentAFAgronomicSlave extends Fragment implements View.OnClickLi
                     ((TextView)row.findViewById(R.id.tv_crop)).setText(cropHistory.getJSONObject(i).getString("Crop"));
                     ((TextView)row.findViewById(R.id.tv_production)).setText(cropHistory.getJSONObject(i).getString("Production"));
                     ((TextView)row.findViewById(R.id.tv_rate)).setText(cropHistory.getJSONObject(i).getString("Rate"));
+
+                    ImageView ch_delete = row.findViewById(R.id.ch_delete);
+                    ch_delete.setOnClickListener(this);
+
+                    ImageView ch_edit = row.findViewById(R.id.ch_edit);
+                    ch_edit.setOnClickListener(this);
+                    row.setId(i);
                     tl_crophistory.addView(row);
                 }
             }
@@ -392,12 +408,106 @@ public class FragmentAFAgronomicSlave extends Fragment implements View.OnClickLi
                     rootView.findViewById(R.id.ll_fabcrophistorycontainer).setVisibility(View.GONE);
                     break;
                 case R.id.fab_addcrophistory:
-                    new DialogAddCropHistoryItem(getActivity(), null, this).show();
+                    //new DialogAddCropHistoryItem(getActivity(), null, this).show();
+                    if(isMapsServicesOK())
+                        loadAgronomicMapFiledFragment();
                     break;
                 case R.id.btn_agronomicslavedatasave:
                     validateForm();
                     break;
+                case R.id.ch_delete:
+                    deleteCropHistoryItem(v);
+                    break;
+                case R.id.ch_edit:
+                    editCropHistoryItem(v);
             }
+        }catch (Exception ex){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+        }
+    }
+
+    public boolean isMapsServicesOK(){
+        try{
+            int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(getActivity());
+            if(available == ConnectionResult.SUCCESS)
+                return true;
+            else if(GoogleApiAvailability.getInstance().isUserResolvableError(available)){
+                Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(getActivity(), available, ERROR_DIALOG_REQUEST);
+                dialog.show();
+                return true;
+            }else {
+                Toast.makeText(getActivity(), "Your device do not support maps request", Toast.LENGTH_LONG).show();
+                return false;
+            }
+        }catch (Exception ex){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+        }
+        return false;
+    }
+
+    public void loadAgronomicMapFiledFragment(){
+        try{
+            Fragment fragment = new FragmentAFAgronomicMapField();
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.setCustomAnimations(R.anim.slideinleft,R.anim.slideoutleft);
+            fragmentTransaction.replace(R.id.frame, fragment, "AgronomicMapField");
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commitAllowingStateLoss();
+        }catch (Exception ex){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+        }
+    }
+
+    public void editCropHistoryItem(View view){
+        try{
+            int position = ((View)view.getParent()).getId();
+            JSONObject item = farmeragronomicDataItem.getJSONArray("CropHistory").getJSONObject(position);
+            ModelCropHistoryInformation cropHistoryInformation = new ModelCropHistoryInformation(item.getInt("Id")
+                    , item.getString("Year")
+                    , item.getString("Month")
+                    , item.getString("Acers")
+                    , item.getString("Crop")
+                    , item.getString("Production")
+                    , item.getString("Rate"));
+            new DialogAddCropHistoryItem(getActivity(), cropHistoryInformation, this).show();
+        }catch (Exception ex){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+        }
+    }
+
+    public void deleteCropHistoryItem(View view){
+        try{
+            final int position = ((View)view.getParent()).getId();
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage("Are you sure?");
+            builder.setCancelable(true);
+
+            builder.setPositiveButton(
+                    "Yes",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            try {
+                                JSONArray oldlist = farmeragronomicDataItem.getJSONArray("CropHistory");
+                                JSONArray newlist = new MiscMethods(getActivity()).deleteItem(oldlist, position);
+                                farmeragronomicDataItem.put("CropHistory", newlist);
+                                refreshCropHistoryListView();
+                                dialog.cancel();
+                            }catch (Exception ex){
+                                logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+                            }
+                        }
+                    });
+
+            builder.setNegativeButton(
+                    "No",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alert = builder.create();
+            alert.show();
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }
