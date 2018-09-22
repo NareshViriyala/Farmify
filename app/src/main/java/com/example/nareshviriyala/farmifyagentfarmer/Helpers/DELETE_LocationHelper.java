@@ -1,28 +1,19 @@
 package com.example.nareshviriyala.farmifyagentfarmer.Helpers;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
-import android.view.View;
-import android.widget.Toast;
-
-import com.example.nareshviriyala.farmifyagentfarmer.R;
-
-import java.util.Timer;
 
 
-public class LocationHelper extends Service implements LocationListener{
+public class DELETE_LocationHelper extends Service implements LocationListener{
     private final Context mContext;
     boolean isGPSEnabled = false;
     boolean isNetworkEnabled = false;
@@ -32,13 +23,17 @@ public class LocationHelper extends Service implements LocationListener{
     double longitude; // longitude
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
     private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1; // 1 minute
-    private String PageName = "LocationHelper";
+    private String PageName = "DELETE_LocationHelper";
     protected LocationManager locationManager;
     private LogErrors logErrors ;
     private String className;
     private int REQUEST_LOCATION_CODE = 1;
+    private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
+    private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
+    private boolean mLocationPermissionGranted = false;
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
 
-    public LocationHelper(Context context) {
+    public DELETE_LocationHelper(Context context) {
         this.mContext = context;
         logErrors = LogErrors.getInstance(context);
         className = new Object(){}.getClass().getEnclosingClass().getName();
@@ -143,7 +138,7 @@ public class LocationHelper extends Service implements LocationListener{
     public void stopUsingGPS(){
         try {
             if (locationManager != null) {
-                locationManager.removeUpdates(LocationHelper.this);
+                locationManager.removeUpdates(DELETE_LocationHelper.this);
             }
         }
         catch (SecurityException secEx){
@@ -153,50 +148,6 @@ public class LocationHelper extends Service implements LocationListener{
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage().toString());
         }
     }
-
-    /*public void requestLocationPermissions(){
-        try{
-            int hasLocationAccess = ContextCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION);
-            if (hasLocationAccess != PackageManager.PERMISSION_GRANTED) {
-
-                showMessageOKCancel(getResources().getString(R.string.app_name)+ " " +getResources().getString(R.string.locationpermission),
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                ((Activity)(mContext)).requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_CODE);
-                            }
-                        });
-            }
-        }
-        catch (Exception e){logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());}
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        try {
-            switch (requestCode) {
-                case 1: {
-                    if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-
-                    } else {
-                        Toast.makeText(mContext, "We can not scan QR without CAMERA ACCESS \n Go to Settings and allow access.", Toast.LENGTH_SHORT).show();
-                    }
-                    return;
-                }
-            }
-        }
-        catch (Exception e){logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());}
-    }
-
-    private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
-        new AlertDialog.Builder(mContext)
-                .setMessage(message)
-                .setPositiveButton("OK", okListener)
-                .setNegativeButton("Cancel", null)
-                .create()
-                .show();
-    }*/
 
     public void showSettingsAlert(){
         try {

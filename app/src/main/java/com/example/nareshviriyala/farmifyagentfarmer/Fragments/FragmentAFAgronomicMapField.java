@@ -21,18 +21,19 @@ import com.example.nareshviriyala.farmifyagentfarmer.Activities.HomeActivity;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
 import com.example.nareshviriyala.farmifyagentfarmer.R;
-import com.google.android.gms.location.FusedLocationProviderApi;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-;
+;import java.util.Timer;
+import java.util.TimerTask;
 
 public class FragmentAFAgronomicMapField extends Fragment implements OnMapReadyCallback{
 
@@ -47,10 +48,15 @@ public class FragmentAFAgronomicMapField extends Fragment implements OnMapReadyC
     private GoogleMap mMap;
     private FusedLocationProviderClient mFusedLocationProvideClient;
     private static final float DEFAULT_ZOOM = 19f;
+    private Location previousLocation = new Location("");
+    private CurrentLocationTimertask currentLocationTimertask;
+    public Timer timer;
 
     private LocationManager locationManager;
     private LocationListener locationListener;
-
+    private static final String LOCATION_PROVIDER = LocationManager.GPS_PROVIDER;
+    private static final float MIN_DISTANCE = 0f;
+    private static final int MIN_TIME = 0;
 
     public FragmentAFAgronomicMapField(){}
 
@@ -66,10 +72,14 @@ public class FragmentAFAgronomicMapField extends Fragment implements OnMapReadyC
         try{
             logErrors = LogErrors.getInstance(getActivity());
             className = new Object(){}.getClass().getEnclosingClass().getName();
-            ((HomeActivity) getActivity()).setActionBarTitle("Map field");
+            ((HomeActivity) getActivity()).setActionBarTitle("Map farm");
             dbHelper = new DatabaseHelper(getActivity());
+            previousLocation.setLatitude(0.0d);
+            previousLocation.setLongitude(0.0d);
+            currentLocationTimertask = new CurrentLocationTimertask();
+            timer = new Timer();
             getLocationPermission();
-            //initMap();
+            initMap();
 
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
@@ -104,6 +114,8 @@ public class FragmentAFAgronomicMapField extends Fragment implements OnMapReadyC
                 });
 
             }
+        }catch (SecurityException secEx){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), secEx.getMessage().toString());
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }
@@ -111,8 +123,15 @@ public class FragmentAFAgronomicMapField extends Fragment implements OnMapReadyC
 
     private void moveCamera(LatLng latLng, float zoom){
         try{
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
-
+            Location currentLocation = new Location("");
+            currentLocation.setLongitude(latLng.longitude);
+            currentLocation.setLatitude(latLng.latitude);
+            //float distance = currentLocation.distanceTo(previousLocation);
+            if(currentLocation.distanceTo(previousLocation) > 0.5f) {
+                previousLocation = currentLocation;
+                mMap.addMarker(new MarkerOptions().position(latLng));
+                //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
+            }
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }
@@ -123,17 +142,20 @@ public class FragmentAFAgronomicMapField extends Fragment implements OnMapReadyC
         try {
             mMap = googleMap;
             mMap.setMapType(mMap.MAP_TYPE_SATELLITE);
-            if(mLocationPermissionGranted){
+            /*if(mLocationPermissionGranted){
                 getDeviceLocation();
                 mMap.setMyLocationEnabled(true);
-            }
+            }*/
             /*locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
             locationListener = new LocationListener() {
                 @Override
                 public void onLocationChanged(Location location) {
-                    LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
-                    mMap.addMarker(new MarkerOptions().position(currentLocation));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
+                    //if(previousLocation.distanceTo(location) > 0.5) {
+                        previousLocation = location;
+                        LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                        mMap.addMarker(new MarkerOptions().position(currentLocation).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 19f));
+                    //}
                 }
 
                 @Override
@@ -158,19 +180,27 @@ public class FragmentAFAgronomicMapField extends Fragment implements OnMapReadyC
         }
     }
 
+    private class CurrentLocationTimertask extends TimerTask{
+
+        @Override
+        public void run() {
+            getDeviceLocation();
+        }
+    }
+
     private void getLocationPermission(){
         try{
             if(Build.VERSION.SDK_INT < 23){
-                //locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-                initMap();
+                timer.schedule(currentLocationTimertask, 100, 2000);
             }else {
                 String[] permissions = {FINE_LOCATION, COURSE_LOCATION};
 
                 if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(), FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                     if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(), COURSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                         mLocationPermissionGranted = true;
-                        //locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-                        initMap();
+                        //locationManager.requestLocationUpdates(LOCATION_PROVIDER, MIN_TIME, MIN_DISTANCE, locationListener);
+                        //initMap();
+                        timer.schedule(currentLocationTimertask, 100, 2000);
                     } else {
                         requestPermissions(permissions, LOCATION_PERMISSION_REQUEST_CODE);
                     }
@@ -178,28 +208,40 @@ public class FragmentAFAgronomicMapField extends Fragment implements OnMapReadyC
                     requestPermissions(permissions, LOCATION_PERMISSION_REQUEST_CODE);
                 }
             }
-        }catch (Exception ex){
+        }catch (SecurityException secEx){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), secEx.getMessage().toString());
+        }
+        catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }
     }
 
+
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         mLocationPermissionGranted = false;
-        switch (requestCode){
-            case LOCATION_PERMISSION_REQUEST_CODE:{
-                if(grantResults.length > 0){
-                    for(int i = 0; i < grantResults.length; i++){
-                        if(grantResults[i] != PackageManager.PERMISSION_GRANTED){
-                            mLocationPermissionGranted = false;
-                            return;
+        try {
+            switch (requestCode) {
+                case LOCATION_PERMISSION_REQUEST_CODE: {
+                    if (grantResults.length > 0) {
+                        for (int i = 0; i < grantResults.length; i++) {
+                            if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                                mLocationPermissionGranted = false;
+                                return;
+                            }
                         }
+                        mLocationPermissionGranted = true;
+                        //initMap();
+                        //locationManager.requestLocationUpdates(LOCATION_PROVIDER, MIN_TIME, MIN_DISTANCE, locationListener);
+                        timer.schedule(currentLocationTimertask, 100, 2000);
                     }
-                    mLocationPermissionGranted = true;
-                    initMap();
-                    //locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
                 }
             }
+        }catch (SecurityException secEx){
+                logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), secEx.getMessage().toString());
+        }catch (Exception ex){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }
     }
 
