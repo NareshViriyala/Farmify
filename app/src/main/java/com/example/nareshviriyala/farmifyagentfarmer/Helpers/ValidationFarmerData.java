@@ -7,6 +7,8 @@ import com.example.nareshviriyala.farmifyagentfarmer.R;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.Iterator;
+
 
 public class ValidationFarmerData {
 
@@ -139,14 +141,23 @@ public class ValidationFarmerData {
 
     public void validateImageData(){
         try{
-            String data = dbHelper.getParameter(context.getResources().getString(R.string.Images));
+            String data = dbHelper.getParameter(context.getResources().getString(R.string.ImagesSHA));
             if(data.equalsIgnoreCase("") || data == null){
                 dbHelper.setParameter(context.getResources().getString(R.string.ImagesStatus), "0");
                 return;
             }
-            JSONObject farmerImageData = new JSONObject(data);
+            JSONObject farmerImageDataSHA = new JSONObject(data);
+
+            /*data = dbHelper.getParameter(context.getResources().getString(R.string.Images));
+            JSONObject farmerImageData = null;
+            if(data.equalsIgnoreCase("") || data == null)
+                farmerImageData = new JSONObject();
+            else
+                farmerImageData = new JSONObject(data);*/
+
+
             dbHelper.setParameter(context.getResources().getString(R.string.ImagesStatus), "3");
-            if(!farmerImageData.has("Farmer") || farmerImageData.getJSONArray("Farmer").length() == 0
+            /*if(!farmerImageData.has("Farmer") || farmerImageData.getJSONArray("Farmer").length() == 0
                     || !farmerImageData.has("Aadharcard")  || farmerImageData.getJSONArray("Aadharcard").length() == 0)
                 dbHelper.setParameter(context.getResources().getString(R.string.ImagesStatus), "1");
             else if(farmerImageData.has("Farmer") && farmerImageData.getJSONArray("Farmer").length() > 0
@@ -156,6 +167,56 @@ public class ValidationFarmerData {
                     || !farmerImageData.has("Pancard") || (farmerImageData.has("Pancard") && farmerImageData.getJSONArray("Pancard").length() == 0)
                     || !farmerImageData.has("Additional") || (farmerImageData.has("Additional") && farmerImageData.getJSONArray("Additional").length() == 0)))
                 dbHelper.setParameter(context.getResources().getString(R.string.ImagesStatus), "2");
+            */
+            if(!farmerImageDataSHA.has("Farmer") || !farmerImageDataSHA.has("Aadharcard"))
+                dbHelper.setParameter(context.getResources().getString(R.string.ImagesStatus), "1");
+            else if(!farmerImageDataSHA.has("Bankbook")
+                    || (farmerImageDataSHA.has("Bankbook") && farmerImageDataSHA.getString("Bankbook").equalsIgnoreCase("0"))
+                    || !farmerImageDataSHA.has("Rationcard")
+                    || (farmerImageDataSHA.has("Rationcard") && farmerImageDataSHA.getString("Rationcard").equalsIgnoreCase("0"))
+                    || !farmerImageDataSHA.has("Pancard")
+                    || (farmerImageDataSHA.has("Pancard") && farmerImageDataSHA.getString("Pancard").equalsIgnoreCase("0"))
+                    || !farmerImageDataSHA.has("Additional")
+                    || (farmerImageDataSHA.has("Additional") && farmerImageDataSHA.getString("Additional").equalsIgnoreCase("0")))
+                dbHelper.setParameter(context.getResources().getString(R.string.ImagesStatus), "2");
+
+            /*Iterator<String> imageKeys = farmerImageDataSHA.keys();
+            while (imageKeys.hasNext()){
+                String imageType = imageKeys.next();
+                String value = farmerImageDataSHA.getString(imageType);
+                if(!value.equalsIgnoreCase("0"))
+                    farmerImageData.remove(imageType);
+            }
+            dbHelper.setParameter(context.getResources().getString(R.string.Images), farmerImageData.toString());*/
+        }catch (Exception ex){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage());
+        }
+    }
+
+    public void trimImageData(){
+        try{
+            String data = dbHelper.getParameter(context.getResources().getString(R.string.ImagesSHA));
+            JSONObject farmerImageDataSHA = null;
+            if(data.equalsIgnoreCase("") || data == null)
+                farmerImageDataSHA = new JSONObject();
+            else
+                farmerImageDataSHA = new JSONObject(data);
+
+            data = dbHelper.getParameter(context.getResources().getString(R.string.Images));
+            JSONObject farmerImageData = null;
+            if(data.equalsIgnoreCase("") || data == null)
+                farmerImageData = new JSONObject();
+            else
+                farmerImageData = new JSONObject(data);
+
+            Iterator<String> imageKeys = farmerImageDataSHA.keys();
+            while (imageKeys.hasNext()){
+                String imageType = imageKeys.next();
+                String value = farmerImageDataSHA.getString(imageType);
+                if(!value.equalsIgnoreCase("0"))
+                    farmerImageData.remove(imageType);
+            }
+            dbHelper.setParameter(context.getResources().getString(R.string.Images), farmerImageData.toString());
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage());
         }

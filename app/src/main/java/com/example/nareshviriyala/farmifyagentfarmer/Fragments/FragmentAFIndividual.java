@@ -431,6 +431,9 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
                         ll_verifyotp.setVisibility(View.VISIBLE);
                         requestFocus(input_otp);
                     }
+                } else if(result.getInt("responseCode") == 401){
+                    Snackbar.make(getActivity().findViewById(R.id.fab), "Session expired", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
                 } else {
                     Snackbar.make(getActivity().findViewById(R.id.fab), result.getString("response"), Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
@@ -523,6 +526,9 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
                 }
                 else if(result.getInt("responseCode") == 200 && !response.getBoolean("output")){
                     Snackbar.make(getActivity().findViewById(R.id.fab), "Invalid Otp", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }else if(result.getInt("responseCode") == 401){
+                    Snackbar.make(getActivity().findViewById(R.id.fab), "Session expired", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }
                 else {

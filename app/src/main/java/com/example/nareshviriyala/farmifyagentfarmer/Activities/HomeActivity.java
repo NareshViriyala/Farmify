@@ -210,6 +210,7 @@ public class HomeActivity extends AppCompatActivity {
             case 5:
                 // signout
                 dbHelper.deleteParameter("token");
+                dbHelper.deleteParameter("signin_id");
                 Intent Intent = new Intent(this, BootActivity.class);
                 startActivity(Intent);
                 //this.overridePendingTransition(R.anim.slideinright,R.anim.slideoutright);

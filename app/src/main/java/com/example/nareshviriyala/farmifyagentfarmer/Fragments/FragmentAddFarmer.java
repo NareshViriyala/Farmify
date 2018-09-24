@@ -21,6 +21,7 @@ import com.example.nareshviriyala.farmifyagentfarmer.Activities.HomeActivity;
 import com.example.nareshviriyala.farmifyagentfarmer.Adapters.AdapterFarmerData;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
+import com.example.nareshviriyala.farmifyagentfarmer.Helpers.ValidationFarmerData;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.WebServiceOperation;
 import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelDatabaseImage;
 import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelFarmerData;
@@ -209,6 +210,7 @@ public class FragmentAddFarmer extends Fragment implements AdapterView.OnItemCli
                         return;
                     if(!saveFarmerData(getResources().getString(R.string.ImagesStatus)))
                         return;
+                    new ValidationFarmerData(getActivity()).trimImageData();
 
                     JSONObject payload = new JSONObject();
                     payload.put("agent_id", dbHelper.getParameter("user_id"));
@@ -230,76 +232,6 @@ public class FragmentAddFarmer extends Fragment implements AdapterView.OnItemCli
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }
     }
-
-   /* public JSONObject prepareImageJson(){
-        JSONObject ImagesActual = new JSONObject();
-        try{
-            JSONObject imagesReference = new JSONObject(dbHelper.getParameter(getResources().getString(R.string.Images)));
-            if(imagesReference.has("Farmer")){
-                JSONArray ImagesInt = imagesReference.getJSONArray("Farmer");
-                JSONArray ImagesString = new JSONArray();
-                for(int i = 0; i < ImagesInt.length(); i++){
-                    byte[] image = dbHelper.getImage(ImagesInt.getInt(i));
-                    ImagesString.put(Base64.encodeToString(image, Base64.DEFAULT));
-                }
-                ImagesActual.put("Farmer", ImagesString);
-            }
-
-            if(imagesReference.has("Aadharcard")){
-                JSONArray ImagesInt = imagesReference.getJSONArray("Aadharcard");
-                JSONArray ImagesString = new JSONArray();
-                for(int i = 0; i < ImagesInt.length(); i++){
-                    byte[] image = dbHelper.getImage(ImagesInt.getInt(i));
-                    ImagesString.put(Base64.encodeToString(image, Base64.DEFAULT));
-                }
-                ImagesActual.put("Aadharcard", ImagesString);
-            }
-
-            if(imagesReference.has("Bankbook")){
-                JSONArray ImagesInt = imagesReference.getJSONArray("Bankbook");
-                JSONArray ImagesString = new JSONArray();
-                for(int i = 0; i < ImagesInt.length(); i++){
-                    byte[] image = dbHelper.getImage(ImagesInt.getInt(i));
-                    ImagesString.put(Base64.encodeToString(image, Base64.DEFAULT));
-                }
-                ImagesActual.put("Bankbook", ImagesString);
-            }
-
-            if(imagesReference.has("Rationcard")){
-                JSONArray ImagesInt = imagesReference.getJSONArray("Rationcard");
-                JSONArray ImagesString = new JSONArray();
-                for(int i = 0; i < ImagesInt.length(); i++){
-                    byte[] image = dbHelper.getImage(ImagesInt.getInt(i));
-                    ImagesString.put(Base64.encodeToString(image, Base64.DEFAULT));
-                }
-                ImagesActual.put("Rationcard", ImagesString);
-            }
-
-            if(imagesReference.has("Pancard")){
-                JSONArray ImagesInt = imagesReference.getJSONArray("Pancard");
-                JSONArray ImagesString = new JSONArray();
-                for(int i = 0; i < ImagesInt.length(); i++){
-                    byte[] image = dbHelper.getImage(ImagesInt.getInt(i));
-                    ImagesString.put(Base64.encodeToString(image, Base64.DEFAULT));
-                }
-                ImagesActual.put("Pancard", ImagesString);
-            }
-
-            if(imagesReference.has("Additional")){
-                JSONArray ImagesInt = imagesReference.getJSONArray("Additional");
-                JSONArray ImagesString = new JSONArray();
-                for(int i = 0; i < ImagesInt.length(); i++){
-                    byte[] image = dbHelper.getImage(ImagesInt.getInt(i));
-                    ImagesString.put(Base64.encodeToString(image, Base64.DEFAULT));
-                }
-                ImagesActual.put("Additional", ImagesString);
-            }
-
-        }catch (Exception ex){
-            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
-        }
-        return ImagesActual;
-    }*/
 
     public class sendPayLoad extends AsyncTask<String, Void, JSONObject>{
 
@@ -330,7 +262,11 @@ public class FragmentAddFarmer extends Fragment implements AdapterView.OnItemCli
                     Snackbar.make(getActivity().findViewById(R.id.fab), "Successfully saved to server", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                     eraseFarmerData();
-                }else{
+                }else if(result.getInt("responseCode") == 401){
+                    Snackbar.make(getActivity().findViewById(R.id.fab), "Session expired", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+                else{
                     Snackbar.make(getActivity().findViewById(R.id.fab), "Saving locally", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                     saveLocally();
@@ -390,26 +326,7 @@ public class FragmentAddFarmer extends Fragment implements AdapterView.OnItemCli
             dbHelper.deleteParameter(getResources().getString(R.string.PartnerStatus));
             dbHelper.deleteParameter(getResources().getString(R.string.Images));
             dbHelper.deleteParameter(getResources().getString(R.string.ImagesStatus));
-            /*String data = dbHelper.getParameter(getResources().getString(R.string.Images));
-            JSONObject jsonObject = null;
-            if(data.isEmpty()){
-                dbHelper.deleteParameter(getResources().getString(R.string.Images));
-                dbHelper.deleteParameter(getResources().getString(R.string.ImagesStatus));
-            }
-            else {
-                jsonObject = new JSONObject(data);
-                String[] image_types = getResources().getStringArray(R.array.image_types);
-                for (String item:image_types) {
-                    if(jsonObject.has(item.replace(" ", ""))){
-                        JSONArray jsonArray = jsonObject.getJSONArray(item.replace(" ",""));
-                        for (int i = 0; i < jsonArray.length(); i++){
-                            dbHelper.deleteImage(jsonArray.getInt(i));
-                        }
-                    }
-                }
-                dbHelper.deleteParameter(getResources().getString(R.string.Images));
-                dbHelper.deleteParameter(getResources().getString(R.string.ImagesStatus));
-            }*/
+            dbHelper.deleteParameter(getResources().getString(R.string.ImagesSHA));
             populateListView();
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());

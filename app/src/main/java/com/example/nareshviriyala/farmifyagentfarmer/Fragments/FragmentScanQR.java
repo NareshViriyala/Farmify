@@ -243,20 +243,20 @@ public class FragmentScanQR extends Fragment implements SurfaceHolder.Callback, 
         @Override
         protected JSONObject doInBackground(String[] params) {
             //android.os.Debug.waitForDebugger();
-            JSONObject aadharInfo = null;
+            JSONObject response = null;
             try {
                 JSONObject json = new JSONObject(params[0]);
                 String token = params[1];
                 JSONObject postDataParams = new JSONObject();
                 postDataParams.put("Aadhar", json.getString("Aadhar"));
                 postDataParams.put("Phone", "");
-                aadharInfo = wso.MakePostCall("FarmerData/verifyAadhar", postDataParams.toString(), token);
+                response = wso.MakePostCall("FarmerData/verifyAadhar", postDataParams.toString(), token);
             }
             catch (Exception e) {
                 logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());
             }
 
-            return aadharInfo;
+            return response;
         }
 
         @Override
@@ -276,13 +276,17 @@ public class FragmentScanQR extends Fragment implements SurfaceHolder.Callback, 
                         dbHelper.setParameter(getResources().getString(R.string.Social), response.getString("social_data"));
                         dbHelper.setParameter(getResources().getString(R.string.Commerce), response.getString("commerce_data"));
                         dbHelper.setParameter(getResources().getString(R.string.Partner), response.getString("partner_data"));
-                        dbHelper.setParameter(getResources().getString(R.string.Images), response.getString("image_data"));
+                        dbHelper.setParameter(getResources().getString(R.string.Images), "");
+                        dbHelper.setParameter(getResources().getString(R.string.ImagesSHA), response.getString("image_data"));
                         new ValidationFarmerData(getActivity()).validateAllData();
                         loadFragment("FragmentAFIndividual");
                     }else{ //aadhar not found
                         // move to next fragment with scanned data from QR code
                         loadFragment("FragmentAFIndividual");
                     }
+                } else if(result.getInt("responseCode") == 401){
+                    Snackbar.make(getActivity().findViewById(R.id.fab), "Session expired", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
                 } else {
                     /*Snackbar.make(getActivity().findViewById(R.id.fab), "Loading...", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();*/
@@ -394,12 +398,15 @@ public class FragmentScanQR extends Fragment implements SurfaceHolder.Callback, 
             //Bundle bundle = new Bundle();
             //bundle.putString("guid",lastQRContent);
             screenChanging = true;
-            while (decodingQR) {
+            int i = 0;
+            while (decodingQR && i < 10) {
                 Thread.sleep(100);
+                i = i + 1;
             }
             decodingQR = false;
-            Class<?> c = Class.forName("com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentAFIndividual");
-            Fragment fragment = (Fragment) c.newInstance();
+            //Class<?> c = Class.forName("com.example.nareshviriyala.farmifyagentfarmer.Fragments.FragmentAFIndividual");
+            //Fragment fragment = (Fragment) c.newInstance();
+            Fragment fragment = new FragmentAFIndividual();
             //fragment.setArguments(bundle);
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

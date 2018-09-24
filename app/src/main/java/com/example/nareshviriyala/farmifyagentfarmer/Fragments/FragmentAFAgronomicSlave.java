@@ -1,12 +1,17 @@
 package com.example.nareshviriyala.farmifyagentfarmer.Fragments;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -29,6 +34,7 @@ import android.widget.Toast;
 import com.example.nareshviriyala.farmifyagentfarmer.Activities.HomeActivity;
 import com.example.nareshviriyala.farmifyagentfarmer.Dialogs.DialogAddCropHistoryItem;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
+import com.example.nareshviriyala.farmifyagentfarmer.Helpers.GlobalVariables;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.MiscMethods;
 import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelCropHistoryInformation;
@@ -57,6 +63,10 @@ public class FragmentAFAgronomicSlave extends Fragment implements View.OnClickLi
     private TableLayout tl_crophistory;
     int currentItemId = 0;
     private static final int ERROR_DIALOG_REQUEST = 9001;
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1253;
+    private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
+    private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
+    private GlobalVariables globalVariables;
 
     public FragmentAFAgronomicSlave(){}
 
@@ -81,9 +91,17 @@ public class FragmentAFAgronomicSlave extends Fragment implements View.OnClickLi
             else
                 farmeragronomicData = new JSONArray(data);
 
+            globalVariables = GlobalVariables.getInstance();
 
-            currentItemId = getArguments().getInt("ItemId");
+            //check if this fragment is loaded on backpress or from FragmentAFAgronomic
+            if(globalVariables.getagronomicDataItemId() != -2) {
+                currentItemId = globalVariables.getagronomicDataItemId();
+                globalVariables.setagronomicDataItemId(-2);
+            }
+            else
+                currentItemId = getArguments().getInt("ItemId");
 
+            //check if its a new insert
             if(currentItemId == -1)
                 farmeragronomicDataItem = new JSONObject();
             else
@@ -409,11 +427,18 @@ public class FragmentAFAgronomicSlave extends Fragment implements View.OnClickLi
                     break;
                 case R.id.fab_addcrophistory:
                     //new DialogAddCropHistoryItem(getActivity(), null, this).show();
-                    if(isMapsServicesOK())
-                        loadAgronomicMapFiledFragment();
+                    if(validateForm()) {
+                        saveForm();
+                        globalVariables.setagronomicDataItemId(currentItemId);
+                        if (isMapsServicesOK())
+                            getLocationPermission();
+                    }
                     break;
                 case R.id.btn_agronomicslavedatasave:
-                    validateForm();
+                    if(validateForm()) {
+                        saveForm();
+                        goBack();
+                    }
                     break;
                 case R.id.ch_delete:
                     deleteCropHistoryItem(v);
@@ -445,9 +470,60 @@ public class FragmentAFAgronomicSlave extends Fragment implements View.OnClickLi
         return false;
     }
 
+    private void getLocationPermission(){
+        try{
+            if(Build.VERSION.SDK_INT < 23){
+                loadAgronomicMapFiledFragment();
+            }else {
+                String[] permissions = {FINE_LOCATION, COURSE_LOCATION};
+
+                if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(), FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(), COURSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                        loadAgronomicMapFiledFragment();
+                    } else {
+                        requestPermissions(permissions, LOCATION_PERMISSION_REQUEST_CODE);
+                    }
+                } else {
+                    requestPermissions(permissions, LOCATION_PERMISSION_REQUEST_CODE);
+                }
+            }
+        }catch (SecurityException secEx){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), secEx.getMessage().toString());
+        }
+        catch (Exception ex){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        try {
+            switch (requestCode) {
+                case LOCATION_PERMISSION_REQUEST_CODE: {
+                    if (grantResults.length > 0) {
+                        for (int i = 0; i < grantResults.length; i++) {
+                            if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                                Toast.makeText(getActivity(), "Can not map farm with out location access permission", Toast.LENGTH_LONG).show();
+                                return;
+                            }
+                        }
+                        loadAgronomicMapFiledFragment();
+                    }
+                }
+            }
+        }catch (SecurityException secEx){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), secEx.getMessage().toString());
+        }catch (Exception ex){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+        }
+    }
+
     public void loadAgronomicMapFiledFragment(){
         try{
+            Bundle args = new Bundle();
+            args.putInt("ItemId", currentItemId);
             Fragment fragment = new FragmentAFAgronomicMapField();
+            fragment.setArguments(args);
             FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
             fragmentTransaction.setCustomAnimations(R.anim.slideinleft,R.anim.slideoutleft);
             fragmentTransaction.replace(R.id.frame, fragment, "AgronomicMapField");
@@ -513,43 +589,43 @@ public class FragmentAFAgronomicSlave extends Fragment implements View.OnClickLi
         }
     }
 
-    public void validateForm(){
+    public boolean validateForm(){
         try{
             if(!farmeragronomicDataItem.has("FarmerType")){
                 Toast.makeText(getActivity(), "Select farmer type", Toast.LENGTH_SHORT).show();
-                return;
+                return false;
             }
             if(!farmeragronomicDataItem.has("FarmerCategory")){
                 Toast.makeText(getActivity(), "Select farmer category", Toast.LENGTH_SHORT).show();
-                return;
+                return false;
             }
             if(!farmeragronomicDataItem.has("CropType")){
                 Toast.makeText(getActivity(), "Select crop type", Toast.LENGTH_SHORT).show();
-                return;
+                return false;
             }
             if(input_layout_tocother.getVisibility() == View.VISIBLE &&
                     (!farmeragronomicDataItem.has("CropTypeOther") || farmeragronomicDataItem.getString("CropTypeOther").equalsIgnoreCase(""))){
                 input_layout_tocother.setError("Enter crop type");
                 requestFocus(input_tocother);
-                return;
+                return false;
             }else {
                 input_layout_tocother.setErrorEnabled(false);
             }
             if(!farmeragronomicDataItem.has("SoilType")){
                 Toast.makeText(getActivity(), "Select soil type", Toast.LENGTH_SHORT).show();
-                return;
+                return false;
             }
             if(input_layout_soilother.getVisibility() == View.VISIBLE &&
                     (!farmeragronomicDataItem.has("SoilTypeOther") || farmeragronomicDataItem.getString("SoilTypeOther").equalsIgnoreCase(""))){
                 input_layout_soilother.setError("Enter soil type");
                 requestFocus(input_soilother);
-                return;
+                return false;
             }else {
                 input_layout_soilother.setErrorEnabled(false);
             }
             if(spnr_watersource.getSelectedItem().toString().trim().equalsIgnoreCase("Select")){
                 ((TextView)spnr_watersource.getSelectedView()).setError("Select water source");
-                return;
+                return false;
             }else{
                 farmeragronomicDataItem.put("WaterSource", spnr_watersource.getSelectedItem().toString().trim());
             }
@@ -557,36 +633,37 @@ public class FragmentAFAgronomicSlave extends Fragment implements View.OnClickLi
                     (farmeragronomicDataItem.has("LandAcers") && farmeragronomicDataItem.getString("LandAcers").equalsIgnoreCase(""))){
                 input_layout_landacers.setError("Enter land area");
                 requestFocus(input_landacers);
-                return;
+                return false;
             }else {
                 input_layout_landacers.setErrorEnabled(false);
             }
             if(!farmeragronomicDataItem.has("SoilTesting")){
                 Toast.makeText(getActivity(), "Select soil testing status", Toast.LENGTH_SHORT).show();
-                return;
+                return false;
             }
             if(!farmeragronomicDataItem.has("FarmExp") ||
                     (farmeragronomicDataItem.has("FarmExp") && farmeragronomicDataItem.getString("FarmExp").equalsIgnoreCase(""))){
                 input_layout_farmingexperience.setError("Enter farming experience");
                 requestFocus(input_farmingexperience);
-                return;
+                return false;
             }else {
                 input_layout_farmingexperience.setErrorEnabled(false);
             }
             if(!farmeragronomicDataItem.has("CropInsurance")){
                 Toast.makeText(getActivity(), "Select crop insurance status", Toast.LENGTH_SHORT).show();
-                return;
+                return false;
             }
-            saveForm();
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }
+        return true;
     }
 
     public void saveForm(){
         try{
             if (currentItemId == -1) {
-                farmeragronomicDataItem.put("Id", farmeragronomicData.length());
+                currentItemId = farmeragronomicData.length();
+                farmeragronomicDataItem.put("Id", currentItemId);
                 farmeragronomicData.put(farmeragronomicDataItem);
             }
             else {
@@ -612,9 +689,10 @@ public class FragmentAFAgronomicSlave extends Fragment implements View.OnClickLi
                     farmeragronomicData.getJSONObject(currentItemId).put("SoilTesting", farmeragronomicDataItem.get("SoilTesting"));
                 if(farmeragronomicDataItem.has("CropInsurance"))
                     farmeragronomicData.getJSONObject(currentItemId).put("CropInsurance", farmeragronomicDataItem.get("CropInsurance"));
+                if(farmeragronomicDataItem.has("FarmMap"))
+                    farmeragronomicData.getJSONObject(currentItemId).put("FarmMap", farmeragronomicDataItem.get("FarmMap"));
             }
             dbHelper.setParameter(getString(R.string.Agronomic), farmeragronomicData.toString());
-            goBack();
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }
@@ -659,10 +737,12 @@ public class FragmentAFAgronomicSlave extends Fragment implements View.OnClickLi
                         farmeragronomicDataItem.put("FarmExp", input_farmingexperience.getText().toString().trim());
                         break;
                     case R.id.input_soilother:
+                        if(!input_soilother.getText().toString().trim().equalsIgnoreCase(""))
                         farmeragronomicDataItem.put("SoilTypeOther", input_soilother.getText().toString().trim());
                         break;
                     case R.id.input_tocother:
-                        farmeragronomicDataItem.put("CropTypeOther", input_tocother.getText().toString().trim());
+                        if(!input_tocother.getText().toString().trim().equalsIgnoreCase(""))
+                            farmeragronomicDataItem.put("CropTypeOther", input_tocother.getText().toString().trim());
                         break;
                 }
             }catch (Exception ex){

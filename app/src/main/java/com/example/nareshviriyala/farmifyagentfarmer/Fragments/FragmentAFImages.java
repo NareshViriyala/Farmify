@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
@@ -17,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +31,7 @@ import com.example.nareshviriyala.farmifyagentfarmer.Helpers.Convertor;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.ValidationFarmerData;
+import com.example.nareshviriyala.farmifyagentfarmer.Helpers.WebServiceOperation;
 import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelImageInformation;
 import com.example.nareshviriyala.farmifyagentfarmer.Models.ModelImageParameters;
 import com.example.nareshviriyala.farmifyagentfarmer.R;
@@ -56,6 +59,8 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
     public FragmentAFImages(){}
     private String currentPictureType;
     private int currentPictureId = -1;
+    private WebServiceOperation wso;
+    private ProgressBar pb_loading;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,16 +76,13 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
             logErrors = LogErrors.getInstance(getActivity());
             className = new Object(){}.getClass().getEnclosingClass().getName();
             dbHelper = new DatabaseHelper(getActivity());
-            //dbHelper.deleteParameter(getResources().getString(R.string.Images));
-            String data = dbHelper.getParameter(getResources().getString(R.string.Images));
-            itemList = getResources().getStringArray(R.array.image_types);
             convertor = new Convertor(getActivity());
-            if(data.isEmpty() || data == null)
-                farmerImageData = new JSONObject();
-            else
-                farmerImageData = new JSONObject(data);
+            itemList = getResources().getStringArray(R.array.image_types);
+            wso = new WebServiceOperation();
+            //dbHelper.deleteParameter(getResources().getString(R.string.Images));
             ((HomeActivity) getActivity()).setActionBarTitle("Images");
 
+            pb_loading = rootView.findViewById(R.id.pb_loading);
             gv_images = rootView.findViewById(R.id.gv_images);
             gv_images.setOnItemClickListener(this);
 
@@ -97,7 +99,22 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
             btn_imagedatasave = rootView.findViewById(R.id.btn_imagedatasave);
             btn_imagedatasave.setOnClickListener(this);
 
-            refreshImageListView();
+            //first check if are available locally
+            String data = dbHelper.getParameter(getResources().getString(R.string.Images));
+            JSONObject individualData = new JSONObject(dbHelper.getParameter(getResources().getString(R.string.Individual)));
+
+            if(data.isEmpty() || data == null){
+                farmerImageData = new JSONObject();
+                if(individualData.has("Id") && individualData.getInt("Id") != 0)//check if images need to be downloaded from server for this farmer
+                    new downloadImages().execute(String.valueOf(individualData.getInt("Id")), dbHelper.getParameter("token"));
+            }
+            else {
+                farmerImageData = new JSONObject(data);
+                refreshImageListView();
+            }
+
+
+
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }
@@ -182,6 +199,9 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
                         public void onClick(DialogInterface dialog, int id) {
                             try {
                                 JSONArray imageArray = farmerImageData.getJSONArray(currentPictureType);
+                                JSONObject imagesSHA = new JSONObject(dbHelper.getParameter(getResources().getString(R.string.ImagesSHA)));
+                                imagesSHA.put(currentPictureType, "0");
+                                dbHelper.setParameter(getResources().getString(R.string.ImagesSHA), imagesSHA.toString());
                                 JSONArray newImageArray = null;
                                 if(imageArray.length() > 0){
                                     newImageArray = new JSONArray();
@@ -267,18 +287,6 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
         try{
             dbHelper.setParameter(getString(R.string.Images), farmerImageData.toString());
             new ValidationFarmerData(getActivity()).validateImageData();
-
-            /*dbHelper.setParameter(getString(R.string.ImagesStatus), "3");
-            if(!farmerImageData.has("Farmer") || farmerImageData.getJSONArray("Farmer").length() == 0
-                    || !farmerImageData.has("Aadharcard")  || farmerImageData.getJSONArray("Aadharcard").length() == 0)
-                dbHelper.setParameter(getString(R.string.ImagesStatus), "1");
-            else if(farmerImageData.has("Farmer") && farmerImageData.getJSONArray("Farmer").length() > 0
-                    && farmerImageData.has("Aadharcard")  && farmerImageData.getJSONArray("Aadharcard").length() > 0
-                    && (!farmerImageData.has("Bankbook")  || (farmerImageData.has("Bankbook") && farmerImageData.getJSONArray("Bankbook").length() == 0)
-                        || !farmerImageData.has("Rationcard") || (farmerImageData.has("Rationcard") && farmerImageData.getJSONArray("Rationcard").length() == 0)
-                        || !farmerImageData.has("Pancard") || (farmerImageData.has("Pancard") && farmerImageData.getJSONArray("Pancard").length() == 0)
-                        || !farmerImageData.has("Additional") || (farmerImageData.has("Additional") && farmerImageData.getJSONArray("Additional").length() == 0)))
-                dbHelper.setParameter(getString(R.string.ImagesStatus), "2");*/
             goBack();
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
@@ -394,4 +402,52 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
         }catch (Exception e){logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());}
     }
 
+
+    public class downloadImages extends AsyncTask<String, Void, JSONObject>{
+
+        @Override
+        protected void onPreExecute(){
+            Snackbar.make(getActivity().findViewById(R.id.fab), "Downloading images, please wait", Snackbar.LENGTH_SHORT)
+                    .setAction("Action", null).show();
+            pb_loading.setVisibility(View.VISIBLE);
+            btn_imagedatasave.setText("");
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... strings) {
+            JSONObject response = null;
+            try{
+                response = wso.MakeGetCall("FarmerData/getFarmerDocuments?id="+strings[0], strings[1]);
+            }catch (Exception e){
+                logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());
+            }
+            return  response;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject result){
+
+            super.onPostExecute(result);
+            try {
+                if (result.getInt("responseCode") == 200) {
+                    JSONObject interimResult = new JSONObject(result.getString("response"));
+                    interimResult = new JSONObject(interimResult.getString("result"));
+                    farmerImageData = new JSONObject(interimResult.getString("documents"));
+                    dbHelper.setParameter(getResources().getString(R.string.Images), farmerImageData.toString());
+                    refreshImageListView();
+                    Snackbar.make(getActivity().findViewById(R.id.fab), "Download complete", Snackbar.LENGTH_SHORT)
+                            .setAction("Action", null).show();
+                    pb_loading.setVisibility(View.GONE);
+                    btn_imagedatasave.setText("Save");
+                } else if(result.getInt("responseCode") == 401){
+                    Snackbar.make(getActivity().findViewById(R.id.fab), "Session expired", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                } else {
+                    Snackbar.make(getActivity().findViewById(R.id.fab), "Something went wrong", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+            }
+            catch (Exception e){logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());}
+        }
+    }
 }

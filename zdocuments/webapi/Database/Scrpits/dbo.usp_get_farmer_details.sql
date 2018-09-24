@@ -32,8 +32,20 @@ BEGIN
 			SELECT @social_data = JSON_QUERY(@social_data, '$.result[0]')
 
 
-			SELECT @agronomic_data = (SELECT Id, FarmerType, FarmerCategory, JSON_QUERY(CropType) AS CropType, CropTypeOther, SoilType, SoilTypeOther, WaterSource, JSON_QUERY(CropHistory) AS CropHistory
-										   , LandAcers, SoilTesting, FarmExp, CropInsurance
+			SELECT @agronomic_data = (SELECT Id
+										   , FarmerType
+										   , FarmerCategory
+										   , JSON_QUERY(CropType) AS CropType
+										   , CropTypeOther
+										   , SoilType
+										   , SoilTypeOther
+										   , WaterSource
+										   , JSON_QUERY(CropHistory) AS CropHistory
+										   , LandAcers
+										   , SoilTesting
+										   , FarmExp
+										   , CropInsurance
+										   , JSON_QUERY(FarmMap) AS FarmMap
 									  FROM dbo.tbl_farmer_agronomic (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH)
 
 			SELECT @commerce_data = (SELECT AnnualIncome
@@ -47,7 +59,7 @@ BEGIN
 
 			SELECT @partner_data = (SELECT Id, PartnerName, PartnerPhone, PartnerType 
 									  FROM dbo.tbl_farmer_partner (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH)
-			
+			/*
 			SELECT @image_data = (SELECT JSON_QUERY(Farmer) AS Farmer
 										  , JSON_QUERY(Aadharcard) AS Aadharcard 
 										  , JSON_QUERY(Bankbook) AS Bankbook
@@ -55,6 +67,15 @@ BEGIN
 										  , JSON_QUERY(Pancard) AS Pancard
 										  , JSON_QUERY(Additional) AS Additional
 									   FROM dbo.tbl_farmer_images (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
+			*/
+			SELECT @image_data = (SELECT HASHBYTES('SHA1', JSON_QUERY(Farmer)) AS Farmer
+										  , HASHBYTES('SHA1', JSON_QUERY(Aadharcard)) AS Aadharcard 
+										  , HASHBYTES('SHA1', JSON_QUERY(Bankbook)) AS Bankbook
+										  , HASHBYTES('SHA1', JSON_QUERY(Rationcard)) AS Rationcard
+										  , HASHBYTES('SHA1', JSON_QUERY(Pancard)) AS Pancard
+										  , HASHBYTES('SHA1', JSON_QUERY(Additional)) AS Additional
+									   FROM dbo.tbl_farmer_images (NOLOCK) WHERE farmer_id = @farmer_id FOR JSON PATH, ROOT('result'))
+
 			SELECT @image_data = JSON_QUERY(@image_data, '$.result[0]')
 			
 			SELECT @output ='{"agent_id":0, 

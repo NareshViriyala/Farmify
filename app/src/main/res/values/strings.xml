@@ -18,6 +18,7 @@
     <string name="PartnerStatus">PartnerData_Status</string>
     <string name="Images">ImagesData</string>
     <string name="ImagesStatus">ImagesData_Status</string>
+    <string name="ImagesSHA">ImagesData_SHA</string>
     <string name="campermission">need access to CAMERA to scan QR codes <u><b>ONLY</b></u>.\nFollowing popup message is a standard android warning.\nPlease click ALLOW to proceed</string>
     <string name="locationpermission">need access to your location.\nFollowing popup message is a standard android warning.\nPlease click ALLOW to proceed</string>
     <string name="google_maps_api_key">AIzaSyC0zYN7NqS4Yzts7WxM8FZbgDGYDDWkivA</string>

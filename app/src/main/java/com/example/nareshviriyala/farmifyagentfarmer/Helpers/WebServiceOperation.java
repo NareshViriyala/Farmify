@@ -24,8 +24,44 @@ public class WebServiceOperation {
         }catch (Exception e) {}
     }
 
-    public String MakeGetCall(){
-       return "";
+    public JSONObject MakeGetCall(String endPoint, String token){
+        JSONObject response = new JSONObject();
+        try{
+            URL url = new URL(apiURL+endPoint);
+            HttpURLConnection  httpurlconnection = (HttpURLConnection)url.openConnection();
+            httpurlconnection.setRequestMethod("GET");
+            httpurlconnection.setReadTimeout(10000);
+            httpurlconnection.setConnectTimeout(15000 /* milliseconds */);
+            httpurlconnection.setDoInput(true);
+            if (token != null && !token.isEmpty())
+                httpurlconnection.setRequestProperty("Authorization", token);
+
+            int responseCode = httpurlconnection.getResponseCode();
+            BufferedReader in;
+
+            if(responseCode == HttpURLConnection.HTTP_OK){
+                in = new BufferedReader(new InputStreamReader(httpurlconnection.getInputStream()));
+            }else{
+                in = new BufferedReader(new InputStreamReader(httpurlconnection.getErrorStream()));
+            }
+            StringBuffer sb = new StringBuffer("");
+            String line = "";
+            while ((line = in.readLine()) != null){
+                sb.append(line);
+                break;
+            }
+            in.close();
+
+            response.put("responseCode", responseCode);
+            response.put("response", sb.toString());
+
+        }catch(Exception e){
+            try {
+                response.put("responseCode", 500);
+                response.put("response", e.getMessage());
+            }catch(Exception ex){}
+        }
+        return response;
     }
 
     public JSONObject MakePostCall(String endPoint, String postBody, String token){

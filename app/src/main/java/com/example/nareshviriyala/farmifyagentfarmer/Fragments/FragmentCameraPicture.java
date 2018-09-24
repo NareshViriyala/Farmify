@@ -36,6 +36,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -48,7 +51,7 @@ public class FragmentCameraPicture extends Fragment implements SurfaceHolder.Cal
     private LogErrors logErrors;
     private DatabaseHelper dbHelper;
     private String className;
-    private JSONObject farmerPictureData;
+    private JSONObject farmerPictureData, farmerPictureDataSHA;
     private boolean screenChanging = false;
     public SurfaceView sfv_camview;
     public Camera mCamera;
@@ -77,10 +80,14 @@ public class FragmentCameraPicture extends Fragment implements SurfaceHolder.Cal
             currentPictureType = getArguments().getString("PictureType");
             currentPictureId = getArguments().getInt("PictureId");
             String data = dbHelper.getParameter(getString(R.string.Images));
-            if(data.isEmpty() || data == null)
+            if(data.isEmpty() || data == null) {
                 farmerPictureData = new JSONObject();
-            else
+                farmerPictureDataSHA = new JSONObject();
+            }
+            else {
                 farmerPictureData = new JSONObject(data);
+                farmerPictureDataSHA = new JSONObject(dbHelper.getParameter(getResources().getString(R.string.ImagesSHA)));
+            }
 
             btn_takepicture = rootView.findViewById(R.id.btn_takepicture);
             btn_takepicture.setOnClickListener(this);
@@ -148,6 +155,7 @@ public class FragmentCameraPicture extends Fragment implements SurfaceHolder.Cal
                 jsonArray.put(Base64.encodeToString(data, Base64.DEFAULT));
                 //jsonArray.put(data);
                 farmerPictureData.put(currentPictureType, jsonArray);
+                farmerPictureDataSHA.put(currentPictureType, "1");
             }
             catch (Exception e) {
                 logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());
@@ -160,10 +168,32 @@ public class FragmentCameraPicture extends Fragment implements SurfaceHolder.Cal
             super.onPostExecute(decodedText);
             mCamera.stopPreview();
             dbHelper.setParameter(getResources().getString(R.string.Images), farmerPictureData.toString());
+            dbHelper.setParameter(getResources().getString(R.string.ImagesSHA), farmerPictureDataSHA.toString());
             camOperation(false);
             goBack();
         }
     }
+
+    /*public static String SHA1(String text) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        MessageDigest md = MessageDigest.getInstance("SHA-1");
+        byte[] textBytes = text.getBytes("iso-8859-1");
+        md.update(textBytes, 0, textBytes.length);
+        byte[] sha1hash = md.digest();
+        return convertToHex(sha1hash);
+    }
+
+    private static String convertToHex(byte[] data) {
+        StringBuilder buf = new StringBuilder();
+        for (byte b : data) {
+            int halfbyte = (b >>> 4) & 0x0F;
+            int two_halfs = 0;
+            do {
+                buf.append((0 <= halfbyte) && (halfbyte <= 9) ? (char) ('0' + halfbyte) : (char) ('a' + (halfbyte - 10)));
+                halfbyte = b & 0x0F;
+            } while (two_halfs++ < 1);
+        }
+        return buf.toString();
+    }*/
 
     public void goBack(){
         try{

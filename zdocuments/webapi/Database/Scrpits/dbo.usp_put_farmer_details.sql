@@ -99,6 +99,7 @@ BEGIN
 			   , FarmExp
 			   , CropInsurance
 			   , CropHistory
+			   , FarmMap
 			   , GETDATE()
 			   , GETDATE()
 			   , @agent_id
@@ -114,7 +115,8 @@ BEGIN
 			   , SoilTesting BIT '$.SoilTesting'
 			   , FarmExp VARCHAR(200) '$.FarmExp'
 			   , CropInsurance VARCHAR(200) '$.CropInsurance'
-			   , CropHistory NVARCHAR(MAX) AS JSON)
+			   , CropHistory NVARCHAR(MAX) AS JSON
+			   , FarmMap NVARCHAR(MAX) AS JSON)
 
 
 			-- Insert commerce information for the given farmer_id
@@ -284,6 +286,7 @@ BEGIN
 			   , FarmExp
 			   , CropInsurance
 			   , CropHistory
+			   , FarmMap
 			   , GETDATE()
 			   , GETDATE()
 			   , @agent_id
@@ -299,7 +302,8 @@ BEGIN
 			   , SoilTesting BIT '$.SoilTesting'
 			   , FarmExp VARCHAR(200) '$.FarmExp'
 			   , CropInsurance VARCHAR(200) '$.CropInsurance'
-			   , CropHistory NVARCHAR(MAX) AS JSON)
+			   , CropHistory NVARCHAR(MAX) AS JSON
+			   , FarmMap NVARCHAR(MAX) AS JSON)
 
 
 
@@ -334,12 +338,12 @@ BEGIN
 
 		--Update images information for the given farmer_id
 		UPDATE dbo.tbl_farmer_images
-		   SET Farmer = JSON_QUERY(@image_data, '$.Farmer')
-			 , Aadharcard = JSON_QUERY(@image_data, '$.Aadharcard')
-			 , Bankbook = JSON_QUERY(@image_data, '$.Bankbook')
-			 , Rationcard = JSON_QUERY(@image_data, '$.Rationcard')
-			 , Pancard = JSON_QUERY(@image_data, '$.Pancard')
-			 , Additional = JSON_QUERY(@image_data, '$.Additional')
+		   SET Farmer = ISNULL(NULLIF(JSON_QUERY(@image_data, '$.Farmer'),''), Farmer)
+			 , Aadharcard = ISNULL(NULLIF(JSON_QUERY(@image_data, '$.Aadharcard'),''), Aadharcard)
+			 , Bankbook = ISNULL(NULLIF(JSON_QUERY(@image_data, '$.Bankbook'),''), Bankbook)
+			 , Rationcard = ISNULL(NULLIF(JSON_QUERY(@image_data, '$.Rationcard'),''), Rationcard)
+			 , Pancard = ISNULL(NULLIF(JSON_QUERY(@image_data, '$.Pancard'),''), Pancard)
+			 , Additional = ISNULL(NULLIF(JSON_QUERY(@image_data, '$.Additional'),''), Additional)
 			 , LastModified = GETDATE()
 			 , LastModifiedBy = @agent_id
 		 WHERE farmer_id = @farmer_id

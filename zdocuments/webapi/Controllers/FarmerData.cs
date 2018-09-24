@@ -101,6 +101,36 @@ namespace webapi.Controllers
             }
         }
 
+        [HttpGet("{id int}")]
+        [Route("[action]")]
+        public IActionResult getFarmerDocuments(int id)
+        {
+            try
+            {
+                using(var sqlConnection = new SqlConnection(_appSettings.ConnectionString))
+                {
+                    using(var sqlCommand = new SqlCommand("dbo.usp_get_farmer_documents",sqlConnection))
+                    {
+                        sqlCommand.CommandType = CommandType.StoredProcedure;
+                        sqlCommand.Parameters.Add("@id",SqlDbType.Int).Value = id;
+                        sqlCommand.Parameters.Add("@output", SqlDbType.NVarChar, -1);
+                        sqlCommand.Parameters["@output"].Direction = ParameterDirection.Output;
+                        sqlConnection.Open();
+                        sqlCommand.ExecuteReader();
+                        sqlConnection.Close();
+                        string output = sqlCommand.Parameters["@output"].Value.ToString();
+                        return Ok(new {
+                            result = JsonConvert.DeserializeObject<FarmerDocuments>(sqlCommand.Parameters["@output"].Value.ToString())
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost]
         [Route("[action]")]
         public IActionResult validateOTP([FromBody]PhoneOtp jsonString)
@@ -136,6 +166,10 @@ namespace webapi.Controllers
         public string Aadhar {get; set;}
 
         public string Phone {get; set;}
+    }
+
+    public class FarmerDocuments{
+        public JObject documents {get; set;}
     }
 
     public class PhoneOtp{

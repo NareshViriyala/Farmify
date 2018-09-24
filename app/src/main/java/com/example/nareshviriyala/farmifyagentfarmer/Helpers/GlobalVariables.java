@@ -15,14 +15,16 @@ public class GlobalVariables {
         return globalVariables;
     }
 
-    /*private JSONObject userprofile;
-    public JSONObject getUserProfile() {
-        return userprofile;
+    private int agronomicDataItemId = -2;
+
+    public int getagronomicDataItemId() {
+        return agronomicDataItemId;
     }
-    public void setUserProfile(JSONObject userprofile) {
-        this.userprofile = userprofile;
+    public void setagronomicDataItemId(int agronomicDataItemId) {
+        this.agronomicDataItemId = agronomicDataItemId;
     }
 
+    /*
     private String device_id;
     public void setDevice_id(String device_id){this.device_id = device_id;}
     public String getDevice_id(){return device_id;}
