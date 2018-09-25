@@ -108,8 +108,8 @@ public class HomeActivity extends AppCompatActivity {
         setUpNavigationView();
 
         if (savedInstanceState == null) {
-            navItemIndex = 2;
-            CURRENT_TAG = TAG_ADDFARMER;
+            navItemIndex = 0;
+            CURRENT_TAG = TAG_HOME;
             loadHomeFragment();
         }
     }

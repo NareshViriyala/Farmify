@@ -72,7 +72,7 @@ public class FragmentAddFarmer extends Fragment implements AdapterView.OnItemCli
 
             List<ModelSystemParameter> list = dbHelper.getAllParameters();
             List<ModelDatabaseImage> imageList = dbHelper.getAllImages();
-            Toast.makeText(getActivity(), "list - "+String.valueOf(list.size())+", images - "+String.valueOf(imageList.size()), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(), "list - "+String.valueOf(list.size())+", images - "+String.valueOf(imageList.size()), Toast.LENGTH_SHORT).show();
 
             btn_farmerdiscard.setOnClickListener(this);
             btn_farmersave.setOnClickListener(this);

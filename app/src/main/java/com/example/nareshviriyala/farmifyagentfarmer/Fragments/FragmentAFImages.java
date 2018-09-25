@@ -101,19 +101,23 @@ public class FragmentAFImages extends Fragment implements View.OnClickListener, 
 
             //first check if are available locally
             String data = dbHelper.getParameter(getResources().getString(R.string.Images));
-            JSONObject individualData = new JSONObject(dbHelper.getParameter(getResources().getString(R.string.Individual)));
+            String indData = dbHelper.getParameter(getResources().getString(R.string.Individual));
+            JSONObject individualData = null;
+
+            if(indData.isEmpty() || indData == null)
+                individualData = new JSONObject();
+            else
+                individualData = new JSONObject(indData);
 
             if(data.isEmpty() || data == null){
                 farmerImageData = new JSONObject();
                 if(individualData.has("Id") && individualData.getInt("Id") != 0)//check if images need to be downloaded from server for this farmer
                     new downloadImages().execute(String.valueOf(individualData.getInt("Id")), dbHelper.getParameter("token"));
             }
-            else {
+            else 
                 farmerImageData = new JSONObject(data);
-                refreshImageListView();
-            }
 
-
+            refreshImageListView();
 
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());

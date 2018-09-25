@@ -47,7 +47,7 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 
-public class FragmentAFAgronomicSlave extends Fragment implements View.OnClickListener{
+public class FragmentAFAgronomicSlave extends Fragment implements View.OnClickListener, View.OnLongClickListener{
 
     private View rootView;
     private LogErrors logErrors;
@@ -127,6 +127,7 @@ public class FragmentAFAgronomicSlave extends Fragment implements View.OnClickLi
 
             fab_addcrophistory = rootView.findViewById(R.id.fab_addcrophistory);
             fab_addcrophistory.setOnClickListener(this);
+            fab_addcrophistory.setOnLongClickListener(this);
 
             tl_crophistory = rootView.findViewById(R.id.tl_crophistory);
 
@@ -426,13 +427,7 @@ public class FragmentAFAgronomicSlave extends Fragment implements View.OnClickLi
                     rootView.findViewById(R.id.ll_fabcrophistorycontainer).setVisibility(View.GONE);
                     break;
                 case R.id.fab_addcrophistory:
-                    //new DialogAddCropHistoryItem(getActivity(), null, this).show();
-                    if(validateForm()) {
-                        saveForm();
-                        globalVariables.setagronomicDataItemId(currentItemId);
-                        if (isMapsServicesOK())
-                            getLocationPermission();
-                    }
+                    new DialogAddCropHistoryItem(getActivity(), null, this).show();
                     break;
                 case R.id.btn_agronomicslavedatasave:
                     if(validateForm()) {
@@ -713,6 +708,17 @@ public class FragmentAFAgronomicSlave extends Fragment implements View.OnClickLi
     private void requestFocus(View view) {
         if (view.requestFocus())
             getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        if(validateForm()) {
+            saveForm();
+            globalVariables.setagronomicDataItemId(currentItemId);
+            if (isMapsServicesOK())
+                getLocationPermission();
+        }
+        return true;
     }
 
 
