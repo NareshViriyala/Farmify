@@ -3,13 +3,19 @@ package com.example.nareshviriyala.farmifyagentfarmer.Fragments;
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -37,10 +43,13 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Hashtable;
 import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by Home on 7/18/2016.
@@ -61,6 +70,7 @@ public class FragmentCameraPicture extends Fragment implements SurfaceHolder.Cal
     private String currentPictureType = "";
     private int currentPictureId = 0;
     private ImageView img_picturecontour;
+    private FloatingActionButton fab;
 
     public Vibrator v;
     public boolean isCamOn = true;
@@ -91,6 +101,9 @@ public class FragmentCameraPicture extends Fragment implements SurfaceHolder.Cal
 
             btn_takepicture = rootView.findViewById(R.id.btn_takepicture);
             btn_takepicture.setOnClickListener(this);
+
+            fab = rootView.findViewById(R.id.fab);
+            fab.setOnClickListener(this);
 
             img_picturecontour = rootView.findViewById(R.id.img_picturecontour);
 
@@ -174,27 +187,6 @@ public class FragmentCameraPicture extends Fragment implements SurfaceHolder.Cal
         }
     }
 
-    /*public static String SHA1(String text) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        MessageDigest md = MessageDigest.getInstance("SHA-1");
-        byte[] textBytes = text.getBytes("iso-8859-1");
-        md.update(textBytes, 0, textBytes.length);
-        byte[] sha1hash = md.digest();
-        return convertToHex(sha1hash);
-    }
-
-    private static String convertToHex(byte[] data) {
-        StringBuilder buf = new StringBuilder();
-        for (byte b : data) {
-            int halfbyte = (b >>> 4) & 0x0F;
-            int two_halfs = 0;
-            do {
-                buf.append((0 <= halfbyte) && (halfbyte <= 9) ? (char) ('0' + halfbyte) : (char) ('a' + (halfbyte - 10)));
-                halfbyte = b & 0x0F;
-            } while (two_halfs++ < 1);
-        }
-        return buf.toString();
-    }*/
-
     public void goBack(){
         try{
             if ( getFragmentManager().getBackStackEntryCount() > 0)
@@ -272,6 +264,8 @@ public class FragmentCameraPicture extends Fragment implements SurfaceHolder.Cal
                 case R.id.btn_takepicture:
                     mCamera.takePicture(null, null, pictureCallback);
                     break;
+                case R.id.fab:
+                    checkExternalStoragePermission();
                 default:
                     break;
             }
@@ -318,6 +312,18 @@ public class FragmentCameraPicture extends Fragment implements SurfaceHolder.Cal
                     }
                     return;
                 }
+                case 2000: {
+                    if (grantResults.length > 0) {
+                        for (int i = 0; i < grantResults.length; i++) {
+                            if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                                Toast.makeText(getActivity(), "Can not access images with out permission", Toast.LENGTH_LONG).show();
+                                return;
+                            }
+                        }
+                        pickImageFromGalary();
+                    }
+                }
+
             }
         }
         catch (Exception e){logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());}
@@ -374,5 +380,46 @@ public class FragmentCameraPicture extends Fragment implements SurfaceHolder.Cal
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    public void checkExternalStoragePermission(){
+        try{
+            if(Build.VERSION.SDK_INT < 23){
+                pickImageFromGalary();
+            }else {
+                if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                    pickImageFromGalary();
+                } else {
+                    requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},2000);
+                }
+            }
+        }catch (SecurityException secEx){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), secEx.getMessage().toString());
+        }
+        catch (Exception ex){
+            logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+        }
+    }
+
+    public void pickImageFromGalary(){
+        try{
+            Intent cameraIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(cameraIntent, 1000);
+        }catch (Exception e){logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());}
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        try {
+            if (resultCode == RESULT_OK) {
+                if (requestCode == 1000) {
+                    Uri returnUri = data.getData();
+                    Bitmap bitmapImage = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), returnUri);
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bitmapImage.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                    new savePicture().execute(stream.toByteArray());
+                }
+            }
+        }catch (Exception e){logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());}
     }
 }

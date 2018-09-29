@@ -23,7 +23,7 @@
             android:layout_marginTop="5dp"
             android:background="@color/white"
             android:paddingLeft="8dp"
-            android:text="Social medial presence" />
+            android:text="Social media presence" />
 
         <LinearLayout
             android:layout_width="match_parent"

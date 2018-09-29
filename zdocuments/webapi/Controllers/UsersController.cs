@@ -110,14 +110,7 @@ namespace webapi.Controllers
 
             try{
                 _userService.Create(user, userDto.Password);
-                HttpClient optapi = new HttpClient();
-                string urlParameters = _appSettings.OtpDefaultParam;
-                urlParameters = urlParameters+"&mobiles=+91"+user.Phone;
-                urlParameters = urlParameters+"&authkey="+_appSettings.OtpAuthKey;
-                urlParameters = urlParameters+"&message="+_appSettings.OtpMessage+user.OTP;
-                optapi.BaseAddress = new Uri(_appSettings.OtpApi);  
-                HttpResponseMessage response = optapi.GetAsync(urlParameters).Result;
-                optapi.Dispose();
+                new SendOTP(_appSettings).CallOTPAPI(userDto.Phone, userDto.OTP.ToString());
                 return Ok("Pending OTP confirmation");
             }
             catch (AppException ex)
@@ -164,8 +157,28 @@ namespace webapi.Controllers
         //     return Ok(userDto);
         // }
 
-        [HttpPut]
-        public IActionResult Update([FromBody]UserDto userDto)
+        [AllowAnonymous]
+        [HttpPost("forgotpassword")]
+        public IActionResult ForgotPassword([FromBody]UserDto userDto)
+        {
+           
+            userDto.OTP = new Random().Next(1000, 9999);
+            var user = _mapper.Map<User>(userDto);
+           
+            try{
+                _userService.FindUser(user);
+                new SendOTP(_appSettings).CallOTPAPI(userDto.Phone, userDto.OTP.ToString());
+                return Ok("Otp sent");
+            }
+            catch(AppException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("updatepassword")]
+        public IActionResult UpdatePassword([FromBody]UserDto userDto)
         {
             //map dto to entity and set id
             var user = _mapper.Map<User>(userDto);
@@ -173,7 +186,7 @@ namespace webapi.Controllers
 
             try{
                 _userService.Update(user, userDto.Password);
-                return Ok();
+                return Ok("Password updated successfully");
             }
             catch(AppException ex)
             {

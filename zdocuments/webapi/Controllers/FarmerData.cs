@@ -78,18 +78,25 @@ namespace webapi.Controllers
                         sqlConnection.Open();
                         sqlCommand.ExecuteReader();
                         sqlConnection.Close();
+                        string output = sqlCommand.Parameters["@output"].Value.ToString();
                         if((bool)sqlCommand.Parameters["@status"].Value)
                         {
                             return Ok(new {
                                 status = true,
-                                result = JsonConvert.DeserializeObject<FarmerDataItem>(sqlCommand.Parameters["@output"].Value.ToString())
+                                result = JsonConvert.DeserializeObject<FarmerDataItem>(output)
                             });
                         }
                         else
                         {
+                            //int res;
+                            if(int.TryParse(output, out int res))
+                            {
+                                new SendOTP(_appSettings).CallOTPAPI(jsonString.Phone, output);
+                                output = "Otp sent";
+                            }
                             return Ok(new {
-                                status = false,
-                                result = sqlCommand.Parameters["@output"].Value.ToString()
+                                    status = false,
+                                    result = output
                             });
                         }
                     }

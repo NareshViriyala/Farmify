@@ -117,6 +117,7 @@
                 android:layout_gravity="start"
                 android:textColor="@color/hyperlink"
                 android:linksClickable="true"
+                android:onClick="goToForgotPasswordPage"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <TextView

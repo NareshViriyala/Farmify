@@ -41,7 +41,7 @@ GO
 DROP TABLE IF EXISTS dbo.tbl_login_history; 
 GO
 CREATE TABLE dbo.tbl_login_history(
-	   Id INT IDENTITY(1, 1)
+	   Id INT IDENTITY(1, 1) PRIMARY KEY
 	 , UserId INT
 	 , DeviceID NVARCHAR(100) 
 	 , DeviceType INT --1. Android, 2. Iphone, 3. Windows

@@ -65,7 +65,16 @@
         <item>Select</item>
         <item>Pump operator</item>
         <item>Produce buyer</item>
-        <item>Pesticides shot owner</item>
+        <item>Pesticides shop owner</item>
+    </string-array>
+
+    <string-array name="crop_type">
+        <item>Select</item>
+        <item>Cotton</item>
+        <item>Chilli</item>
+        <item>Corn</item>
+        <item>Paddy</item>
+        <item>Other</item>
     </string-array>
 
     <string-array name="watersource">

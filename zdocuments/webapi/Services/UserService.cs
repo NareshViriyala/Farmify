@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using webapi.Entities;
@@ -15,6 +17,8 @@ namespace webapi.Services
         User Create(User user, string password);
        
         User ValidateOTP(User user);
+
+        User FindUser(User user);
 
         void Update(User user, string password = null);
         void Delete(int id);
@@ -113,27 +117,50 @@ namespace webapi.Services
             return user;
         }
 
-        public void Update(User userParam, string password = null)
+        public User FindUser(User userParam)
         {
-            var user = _context.Users.Find(userParam.Id);
+            var user = _context.Users.FromSql("SELECT * FROM dbo.Users WHERE Phone = @Phone AND Email = @Email", new SqlParameter("@Phone", userParam.Phone), 
+                                       new SqlParameter("@Email", userParam.Email)).FirstOrDefault();
 
             //user does not exist
             if(user == null)
                 throw new AppException("User not found");
 
-            //if in the update request, the username has been changed
-            if(userParam.Phone != userParam.Phone)
-            {
-                //if the updated username is already taken, then please provide the message
-                if(_context.Users.Any(x => x.Phone == userParam.Phone))
-                    throw new AppException("Phone number " + userParam.Phone + " is already taken");
-            }
+            string query =  "MERGE dbo.tbl_phone_validation src ";
+            query = query + "USING (SELECT @Phone AS Phone, @Otp AS Otp) dest ";
+		    query = query +    "ON src.Phone = dest.Phone ";
+		    query = query +  "WHEN MATCHED THEN ";
+	        query = query +"UPDATE SET src.Otp = dest.Otp ";
+	        query = query +  "WHEN NOT MATCHED BY TARGET THEN ";
+	        query = query +"INSERT (Phone, Otp) ";
+	        query = query +"VALUES (dest.Phone, dest.Otp);";
+            _context.Database.ExecuteSqlCommand(query, new SqlParameter("@Phone", userParam.Phone), 
+                                       new SqlParameter("@Otp", userParam.OTP.ToString()));
+
+            return user;
+        }
+
+        public void Update(User userParam, string password = null)
+        {
+            var outParam = new SqlParameter();
+            outParam.ParameterName = "Output";
+            outParam.SqlDbType = SqlDbType.Bit;
+            outParam.Direction = ParameterDirection.Output;
+            string json = "{\"Phone\":\""+userParam.Phone+"\",\"Otp\":\""+userParam.OTP+"\"}";
+
+            var opt = _context.Database.ExecuteSqlCommand("EXEC dbo.usp_verify_phone_otp @json, @output OUT", new SqlParameter("@json", json), outParam);
+            if(!(bool)outParam.Value)
+                throw new AppException("Invalid OTP");   
+
+            var user = _context.Users.FromSql("SELECT * FROM dbo.Users WHERE Phone = @Phone AND Email = @Email", new SqlParameter("@Phone", userParam.Phone), 
+                                       new SqlParameter("@Email", userParam.Email)).FirstOrDefault();
+            //user does not exist
+            if(user == null)
+                throw new AppException("User not found");
 
             //update user properties
-            user.FirstName = userParam.FirstName;
-            user.LastName = userParam.LastName;
-            user.Phone = userParam.Phone;
-            user.Email = userParam.Email;
+            //user.FirstName = userParam.FirstName == null?user.FirstName:userParam.FirstName;
+            //user.LastName = userParam.LastName == null?user.LastName:userParam.LastName;
 
             //update password if it was entered
             if(!string.IsNullOrWhiteSpace(password))

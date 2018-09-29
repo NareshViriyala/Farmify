@@ -60,9 +60,12 @@ public class AdapterFarmInformation extends ArrayAdapter<ModelAgronomicInformati
                 listItem = LayoutInflater.from(context).inflate(R.layout.listitem_farmdata,parent,false);
 
             ModelAgronomicInformation currentDataItem = farmData.get(position);
+            ImageView img_deleteFarm = (ImageView) listItem.findViewById(R.id.img_deleteFarm);
 
-            ImageView img_deleteFarm = (ImageView)listItem.findViewById(R.id.img_deleteFarm);
-            img_deleteFarm.setOnClickListener(this);
+            if(fragmentAFAgronomic != null)
+                img_deleteFarm.setOnClickListener(this);
+            else
+                img_deleteFarm.setVisibility(View.GONE);
 
             TextView textView_id = listItem.findViewById(R.id.textView_id);
             textView_id.setText(String.valueOf(currentDataItem.getId()));
@@ -74,7 +77,10 @@ public class AdapterFarmInformation extends ArrayAdapter<ModelAgronomicInformati
             textView_farmercategory.setText("Farmer category: "+currentDataItem.getFarmerCategory());
 
             TextView textView_croptype = (TextView)listItem.findViewById(R.id.textView_croptype);
-            textView_croptype.setText("Crop type : "+currentDataItem.getCropType());
+            textView_croptype.setText("Crop type : "+currentDataItem.getCropType()
+                    .replace("\"","")
+                    .replace("[","")
+                    .replace("]",""));
 
             TextView textView_soiltype = (TextView)listItem.findViewById(R.id.textView_soiltype);
             textView_soiltype.setText("Soil type : "+currentDataItem.getSoilType());

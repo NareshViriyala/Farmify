@@ -110,7 +110,7 @@ BEGIN
 	   VALUES (dest.Phone, dest.Otp);
 
 	    SET @status = 0
-		SET @output = 'Otp sent'
+		SET @output = CAST(@Otp AS NVARCHAR(10))
 	END
 END
 

@@ -155,7 +155,11 @@ public class BootActivity extends AppCompatActivity {
                 }
             });
 
-        } catch (Exception ex) {
+        } catch (SecurityException ex) {
+            logErrors.WriteLog(className, new Object() {
+            }.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
+        }
+        catch (Exception ex) {
             logErrors.WriteLog(className, new Object() {
             }.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }
@@ -242,6 +246,13 @@ public class BootActivity extends AppCompatActivity {
 
     public void goToRegisterPage(View view){
         Intent Intent = new Intent(this, RegisterActivity.class);
+        startActivity(Intent);
+        this.overridePendingTransition(R.anim.slideinright,R.anim.slideoutright);
+        this.finish();
+    }
+
+    public void goToForgotPasswordPage(View view){
+        Intent Intent = new Intent(this, ForgotPassword.class);
         startActivity(Intent);
         this.overridePendingTransition(R.anim.slideinright,R.anim.slideoutright);
         this.finish();

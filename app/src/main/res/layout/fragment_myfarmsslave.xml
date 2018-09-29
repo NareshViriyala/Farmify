@@ -1,0 +1,94 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    tools:context=".Fragments.FragmentMyFarmsSlave">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_croptype"
+        android:background="@color/grey"
+        android:layout_marginBottom="5dp"
+        android:orientation="vertical">
+
+        <!--text view crop type-->
+        <TextView
+            android:id="@+id/croptype"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingLeft="8dp"
+            android:text="Crop type:" />
+
+        <!--spinner water source-->
+        <Spinner
+            android:id="@+id/spnr_croptype"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:entries="@array/crop_type"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp" />
+
+    </LinearLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_profitshare"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_below="@+id/ll_croptype"
+        android:background="@color/white">
+
+        <EditText
+            android:id="@+id/input_profitshare"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Profit share %"
+            android:inputType="number" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tl_cropexpense"
+        android:background="@color/white"
+        android:stretchColumns="*">
+
+
+    </TableLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pb_loading"
+            android:layout_centerInParent="true"
+            android:indeterminateTint="@color/white"
+            android:visibility="invisible"
+            android:translationZ="3dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:textColor="@color/white"
+            android:id="@+id/btn_save"
+            android:background="@color/colorPrimary"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
