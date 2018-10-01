@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
@@ -47,6 +48,7 @@ public class FragmentMyFarms extends Fragment implements AdapterView.OnItemClick
     private ProgressBar pb_loading;
     private WebServiceOperation wso;
     private JSONArray farmList;
+    private FloatingActionButton fab_cleardata;
 
     public FragmentMyFarms(){}
 
@@ -57,28 +59,7 @@ public class FragmentMyFarms extends Fragment implements AdapterView.OnItemClick
         //setRetainInstance(true);
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putString("phone", input_phone.getText().toString().trim());
-        outState.putString("FarmData", farmList.toString());
-    }
-
-    @Override
-    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
-
-        if (savedInstanceState != null) {
-
-        }
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
-
-    @Override
+     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         rootView =  inflater.inflate(R.layout.fragment_myfarms, container, false);
@@ -101,6 +82,17 @@ public class FragmentMyFarms extends Fragment implements AdapterView.OnItemClick
             img_search = rootView.findViewById(R.id.img_search);
             img_search.setOnClickListener(this);
 
+            fab_cleardata = rootView.findViewById(R.id.fab_cleardata);
+            fab_cleardata.setOnClickListener(this);
+
+            String data = dbHelper.getParameter("FarmData");
+            if(data == null || data.isEmpty() || data.equalsIgnoreCase("[]"))
+                farmList = new JSONArray();
+            else{
+                farmList = new JSONArray(data);
+                refreshFarmList(farmList);
+            }
+
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }
@@ -110,7 +102,7 @@ public class FragmentMyFarms extends Fragment implements AdapterView.OnItemClick
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         try{
-            loadMyFarmsSlaveFragment(position);
+            loadMyFarmsSlaveFragment(farmList.getJSONObject(position).getInt("id"));
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }
@@ -142,6 +134,11 @@ public class FragmentMyFarms extends Fragment implements AdapterView.OnItemClick
                     new getFarmDataFromServer().execute(input_phone.getText().toString().trim(), dbHelper.getParameter("token"));
                     InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+                    break;
+                case R.id.fab_cleardata:
+                    farmList = new JSONArray();
+                    dbHelper.setParameter("FarmData", farmList.toString());
+                    refreshFarmList(farmList);
                     break;
             }
         }catch (Exception ex){
@@ -181,6 +178,7 @@ public class FragmentMyFarms extends Fragment implements AdapterView.OnItemClick
                 if (result.getInt("responseCode") == 200) {
                     JSONObject response = new JSONObject(result.getString("response"));
                     farmList = response.getJSONArray("result");
+                    dbHelper.setParameter("FarmData", farmList.toString());
                     refreshFarmList(farmList);
                 } else if(result.getInt("responseCode") == 401){
                     Snackbar.make(getActivity().findViewById(R.id.fab), "Session expired", Snackbar.LENGTH_LONG)

@@ -347,7 +347,7 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
                     sday = (sday.length() == 1)?("0"+sday):sday;
                     String smonth = String.valueOf(month);
                     smonth = (smonth.length() == 1)?("0"+smonth):smonth;
-                    input_age.setText(sday + "/" + smonth+ "/" + String.valueOf(year));
+                    input_age.setText(String.valueOf(year) + "-" + smonth+ "-" + sday);
                     try {
                         farmerIdvData.put("DOB", input_age.getText().toString().trim());
                         dbHelper.setParameter(getString(R.string.Individual), farmerIdvData.toString());
@@ -418,13 +418,24 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
                     if(response.getBoolean("status")){ //found aadhar
                         //replace already set data with the new data
                         response = response.getJSONObject("result");
-                        dbHelper.setParameter(getResources().getString(R.string.Individual), response.getString("individual_data"));
+                       /* dbHelper.setParameter(getResources().getString(R.string.Individual), response.getString("individual_data"));
                         farmerIdvData = response.getJSONObject("individual_data");
                         dbHelper.setParameter(getResources().getString(R.string.Bank), response.getString("bank_data"));
                         dbHelper.setParameter(getResources().getString(R.string.Social), response.getString("social_data"));
                         dbHelper.setParameter(getResources().getString(R.string.Agronomic), response.getString("agronomic_data"));
                         dbHelper.setParameter(getResources().getString(R.string.Commerce), response.getString("commerce_data"));
+                        dbHelper.setParameter(getResources().getString(R.string.Partner), response.getString("partner_data"));*/
+
+                        dbHelper.setParameter(getResources().getString(R.string.Individual), response.getString("individual_data"));
+                        dbHelper.setParameter(getResources().getString(R.string.Bank), response.getString("bank_data"));
+                        dbHelper.setParameter(getResources().getString(R.string.Agronomic), response.getString("agronomic_data"));
+                        dbHelper.setParameter(getResources().getString(R.string.Social), response.getString("social_data"));
+                        dbHelper.setParameter(getResources().getString(R.string.Commerce), response.getString("commerce_data"));
                         dbHelper.setParameter(getResources().getString(R.string.Partner), response.getString("partner_data"));
+                        dbHelper.setParameter(getResources().getString(R.string.Images), "");
+                        dbHelper.setParameter(getResources().getString(R.string.ImagesSHA), response.getString("image_data"));
+                        new ValidationFarmerData(getActivity()).validateAllData();
+                        farmerIdvData = response.getJSONObject("individual_data");
                         populateForm();
                     }else if(!response.getBoolean("status") && response.getString("result").equalsIgnoreCase("Otp sent")){ //aadhar not found
                         //show otp edit text

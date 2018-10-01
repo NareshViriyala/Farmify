@@ -2,65 +2,222 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10dp"
     tools:context=".Fragments.FragmentMyFarmsSlave">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ll_croptype"
-        android:background="@color/grey"
-        android:layout_marginBottom="5dp"
-        android:orientation="vertical">
-
-        <!--text view crop type-->
-        <TextView
-            android:id="@+id/croptype"
+        android:layout_marginBottom="30dp">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:paddingLeft="8dp"
-            android:text="Crop type:" />
+            android:orientation="vertical">
 
-        <!--spinner water source-->
-        <Spinner
-            android:id="@+id/spnr_croptype"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:entries="@array/crop_type"
-            android:paddingBottom="5dp"
-            android:paddingTop="5dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ll_spinners"
+                android:orientation="horizontal">
 
-    </LinearLayout>
+                <!--Linear layout crop type-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/ll_croptype"
+                    android:background="@color/grey"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="vertical">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/input_layout_profitshare"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_below="@+id/ll_croptype"
-        android:background="@color/white">
+                    <!--text view crop type-->
+                    <TextView
+                        android:id="@+id/croptype"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:paddingLeft="8dp"
+                        android:text="Crop type:" />
 
-        <EditText
-            android:id="@+id/input_profitshare"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Profit share %"
-            android:inputType="number" />
+                    <!--spinner spnr_croptype-->
+                    <Spinner
+                        android:id="@+id/spnr_croptype"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:entries="@array/crop_type"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp" />
 
-    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tl_cropexpense"
-        android:background="@color/white"
-        android:stretchColumns="*">
+                <!--Linear layout land area-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="bottom"
+                    android:background="@color/white"
+                    android:id="@+id/ll_landarea"
+                    android:orientation="vertical">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_landacers"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:layout_height="0dp">
+
+                        <EditText
+                            android:id="@+id/input_landacers"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Acers"
+                            android:inputType="number" />
+
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <!--Linear layout ll_profitshare-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/ll_profitshare"
+                    android:background="@color/grey"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="vertical">
+
+                    <!--text view profitshare-->
+                    <TextView
+                        android:id="@+id/profitshare"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:paddingLeft="8dp"
+                        android:text="Profit share %" />
+
+                    <!--spinner spnr_profitshare-->
+                    <Spinner
+                        android:id="@+id/spnr_profitshare"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:entries="@array/profit_share"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--Linear layout start and end date-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/white">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_startdate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/input_startdate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Start date"
+                            android:inputType="number" />
+
+                    </android.support.design.widget.TextInputLayout>
 
 
-    </TableLayout>
+                    <ImageView
+                        android:id="@+id/img_startcalendar"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/baseline_calendar_today_black_24dp"
+                        android:tint="@color/colorPrimary" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/white">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_enddate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/input_enddate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="End date"
+                            android:inputType="number" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+
+                    <ImageView
+                        android:id="@+id/img_endcalendar"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/baseline_calendar_today_black_24dp"
+                        android:tint="@color/colorPrimary" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_expensereport"
+                android:layout_below="@+id/ll_spinners"
+                android:gravity="center_horizontal"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:text="Expense Report"/>
+
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tl_cropexpense"
+                android:background="@color/white"
+                android:layout_below="@+id/tv_expensereport"
+                android:stretchColumns="2,3,4">
+
+
+            </TableLayout>
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_add_newrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginBottom="10dp"
+                app:backgroundTint="@color/colorPrimary"
+                app:srcCompat="@android:drawable/ic_input_add" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -88,7 +245,5 @@
             android:focusableInTouchMode="false" />
 
     </RelativeLayout>
-
-
 
 </RelativeLayout>

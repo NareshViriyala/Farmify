@@ -56,6 +56,8 @@ Icons of all sizes.
 https://www.youtube.com/watch?v=MWowf5SkiOE&index=6&list=PLgCYzUzKIBE-vInwQhGSdnbyJ62nixHCt -- 2:05
 
 
+{"agent_id":0,"farm_id":11,"farm_expense_id":1,"crop_type":"Chilli","land_acers":2,"profit_share":9,"expenses":[{"Id":1,"Decscription":"seeds","Amount":2000,"RequestDate":"2018-10-24"},{"Id":2,"Decscription":"pesticides","Amount":500,"RequestDate":"2018-11-14"},{"Id":3,"Decscription":"insecticide","Amount":5001,"RequestDate":"2018-11-14"}]}
+{"agent_id":1,"farm_id":11,"farm_expense_id":1,"crop_type":"Chilli","land_acers":2,"profit_share":9,"expenses":[{"Id":1,"Decscription":"seeds","Amount":2000,"RequestDate":"2018-10-24"},{"Id":2,"Decscription":"pesticides","Amount":500,"RequestDate":"2018-11-14"},{"Id":3,"Decscription":"insecticide","Amount":5001,"RequestDate":"2018-11-14"}]}
 
 
 

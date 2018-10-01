@@ -128,3 +128,36 @@ CREATE TABLE dbo.tbl_phone_validation (
 	 , Otp NVARCHAR(50)
 	 , CreatedDate DATETIME DEFAULT(GETDATE())
 	 , LastModifiedBy INT)
+GO
+DROP TABLE IF EXISTS dbo.tbl_expense_header; 
+GO
+CREATE TABLE dbo.tbl_expense_header (
+	   Id INT IDENTITY(1,1) PRIMARY KEY
+	 , farm_id INT
+	 , CropType VARCHAR(50)
+	 , LandAcers FLOAT
+	 , ProfitShare FLOAT
+	 , RequestAmount FLOAT
+	 , PoolAmount FLOAT
+	 , StartDate DATE
+	 , EndDate DATE
+	 , IsActive BIT
+	 , CreatedDate DATETIME DEFAULT(GETDATE())
+	 , ClosedDate DATETIME
+	 , LastModified DATETIME
+	 , LastModifiedBy INT)
+GO
+DROP TABLE IF EXISTS dbo.tbl_expense; 
+GO
+CREATE TABLE dbo.tbl_expense (
+	   Id INT IDENTITY(1,1) PRIMARY KEY
+	 , farm_expense_id INT
+	 , Decscription VARCHAR(100)
+	 , Amount FLOAT
+	 , RequestDate DATE
+	 , ReleaseDate DATE
+	 , UsedDate DATE
+	 , UsedAmount FLOAT
+	 , CreatedDate DATETIME DEFAULT(GETDATE())
+	 , LastModified DATETIME
+	 , LastModifiedBy INT)

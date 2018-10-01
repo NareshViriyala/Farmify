@@ -125,7 +125,7 @@ public class HomeActivity extends AppCompatActivity {
             txtName.setText(dbHelper.getParameter("first_name") +" "+dbHelper.getParameter("last_name"));
             txtEmail.setText(dbHelper.getParameter("email"));
             txtPhone.setText(dbHelper.getParameter("phone"));
-            navigationView.getMenu().getItem(3).setActionView(R.layout.menu_dot);
+            //navigationView.getMenu().getItem(3).setActionView(R.layout.menu_dot);
         }catch (Exception ex){
             logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), ex.getMessage().toString());
         }
@@ -201,12 +201,12 @@ public class HomeActivity extends AppCompatActivity {
                 return fragmentAddFarm;
             case 3:
                 // notifications fragment
-                FragmentAFCommerce fragmentEcommerce = new FragmentAFCommerce();
-                return fragmentEcommerce;
+                FragmentHome fragmentHome1 = new FragmentHome();
+                return fragmentHome1;
             case 4:
                 // settings fragment
-                FragmentAFPartner fragmentSatellite = new FragmentAFPartner();
-                return fragmentSatellite;
+                FragmentHome fragmentHome2 = new FragmentHome();
+                return fragmentHome2;
             case 5:
                 // signout
                 dbHelper.deleteParameter("token");

@@ -283,7 +283,7 @@
                                 android:id="@+id/input_age"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="DOB(dd/mm/yyyy)"
+                                android:hint="DOB(yyyy-mm-dd)"
                                 android:inputType="number" />
 
                         </android.support.design.widget.TextInputLayout>
