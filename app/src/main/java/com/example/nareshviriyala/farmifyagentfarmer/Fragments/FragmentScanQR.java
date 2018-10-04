@@ -14,7 +14,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -29,6 +28,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 
 import java.io.StringReader;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Timer;
@@ -51,7 +52,6 @@ import com.example.nareshviriyala.farmifyagentfarmer.zxing.Result;
 import com.example.nareshviriyala.farmifyagentfarmer.zxing.common.HybridBinarizer;
 import com.example.nareshviriyala.farmifyagentfarmer.zxing.qrcode.QRCodeReader;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -320,6 +320,18 @@ public class FragmentScanQR extends Fragment implements SurfaceHolder.Callback, 
     public boolean validateData(String QRContent){
         boolean ret = false;
         decodingQR = false;
+        try{
+            if(qrType1(QRContent))
+                return true;
+            if(qrType2(QRContent))
+                return true;
+        }
+        catch (Exception e){logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());}
+        return ret;
+    }
+
+    public boolean qrType1(String QRContent){
+        boolean ret = false;
         String uid = "", uname = "", dob = "", gender = "", co = "", address1 = "", address2 = "", area = "", district = "", mandal = "", state = "", pincode = "";
         try{
             if(!QRContent.contains("PrintLetterBarcodeData") &&
@@ -388,8 +400,94 @@ public class FragmentScanQR extends Fragment implements SurfaceHolder.Callback, 
             farmerIdvData.put("Pincode", pincode);
             dbHelper.setParameter(getString(R.string.Individual), farmerIdvData.toString());
             ret = true;
-        }
-        catch (Exception e){logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());}
+        }catch (Exception e){logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());}
+        return ret;
+    }
+
+    public boolean qrType2(String QRContent){
+        boolean ret = false;
+        String uid = "", uname = "", dob = "", gender = "", co = "", address1 = "", address2 = "", area = "", district = "", mandal = "", state = "", pincode = "";
+        try{
+            if(!QRContent.contains("QR-Code:<QDA") &&
+                    !QRContent.contains("n=") &&
+                    !QRContent.contains("u=") &&
+                    !QRContent.contains("g=") &&
+                    !QRContent.contains("d=") &&
+                    !QRContent.contains("a="))
+                return ret;
+            QRContent = QRContent.replace("QR-Code:","");
+            XmlPullParserFactory xmlFactoryObject = XmlPullParserFactory.newInstance();
+            // get the parser
+            XmlPullParser myparser = xmlFactoryObject.newPullParser();
+            myparser.setInput(new StringReader(QRContent));
+
+            // parse the XML
+            int eventType = myparser.getEventType();
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+                String name= myparser.getName();
+                switch (eventType){
+                    case XmlPullParser.START_TAG:
+                        break;
+
+                    case XmlPullParser.END_TAG:
+                        if(name.equals("QDA")){
+                            uid = myparser.getAttributeValue(null,"u");
+                            uname = myparser.getAttributeValue(null,"n");
+                            dob = myparser.getAttributeValue(null,"d");
+                            SimpleDateFormat inputformat = new SimpleDateFormat("dd-MM-yyyy");
+                            SimpleDateFormat outputformat = new SimpleDateFormat("yyyy-MM-dd");
+                            Date data = inputformat.parse(dob);
+                            dob = outputformat.format(data);
+                            gender = myparser.getAttributeValue(null,"g");
+                            address1 = myparser.getAttributeValue(null,"a");
+                        }
+                        break;
+                }
+                // update eventType
+                eventType = myparser.next();
+            }
+
+            JSONObject farmerIdvData = new JSONObject();
+            if(uid.length() == 12)
+                farmerIdvData.put("Aadhar", uid);
+            String[] names = uname.split(" ");
+            if(names.length > 0)
+                farmerIdvData.put("Surname", names[0]);
+            if(names.length > 1)
+                farmerIdvData.put("FirstName", names[1]);
+            String lastname = "";
+            if(names.length > 2) {
+                for(int i = 2; i < names.length; i++)
+                    lastname = names[i]+" ";
+                farmerIdvData.put("LastName", lastname.trim());
+            }
+
+            String[] address = address1.split(",");
+            if(address.length > 0)
+                pincode = address[address.length-1];
+            if(address.length-1 > 0)
+                state = address[address.length-2];
+            if(address.length-2 > 0)
+                district = address[address.length-3];
+            if(address.length-3 > 0)
+                mandal = address[address.length-4];
+            if(address.length == 6)
+                address2 = address[1];
+            if(address.length == 5)
+                address1 = address[0];
+
+            farmerIdvData.put("DOB", dob);
+            farmerIdvData.put("Gender", (gender.equalsIgnoreCase("M"))?"Male":"Female");
+            farmerIdvData.put("Address1", address1);
+            farmerIdvData.put("Address2", (address2 + " " + area).trim());
+            farmerIdvData.put("State", state);
+            farmerIdvData.put("District", district);
+            farmerIdvData.put("VillageTown", mandal);
+            farmerIdvData.put("Pincode", pincode);
+            dbHelper.setParameter(getString(R.string.Individual), farmerIdvData.toString());
+            ret = true;
+
+        }catch (Exception e){logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());}
         return ret;
     }
 

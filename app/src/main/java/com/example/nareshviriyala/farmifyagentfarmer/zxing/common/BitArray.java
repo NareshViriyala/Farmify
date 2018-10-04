@@ -244,4 +244,40 @@ public final class BitArray {
     return result.toString();
   }
 
+  /*public int getNextSet(int from) {
+    if (from >= size) {
+      return size;
+    }
+    int bitsOffset = from / 32;
+    int currentBits = bits[bitsOffset];
+    // mask off lesser bits first
+    currentBits &= -(1 << (from & 0x1F));
+    while (currentBits == 0) {
+      if (++bitsOffset == bits.length) {
+        return size;
+      }
+      currentBits = bits[bitsOffset];
+    }
+    int result = (bitsOffset * 32) + Integer.numberOfTrailingZeros(currentBits);
+    return result > size ? size : result;
+  }
+
+  public int getNextUnset(int from) {
+    if (from >= size) {
+      return size;
+    }
+    int bitsOffset = from / 32;
+    int currentBits = ~bits[bitsOffset];
+    // mask off lesser bits first
+    currentBits &= -(1 << (from & 0x1F));
+    while (currentBits == 0) {
+      if (++bitsOffset == bits.length) {
+        return size;
+      }
+      currentBits = ~bits[bitsOffset];
+    }
+    int result = (bitsOffset * 32) + Integer.numberOfTrailingZeros(currentBits);
+    return result > size ? size : result;
+  }*/
+
 }

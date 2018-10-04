@@ -35,6 +35,7 @@ Code to request app location - currently user has to manually provide location p
 
 <?xml version="1.0" encoding="UTF-8"?>
 <PrintLetterBarcodeData uid="428400470799" name="Viriyala Naresh Kumar" gender="M" yob="1985" co="S/O: Late V V Rao" house="Block 34, Flat No 10-04" street="Malaysian Town Ship" vtc="Tirumalagiri" po="Kukatpally" dist="Hyderabad" subdist="Tirumalagiri" state="Telangana" pc="500072" dob="07/01/1985"/>
+QR-Code:<QDA n="Chirivirala Satyanarayana" u="xxxxxxxx8561" g="M" d="30-07-1993" a="1-15/A,Rayavaram,Guntur,Andhra Pradesh,522426" x="" s="UzcUO7ixuiF7EQH4k/uNRwTzJYJinmPSLHdSkFnakjq132sKzUUbdwyBsI5Xxci2lbyDgMwnaTz/y1hDbxKizXz1KBbSuhKsq+MRxNwaZW7qqNxzxmBPnK8yD2uK+Qd5G6T07enXoyhjizXOfDH/oLALCSyG217OaxbCJZqVv7lpXz4B5Ov8185ePQ6yZ9mxZmS7Ff7lWE/jvE4QneUbUtd4HJzIzmbwE2DTD0AKJQxOGZKqnPKrRM3fbtoY2Ts9EyK/+eIGUCDh6S841CCYb84K4Bq1PCJtGOJR8b1ZmnSHlN+ExGpaenc3FqOJVLPuPROxqGvoE2fenhDLeWv+kA=="/>
 
 back press from AddFarm -> QR code -->Individual details
 scroll view on ecommerce fragment

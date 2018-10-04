@@ -32,10 +32,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".Activities.BootActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <activity android:name=".Activities.RegisterActivity" android:windowSoftInputMode="stateHidden|adjustResize">
@@ -43,7 +40,10 @@
         </activity>
 
         <activity android:name=".Activities.HomeActivity" android:windowSoftInputMode="stateHidden">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name=".Activities.ForgotPassword" android:windowSoftInputMode="stateHidden">

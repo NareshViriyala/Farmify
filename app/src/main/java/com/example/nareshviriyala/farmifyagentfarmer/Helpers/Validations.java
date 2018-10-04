@@ -72,6 +72,8 @@ public class Validations {
             returnVal = "Please provide aadhar number";
         } else if (value.trim().replace(" ","").length() != 12){
             returnVal = "Invalid aadhar number";
+        } else if(!Pattern.compile("^[0-9]{12}$").matcher(value.trim().replace(" ","")).matches()){
+            returnVal = "Invalid aadhar number";
         }
         return returnVal;
     }

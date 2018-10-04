@@ -17,6 +17,7 @@
 package com.example.nareshviriyala.farmifyagentfarmer.zxing;
 
 import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Implementations of this interface can decode an image of a barcode in some format into
@@ -55,6 +56,7 @@ public interface Reader {
    */
   Result decode(BinaryBitmap image, Hashtable hints) throws NotFoundException, ChecksumException, FormatException;
 
+  /*Result decode(BinaryBitmap image, Map<DecodeHintType,?> hints) throws NotFoundException, ChecksumException, FormatException;*/
   /**
    * Resets any internal state the implementation has after a decode, to prepare it
    * for reuse.
