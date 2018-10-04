@@ -36,17 +36,12 @@ import com.example.nareshviriyala.farmifyagentfarmer.Helpers.Convertor;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.DatabaseHelper;
 import com.example.nareshviriyala.farmifyagentfarmer.Helpers.LogErrors;
 import com.example.nareshviriyala.farmifyagentfarmer.R;
-import com.example.nareshviriyala.farmifyagentfarmer.zxing.DecodeHintType;
+
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
-import java.io.UnsupportedEncodingException;
-import java.nio.ByteBuffer;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Hashtable;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
@@ -66,7 +61,7 @@ public class FragmentCameraPicture extends Fragment implements SurfaceHolder.Cal
     public Camera mCamera;
     public SurfaceHolder surfaceHolder;
     public Camera.PictureCallback pictureCallback;
-    public Hashtable<DecodeHintType, Object> decodeHints = new Hashtable<DecodeHintType, Object>();
+    //public Hashtable<DecodeHintType, Object> decodeHints = new Hashtable<DecodeHintType, Object>();
     private String currentPictureType = "";
     private int currentPictureId = 0;
     private ImageView img_picturecontour;
@@ -86,7 +81,7 @@ public class FragmentCameraPicture extends Fragment implements SurfaceHolder.Cal
             className = new Object(){}.getClass().getEnclosingClass().getName();
             dbHelper = new DatabaseHelper(getActivity());
             ((HomeActivity) getActivity()).setActionBarTitle("Take picture");
-            decodeHints.put(DecodeHintType.TRY_HARDER, Boolean.TRUE);
+            //decodeHints.put(DecodeHintType.TRY_HARDER, Boolean.TRUE);
             currentPictureType = getArguments().getString("PictureType");
             currentPictureId = getArguments().getInt("PictureId");
             String data = dbHelper.getParameter(getString(R.string.Images));

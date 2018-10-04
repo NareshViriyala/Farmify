@@ -162,8 +162,14 @@ public class FragmentAFIndividual extends Fragment implements View.OnClickListen
                 ll_individualform.setVisibility(View.VISIBLE);
                 String uid = farmerIdvData.getString("Aadhar");
                 uid = uid.substring(0, 4)+" "+uid.substring(4, 8)+" "+uid.substring(8);
-                input_aadhar.setText(uid);
-                input_aadhar.setEnabled(false);
+                if(!uid.contains("x")) {
+                    input_aadhar.setEnabled(false);
+                    input_aadhar.setText(uid);
+                }else{
+                    input_aadhar.setText("");
+                }
+
+
                 if(farmerIdvData.has("Phone")) {
                     rootView.findViewById(R.id.rl_aadharbutton).setVisibility(View.GONE);
                     ll_verifyotp.setVisibility(View.GONE);

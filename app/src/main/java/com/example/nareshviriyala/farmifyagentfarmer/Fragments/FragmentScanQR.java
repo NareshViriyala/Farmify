@@ -52,6 +52,20 @@ import com.example.nareshviriyala.farmifyagentfarmer.zxing.Result;
 import com.example.nareshviriyala.farmifyagentfarmer.zxing.common.HybridBinarizer;
 import com.example.nareshviriyala.farmifyagentfarmer.zxing.qrcode.QRCodeReader;
 
+
+/*import com.google.zxing.BinaryBitmap;
+import com.google.zxing.ChecksumException;
+import com.google.zxing.DecodeHintType;
+import com.google.zxing.FormatException;
+import com.google.zxing.LuminanceSource;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.NotFoundException;
+import com.google.zxing.PlanarYUVLuminanceSource;
+import com.google.zxing.Reader;
+import com.google.zxing.Result;
+import com.google.zxing.common.HybridBinarizer;
+import com.google.zxing.qrcode.QRCodeReader;*/
+
 import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -152,8 +166,10 @@ public class FragmentScanQR extends Fragment implements SurfaceHolder.Callback, 
                 int previewHeight = parameters.getPreviewSize().width;
                 int previewWidth = parameters.getPreviewSize().height;
                 PlanarYUVLuminanceSource source = new PlanarYUVLuminanceSource(data, previewHeight, previewWidth, 0, 0, previewHeight, previewWidth, false);
+                //LuminanceSource source = new PlanarYUVLuminanceSource(data, previewHeight, previewWidth, 0, 0, previewHeight, previewWidth, false);
                 BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
                 Reader reader = new QRCodeReader();
+                //MultiFormatReader reader = new MultiFormatReader();
                 Result result = reader.decode(bitmap, decodeHints);
                 decodedText = result.getText();
             }
@@ -297,29 +313,10 @@ public class FragmentScanQR extends Fragment implements SurfaceHolder.Callback, 
         }
     }
 
-    /*public JSONObject saveImagesLocally(String imagedata){
-        JSONObject finalJson = new JSONObject();
-        try {
-
-            JSONObject imageString = new JSONObject(imagedata);
-            JSONArray imageType = imageString.names();
-            for(int i = 0; i < imageType.length(); i++){//loop each image category Farmer, Aadhar, Ration, Pan, Bankbook, Additional
-                JSONArray imagearray = imageString.getJSONArray(imageType.getString(i));
-                JSONArray localImageIntArray = new JSONArray();
-                for(int j = 0; j < imagearray.length(); j++){
-                    byte[] img = Base64.decode(imagearray.getString(j), Base64.DEFAULT);
-                    localImageIntArray.put(dbHelper.setImage(img));
-                }
-                finalJson.put(imageType.getString(i), localImageIntArray);
-            }
-
-        }catch (Exception e){logErrors.WriteLog(className, new Object(){}.getClass().getEnclosingMethod().getName(), e.getMessage());}
-        return finalJson;
-    }*/
-
     public boolean validateData(String QRContent){
         boolean ret = false;
         decodingQR = false;
+        //Toast.makeText(getActivity(), QRContent, Toast.LENGTH_SHORT).show();
         try{
             if(qrType1(QRContent))
                 return true;
